@@ -3,23 +3,28 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const DEFAULT_PROJECTS = [
-  { id:1, title:'TechVibes Africa', type:'Thumbnail YouTube', stats:'Thumbnail optimisée · CTR amélioré', image_url:'/images/Projet 1.png', mockup_label:'TECHVIBES', bg_class:'port-bg-1', display_order:1 },
-  { id:2, title:'FitNation Africa', type:'Montage Vidéo', stats:'Montage court · Rétention améliorée', image_url:'/images/projet 2.png', mockup_label:'FIT', bg_class:'port-bg-2', display_order:2 },
-  { id:3, title:'BusinessAfrica.tv', type:'Site Web', stats:'Livré en 7 jours · Responsive · SEO de base', image_url:'/images/Projet 3.png', mockup_label:'WEB', bg_class:'port-bg-3', display_order:3 },
-  { id:4, title:'King Kora Music', type:'Thumbnail + Montage', stats:'Thumbnail + montage · Résultats visibles', image_url:'/images/Projet 4.png', mockup_label:'KING', bg_class:'port-bg-4', display_order:4 },
-  { id:5, title:'ModeBénin Shop', type:'Site Web E-commerce', stats:'Site e-commerce · Design mobile-first', image_url:null, mockup_label:'MODE', bg_class:'port-bg-5', display_order:5 },
-  { id:6, title:'Lifestyle Béninoise', type:'Montage Vlog', stats:'Cuts dynamiques · Multi-formats', image_url:null, mockup_label:'VLOG', bg_class:'port-bg-6', display_order:6 },
+  { id:1, title:'TechVibes Africa', type:'Thumbnail YouTube', stats:'Design cliquable · Optimisé mobile · Livré en 24h', image_url:'/images/Projet 1.png', mockup_label:'TECH', bg_class:'port-bg-1', display_order:1 },
+  { id:2, title:'FitNation Africa', type:'Montage Vidéo · CapCut', stats:'Cuts dynamiques · Musique synchronisée · Format Reels', image_url:'/images/projet 2.png', mockup_label:'FIT', bg_class:'port-bg-2', display_order:2 },
+  { id:3, title:'Boutique Élégance', type:'Site Vitrine WordPress', stats:'5 pages · Mobile-first · SEO de base · 8 jours', image_url:'/images/Projet 3.png', mockup_label:'WEB', bg_class:'port-bg-3', display_order:3 },
+  { id:4, title:'King Kora Music', type:'Montage Clip + Thumbnail', stats:'Motion design · Sous-titres animés · Multi-plateformes', image_url:'/images/Projet 4.png', mockup_label:'KORA', bg_class:'port-bg-4', display_order:4 },
+  { id:5, title:'STRATEEK Collective', type:'Identité Visuelle · Canva', stats:'Logo · Pack réseaux sociaux · Charte graphique', image_url:null, mockup_label:'STR', bg_class:'port-bg-5', display_order:5 },
+  { id:6, title:'Landing Page Freelance', type:'Landing Page HTML/CSS/JS', stats:'Formulaire contact · Responsive · Animations CSS', image_url:null, mockup_label:'PAGE', bg_class:'port-bg-6', display_order:6 },
 ];
 
 export default function Home() {
   const [projects, setProjects] = useState(DEFAULT_PROJECTS);
-  const [testimonials, setTestimonials] = useState([]);
+  const DEFAULT_TESTIMONIALS = [
+    { id:1, name:'Kofi A.', role:'Créateur YouTube · Tech', message:'Exaucé a transformé mes thumbnails. Mes vidéos font maintenant vraiment envie de cliquer. Travail sérieux, livré en avance.', rating:5 },
+    { id:2, name:'Mariama S.', role:'Gérante · Boutique en ligne', message:'Mon site était prêt en moins de 10 jours. Responsive, propre, exactement ce que je voulais. Je recommande sans hésiter.', rating:5 },
+    { id:3, name:'Junior K.', role:'Artiste musical · Bénin', message:'Le montage de mon clip était au-delà de mes attentes. Il a compris mon univers artistique dès le premier brief.', rating:5 },
+  ];
+  const [testimonials, setTestimonials] = useState(DEFAULT_TESTIMONIALS);
   const [form, setForm] = useState({ name:'', email:'', message:'' });
   const [status, setStatus] = useState('idle');
 
   useEffect(() => {
     fetch('/api/projects').then(r=>r.json()).then(d=>{if(d?.length)setProjects(d);}).catch(()=>{});
-    fetch('/api/testimonials').then(r=>r.json()).then(d=>{if(d)setTestimonials(d);}).catch(()=>{});
+    fetch('/api/testimonials').then(r=>r.json()).then(d=>{if(d?.length)setTestimonials(d);}).catch(()=>{});
     fetch('/api/analytics',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event_type:'page_view',page:'/'})}).catch(()=>{});
   }, []);
 
@@ -70,16 +75,15 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero">
-        <p className="hero-eyebrow">Développeur Web · Monteur Vidéo · Bénin</p>
+        <p className="hero-eyebrow">Abomey-Calavi, Bénin · Disponible pour vos projets</p>
         <h1>
-          Du code<br/>
-          qui <em>impacte.</em><br/>
-          Du contenu<br/>
-          qui <em>engage.</em>
+          Développeur.<br/>
+          Monteur.<br/>
+          <em>Créateur.</em>
         </h1>
         <p className="hero-sub">
-          Je conçois des interfaces web modernes et des montages vidéo percutants —
-          de la ligne de code au contenu qui convertit.
+          Je construis des sites web qui convertissent et des vidéos qui retiennent l'attention.
+          Du code propre au contenu percutant — de A à Z.
         </p>
         <div className="hero-ctas">
           <a href="#contact" className="btn-primary">Démarrer un projet</a>
@@ -106,7 +110,7 @@ export default function Home() {
       {/* ABOUT */}
       <section className="about" id="about">
         <div className="about-img reveal">
-          <img src="/images/Exaucé.png" alt="Exaucé"/>
+          <img src="/images/exauce-pro.jpg" alt="Exaucé Attinganmè" onError={e=>{e.target.src='/images/Exaucé.png'}}/>
         </div>
         <div className="about-content reveal">
           <span className="label label-blue">À propos</span>
