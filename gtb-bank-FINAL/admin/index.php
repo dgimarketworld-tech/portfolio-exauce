@@ -143,6 +143,7 @@ body{font-family:'DM Sans',sans-serif;background:#F1F5F9;color:var(--gray700);ov
 @media(max-width:560px){.stats-grid{grid-template-columns:1fr;}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 </style>
+<link rel="stylesheet" href="mobile.css">
 </head>
 <body>
 <div class="dash-layout">

@@ -260,6 +260,7 @@ body{font-family:'DM Sans',sans-serif;background:#F0F2F5;color:var(--gray800);ov
 .modal-body{padding:1.5rem}
 .modal-foot{padding:1rem 1.5rem;border-top:1px solid var(--gray100);display:flex;gap:.75rem;justify-content:flex-end}
 </style>
+<link rel="stylesheet" href="../mobile.css">
 </head>
 <body>
 

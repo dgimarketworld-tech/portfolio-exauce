@@ -1,0 +1,102 @@
+/* ============================================================
+   GTB ADMIN — Responsive Mobile CSS partagé
+   Appliqué sur TOUS les fichiers admin/*.php
+   ============================================================ */
+
+/* ── Tablette (≤1024px) ───────────────────────────────────── */
+@media(max-width:1024px){
+  :root{--sidebar-w:220px}
+  .topbar-search{display:none}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ── Mobile (≤768px) ─────────────────────────────────────── */
+@media(max-width:768px){
+  :root{--topbar-h:56px}
+  .sidebar{transform:translateX(-100%);width:260px;z-index:400}
+  .sidebar.open{transform:translateX(0)}
+  .dash-main{margin-left:0!important;padding:1rem .9rem}
+  .topbar{left:0!important;padding:0 .9rem}
+  .sidebar-toggle{display:flex!important}
+  .topbar-search{display:none!important}
+  .topbar-user-name{display:none!important}
+  .topbar-breadcrumb{display:none!important}
+  .topbar-page-title{font-size:.85rem!important}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:.75rem}
+  .main-grid,.grid-2,.grid-3,.grid-4,
+  [class*="col-grid"]{grid-template-columns:1fr!important}
+  .card-pad,.card-pad-lg{padding:1rem}
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .form-row{grid-template-columns:1fr!important}
+  .modal-box{max-width:calc(100vw - 2rem);margin:auto 1rem}
+}
+
+/* ── Petit mobile (≤480px) ────────────────────────────────── */
+@media(max-width:480px){
+  html{font-size:14px}
+  .dash-main{padding:.85rem .75rem}
+  .topbar{padding:0 .75rem}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:.6rem}
+
+  /* Titres */
+  .pg-title{font-size:1rem!important}
+  .pg-sub,.page-sub{font-size:.73rem!important}
+  .sec-head{margin-bottom:.9rem;flex-direction:column;align-items:flex-start;gap:.6rem}
+  .card-title{font-size:.82rem!important}
+  .card-sub{font-size:.68rem!important}
+
+  /* Stat cards */
+  .stat-value{font-size:1.15rem!important}
+  .stat-label{font-size:.6rem!important}
+  .stat-diff{font-size:.63rem!important}
+
+  /* Cartes */
+  .card{border-radius:12px}
+  .card-pad,.card-pad-lg{padding:.85rem}
+
+  /* Boutons */
+  .btn{font-size:.72rem!important;padding:.48rem .85rem!important}
+  .btn-sm{font-size:.68rem!important;padding:.35rem .65rem!important}
+
+  /* Tableaux */
+  .tbl{min-width:480px}
+  .tbl thead th{font-size:.58rem!important;padding:.5rem .65rem!important}
+  .tbl tbody td{font-size:.73rem!important;padding:.55rem .65rem!important}
+
+  /* Formulaires */
+  .form-input,.form-select,.form-textarea{font-size:.8rem!important;padding:.6rem .85rem!important}
+  .form-label{font-size:.6rem!important}
+
+  /* Chips */
+  .chip,.filter-chip{font-size:.65rem!important;padding:.25rem .55rem!important}
+
+  /* Sidebar */
+  .sidebar-link{font-size:.76rem!important;padding:.52rem 1.1rem!important}
+  .sidebar-section-label{font-size:.5rem!important;padding:.4rem 1.1rem .15rem!important}
+
+  /* Topbar */
+  .topbar-page-title{font-size:.78rem!important;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .topbar-btn{width:30px!important;height:30px!important;font-size:.8rem!important}
+
+  /* Modal */
+  .modal-box{border-radius:14px}
+  .modal-head{padding:.9rem .9rem 0}
+  .modal-body{padding:0 .9rem .9rem}
+  .modal-foot{padding:.15rem .9rem .9rem;flex-direction:column}
+  .modal-foot .btn{width:100%}
+  .modal-title{font-size:.85rem!important}
+
+  /* Row items */
+  .row-title{font-size:.78rem!important}
+  .row-sub{font-size:.65rem!important}
+  .row-icon{width:34px!important;height:34px!important;font-size:.9rem!important}
+
+  /* Badge/status */
+  .badge,.status-badge{font-size:.6rem!important;padding:.18rem .5rem!important}
+}
+
+/* ── Très petit (≤375px) ──────────────────────────────────── */
+@media(max-width:375px){
+  html{font-size:13px}
+  .stats-grid{grid-template-columns:1fr}
+}

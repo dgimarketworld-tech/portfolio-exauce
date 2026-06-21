@@ -271,7 +271,8 @@ body{font-family:'DM Sans',sans-serif;background:#F1F5F9;color:var(--gray700);ov
 .kpi-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
 .kpi-label{font-size:.68rem;font-weight:600;color:var(--gray400);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.25rem;}
 .kpi-value{font-family:'Sora',sans-serif;font-weight:800;font-size:1.3rem;color:var(--gray900);line-height:1;}
-@media(max-width:768px){.admin-topbar{left:0;padding:0 1rem;}.admin-main{margin-left:0;padding:1rem;}}</style></head>
+@media(max-width:768px){.admin-topbar{left:0;padding:0 1rem;}.admin-main{margin-left:0;padding:1rem;}}</style><link rel="stylesheet" href="../mobile.css">
+</head>
 <body><div class="admin-layout">
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <aside class="sidebar" id="sidebar">
