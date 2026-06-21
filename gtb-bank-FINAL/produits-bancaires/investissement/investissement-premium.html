@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <meta
+    name="description"
+    content="Investissement sécurisé Global Trust Bank : placements fiables, capital protégé et rendements stables pour sécuriser votre avenir financier."
+  />
+
+  <title>Investissement Sécurisé — Global Trust Bank</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+
+    :root{
+      --green:#0D1B2A;
+      --dark:#091520;
+      --deeper:#050B14;
+
+      --gold:#D4AF37;
+      --white:#FFFFFF;
+      --sand:#F5F7FA;
+
+      --g100:#E9ECEF;
+      --g600:#6C757D;
+      --g800:#343A40;
+
+      --success:#22C55E;
+
+      --shadow-md:0 12px 32px rgba(0,0,0,.08);
+      --shadow-lg:0 30px 80px rgba(0,0,0,.14);
+
+      --ease:cubic-bezier(.25,.46,.45,.94);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'DM Sans',sans-serif;
+      background:white;
+      color:var(--g800);
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    img{
+      display:block;
+      max-width:100%;
+      object-fit:cover;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:min(1200px, calc(100% - 2.5rem));
+      margin:auto;
+    }
+
+    /* NAV */
+
+    .nav{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:999;
+
+      height:72px;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+
+      padding:0 2rem;
+
+      transition:.35s var(--ease);
+    }
+
+    .nav.scrolled{
+      background:rgba(5,11,20,.94);
+      backdrop-filter:blur(16px);
+      box-shadow:0 1px 0 rgba(255,255,255,.05);
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:.8rem;
+    }
+
+    .logo-mark{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+
+      background:linear-gradient(135deg,var(--gold),#f5d778);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      font-family:'Sora',sans-serif;
+      font-weight:800;
+      color:var(--deeper);
+    }
+
+    .logo-text{
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+    }
+
+    .logo-text strong{
+      color:white;
+      font-size:.92rem;
+      font-family:'Sora',sans-serif;
+    }
+
+    .logo-text span{
+      font-size:.62rem;
+      color:rgba(255,255,255,.45);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+      list-style:none;
+    }
+
+    .nav-links a{
+      color:rgba(255,255,255,.65);
+      font-size:.85rem;
+      font-weight:500;
+
+      padding:.65rem 1rem;
+      border-radius:999px;
+
+      transition:.25s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{
+      background:rgba(255,255,255,.08);
+      color:var(--gold);
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:.8rem;
+    }
+
+    .btn{
+      border:none;
+      cursor:pointer;
+
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+
+      padding:.9rem 1.5rem;
+      border-radius:999px;
+
+      font-weight:700;
+      font-size:.85rem;
+
+      transition:.3s var(--ease);
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,var(--gold),#f5d778);
+      color:var(--deeper);
+      box-shadow:0 12px 30px rgba(212,175,55,.25);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-ghost{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      color:white;
+    }
+
+    .btn-ghost:hover{
+      background:rgba(255,255,255,.14);
+    }
+
+    .ham{
+      display:none;
+      flex-direction:column;
+      gap:5px;
+      cursor:pointer;
+    }
+
+    .ham span{
+      width:24px;
+      height:2px;
+      background:white;
+      border-radius:4px;
+    }
+
+    .mobile-menu{
+      position:fixed;
+      top:72px;
+      left:0;
+      right:0;
+
+      background:rgba(5,11,20,.98);
+      backdrop-filter:blur(16px);
+
+      padding:1.5rem;
+
+      display:none;
+      flex-direction:column;
+      gap:1rem;
+
+      z-index:998;
+    }
+
+    .mobile-menu.active{
+      display:flex;
+    }
+
+    .mobile-menu a{
+      color:white;
+      padding:1rem;
+      border-radius:14px;
+      background:rgba(255,255,255,.05);
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      align-items:center;
+
+      padding-top:72px;
+
+      background:
+        radial-gradient(circle at top right, rgba(212,175,55,.15), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(34,197,94,.08), transparent 30%),
+        var(--deeper);
+
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+
+      background-size:60px 60px;
+
+      mask-image:radial-gradient(circle at center, black 45%, transparent 100%);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      padding:5rem;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+
+      padding:.45rem .95rem;
+      border-radius:999px;
+
+      margin-bottom:1.5rem;
+
+      color:var(--gold);
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .hero h1{
+      font-family:'DM Serif Display',serif;
+      font-size:clamp(3rem,5vw,5rem);
+      line-height:1.05;
+      color:white;
+      margin-bottom:1.5rem;
+      letter-spacing:-.04em;
+    }
+
+    .hero h1 em{
+      color:var(--gold);
+      font-style:italic;
+    }
+
+    .hero p{
+      max-width:560px;
+      color:rgba(255,255,255,.62);
+      line-height:1.8;
+      margin-bottom:2rem;
+      font-size:1.05rem;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:1rem;
+      flex-wrap:wrap;
+    }
+
+    .hero-panel{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:4rem;
+    }
+
+    .panel{
+      width:420px;
+
+      border-radius:32px;
+      overflow:hidden;
+
+      background:linear-gradient(160deg,var(--green),var(--dark));
+      border:1px solid rgba(255,255,255,.08);
+
+      box-shadow:var(--shadow-lg);
+
+      animation:float 5s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%,100%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(-12px);
+      }
+    }
+
+    .panel-top{
+      padding:2rem;
+      background:linear-gradient(180deg, rgba(212,175,55,.16), transparent);
+    }
+
+    .panel-top small{
+      color:rgba(255,255,255,.5);
+      display:block;
+      margin-bottom:.5rem;
+    }
+
+    .panel-top h3{
+      color:white;
+      font-size:2.3rem;
+      font-family:'Sora',sans-serif;
+    }
+
+    .panel-body{
+      padding:2rem;
+      display:grid;
+      gap:1rem;
+    }
+
+    .stat{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+
+      border-radius:18px;
+      padding:1rem 1.2rem;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .stat span{
+      color:rgba(255,255,255,.5);
+      font-size:.82rem;
+    }
+
+    .stat strong{
+      color:white;
+      font-family:'Sora',sans-serif;
+    }
+
+    /* SECTIONS */
+
+    section{
+      padding:7rem 0;
+    }
+
+    .section-alt{
+      background:var(--sand);
+    }
+
+    .section-head{
+      margin-bottom:4rem;
+      text-align:center;
+    }
+
+    .section-label{
+      color:var(--gold);
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-weight:700;
+      margin-bottom:1rem;
+    }
+
+    .section-title{
+      font-family:'DM Serif Display',serif;
+      font-size:clamp(2rem,4vw,3.4rem);
+      color:var(--green);
+      line-height:1.1;
+      margin-bottom:1rem;
+    }
+
+    .section-title em{
+      color:var(--gold);
+    }
+
+    .section-sub{
+      max-width:720px;
+      margin:auto;
+      color:var(--g600);
+      line-height:1.8;
+    }
+
+    /* CARDS */
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:2rem;
+    }
+
+    .card{
+      background:white;
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid var(--g100);
+
+      transition:.35s var(--ease);
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+      box-shadow:var(--shadow-md);
+    }
+
+    .card img{
+      width:100%;
+      height:240px;
+    }
+
+    .card-content{
+      padding:2rem;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+
+      padding:.45rem .9rem;
+      border-radius:999px;
+
+      background:rgba(212,175,55,.12);
+      color:var(--gold);
+
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+
+      margin-bottom:1rem;
+    }
+
+    .card-content h3{
+      font-family:'Sora',sans-serif;
+      color:var(--green);
+      margin-bottom:1rem;
+    }
+
+    .card-content p{
+      color:var(--g600);
+      line-height:1.8;
+      margin-bottom:1.2rem;
+    }
+
+    .features{
+      list-style:none;
+      display:grid;
+      gap:.7rem;
+    }
+
+    .features li{
+      color:var(--g600);
+      font-size:.92rem;
+    }
+
+    .features li::before{
+      content:"✓";
+      color:var(--success);
+      font-weight:700;
+      margin-right:.6rem;
+    }
+
+    /* ADVANTAGES */
+
+    .advantages{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:1.5rem;
+    }
+
+    .advantage{
+      background:linear-gradient(135deg,var(--green),var(--dark));
+      border-radius:28px;
+      padding:2rem;
+      text-align:center;
+    }
+
+    .advantage-icon{
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .advantage h4{
+      color:white;
+      margin-bottom:.8rem;
+      font-family:'Sora',sans-serif;
+    }
+
+    .advantage p{
+      color:rgba(255,255,255,.6);
+      line-height:1.7;
+      font-size:.9rem;
+    }
+
+    /* CTA */
+
+    .cta{
+      background:
+        radial-gradient(circle at top right, rgba(212,175,55,.14), transparent 25%),
+        linear-gradient(135deg,var(--green),var(--deeper));
+
+      border-radius:40px;
+
+      padding:5rem 2rem;
+
+      text-align:center;
+    }
+
+    .cta h2{
+      color:white;
+      font-family:'DM Serif Display',serif;
+      font-size:clamp(2rem,4vw,3.4rem);
+      margin-bottom:1rem;
+    }
+
+    .cta h2 em{
+      color:var(--gold);
+    }
+
+    .cta p{
+      color:rgba(255,255,255,.62);
+      max-width:700px;
+      margin:auto auto 2rem;
+      line-height:1.8;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:var(--deeper);
+      margin-top:7rem;
+      padding:5rem 0 2rem;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr 1fr;
+      gap:3rem;
+      margin-bottom:3rem;
+    }
+
+    .footer-brand p{
+      margin-top:1rem;
+      color:rgba(255,255,255,.45);
+      line-height:1.8;
+      max-width:320px;
+    }
+
+    .footer-col h4{
+      color:white;
+      margin-bottom:1rem;
+      font-size:.85rem;
+      font-family:'Sora',sans-serif;
+    }
+
+    .footer-col ul{
+      list-style:none;
+      display:grid;
+      gap:.7rem;
+    }
+
+    .footer-col a{
+      color:rgba(255,255,255,.45);
+      font-size:.88rem;
+      transition:.25s;
+    }
+
+    .footer-col a:hover{
+      color:var(--gold);
+    }
+
+    .footer-bottom{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:1.5rem;
+
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:1rem;
+    }
+
+    .footer-bottom span{
+      color:rgba(255,255,255,.3);
+      font-size:.78rem;
+    }
+
+    /* ANIMATIONS */
+
+    .reveal{
+      opacity:0;
+      transform:translateY(30px);
+      transition:1s var(--ease);
+    }
+
+    .reveal.visible{
+      opacity:1;
+      transform:none;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1100px){
+
+      .hero{
+        grid-template-columns:1fr;
+      }
+
+      .hero-panel{
+        display:none;
+      }
+
+      .grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .advantages{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .footer-grid{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media(max-width:820px){
+
+      .nav-links,
+      .nav-actions{
+        display:none;
+      }
+
+      .ham{
+        display:flex;
+      }
+
+      .hero-content{
+        padding:4rem 2rem;
+      }
+
+      .grid,
+      .advantages,
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav" id="nav">
+
+    <a href="../../pages-publiques/index.html" class="logo">
+
+      <div class="logo-mark">GTB</div>
+
+      <div class="logo-text">
+        <strong>Global Trust Bank</strong>
+        <span>Banque digitale</span>
+      </div>
+
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="../../pages-publiques/index.html">Accueil</a></li>
+      <li><a href="../../pages-publiques/about.html">À propos</a></li>
+      <li><a href="../comptes/index.html">Comptes</a></li>
+      <li><a href="../epargne/index.html">Épargne</a></li>
+      <li><a href="../investissement/index.html" class="active">Investissement</a></li>
+      <li><a href="../credits/index.html">Crédits</a></li>
+      <li><a href="../entreprises/index.html">Entreprises</a></li>
+      <li><a href="../../pages-publiques/contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+
+      <a href="../../authentification/login.php" class="btn btn-ghost">
+        Connexion
+      </a>
+
+      <a href="../../authentification/login.php" class="btn btn-primary">
+        Investir maintenant
+      </a>
+
+    </div>
+
+    <div class="ham" id="ham">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </nav>
+
+  <!-- MOBILE MENU -->
+
+  <div class="mobile-menu" id="mobileMenu">
+
+    <a href="../../pages-publiques/index.html">Accueil</a>
+    <a href="../../pages-publiques/about.html">À propos</a>
+    <a href="../comptes/index.html">Comptes</a>
+    <a href="../epargne/index.html">Épargne</a>
+    <a href="../investissement/index.html">Investissement</a>
+    <a href="../credits/index.html">Crédits</a>
+    <a href="../entreprises/index.html">Entreprises</a>
+    <a href="../../pages-publiques/contact.html">Contact</a>
+    <a href="../../authentification/login.php">Connexion</a>
+
+  </div>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content reveal">
+
+      <div class="badge">
+        Placement sécurisé
+      </div>
+
+      <h1>
+        Sécurisez votre
+        <em>avenir financier</em>
+      </h1>
+
+      <p>
+        Profitez d’investissements fiables conçus pour préserver
+        votre capital tout en générant des rendements stables
+        et maîtrisés sur le long terme.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="../../authentification/login.php" class="btn btn-primary">
+          Commencer maintenant
+        </a>
+
+        <a href="#solutions" class="btn btn-ghost">
+          Découvrir les solutions
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="hero-panel">
+
+      <div class="panel">
+
+        <div class="panel-top">
+          <small>Capital sécurisé</small>
+          <h3>€12.8B+</h3>
+        </div>
+
+        <div class="panel-body">
+
+          <div class="stat">
+            <span>Risque maîtrisé</span>
+            <strong>Faible</strong>
+          </div>
+
+          <div class="stat">
+            <span>Rendement annuel</span>
+            <strong>5.6%</strong>
+          </div>
+
+          <div class="stat">
+            <span>Protection active</span>
+            <strong>24/7</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SOLUTIONS -->
+
+  <section id="solutions">
+
+    <div class="container">
+
+      <div class="section-head reveal">
+
+        <div class="section-label">
+          Nos solutions
+        </div>
+
+        <h2 class="section-title">
+          Des placements conçus pour votre
+          <em>tranquillité</em>
+        </h2>
+
+        <p class="section-sub">
+          Construisez un portefeuille stable avec des solutions
+          d’investissement pensées pour protéger votre patrimoine.
+        </p>
+
+      </div>
+
+      <div class="grid">
+
+        <div class="card reveal">
+
+          <img
+            src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=1400"
+            alt="Capital protégé"
+          />
+
+          <div class="card-content">
+
+            <div class="tag">
+              Protection
+            </div>
+
+            <h3>Capital Protégé</h3>
+
+            <p>
+              Préservez votre patrimoine grâce à des produits
+              financiers à faible volatilité.
+            </p>
+
+            <ul class="features">
+              <li>Protection du capital</li>
+              <li>Risque réduit</li>
+              <li>Gestion simplifiée</li>
+            </ul>
+
+          </div>
+
+        </div>
+
+        <div class="card reveal">
+
+          <img
+            src="https://images.unsplash.com/photo-1559526324-593bc073d938?q=80&w=1400"
+            alt="Revenus stables"
+          />
+
+          <div class="card-content">
+
+            <div class="tag">
+              Revenus
+            </div>
+
+            <h3>Revenus Réguliers</h3>
+
+            <p>
+              Bénéficiez de rendements constants avec des placements
+              adaptés aux profils prudents.
+            </p>
+
+            <ul class="features">
+              <li>Versements réguliers</li>
+              <li>Stabilité financière</li>
+              <li>Suivi personnalisé</li>
+            </ul>
+
+          </div>
+
+        </div>
+
+        <div class="card reveal">
+
+          <img
+            src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?q=80&w=1400"
+            alt="Gestion privée"
+          />
+
+          <div class="card-content">
+
+            <div class="tag">
+              Accompagnement
+            </div>
+
+            <h3>Gestion Privée</h3>
+
+            <p>
+              Profitez d’un accompagnement expert pour sécuriser
+              et optimiser votre stratégie patrimoniale.
+            </p>
+
+            <ul class="features">
+              <li>Conseiller dédié</li>
+              <li>Suivi premium</li>
+              <li>Vision long terme</li>
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ADVANTAGES -->
+
+  <section class="section-alt">
+
+    <div class="container">
+
+      <div class="section-head reveal">
+
+        <div class="section-label">
+          Pourquoi GTB
+        </div>
+
+        <h2 class="section-title">
+          Une approche basée sur la
+          <em>sécurité</em>
+        </h2>
+
+      </div>
+
+      <div class="advantages">
+
+        <div class="advantage reveal">
+
+          <div class="advantage-icon">🛡️</div>
+
+          <h4>Capital protégé</h4>
+
+          <p>
+            Des solutions conçues pour limiter les risques
+            financiers et préserver vos actifs.
+          </p>
+
+        </div>
+
+        <div class="advantage reveal">
+
+          <div class="advantage-icon">📈</div>
+
+          <h4>Rendements stables</h4>
+
+          <p>
+            Obtenez des performances régulières grâce à des
+            placements fiables et équilibrés.
+          </p>
+
+        </div>
+
+        <div class="advantage reveal">
+
+          <div class="advantage-icon">🌍</div>
+
+          <h4>Diversification mondiale</h4>
+
+          <p>
+            Répartissez vos investissements sur différents
+            marchés internationaux sécurisés.
+          </p>
+
+        </div>
+
+        <div class="advantage reveal">
+
+          <div class="advantage-icon">🤝</div>
+
+          <h4>Accompagnement expert</h4>
+
+          <p>
+            Nos conseillers vous accompagnent dans chaque
+            décision stratégique importante.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="cta reveal">
+
+        <h2>
+          Faites grandir votre patrimoine en toute
+          <em>confiance</em>
+        </h2>
+
+        <p>
+          Découvrez des investissements sécurisés adaptés
+          à vos objectifs financiers et à votre profil.
+        </p>
+
+        <a href="../../authentification/login.php" class="btn btn-primary">
+          Investir maintenant
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+
+          <div class="logo">
+
+            <div class="logo-mark">GTB</div>
+
+            <div class="logo-text">
+              <strong>Global Trust Bank</strong>
+              <span>Banque digitale</span>
+            </div>
+
+          </div>
+
+          <p>
+            Une banque moderne et sécurisée pensée pour protéger
+            et développer votre patrimoine durablement.
+          </p>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h4>Produits</h4>
+
+          <ul>
+            <li><a href="../comptes/index.html">Comptes</a></li>
+            <li><a href="../epargne/index.html">Épargne</a></li>
+            <li><a href="../credits/index.html">Crédits</a></li>
+            <li><a href="../entreprises/index.html">Entreprises</a></li>
+          </ul>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h4>Entreprise</h4>
+
+          <ul>
+            <li><a href="../../pages-publiques/about.html">À propos</a></li>
+            <li><a href="../../pages-publiques/about.html">Carrières</a></li>
+            <li><a href="../../pages-publiques/about.html">Investisseurs</a></li>
+            <li><a href="../../pages-publiques/about.html">Presse</a></li>
+          </ul>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h4>Support</h4>
+
+          <ul>
+            <li><a href="../../pages-publiques/contact.html">Contact</a></li>
+            <li><a href="../../pages-publiques/about.html">FAQ</a></li>
+            <li><a href="../../pages-publiques/confidentialites.html">Confidentialité</a></li>
+            <li><a href="../../pages-publiques/mentions-legales.html">Mentions légales</a></li>
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+
+        <span>
+          © 2026 Global Trust Bank — Tous droits réservés
+        </span>
+
+        <span>
+          Banque digitale internationale
+        </span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- SCRIPT -->
+
+  <script>
+
+    const nav = document.getElementById('nav');
+
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    const ham = document.getElementById('ham');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    ham.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+
+    const observer = new IntersectionObserver(entries => {
+
+      entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+
+      });
+
+    }, {
+      threshold:.12
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+  </script>
+
+</body>
+</html>

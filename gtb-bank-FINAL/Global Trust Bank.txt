@@ -1,0 +1,53 @@
+ Global Trust Bank — Livraison du projet
+==================================================
+ Site web
+==================================================
+URL : https://globaltrust-b.com
+
+==================================================
+ Accès Administration
+==================================================
+
+URL Admin	https://globaltrust-b.com/authentification/login.php
+Email	akp00965@gmail.com
+Mot de passe	26Global-Akp@Trust
+
+==================================================
+ Comptes clients de test
+==================================================
+
+Mot de passe commun : Motdepasse1234
+
+Nom	Email
+Sophie Martin	sophie.martin@email.fr
+Thomas Bernard	thomas.bernard@email.fr
+Claire Dubois	claire.dubois@email.fr
+
+==================================================
+ Emails automatiques (via Brevo)
+==================================================
+
+Les emails suivants sont envoyés automatiquement aux clients :
+
+Bienvenue à l'inscription
+Code OTP à la connexion
+Confirmation de virement
+Demande de carte bancaire
+Demande de crédit
+Ticket support
+Emails de contact client → reçus sur akp00965@gmail.com
+
+==================================================
+ Accès techniques (pour votre équipe)
+==================================================
+
+Service	Identifiants
+
+VPS SSH	ssh root@72.61.159.62 — MDP : 26Global-Akp@Trust
+MySQL	user: root — MDP : 26Global-Akp@Trust — DB : gtb
+Hostinger	akp00965@gmail.com — MDP : Global-Akp@Trust26
+Brevo	akp00965@gmail.com
+
+
+⚠️ Note importante
+Chrome affiche temporairement un avertissement de sécurité sur le domaine (nouveau domaine bancaire). Une demande de révision a été soumise à Google — levée sous 1 à 3 jours. Utiliser Firefox ou Edge en attendant.

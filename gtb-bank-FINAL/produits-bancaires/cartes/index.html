@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Cartes bancaires Global Trust Bank — Visa Classic, Gold, Platinum et Infinite."/>
+<title>Cartes Bancaires — Global Trust Bank</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+<style>
+:root{
+  --green:#0D1B2A;
+  --dark:#091520;
+  --deeper:#050B14;
+  --gold:#D4AF37;
+  --mint:#EAD9B5;
+  --sand:#F2F4F7;
+  --white:#FFFFFF;
+  --g50:#F8F9FA;
+  --g100:#E9ECEF;
+  --g200:#DEE2E6;
+  --g400:#ADB5BD;
+  --g600:#6C757D;
+  --g800:#343A40;
+  --ease:cubic-bezier(.25,.46,.45,.94);
+  --r-sm:8px;
+  --r-md:14px;
+  --r-lg:24px;
+  --r-xl:34px;
+  --r-full:999px;
+
+  --shadow-sm:0 2px 10px rgba(13,27,42,.08);
+  --shadow-md:0 10px 40px rgba(13,27,42,.12);
+  --shadow-lg:0 24px 80px rgba(13,27,42,.18);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--white);
+  color:var(--g800);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+.container{
+  width:min(1200px,100% - 48px);
+  margin:auto;
+}
+
+/* ================= NAV ================= */
+
+.bnp-nav{
+  position:fixed;
+  inset:0 0 auto 0;
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 2rem;
+  z-index:1000;
+  transition:.35s var(--ease);
+}
+
+.bnp-nav.scrolled{
+  background:rgba(5,11,20,.92);
+  backdrop-filter:blur(18px);
+  box-shadow:0 1px 0 rgba(255,255,255,.05);
+}
+
+.nav-logo{
+  display:flex;
+  align-items:center;
+  gap:.8rem;
+}
+
+.nav-logo-mark{
+  width:40px;
+  height:40px;
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--gold),#ffe08a);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--deeper);
+  font-family:'Sora',sans-serif;
+  font-weight:800;
+  font-size:.8rem;
+}
+
+.nav-logo-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.1;
+}
+
+.nav-logo-text span:first-child{
+  color:white;
+  font-family:'Sora',sans-serif;
+  font-size:.9rem;
+  font-weight:700;
+}
+
+.nav-logo-text span:last-child{
+  color:rgba(255,255,255,.4);
+  font-size:.6rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.nav-links{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:.2rem;
+}
+
+.nav-links a{
+  color:rgba(255,255,255,.65);
+  font-size:.84rem;
+  font-weight:500;
+  padding:.6rem 1rem;
+  border-radius:999px;
+  transition:.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  color:white;
+  background:rgba(255,255,255,.08);
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.45rem;
+  border:none;
+  border-radius:999px;
+  cursor:pointer;
+  transition:.25s var(--ease);
+  font-family:'DM Sans',sans-serif;
+  font-weight:700;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold),#ffe08a);
+  color:var(--deeper);
+  padding:.85rem 1.6rem;
+  box-shadow:0 8px 30px rgba(212,175,55,.35);
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+}
+
+.btn-outline{
+  border:1px solid rgba(255,255,255,.18);
+  color:white;
+  background:rgba(255,255,255,.06);
+  padding:.82rem 1.5rem;
+}
+
+.btn-outline:hover{
+  background:rgba(255,255,255,.1);
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  min-height:100svh;
+  background:
+    radial-gradient(circle at top right, rgba(212,175,55,.12), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(212,175,55,.08), transparent 35%),
+    linear-gradient(180deg,var(--deeper),var(--green));
+  position:relative;
+  overflow:hidden;
+  padding-top:72px;
+}
+
+.hero-grid{
+  position:absolute;
+  inset:0;
+  background-image:
+  linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:50px 50px;
+  mask-image:radial-gradient(circle at center, black 35%, transparent 100%);
+}
+
+.hero-wrap{
+  position:relative;
+  z-index:2;
+  min-height:calc(100svh - 72px);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:4rem;
+}
+
+.hero-content{
+  padding:4rem 0;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+  color:var(--gold);
+  padding:.45rem .95rem;
+  border-radius:999px;
+  font-size:.72rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:1.5rem;
+}
+
+.hero-badge-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--gold);
+}
+
+.hero-title{
+  font-family:'DM Serif Display',serif;
+  color:white;
+  font-size:clamp(2.8rem,5vw,5rem);
+  line-height:1.02;
+  letter-spacing:-.03em;
+  margin-bottom:1.3rem;
+}
+
+.hero-title span{
+  color:var(--gold);
+}
+
+.hero-sub{
+  max-width:560px;
+  color:rgba(255,255,255,.6);
+  line-height:1.8;
+  font-size:1.02rem;
+  margin-bottom:2.2rem;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+
+.hero-cards{
+  position:relative;
+  height:560px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.card-stack{
+  position:relative;
+  width:420px;
+  height:260px;
+}
+
+.bank-card{
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:28px;
+  padding:2rem;
+  overflow:hidden;
+  backdrop-filter:blur(18px);
+  box-shadow:var(--shadow-lg);
+  transition:.5s var(--ease);
+}
+
+.bank-card::before{
+  content:'';
+  position:absolute;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  top:-60px;
+  right:-50px;
+}
+
+.bank-card::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:28px;
+}
+
+.bank-card.gold{
+  background:
+    linear-gradient(135deg,#3d2d00,#c8a03a 45%,#ffe8a0);
+  transform:rotate(-10deg) translateY(50px);
+  z-index:1;
+}
+
+.bank-card.black{
+  background:
+    linear-gradient(145deg,#050505,#111827,#1e293b);
+  z-index:3;
+}
+
+.bank-card.platinum{
+  background:
+    linear-gradient(135deg,#dfe5ec,#8f9baa,#f9fafb);
+  color:#091520;
+  transform:rotate(10deg) translateY(-50px);
+  z-index:2;
+}
+
+.card-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:4rem;
+  position:relative;
+  z-index:2;
+}
+
+.card-chip{
+  width:58px;
+  height:42px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#f6e5b7,#d5a841);
+}
+
+.card-brand{
+  font-family:'Sora',sans-serif;
+  font-weight:800;
+  letter-spacing:.08em;
+  font-size:.82rem;
+}
+
+.card-number{
+  position:relative;
+  z-index:2;
+  font-family:'Sora',sans-serif;
+  font-size:1.2rem;
+  letter-spacing:.18em;
+  margin-bottom:1.8rem;
+}
+
+.card-bottom{
+  position:relative;
+  z-index:2;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+}
+
+.card-holder{
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.card-holder strong{
+  display:block;
+  font-size:.9rem;
+  margin-top:.25rem;
+}
+
+.card-type{
+  font-size:.95rem;
+  font-weight:700;
+}
+
+/* ================= PRODUCTS ================= */
+
+.section{
+  padding:110px 0;
+}
+
+.section-head{
+  text-align:center;
+  margin-bottom:4rem;
+}
+
+.section-label{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:.72rem;
+  font-weight:700;
+  margin-bottom:1rem;
+}
+
+.section-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2rem,4vw,3.6rem);
+  line-height:1.08;
+  letter-spacing:-.03em;
+  color:var(--green);
+  margin-bottom:1rem;
+}
+
+.section-title span{
+  color:var(--gold);
+}
+
+.section-sub{
+  max-width:700px;
+  margin:auto;
+  color:var(--g600);
+  line-height:1.8;
+}
+
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.5rem;
+}
+
+.product-card{
+  background:white;
+  border:1px solid var(--g100);
+  border-radius:28px;
+  overflow:hidden;
+  transition:.35s var(--ease);
+  box-shadow:var(--shadow-sm);
+}
+
+.product-card:hover{
+  transform:translateY(-8px);
+  box-shadow:var(--shadow-lg);
+  border-color:rgba(212,175,55,.25);
+}
+
+.product-visual{
+  height:220px;
+  padding:1.5rem;
+  position:relative;
+  overflow:hidden;
+}
+
+.visual-card{
+  width:100%;
+  height:100%;
+  border-radius:22px;
+  padding:1.5rem;
+  position:relative;
+  overflow:hidden;
+}
+
+.visual-card::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:22px;
+}
+
+.visual-card.dark{
+  background:linear-gradient(135deg,#050B14,#0D1B2A);
+  color:white;
+}
+
+.visual-card.gold{
+  background:linear-gradient(135deg,#3d2d00,#c8a03a,#ffe08a);
+  color:#091520;
+}
+
+.visual-card.silver{
+  background:linear-gradient(135deg,#bcc7d3,#eef3f8);
+  color:#091520;
+}
+
+.visual-card.black{
+  background:linear-gradient(145deg,#050505,#111827,#0D1B2A);
+  color:white;
+}
+
+.product-body{
+  padding:1.8rem;
+}
+
+.product-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:.35rem;
+  padding:.35rem .8rem;
+  border-radius:999px;
+  background:rgba(212,175,55,.1);
+  color:#b18818;
+  font-size:.72rem;
+  font-weight:700;
+  margin-bottom:1rem;
+}
+
+.product-title{
+  font-family:'Sora',sans-serif;
+  font-size:1.15rem;
+  font-weight:700;
+  margin-bottom:.7rem;
+  color:var(--green);
+}
+
+.product-desc{
+  color:var(--g600);
+  line-height:1.7;
+  font-size:.92rem;
+  margin-bottom:1.4rem;
+}
+
+.product-features{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:.7rem;
+  margin-bottom:1.8rem;
+}
+
+.product-features li{
+  display:flex;
+  align-items:center;
+  gap:.7rem;
+  font-size:.88rem;
+  color:var(--g800);
+}
+
+.product-features span{
+  width:30px;
+  height:30px;
+  border-radius:10px;
+  background:rgba(212,175,55,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+.product-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+}
+
+.product-price{
+  display:flex;
+  flex-direction:column;
+}
+
+.product-price strong{
+  font-family:'Sora',sans-serif;
+  font-size:1.2rem;
+  color:var(--green);
+}
+
+.product-price span{
+  font-size:.75rem;
+  color:var(--g400);
+}
+
+.product-btn{
+  background:var(--green);
+  color:white;
+  padding:.82rem 1.2rem;
+  border-radius:999px;
+  font-size:.84rem;
+  font-weight:700;
+  transition:.25s;
+}
+
+.product-btn:hover{
+  background:var(--dark);
+}
+
+/* ================= PREMIUM ================= */
+
+.premium{
+  background:var(--sand);
+}
+
+.premium-wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5rem;
+  align-items:center;
+}
+
+.premium-card{
+  position:relative;
+  height:500px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.infinite-card{
+  width:440px;
+  aspect-ratio:1.6/1;
+  border-radius:34px;
+  background:
+    linear-gradient(135deg,#000,#101828,#1f2937);
+  position:relative;
+  overflow:hidden;
+  padding:2.5rem;
+  color:white;
+  box-shadow:0 30px 80px rgba(0,0,0,.35);
+}
+
+.infinite-card::before{
+  content:'';
+  position:absolute;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  background:rgba(212,175,55,.12);
+  top:-100px;
+  right:-60px;
+}
+
+.infinite-card::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:34px;
+}
+
+.inf-chip{
+  width:70px;
+  height:48px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#ffe08a,#b18818);
+  margin-bottom:5rem;
+}
+
+.inf-title{
+  font-family:'Sora',sans-serif;
+  font-size:1.6rem;
+  font-weight:800;
+  margin-bottom:.6rem;
+}
+
+.inf-sub{
+  color:rgba(255,255,255,.55);
+  line-height:1.7;
+  margin-bottom:2rem;
+}
+
+.premium-list{
+  display:flex;
+  flex-direction:column;
+  gap:1.2rem;
+}
+
+.premium-item{
+  display:flex;
+  gap:1rem;
+}
+
+.premium-icon{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  background:rgba(212,175,55,.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  font-size:1.1rem;
+}
+
+.premium-item h4{
+  font-family:'Sora',sans-serif;
+  margin-bottom:.25rem;
+  color:var(--green);
+}
+
+.premium-item p{
+  color:var(--g600);
+  line-height:1.6;
+  font-size:.92rem;
+}
+
+/* ================= CTA ================= */
+
+.cta{
+  background:
+    linear-gradient(135deg,var(--green),var(--deeper));
+  position:relative;
+  overflow:hidden;
+}
+
+.cta::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+  linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:50px 50px;
+}
+
+.cta-inner{
+  position:relative;
+  z-index:2;
+  text-align:center;
+}
+
+.cta h2{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2.2rem,4vw,4rem);
+  color:white;
+  line-height:1.08;
+  margin-bottom:1rem;
+}
+
+.cta h2 span{
+  color:var(--gold);
+}
+
+.cta p{
+  max-width:680px;
+  margin:auto;
+  color:rgba(255,255,255,.58);
+  line-height:1.8;
+  margin-bottom:2rem;
+}
+
+.cta-actions{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+  background:var(--deeper);
+  padding:80px 0 30px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:3rem;
+  margin-bottom:3rem;
+}
+
+.footer-brand p{
+  margin-top:1rem;
+  color:rgba(255,255,255,.45);
+  line-height:1.8;
+  max-width:320px;
+}
+
+.footer-col h4{
+  color:white;
+  font-family:'Sora',sans-serif;
+  margin-bottom:1rem;
+  font-size:.92rem;
+}
+
+.footer-col ul{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:.7rem;
+}
+
+.footer-col a{
+  color:rgba(255,255,255,.45);
+  transition:.2s;
+  font-size:.88rem;
+}
+
+.footer-col a:hover{
+  color:var(--gold);
+}
+
+.footer-bottom{
+  padding-top:1.5rem;
+  border-top:1px solid rgba(255,255,255,.08);
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+.footer-bottom span,
+.footer-bottom a{
+  color:rgba(255,255,255,.3);
+  font-size:.75rem;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px){
+
+  .hero-wrap,
+  .premium-wrap{
+    grid-template-columns:1fr;
+  }
+
+  .hero-cards{
+    height:auto;
+    padding-bottom:3rem;
+  }
+
+  .cards-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:760px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .cards-grid{
+    grid-template-columns:1fr;
+  }
+
+  .card-stack{
+    width:100%;
+    max-width:360px;
+    transform:scale(.9);
+  }
+
+  .premium-card{
+    height:auto;
+  }
+
+  .infinite-card{
+    width:100%;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+
+<nav class="bnp-nav" id="nav">
+
+  <a href="../../pages-publiques/index.html" class="nav-logo">
+    <div class="nav-logo-mark">GTB</div>
+
+    <div class="nav-logo-text">
+      <span>Global Trust Bank</span>
+      <span>Cartes bancaires</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="../../pages-publiques/index.html">Accueil</a></li>
+    <li><a href="../comptes/index.html">Comptes</a></li>
+    <li><a href="../epargne/index.html">Épargne</a></li>
+    <li><a href="../credits/index.html">Crédits</a></li>
+    <li><a href="../assurances/index.html">Assurances</a></li>
+    <li><a href="#" class="active">Cartes</a></li>
+  </ul>
+
+  <a href="../../authentification/login.php" class="btn btn-primary">
+    Ouvrir un compte
+  </a>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-grid"></div>
+
+  <div class="container hero-wrap">
+
+    <div class="hero-content">
+
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Cartes bancaires premium
+      </div>
+
+      <h1 class="hero-title">
+        Des cartes pensées pour un <span>nouveau standard bancaire</span>
+      </h1>
+
+      <p class="hero-sub">
+        Découvrez la nouvelle génération de cartes Global Trust Bank :
+        paiements internationaux, assurances premium, cashback intelligent,
+        plafonds évolutifs et sécurité avancée.
+      </p>
+
+      <div class="hero-actions">
+        <a href="../../authentification/login.php" class="btn btn-primary">
+          Commander ma carte
+        </a>
+
+        <a href="#cards" class="btn btn-outline">
+          Voir les offres
+        </a>
+      </div>
+
+    </div>
+
+    <div class="hero-cards">
+
+      <div class="card-stack">
+
+        <div class="bank-card gold">
+          <div class="card-top">
+            <div class="card-chip"></div>
+            <div class="card-brand">GTB GOLD</div>
+          </div>
+
+          <div class="card-number">
+            5358 • 2210 • 9845 • 1109
+          </div>
+
+          <div class="card-bottom">
+            <div class="card-holder">
+              Titulaire
+              <strong>Alex Martin</strong>
+            </div>
+
+            <div class="card-type">
+              VISA GOLD
+            </div>
+          </div>
+        </div>
+
+        <div class="bank-card black">
+          <div class="card-top">
+            <div class="card-chip"></div>
+            <div class="card-brand">GTB PREMIUM</div>
+          </div>
+
+          <div class="card-number">
+            4589 • 7734 • 0198 • 6670
+          </div>
+
+          <div class="card-bottom">
+            <div class="card-holder">
+              Titulaire
+              <strong>Sarah Williams</strong>
+            </div>
+
+            <div class="card-type">
+              VISA INFINITE
+            </div>
+          </div>
+        </div>
+
+        <div class="bank-card platinum">
+          <div class="card-top">
+            <div class="card-chip"></div>
+            <div class="card-brand">GTB PLATINUM</div>
+          </div>
+
+          <div class="card-number">
+            4089 • 6621 • 1110 • 2870
+          </div>
+
+          <div class="card-bottom">
+            <div class="card-holder">
+              Titulaire
+              <strong>Emma Clark</strong>
+            </div>
+
+            <div class="card-type">
+              VISA PLATINUM
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="section" id="cards">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div class="section-label">
+        Nos cartes
+      </div>
+
+      <h2 class="section-title">
+        Une carte pour <span>chaque style de vie</span>
+      </h2>
+
+      <p class="section-sub">
+        De la carte essentielle à la carte Infinite ultra-premium,
+        profitez d'avantages exclusifs, de plafonds élevés et d'une expérience bancaire haut de gamme.
+      </p>
+
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- CLASSIC -->
+
+      <div class="product-card">
+
+        <div class="product-visual">
+
+          <div class="visual-card dark">
+
+            <div class="card-top">
+              <div class="card-chip"></div>
+              <div class="card-brand">GTB CLASSIC</div>
+            </div>
+
+            <div class="card-number">
+              4589 • 9901 • 6734 • 2201
+            </div>
+
+            <div class="card-bottom">
+              <div class="card-holder">
+                Débit immédiat
+              </div>
+
+              <div class="card-type">
+                VISA
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="product-body">
+
+          <div class="product-tag">
+            💳 Essentielle
+          </div>
+
+          <h3 class="product-title">
+            Visa Classic
+          </h3>
+
+          <p class="product-desc">
+            Une carte simple et moderne pour vos dépenses du quotidien en France et à l'international.
+          </p>
+
+          <ul class="product-features">
+            <li><span>🌍</span> Paiements internationaux</li>
+            <li><span>📱</span> Carte virtuelle incluse</li>
+            <li><span>🔒</span> Protection anti-fraude</li>
+          </ul>
+
+          <div class="product-footer">
+
+            <div class="product-price">
+              <strong>4,90€</strong>
+              <span>/ mois</span>
+            </div>
+
+            <a href="../../authentification/login.php" class="product-btn">
+              Choisir
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- GOLD -->
+
+      <div class="product-card">
+
+        <div class="product-visual">
+
+          <div class="visual-card gold">
+
+            <div class="card-top">
+              <div class="card-chip"></div>
+              <div class="card-brand">GTB GOLD</div>
+            </div>
+
+            <div class="card-number">
+              5358 • 2210 • 9845 • 1109
+            </div>
+
+            <div class="card-bottom">
+              <div class="card-holder">
+                Premium
+              </div>
+
+              <div class="card-type">
+                VISA GOLD
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="product-body">
+
+          <div class="product-tag">
+            ✨ Premium
+          </div>
+
+          <h3 class="product-title">
+            Visa Gold
+          </h3>
+
+          <p class="product-desc">
+            Voyagez sans limites avec assurances voyage, paiements premium et cashback intelligent.
+          </p>
+
+          <ul class="product-features">
+            <li><span>✈️</span> Assurance voyage</li>
+            <li><span>💰</span> Cashback jusqu'à 5%</li>
+            <li><span>🏨</span> Avantages partenaires</li>
+          </ul>
+
+          <div class="product-footer">
+
+            <div class="product-price">
+              <strong>12,90€</strong>
+              <span>/ mois</span>
+            </div>
+
+            <a href="../../authentification/login.php" class="product-btn">
+              Commander
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PLATINUM -->
+
+      <div class="product-card">
+
+        <div class="product-visual">
+
+          <div class="visual-card silver">
+
+            <div class="card-top">
+              <div class="card-chip"></div>
+              <div class="card-brand">GTB PLATINUM</div>
+            </div>
+
+            <div class="card-number">
+              4089 • 6621 • 1110 • 2870
+            </div>
+
+            <div class="card-bottom">
+              <div class="card-holder">
+                Haut de gamme
+              </div>
+
+              <div class="card-type">
+                VISA PLATINUM
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="product-body">
+
+          <div class="product-tag">
+            👑 Elite
+          </div>
+
+          <h3 class="product-title">
+            Visa Platinum
+          </h3>
+
+          <p class="product-desc">
+            Profitez d'une expérience bancaire exclusive avec assistance dédiée et plafonds élevés.
+          </p>
+
+          <ul class="product-features">
+            <li><span>🛡️</span> Assurance premium</li>
+            <li><span>📞</span> Concierge 24h/24</li>
+            <li><span>💎</span> Services exclusifs</li>
+          </ul>
+
+          <div class="product-footer">
+
+            <div class="product-price">
+              <strong>24,90€</strong>
+              <span>/ mois</span>
+            </div>
+
+            <a href="../../authentification/login.php" class="product-btn">
+              Découvrir
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- INFINITE -->
+
+      <div class="product-card">
+
+        <div class="product-visual">
+
+          <div class="visual-card black">
+
+            <div class="card-top">
+              <div class="card-chip"></div>
+              <div class="card-brand">GTB INFINITE</div>
+            </div>
+
+            <div class="card-number">
+              6670 • 8842 • 1188 • 0091
+            </div>
+
+            <div class="card-bottom">
+              <div class="card-holder">
+                Ultra Premium
+              </div>
+
+              <div class="card-type">
+                VISA INFINITE
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="product-body">
+
+          <div class="product-tag">
+            🚀 Infinite
+          </div>
+
+          <h3 class="product-title">
+            Visa Infinite
+          </h3>
+
+          <p class="product-desc">
+            Notre carte la plus exclusive avec accès lounge, conciergerie privée et services VIP internationaux.
+          </p>
+
+          <ul class="product-features">
+            <li><span>✈️</span> Accès lounges VIP</li>
+            <li><span>🖤</span> Concierge privé</li>
+            <li><span>🌍</span> Plafonds illimités</li>
+          </ul>
+
+          <div class="product-footer">
+
+            <div class="product-price">
+              <strong>49,90€</strong>
+              <span>/ mois</span>
+            </div>
+
+            <a href="../../authentification/login.php" class="product-btn">
+              Postuler
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PREMIUM -->
+
+<section class="section premium">
+
+  <div class="container premium-wrap">
+
+    <div>
+
+      <div class="section-label">
+        Expérience Infinite
+      </div>
+
+      <h2 class="section-title">
+        Une carte conçue pour les <span>clients d'exception</span>
+      </h2>
+
+      <p class="section-sub" style="margin:0 0 2.5rem 0">
+        Accédez à des privilèges exclusifs partout dans le monde avec notre offre Visa Infinite.
+      </p>
+
+      <div class="premium-list">
+
+        <div class="premium-item">
+
+          <div class="premium-icon">
+            ✈️
+          </div>
+
+          <div>
+            <h4>Voyages premium</h4>
+            <p>
+              Accès à plus de 1 300 lounges aéroport dans le monde.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="premium-item">
+
+          <div class="premium-icon">
+            🛡️
+          </div>
+
+          <div>
+            <h4>Assurances exclusives</h4>
+            <p>
+              Couverture voyage, médicale et protection achats premium.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="premium-item">
+
+          <div class="premium-icon">
+            🖤
+          </div>
+
+          <div>
+            <h4>Conciergerie privée</h4>
+            <p>
+              Un service disponible 24h/24 pour tous vos besoins.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="premium-card">
+
+      <div class="infinite-card">
+
+        <div class="inf-chip"></div>
+
+        <div class="inf-title">
+          GTB Infinite
+        </div>
+
+        <div class="inf-sub">
+          La carte ultime pour les voyageurs internationaux,
+          entrepreneurs et clients premium.
+        </div>
+
+        <div class="card-number">
+          6670 • 8842 • 1188 • 0091
+        </div>
+
+        <div class="card-bottom">
+
+          <div class="card-holder">
+            Client Premium
+            <strong>GLOBAL TRUST</strong>
+          </div>
+
+          <div class="card-type">
+            VISA INFINITE
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="section cta">
+
+  <div class="container cta-inner">
+
+    <h2>
+      Passez à une expérience bancaire <span>haut de gamme</span>
+    </h2>
+
+    <p>
+      Ouvrez votre compte GTB et commandez votre carte bancaire en quelques minutes depuis votre espace client sécurisé.
+    </p>
+
+    <div class="cta-actions">
+
+      <a href="../../authentification/login.php" class="btn btn-primary">
+        Ouvrir un compte
+      </a>
+
+      <a href="../comptes/index.html" class="btn btn-outline">
+        Découvrir les comptes
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+
+        <div class="nav-logo">
+          <div class="nav-logo-mark">GTB</div>
+
+          <div class="nav-logo-text">
+            <span>Global Trust Bank</span>
+            <span>Banque digitale premium</span>
+          </div>
+        </div>
+
+        <p>
+          Une expérience bancaire moderne, sécurisée et internationale pour les particuliers et professionnels.
+        </p>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h4>Produits</h4>
+
+        <ul>
+          <li><a href="../comptes/index.html">Comptes</a></li>
+          <li><a href="#">Cartes bancaires</a></li>
+          <li><a href="../epargne/index.html">Épargne</a></li>
+          <li><a href="../credits/index.html">Crédits</a></li>
+        </ul>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h4>Services</h4>
+
+        <ul>
+          <li><a href="../../dashboard/index.php">Espace client</a></li>
+          <li><a href="../../pages-publiques/contact.html">Support</a></li>
+          <li><a href="../../pages-publiques/about.html">À propos</a></li>
+        </ul>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h4>Légal</h4>
+
+        <ul>
+          <li><a href="../../pages-publiques/mentions-legales.html">Mentions légales</a></li>
+          <li><a href="../../pages-publiques/confidentialites.html">Confidentialité</a></li>
+          <li><a href="../../pages-publiques/cookies.html">Cookies</a></li>
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 Global Trust Bank — Tous droits réservés
+      </span>
+
+      <span>
+        Banque digitale internationale premium
+      </span>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+/* NAV */
+const nav = document.getElementById('nav');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+/* SMOOTH */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const target = document.querySelector(link.getAttribute('href'));
+
+    if(target){
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth'});
+    }
+  });
+});
+
+/* FLOAT EFFECT */
+const cards = document.querySelectorAll('.bank-card');
+
+window.addEventListener('mousemove', e => {
+
+  const x = (window.innerWidth / 2 - e.clientX) / 40;
+  const y = (window.innerHeight / 2 - e.clientY) / 40;
+
+  cards.forEach((card,index) => {
+
+    const rotate = index === 0
+      ? -10
+      : index === 1
+      ? 0
+      : 10;
+
+    card.style.transform = `
+      rotate(${rotate}deg)
+      translate(${x}px, ${y}px)
+    `;
+  });
+
+});
+</script>
+
+</body>
+</html>

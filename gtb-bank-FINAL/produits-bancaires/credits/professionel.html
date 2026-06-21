@@ -1,0 +1,1108 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Crédit Professionnel — Global Trust Bank</title>
+
+<meta
+  name="description"
+  content="Solutions de financement professionnel Global Trust Bank : trésorerie, investissement, croissance et développement d’entreprise."
+/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
+rel="stylesheet"
+/>
+
+<style>
+
+:root{
+
+  --green:#0D1B2A;
+  --dark:#091520;
+  --deeper:#050B14;
+
+  --gold:#D4AF37;
+  --gold-light:#f5d778;
+
+  --white:#FFFFFF;
+  --sand:#F5F7FA;
+
+  --g100:#E9ECEF;
+  --g200:#DEE2E6;
+  --g500:#6C757D;
+  --g700:#343A40;
+
+  --success:#22C55E;
+
+  --shadow-sm:0 4px 12px rgba(0,0,0,.06);
+  --shadow-md:0 12px 32px rgba(0,0,0,.08);
+  --shadow-lg:0 30px 80px rgba(0,0,0,.16);
+
+  --radius:28px;
+
+  --ease:cubic-bezier(.25,.46,.45,.94);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:#fff;
+  color:var(--g700);
+  overflow-x:hidden;
+}
+
+img{
+  width:100%;
+  display:block;
+  object-fit:cover;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.container{
+  width:min(1200px, calc(100% - 2rem));
+  margin:auto;
+}
+
+/* NAV */
+
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+
+  height:72px;
+
+  z-index:999;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 2rem;
+
+  transition:.35s;
+}
+
+.nav.scrolled{
+  background:rgba(5,11,20,.94);
+  backdrop-filter:blur(14px);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:.8rem;
+}
+
+.logo-mark{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:var(--deeper);
+
+  font-family:'Sora',sans-serif;
+  font-weight:800;
+}
+
+.logo-text{
+  display:flex;
+  flex-direction:column;
+}
+
+.logo-text strong{
+  color:white;
+  font-size:.92rem;
+}
+
+.logo-text span{
+  color:rgba(255,255,255,.45);
+  font-size:.65rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+
+.nav-links{
+  display:flex;
+  list-style:none;
+  gap:.5rem;
+}
+
+.nav-links a{
+  color:rgba(255,255,255,.7);
+  padding:.7rem 1rem;
+  border-radius:999px;
+  transition:.25s;
+  font-size:.85rem;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  background:rgba(255,255,255,.08);
+  color:var(--gold);
+}
+
+.btn{
+  border:none;
+  cursor:pointer;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:999px;
+
+  font-weight:700;
+
+  transition:.3s var(--ease);
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  color:var(--deeper);
+
+  padding:1rem 1.6rem;
+
+  box-shadow:0 12px 30px rgba(212,175,55,.25);
+}
+
+.btn-primary:hover{
+  transform:translateY(-3px);
+}
+
+/* HERO */
+
+.hero{
+
+  min-height:100vh;
+
+  background:
+  radial-gradient(circle at top right, rgba(212,175,55,.15), transparent 30%),
+  radial-gradient(circle at bottom left, rgba(34,197,94,.08), transparent 30%),
+  var(--deeper);
+
+  padding-top:72px;
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  align-items:center;
+
+  overflow:hidden;
+}
+
+.hero-content{
+  padding:5rem;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+
+  background:rgba(255,255,255,.06);
+
+  border:1px solid rgba(255,255,255,.08);
+
+  padding:.5rem 1rem;
+
+  border-radius:999px;
+
+  margin-bottom:1.5rem;
+}
+
+.eyebrow-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--gold);
+}
+
+.eyebrow span:last-child{
+  color:var(--gold);
+  font-size:.72rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-weight:700;
+}
+
+.hero h1{
+  color:white;
+
+  font-size:clamp(3rem,5vw,5.2rem);
+
+  line-height:1.05;
+
+  font-family:'DM Serif Display',serif;
+
+  margin-bottom:1.5rem;
+}
+
+.hero h1 span{
+  color:var(--gold);
+}
+
+.hero p{
+  color:rgba(255,255,255,.65);
+
+  line-height:1.9;
+
+  max-width:560px;
+
+  margin-bottom:2rem;
+}
+
+.hero-image{
+  height:100%;
+}
+
+.hero-image img{
+  height:100%;
+}
+
+/* SECTION */
+
+section{
+  padding:7rem 0;
+}
+
+.section-head{
+  text-align:center;
+  margin-bottom:4rem;
+}
+
+.section-label{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  font-size:.72rem;
+  font-weight:700;
+  margin-bottom:1rem;
+}
+
+.section-title{
+  font-family:'DM Serif Display',serif;
+  color:var(--green);
+
+  font-size:clamp(2rem,4vw,3.4rem);
+
+  line-height:1.08;
+
+  margin-bottom:1rem;
+}
+
+.section-title span{
+  color:var(--gold);
+}
+
+.section-sub{
+  max-width:720px;
+  margin:auto;
+  color:var(--g500);
+  line-height:1.8;
+}
+
+/* BUSINESS STATS */
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2rem;
+}
+
+.stat-card{
+  background:white;
+
+  border:1px solid var(--g100);
+
+  border-radius:28px;
+
+  padding:2rem;
+
+  text-align:center;
+
+  transition:.35s;
+}
+
+.stat-card:hover{
+  transform:translateY(-8px);
+  box-shadow:var(--shadow-md);
+}
+
+.stat-card h3{
+  color:var(--gold);
+
+  font-size:2.5rem;
+
+  margin-bottom:.6rem;
+
+  font-family:'Sora',sans-serif;
+}
+
+.stat-card p{
+  color:var(--g500);
+}
+
+/* SOLUTIONS */
+
+.solutions{
+  background:var(--sand);
+}
+
+.solutions-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2rem;
+}
+
+.solution-card{
+  background:white;
+  border-radius:28px;
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  transition:.35s;
+}
+
+.solution-card:hover{
+  transform:translateY(-8px);
+  box-shadow:var(--shadow-md);
+}
+
+.solution-card img{
+  height:240px;
+}
+
+.solution-content{
+  padding:2rem;
+}
+
+.solution-tag{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:.45rem .9rem;
+
+  border-radius:999px;
+
+  background:rgba(212,175,55,.12);
+
+  color:var(--gold);
+
+  font-size:.72rem;
+  font-weight:700;
+
+  text-transform:uppercase;
+
+  margin-bottom:1rem;
+}
+
+.solution-content h3{
+  color:var(--green);
+  margin-bottom:1rem;
+}
+
+.solution-content p{
+  color:var(--g500);
+  line-height:1.8;
+  margin-bottom:1.5rem;
+}
+
+/* SIMULATOR */
+
+.simulator-grid{
+  display:grid;
+  grid-template-columns:1fr 420px;
+  gap:3rem;
+}
+
+.sim-card{
+  background:white;
+  border-radius:32px;
+  padding:2rem;
+  box-shadow:var(--shadow-md);
+}
+
+.form-group{
+  margin-bottom:1.3rem;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:.6rem;
+  color:var(--green);
+  font-weight:700;
+}
+
+.form-group input,
+.form-group select{
+
+  width:100%;
+
+  border:none;
+  outline:none;
+
+  background:var(--sand);
+
+  padding:1rem;
+
+  border-radius:16px;
+
+  font-size:1rem;
+}
+
+.result-card{
+
+  background:linear-gradient(160deg,var(--green),var(--dark));
+
+  color:white;
+
+  border-radius:32px;
+
+  padding:2rem;
+
+  position:sticky;
+  top:100px;
+
+  box-shadow:var(--shadow-lg);
+}
+
+.result-item{
+  padding:1rem 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.result-item:last-child{
+  border:none;
+}
+
+.result-item span{
+  display:block;
+  color:rgba(255,255,255,.5);
+  margin-bottom:.5rem;
+}
+
+.result-item strong{
+  font-size:1.3rem;
+  font-family:'Sora',sans-serif;
+}
+
+/* TIMELINE */
+
+.timeline{
+  background:var(--sand);
+}
+
+.timeline-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2rem;
+}
+
+.timeline-step{
+  text-align:center;
+}
+
+.timeline-number{
+  width:72px;
+  height:72px;
+
+  margin:auto auto 1rem;
+
+  border-radius:50%;
+
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-weight:800;
+  color:var(--deeper);
+}
+
+.timeline-step h4{
+  color:var(--green);
+  margin-bottom:.8rem;
+}
+
+.timeline-step p{
+  color:var(--g500);
+  line-height:1.7;
+}
+
+/* CTA */
+
+.cta{
+
+  background:
+  radial-gradient(circle at top right, rgba(212,175,55,.14), transparent 25%),
+  linear-gradient(135deg,var(--green),var(--deeper));
+
+  border-radius:40px;
+
+  padding:5rem 2rem;
+
+  text-align:center;
+}
+
+.cta h2{
+  color:white;
+
+  font-size:clamp(2rem,4vw,3.4rem);
+
+  font-family:'DM Serif Display',serif;
+
+  margin-bottom:1rem;
+}
+
+.cta h2 span{
+  color:var(--gold);
+}
+
+.cta p{
+  color:rgba(255,255,255,.65);
+
+  max-width:700px;
+
+  margin:auto auto 2rem;
+
+  line-height:1.8;
+}
+
+/* FOOTER */
+
+footer{
+  background:var(--deeper);
+  padding:5rem 0 2rem;
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.08);
+
+  padding-top:1.5rem;
+
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+
+.footer-bottom span{
+  color:rgba(255,255,255,.35);
+  font-size:.82rem;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  .hero-image{
+    display:none;
+  }
+
+  .stats-grid,
+  .solutions-grid,
+  .timeline-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .simulator-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:760px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .hero-content{
+    padding:3rem 1.5rem;
+  }
+
+  .stats-grid,
+  .solutions-grid,
+  .timeline-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:2.6rem;
+  }
+
+  .section-title{
+    font-size:2.2rem;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="nav" id="nav">
+
+  <a href="index.html" class="logo">
+
+    <div class="logo-mark">GTB</div>
+
+    <div class="logo-text">
+      <strong>Global Trust Bank</strong>
+      <span>Business Finance</span>
+    </div>
+
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="immobilier.html">Immobilier</a></li>
+    <li><a href="auto.html">Auto</a></li>
+    <li><a href="#" class="active">Professionnel</a></li>
+  </ul>
+
+</nav>
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="eyebrow">
+
+      <div class="eyebrow-dot"></div>
+
+      <span>Solutions entreprises</span>
+
+    </div>
+
+    <h1>
+      Financez la croissance de votre
+      <span>entreprise</span>
+    </h1>
+
+    <p>
+      Développez votre activité avec des solutions
+      de financement professionnelles flexibles,
+      rapides et sécurisées adaptées à vos ambitions.
+    </p>
+
+    <a href="#simulation" class="btn btn-primary">
+      Simuler un financement
+    </a>
+
+  </div>
+
+  <div class="hero-image">
+
+    <img
+      src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1400"
+      alt="Business meeting"
+    />
+
+  </div>
+
+</section>
+
+<section>
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div class="section-label">
+        Performance GTB
+      </div>
+
+      <h2 class="section-title">
+        Une banque conçue pour les
+        <span>entreprises ambitieuses</span>
+      </h2>
+
+    </div>
+
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <h3>€5B+</h3>
+        <p>Financements accordés</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>24h</h3>
+        <p>Réponse préliminaire</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>12k+</h3>
+        <p>Entreprises accompagnées</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>95%</h3>
+        <p>Dossiers validés</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="solutions">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div class="section-label">
+        Solutions business
+      </div>
+
+      <h2 class="section-title">
+        Des financements adaptés à chaque
+        <span>objectif stratégique</span>
+      </h2>
+
+    </div>
+
+    <div class="solutions-grid">
+
+      <div class="solution-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400"
+          alt=""
+        />
+
+        <div class="solution-content">
+
+          <div class="solution-tag">
+            Investissement
+          </div>
+
+          <h3>Financement d’équipement</h3>
+
+          <p>
+            Financez vos infrastructures,
+            machines et investissements stratégiques.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="solution-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1400"
+          alt=""
+        />
+
+        <div class="solution-content">
+
+          <div class="solution-tag">
+            Trésorerie
+          </div>
+
+          <h3>Crédit de trésorerie</h3>
+
+          <p>
+            Optimisez votre flux de trésorerie
+            et sécurisez votre croissance.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="solution-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1400"
+          alt=""
+        />
+
+        <div class="solution-content">
+
+          <div class="solution-tag">
+            Expansion
+          </div>
+
+          <h3>Développement international</h3>
+
+          <p>
+            Accélérez votre expansion avec
+            des solutions financières premium.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="simulation">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div class="section-label">
+        Simulation
+      </div>
+
+      <h2 class="section-title">
+        Estimez votre
+        <span>financement professionnel</span>
+      </h2>
+
+    </div>
+
+    <div class="simulator-grid">
+
+      <div class="sim-card">
+
+        <div class="form-group">
+          <label>Type de financement</label>
+
+          <select id="loanType">
+            <option>Investissement</option>
+            <option>Trésorerie</option>
+            <option>Expansion</option>
+            <option>Équipement</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Montant (€)</label>
+          <input type="number" id="amount" placeholder="500000"/>
+        </div>
+
+        <div class="form-group">
+          <label>Durée (années)</label>
+          <input type="number" id="years" placeholder="7"/>
+        </div>
+
+        <div class="form-group">
+          <label>Taux (%)</label>
+          <input type="number" step="0.1" id="rate" placeholder="4.2"/>
+        </div>
+
+        <button class="btn btn-primary" id="calculateBtn">
+          Calculer le financement
+        </button>
+
+      </div>
+
+      <div class="result-card">
+
+        <div class="result-item">
+          <span>Mensualité estimée</span>
+          <strong id="monthly">€0</strong>
+        </div>
+
+        <div class="result-item">
+          <span>Montant total</span>
+          <strong id="total">€0</strong>
+        </div>
+
+        <div class="result-item">
+          <span>Coût des intérêts</span>
+          <strong id="interest">€0</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="timeline">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div class="section-label">
+        Processus
+      </div>
+
+      <h2 class="section-title">
+        Une validation rapide et
+        <span>100% digitale</span>
+      </h2>
+
+    </div>
+
+    <div class="timeline-grid">
+
+      <div class="timeline-step">
+        <div class="timeline-number">1</div>
+        <h4>Simulation</h4>
+        <p>Calculez votre besoin de financement.</p>
+      </div>
+
+      <div class="timeline-step">
+        <div class="timeline-number">2</div>
+        <h4>Dossier</h4>
+        <p>Ajoutez vos documents sécurisés.</p>
+      </div>
+
+      <div class="timeline-step">
+        <div class="timeline-number">3</div>
+        <h4>Analyse</h4>
+        <p>Étude rapide par nos experts financiers.</p>
+      </div>
+
+      <div class="timeline-step">
+        <div class="timeline-number">4</div>
+        <h4>Décaissement</h4>
+        <p>Déblocage rapide des fonds validés.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <div class="container">
+
+    <div class="cta">
+
+      <h2>
+        Accélérez votre croissance avec
+        <span>Global Trust Bank</span>
+      </h2>
+
+      <p>
+        Une expérience bancaire premium dédiée
+        aux entreprises modernes et ambitieuses.
+      </p>
+
+      <a href="../../authentification/login.php" class="btn btn-primary">
+        Commencer maintenant
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+
+  <div class="container">
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 Global Trust Bank — Tous droits réservés
+      </span>
+
+      <span>
+        Banque digitale internationale premium
+      </span>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+
+/* NAV */
+
+const nav = document.getElementById('nav');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+/* SIMULATOR */
+
+const btn = document.getElementById('calculateBtn');
+
+btn.addEventListener('click', () => {
+
+  const amount = parseFloat(document.getElementById('amount').value);
+
+  const years = parseFloat(document.getElementById('years').value);
+
+  const rate = parseFloat(document.getElementById('rate').value);
+
+  if(!amount || !years || !rate){
+
+    alert('Veuillez remplir tous les champs.');
+
+    return;
+  }
+
+  const monthlyRate = (rate / 100) / 12;
+
+  const months = years * 12;
+
+  const monthlyPayment =
+    (amount * monthlyRate) /
+    (1 - Math.pow(1 + monthlyRate, -months));
+
+  const totalPayment = monthlyPayment * months;
+
+  const totalInterest = totalPayment - amount;
+
+  document.getElementById('monthly').textContent =
+    '€' + monthlyPayment.toFixed(2);
+
+  document.getElementById('total').textContent =
+    '€' + totalPayment.toFixed(2);
+
+  document.getElementById('interest').textContent =
+    '€' + totalInterest.toFixed(2);
+
+});
+
+</script>
+
+</body>
+</html>
