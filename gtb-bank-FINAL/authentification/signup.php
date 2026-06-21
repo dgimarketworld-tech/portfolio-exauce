@@ -182,9 +182,15 @@ input,select{font-family:'DM Sans',sans-serif}
 @media(max-width:768px){
   .auth-page{grid-template-columns:1fr}
   .auth-left{display:none}
-  .auth-right{padding:1.5rem;align-items:flex-start}
-  .auth-box{box-shadow:none;border:none;background:transparent;padding:.5rem}
+  .auth-right{padding:1.25rem;align-items:flex-start;overflow-x:hidden}
+  .auth-box{width:100%;box-shadow:none;border:none;background:transparent;padding:.75rem}
   .form-row{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .auth-right{padding:.75rem}
+  .auth-box{padding:.5rem}
+  .auth-form-title{font-size:1.1rem}
+  .btn-full{font-size:.85rem;padding:.85rem}
 }
 </style>
 </head>

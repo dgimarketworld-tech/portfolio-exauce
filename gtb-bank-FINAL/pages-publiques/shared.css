@@ -404,14 +404,58 @@ textarea.input-field{min-height:130px;resize:vertical}
 @media(max-width:768px){
   .contact-grid{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
+  /* Headers */
+  .contactpage-header-content h1,.secupage-header-content h1,
+  .mentionpage-header-content h1,.cookiespage-header-content h1,
+  .confidentialitespage-header-content h1{
+    font-size:clamp(1.6rem,6vw,2.4rem);
+    word-break:break-word;hyphens:auto;
+  }
+  .contactpage-header-content,.secupage-header-content,
+  .mentionpage-header-content,.cookiespage-header-content,
+  .confidentialitespage-header-content{
+    padding:0 1rem;
+  }
+  /* Legal sidebar pills */
+  .legal-nav ul{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:.5rem}
+  .legal-nav ul li{flex-shrink:0}
+  /* Sections */
+  .legal-section-header{flex-direction:row;align-items:center}
+  .legal-section-header h2{font-size:1.15rem}
+  /* Cookie table scroll */
+  .cookie-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
 @media(max-width:640px){
   .nav-actions{display:none}
   .footer-grid{grid-template-columns:1fr 1fr}
   .cookie-table{font-size:.75rem}
   .cookie-table th,.cookie-table td{padding:.5rem .6rem}
+  /* FAQ categories scroll */
+  .faq-categories{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:.4rem}
+  .faq-cat-btn{flex-shrink:0}
 }
 @media(max-width:480px){
   .footer-grid{grid-template-columns:1fr}
-  .legal-nav ul a{font-size:.78rem;padding:.4rem .6rem}
+  .legal-nav ul a,.legal-nav-link{font-size:.75rem;padding:.35rem .55rem}
+  /* Tighter page header padding */
+  .contactpage-header,.secupage-header,.mentionpage-header,
+  .cookiespage-header,.confidentialitespage-header{
+    padding:5rem 0 2.5rem;
+  }
+  .contactpage-header-content h1,.secupage-header-content h1,
+  .mentionpage-header-content h1,.cookiespage-header-content h1,
+  .confidentialitespage-header-content h1{
+    font-size:4.5vw !important;
+    overflow-wrap:break-word;word-break:break-word;
+  }
+  .contactpage-header-content p,.secupage-header-content p,
+  .mentionpage-header-content p,.cookiespage-header-content p,
+  .confidentialitespage-header-content p{
+    font-size:.82rem;
+  }
+  /* Info cards stack */
+  .security-badge{margin:.6rem 0}
+  /* Form */
+  .contact-form-card{padding:1.25rem}
+  .btn-submit{font-size:.85rem;padding:.85rem 1.5rem}
 }

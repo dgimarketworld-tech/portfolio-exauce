@@ -278,15 +278,22 @@ input{font-family:'DM Sans',sans-serif}
 @media(max-width:768px){
   .auth-page{grid-template-columns:1fr}
   .auth-left{display:none}
-  .auth-right{min-height:100vh;padding:1.5rem}
-  .auth-box{box-shadow:none;border:none;background:transparent;padding:1rem}
+  .auth-right{min-height:100vh;padding:1.25rem;overflow-x:hidden}
+  .auth-box{width:100%;box-shadow:none;border:none;background:transparent;padding:1rem}
   .otp-input{width:40px;height:50px;font-size:1.1rem}
 }
-@media(max-width:420px){
+@media(max-width:480px){
+  .auth-right{padding:.75rem}
   .auth-box{padding:.75rem}
   .social-btns{grid-template-columns:1fr}
+  .form-options{flex-direction:column;align-items:flex-start;gap:.6rem}
+  .auth-form-title{font-size:1.1rem}
+  .auth-tabs{border-radius:var(--r-md)}
+  .auth-tab{font-size:.75rem;padding:.45rem .6rem}
   .otp-grid{gap:.4rem}
   .otp-input{width:36px;height:46px}
+  .btn-full{font-size:.85rem;padding:.85rem}
+  .social-btn{font-size:.75rem;padding:.65rem}
 }
 </style>
 </head>
