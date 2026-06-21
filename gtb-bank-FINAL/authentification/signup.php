@@ -180,17 +180,28 @@ input,select{font-family:'DM Sans',sans-serif}
 .strength-label{font-size:.68rem;color:var(--g400)}
 
 @media(max-width:768px){
-  .auth-page{grid-template-columns:1fr}
+  .auth-page{display:block}
   .auth-left{display:none}
-  .auth-right{padding:1.25rem;align-items:flex-start;overflow-x:hidden}
-  .auth-box{width:100%;box-shadow:none;border:none;background:transparent;padding:.75rem}
+  .auth-right{
+    min-height:100vh;width:100%;
+    padding:1.5rem 1.1rem;
+    display:flex;flex-direction:column;align-items:center;
+    overflow-x:hidden;box-sizing:border-box;
+  }
+  .auth-box{
+    width:100%;max-width:100%;
+    box-shadow:none;border:none;background:transparent;
+    padding:.75rem 0;
+  }
   .form-row{grid-template-columns:1fr}
 }
 @media(max-width:480px){
-  .auth-right{padding:.75rem}
-  .auth-box{padding:.5rem}
-  .auth-form-title{font-size:1.1rem}
+  .auth-right{padding:1.25rem .9rem}
+  .auth-form-title{font-size:1.05rem}
   .btn-full{font-size:.85rem;padding:.85rem}
+  .form-input{font-size:.85rem}
+  .step-indicator{gap:.4rem}
+  .step-num{width:28px;height:28px;font-size:.7rem}
 }
 </style>
 </head>

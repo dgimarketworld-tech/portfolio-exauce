@@ -276,24 +276,33 @@ input{font-family:'DM Sans',sans-serif}
 
 /* ══ RESPONSIVE ══ */
 @media(max-width:768px){
-  .auth-page{grid-template-columns:1fr}
+  .auth-page{display:block}
   .auth-left{display:none}
-  .auth-right{min-height:100vh;padding:1.25rem;overflow-x:hidden}
-  .auth-box{width:100%;box-shadow:none;border:none;background:transparent;padding:1rem}
+  .auth-right{
+    min-height:100vh;width:100%;
+    padding:1.5rem 1.1rem;
+    display:flex;flex-direction:column;align-items:center;
+    overflow-x:hidden;box-sizing:border-box;
+  }
+  .auth-box{
+    width:100%;max-width:100%;
+    box-shadow:none;border:none;background:transparent;
+    padding:.75rem 0;
+  }
   .otp-input{width:40px;height:50px;font-size:1.1rem}
 }
 @media(max-width:480px){
-  .auth-right{padding:.75rem}
-  .auth-box{padding:.75rem}
+  .auth-right{padding:1.25rem .9rem}
   .social-btns{grid-template-columns:1fr}
-  .form-options{flex-direction:column;align-items:flex-start;gap:.6rem}
-  .auth-form-title{font-size:1.1rem}
+  .form-options{flex-direction:column;align-items:flex-start;gap:.5rem}
+  .auth-form-title{font-size:1.05rem}
   .auth-tabs{border-radius:var(--r-md)}
-  .auth-tab{font-size:.75rem;padding:.45rem .6rem}
-  .otp-grid{gap:.4rem}
-  .otp-input{width:36px;height:46px}
+  .auth-tab{font-size:.73rem;padding:.4rem .5rem}
+  .otp-grid{gap:.35rem}
+  .otp-input{width:34px;height:44px;font-size:1rem}
   .btn-full{font-size:.85rem;padding:.85rem}
-  .social-btn{font-size:.75rem;padding:.65rem}
+  .social-btn{font-size:.73rem;padding:.6rem}
+  .form-input{font-size:.85rem;padding:.8rem 1rem .8rem 2.5rem}
 }
 </style>
 </head>
