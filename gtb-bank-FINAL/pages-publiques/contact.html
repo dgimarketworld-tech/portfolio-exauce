@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Nous contacter - Global Trust Bank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="bnp-nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">GTB</div>
+    <div class="nav-logo-text">
+      <span>Global Trust Bank</span>
+      <span>Banque en ligne</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Accueil</a></li>
+    <li><a href="about.html">À propos</a></li>
+    <li><a href="../produits-bancaires/comptes/index.html">Comptes</a></li>
+    <li><a href="../produits-bancaires/comptes/index.html">Crédits</a></li>
+    <li><a href="../produits-bancaires/comptes/index.html">Entreprises</a></li>
+    <li><a href="../produits-bancaires/credits/index.html">Assurances</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <a href="../authentification/login.php" class="btn btn-ghost">Connexion</a>
+    <a href="../authentification/signup.php" class="btn btn-primary">Ouvrir un compte</a>
+  </div>
+
+  <button class="ham-btn" id="ham">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="contactpage-header">
+  <div class="contactpage-header-content reveal">
+    <h1>Nous sommes à votre <span style="color: var(--bnp-emerald);">écoute</span></h1>
+    <p>Une question ? Une demande particulière ? Contactez notre équipe disponible 24h/24, 7j/7</p>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- LEFT: Contact Methods -->
+      <div class="contact-info">
+        <div class="contact-method reveal">
+          <div class="contact-icon">📞</div>
+          <div class="contact-text">
+            <h3>Par téléphone</h3>
+            <p>Appelez notre équipe disponible 24h/24 pour toute urgence ou question</p>
+            <a href="tel:+33123456789">+33 1 23 45 67 89</a>
+          </div>
+        </div>
+
+        <div class="contact-method reveal" style="transition-delay: .1s">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-text">
+            <h3>Par email</h3>
+            <p>Écrivez-nous pour une demande précise, réponse sous 24h garantie</p>
+            <a href="mailto:support@globaltrustbank.fr">support@globaltrustbank.fr</a>
+          </div>
+        </div>
+
+        <div class="contact-method reveal" style="transition-delay: .2s">
+          <div class="contact-icon">💬</div>
+          <div class="contact-text">
+            <h3>Chat en direct</h3>
+            <p>Discutez avec un expert en temps réel via notre application mobile</p>
+            <a href="#">Ouvrir le chat →</a>
+          </div>
+        </div>
+
+        <div class="contact-method reveal" style="transition-delay: .3s">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">
+            <h3>Adresse siège</h3>
+            <p>123 Avenue des Champs-Élysées, 75008 Paris, France</p>
+            <a href="#">Voir la position →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Contact Form -->
+      <div class="reveal from-right">
+        <div class="contact-form-card">
+          <h2>Envoyez-nous un message</h2>
+          <p>Nous vous répondrons dans les meilleurs délais.</p>
+
+          <div class="success-message" id="successMsg">✓ Message envoyé avec succès ! Nous vous contacterons bientôt.</div>
+
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Nom complet</label>
+                <input type="text" id="name" name="name" class="input-field" placeholder="Jean Dupont" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="input-field" placeholder="jean@example.com" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Téléphone</label>
+              <input type="tel" id="phone" name="phone" class="input-field" placeholder="+33 6 12 34 56 78">
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Sujet</label>
+              <select name="subject" id="subject" class="input-field" required>
+                <option value="">Sélectionnez un sujet</option>
+                <option value="account">Problème de compte</option>
+                <option value="card">Carte bancaire</option>
+                <option value="transaction">Transaction</option>
+                <option value="security">Sécurité</option>
+                <option value="other">Autre</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" class="input-field" placeholder="Décrivez votre question ou demande..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Envoyer le message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ SECTION -->
+<section class="section" style="background: var(--off);">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 3rem;" class="reveal">
+      <h2 style="font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem,3vw,2.4rem); color: var(--gray800); margin-bottom: .5rem;">Questions fréquentes</h2>
+      <p style="color: var(--gray600); font-size: 1rem;">Trouvez rapidement des réponses aux questions les plus posées</p>
+    </div>
+
+    <div style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.2rem;">
+      <div class="reveal" style="background: white; border: 1.5px solid var(--gray100); border-radius: var(--r-lg); padding: 1.5rem; cursor: pointer; transition: all .3s var(--ease);" onclick="toggleFAQ(this)">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="font-family: 'Sora', sans-serif; font-weight: 700; font-size: .95rem; color: var(--gray800);">Quels sont les frais de GTB ?</h3>
+          <span style="font-size: 1.2rem; transition: transform .3s;">▼</span>
+        </div>
+        <p style="display: none; margin-top: 1rem; font-size: .85rem; color: var(--gray600); line-height: 1.6;">Global Trust Bank n'applique aucun frais pour l'ouverture ou la tenue de compte. Les virements SEPA sont gratuits et instantanés. Seules certaines opérations internationales appliquent des frais minimes.</p>
+      </div>
+
+      <div class="reveal" style="background: white; border: 1.5px solid var(--gray100); border-radius: var(--r-lg); padding: 1.5rem; cursor: pointer; transition: all .3s var(--ease);" onclick="toggleFAQ(this)" style="transition-delay: .1s">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="font-family: 'Sora', sans-serif; font-weight: 700; font-size: .95rem; color: var(--gray800);">Comment activer mon compte ?</h3>
+          <span style="font-size: 1.2rem; transition: transform .3s;">▼</span>
+        </div>
+        <p style="display: none; margin-top: 1rem; font-size: .85rem; color: var(--gray600); line-height: 1.6;">L'activation est simple : téléchargez l'app, créez votre compte en 5 minutes, vérifiez votre identité par selfie, et c'est bon ! Vous pouvez commencer à utiliser votre compte immédiatement.</p>
+      </div>
+
+      <div class="reveal" style="background: white; border: 1.5px solid var(--gray100); border-radius: var(--r-lg); padding: 1.5rem; cursor: pointer; transition: all .3s var(--ease);" onclick="toggleFAQ(this)" style="transition-delay: .2s">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="font-family: 'Sora', sans-serif; font-weight: 700; font-size: .95rem; color: var(--gray800);">Est-ce sécurisé de faire des virements ?</h3>
+          <span style="font-size: 1.2rem; transition: transform .3s;">▼</span>
+        </div>
+        <p style="display: none; margin-top: 1rem; font-size: .85rem; color: var(--gray600); line-height: 1.6;">Oui, nous utilisons le chiffrement de niveau bancaire et la double authentification pour tous les virements. Chaque transaction est sécurisée par biométrie et code PIN.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bnp-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <div class="footer-logo-mark">GTB</div>
+          <div class="footer-logo-text">Global Trust Bank</div>
+        </div>
+        <p class="footer-tagline">La banque d'un monde qui change. Présent dans 65 pays, au service de millions de clients.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Particuliers</h4>
+        <ul>
+          <li><a href="../produits-bancaires/comptes/index.html">Compte courant</a></li>
+          <li><a href="../produits-bancaires/cartes/index.html">Cartes bancaires</a></li>
+          <li><a href="../produits-bancaires/epargne/index.html">Épargne</a></li>
+          <li><a href="../produits-bancaires/credits/index.html">Crédit immobilier</a></li>
+          <li><a href="../produits-bancaires/assurances/index.html">Assurances</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="../dashboard/index.php">Espace client</a></li>
+          <li><a href="contact.html">Mon conseiller</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Aide &amp; Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>GTB</h4>
+        <ul>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="security.html">Sécurité</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Global Trust Bank — Société Anonyme au capital de 2 499 597 122 €</span>
+      <div class="footer-legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialites.html">Confidentialité</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* NAV SCROLL */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('elevated', window.scrollY > 20);
+});
+
+/* REVEAL */
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach((el, index) => {
+  if (!el.style.transitionDelay) {
+    el.style.transitionDelay = (index % 4) * 0.08 + 's';
+  }
+  revealObserver.observe(el);
+});
+
+/* MOBILE MENU */
+const ham = document.getElementById('ham');
+const mobileMenu = document.createElement('div');
+mobileMenu.className = 'mobile-menu';
+mobileMenu.innerHTML = `
+  <a href="index.html">Accueil</a>
+  <a href="about.html">À propos</a>
+  <a href="#">Comptes</a>
+  <a href="#">Crédits</a>
+  <a href="contact.html">Contact</a>
+  <a href="../authentification/signup.php" class="mobile-cta">Ouvrir un compte</a>
+`;
+
+document.body.appendChild(mobileMenu);
+let menuOpen = false;
+
+ham?.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  ham.classList.toggle('active', menuOpen);
+  mobileMenu.classList.toggle('active', menuOpen);
+});
+
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    menuOpen = false;
+    ham.classList.remove('active');
+    mobileMenu.classList.remove('active');
+  });
+});
+
+/* FORM SUBMIT → contact_mail.php */
+const contactForm = document.getElementById('contactForm');
+const successMsg  = document.getElementById('successMsg');
+const submitBtn   = contactForm?.querySelector('button[type="submit"]');
+
+contactForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (submitBtn) { submitBtn.textContent = 'Envoi en cours…'; submitBtn.disabled = true; }
+
+  try {
+    const body = new URLSearchParams(new FormData(contactForm));
+    const res  = await fetch('contact_mail.php', { method: 'POST', body });
+    const data = await res.json();
+
+    if (data.success) {
+      successMsg.textContent = '✓ Message envoyé ! Nous vous répondrons dans les meilleurs délais.';
+      successMsg.style.background = 'rgba(16,185,129,.08)';
+      successMsg.style.borderColor = 'rgba(16,185,129,.3)';
+      successMsg.style.color = '#065f46';
+      successMsg.classList.add('show');
+      contactForm.reset();
+      setTimeout(() => successMsg.classList.remove('show'), 5000);
+    } else {
+      alert('⚠️ ' + (data.error || 'Erreur lors de l\'envoi. Réessayez.'));
+    }
+  } catch (err) {
+    alert('⚠️ Erreur réseau. Vérifiez votre connexion.');
+  } finally {
+    if (submitBtn) { submitBtn.textContent = 'Envoyer le message'; submitBtn.disabled = false; }
+  }
+});
+
+/* FAQ TOGGLE */
+function toggleFAQ(element) {
+  const p = element.querySelector('p');
+  const span = element.querySelector('span');
+  
+  p.style.display = p.style.display === 'none' ? 'block' : 'none';
+  span.style.transform = p.style.display === 'none' ? 'rotate(0deg)' : 'rotate(180deg)';
+  
+  element.style.borderColor = p.style.display === 'none' ? 'var(--gray100)' : 'var(--bnp-emerald)';
+  element.style.boxShadow = p.style.display === 'none' ? 'none' : 'var(--sh-md)';
+}
+</script>
+</body>
+</html>
