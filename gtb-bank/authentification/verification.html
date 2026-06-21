@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Vérification du compte — Global Trust Bank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --green:#0D1B2A;--dark:#091520;--deeper:#050B14;
+  --gold:#D4AF37;--mint:#EAD9B5;--sand:#F2F4F7;
+  --white:#FFFFFF;--g50:#F8F9FA;--g100:#E9ECEF;
+  --g200:#DEE2E6;--g400:#ADB5BD;--g600:#6C757D;--g800:#343A40;
+  --red:#E5373A;--green-ok:#22C55E;
+  --ease:cubic-bezier(.25,.46,.45,.94);
+  --bounce:cubic-bezier(.34,1.56,.64,1);
+  --r-sm:6px;--r-md:12px;--r-lg:18px;--r-xl:28px;--r-full:9999px;
+  --sh-sm:0 2px 8px rgba(13,27,42,.08);
+  --sh-md:0 8px 32px rgba(13,27,42,.12);
+  --sh-lg:0 24px 64px rgba(13,27,42,.18);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--g50);color:var(--g800);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+button{font-family:'DM Sans',sans-serif;cursor:pointer;border:none}
+
+.auth-page{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+
+/* LEFT */
+.auth-left{
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,var(--deeper) 0%,var(--dark) 60%,#091520 100%);
+  display:flex;flex-direction:column;padding:2.5rem;
+}
+.auth-left-grid{position:absolute;inset:0;opacity:.05;background-image:linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px);background-size:52px 52px}
+.auth-orbs{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.auth-orb{position:absolute;border-radius:50%;filter:blur(90px);animation:orb-float 9s ease-in-out infinite}
+.auth-orb-1{width:500px;height:500px;background:rgba(212,175,55,.1);top:-100px;right:-60px}
+.auth-orb-2{width:300px;height:300px;background:rgba(13,27,42,.15);bottom:-80px;left:-30px;animation-delay:-5s}
+@keyframes orb-float{0%,100%{transform:translate(0,0)}45%{transform:translate(25px,-20px)}75%{transform:translate(-12px,22px)}}
+
+.auth-logo{position:relative;z-index:5;display:flex;align-items:center;gap:.7rem;margin-bottom:auto}
+.auth-logo-mark{width:42px;height:42px;border-radius:var(--r-sm);background:linear-gradient(135deg,var(--gold),rgba(212,175,55,.75));display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:800;font-size:.8rem;color:white}
+.auth-logo-text strong{font-family:'Sora',sans-serif;font-weight:700;font-size:.92rem;color:white;display:block}
+.auth-logo-text span{font-size:.6rem;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase}
+
+.auth-left-content{position:relative;z-index:5;flex:1;display:flex;flex-direction:column;justify-content:center;padding:2rem 0}
+.auth-left-title{font-family:'DM Serif Display',serif;font-size:clamp(1.9rem,3.2vw,2.8rem);color:white;line-height:1.1;letter-spacing:-.02em;margin-bottom:1rem}
+.auth-left-title em{font-style:italic;color:var(--gold)}
+.auth-left-sub{font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:2.5rem;max-width:380px}
+
+.avantages{display:flex;flex-direction:column;gap:.75rem}
+.avantage-item{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--r-lg)}
+.avantage-icon{font-size:1.1rem;flex-shrink:0}
+.avantage-text{font-size:.82rem;color:rgba(255,255,255,.7);font-weight:500}
+.avantage-text strong{color:var(--gold)}
+
+.auth-left-footer{position:relative;z-index:5;font-size:.68rem;color:rgba(255,255,255,.25);padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.07);margin-top:2.5rem}
+
+/* RIGHT */
+.auth-right{display:flex;align-items:center;justify-content:center;background:var(--g50);padding:2.5rem 2rem;overflow-y:auto}
+.auth-box{width:100%;max-width:460px;background:white;border-radius:var(--r-xl);padding:clamp(1.8rem,4vw,2.8rem);box-shadow:var(--sh-lg);border:1.5px solid var(--g100)}
+
+/* ENVELOPE */
+.envelope-wrap{display:flex;justify-content:center;margin-bottom:2rem}
+.envelope{width:88px;height:88px;border-radius:50%;background:rgba(212,175,55,.08);border:2px solid rgba(212,175,55,.2);display:flex;align-items:center;justify-content:center;font-size:2.2rem;animation:env-pop .7s var(--bounce) both}
+@keyframes env-pop{0%{transform:scale(0) rotate(-15deg);opacity:0}100%{transform:scale(1) rotate(0);opacity:1}}
+
+.verif-title{font-family:'Sora',sans-serif;font-weight:800;font-size:1.4rem;color:var(--g800);text-align:center;margin-bottom:.5rem}
+.verif-sub{font-size:.85rem;color:var(--g400);line-height:1.65;text-align:center;margin-bottom:.4rem}
+.verif-email{display:block;font-weight:700;color:var(--g800);background:var(--g50);border:1.5px solid var(--g100);border-radius:var(--r-md);padding:.35rem .85rem;font-size:.85rem;margin:.6rem auto 2rem;text-align:center;width:fit-content}
+
+/* OTP */
+.otp-label{font-size:.72rem;font-weight:600;color:var(--g600);letter-spacing:.05em;text-transform:uppercase;text-align:center;margin-bottom:.75rem}
+.otp-fields{display:flex;justify-content:center;gap:.6rem;margin-bottom:.5rem}
+.otp-input{
+  width:52px;height:60px;
+  border:2px solid var(--g200);border-radius:var(--r-md);
+  font-family:'Sora',sans-serif;font-weight:700;font-size:1.6rem;
+  color:var(--g800);text-align:center;background:var(--g50);
+  outline:none;transition:all .2s var(--ease);
+  caret-color:var(--gold);
+}
+.otp-input:focus{border-color:var(--gold);background:white;box-shadow:0 0 0 3px rgba(212,175,55,.15);transform:translateY(-2px)}
+.otp-input.filled{border-color:var(--gold);background:rgba(212,175,55,.05)}
+.otp-input.error{border-color:var(--red);background:rgba(229,55,58,.04);animation:shake .35s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+/* TIMER */
+.otp-timer{text-align:center;font-size:.78rem;color:var(--g400);margin-bottom:1.8rem;min-height:1.2rem}
+.otp-timer .countdown{font-weight:700;color:var(--g800);font-variant-numeric:tabular-nums}
+.otp-timer .resend-link{color:var(--gold);font-weight:600;cursor:pointer;text-decoration:underline;display:none}
+.otp-timer.expired .countdown-wrap{display:none}
+.otp-timer.expired .resend-link{display:inline}
+
+/* ALERT */
+.verif-alert{display:none;padding:.85rem 1rem;border-radius:var(--r-md);font-size:.82rem;margin-bottom:1.2rem;gap:.6rem;align-items:center}
+.verif-alert.error{background:rgba(229,55,58,.07);border:1.5px solid rgba(229,55,58,.2);color:#b91c1c;display:flex}
+.verif-alert.success{background:rgba(34,197,94,.07);border:1.5px solid rgba(34,197,94,.2);color:#15803d;display:flex}
+
+/* BUTTON */
+.btn-verif{
+  width:100%;padding:1rem;border-radius:var(--r-full);
+  background:linear-gradient(135deg,var(--gold),rgba(212,175,55,.85));
+  color:white;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.95rem;
+  border:none;cursor:pointer;transition:all .3s var(--ease);
+  box-shadow:0 6px 20px rgba(212,175,55,.4);
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+}
+.btn-verif:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 28px rgba(212,175,55,.5)}
+.btn-verif:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.btn-verif .spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;display:none}
+.btn-verif.loading .spinner{display:block}
+.btn-verif.loading .btn-text{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.auth-footer-text{text-align:center;font-size:.78rem;color:var(--g400);margin-top:1.4rem}
+.auth-footer-text a{color:var(--gold);font-weight:600}
+
+/* SUCCESS STATE */
+.success-state{display:none;text-align:center;padding:1rem 0}
+.success-icon{width:80px;height:80px;border-radius:50%;background:rgba(34,197,94,.1);border:2px solid rgba(34,197,94,.25);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1.5rem;animation:success-pop .6s var(--bounce) both}
+@keyframes success-pop{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+.success-title{font-family:'Sora',sans-serif;font-weight:800;font-size:1.3rem;color:var(--g800);margin-bottom:.5rem}
+.success-sub{font-size:.85rem;color:var(--g400);line-height:1.65;margin-bottom:2rem}
+.btn-goto-login{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.95rem 2rem;border-radius:var(--r-full);
+  background:linear-gradient(135deg,var(--gold),rgba(212,175,55,.85));
+  color:white;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;
+  box-shadow:0 6px 20px rgba(212,175,55,.4);transition:all .3s var(--ease);
+}
+.btn-goto-login:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(212,175,55,.5)}
+
+@media(max-width:768px){
+  .auth-page{grid-template-columns:1fr}
+  .auth-left{display:none}
+  .auth-right{padding:1.5rem;align-items:flex-start}
+  .auth-box{box-shadow:none;border:none;background:transparent;padding:.5rem}
+  .otp-input{width:44px;height:54px;font-size:1.4rem}
+}
+</style>
+</head>
+<body>
+
+<div class="auth-page">
+
+  <!-- LEFT -->
+  <div class="auth-left">
+    <div class="auth-left-grid"></div>
+    <div class="auth-orbs">
+      <div class="auth-orb auth-orb-1"></div>
+      <div class="auth-orb auth-orb-2"></div>
+    </div>
+
+    <a href="../pages-publiques/index.html" class="auth-logo">
+      <div class="auth-logo-mark">GTB</div>
+      <div class="auth-logo-text">
+        <strong>Global Trust Bank</strong>
+        <span>Banque en ligne</span>
+      </div>
+    </a>
+
+    <div class="auth-left-content">
+      <h1 class="auth-left-title">Protégez<br>votre <em>compte</em><br>en 30 sec</h1>
+      <p class="auth-left-sub">Un simple code reçu par e-mail suffit à confirmer votre identité. Votre sécurité est notre priorité absolue.</p>
+
+      <div class="avantages">
+        <div class="avantage-item"><span class="avantage-icon">📧</span><span class="avantage-text"><strong>Code à usage unique</strong> — Valable 10 minutes seulement</span></div>
+        <div class="avantage-item"><span class="avantage-icon">🔐</span><span class="avantage-text"><strong>Double authentification</strong> — Aucun accès sans votre validation</span></div>
+        <div class="avantage-item"><span class="avantage-icon">⚡</span><span class="avantage-text"><strong>Instantané</strong> — Connexion immédiate après vérification</span></div>
+        <div class="avantage-item"><span class="avantage-icon">🛡️</span><span class="avantage-text"><strong>100% sécurisé</strong> — Chiffrement AES-256 de bout en bout</span></div>
+      </div>
+    </div>
+
+    <div class="auth-left-footer">© 2026 Global Trust Bank — ACPR agréé · Dépôts garantis jusqu'à 100 000€ (FGDR)</div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="auth-right">
+    <div class="auth-box">
+
+      <!-- VUE PRINCIPALE -->
+      <div id="verif-main">
+
+        <div class="envelope-wrap">
+          <div class="envelope">📬</div>
+        </div>
+
+        <h1 class="verif-title">Vérifiez votre e-mail</h1>
+        <p class="verif-sub">Nous avons envoyé un code de vérification à 6 chiffres à</p>
+        <span class="verif-email" id="verif-email-display">votre adresse e-mail</span>
+
+        <div class="otp-label">Entrez le code reçu</div>
+
+        <div class="otp-fields" id="otp-fields">
+          <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="one-time-code" data-idx="0"/>
+          <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" data-idx="1"/>
+          <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" data-idx="2"/>
+          <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" data-idx="3"/>
+          <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" data-idx="4"/>
+          <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" data-idx="5"/>
+        </div>
+
+        <div class="otp-timer" id="otp-timer">
+          <span class="countdown-wrap">Code valable encore <span class="countdown" id="countdown">10:00</span></span>
+          <span class="resend-link" id="resend-link" onclick="GTBVerif.resend()">Renvoyer le code</span>
+        </div>
+
+        <div class="verif-alert" id="verif-alert" role="alert">
+          <span id="alert-icon">⚠️</span>
+          <span id="alert-msg"></span>
+        </div>
+
+        <button class="btn-verif" id="btn-verif" onclick="GTBVerif.submit()">
+          <div class="spinner"></div>
+          <span class="btn-text">Vérifier mon compte →</span>
+        </button>
+
+        <div class="auth-footer-text">
+          Mauvaise adresse ? <a href="signup.php">Modifier lors de l'inscription</a><br>
+          Déjà un compte ? <a href="login.php">Se connecter</a>
+        </div>
+
+      </div>
+
+      <!-- VUE SUCCÈS -->
+      <div class="success-state" id="verif-success">
+        <div class="success-icon">✅</div>
+        <div class="success-title">Compte vérifié !</div>
+        <p class="success-sub">Votre adresse e-mail a bien été confirmée.<br>Vous pouvez maintenant accéder à votre espace bancaire.</p>
+        <a href="login.php" class="btn-goto-login">Accéder à mon espace →</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+const GTBVerif = (() => {
+  const OTP_DURATION = 10 * 60;
+  let timeLeft = OTP_DURATION;
+  let timerInterval = null;
+
+  function getEmail() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('email') || sessionStorage.getItem('gtb_signup_email') || '';
+  }
+
+  function getCode() {
+    return [...document.querySelectorAll('.otp-input')].map(i => i.value).join('');
+  }
+
+  function showAlert(msg, type) {
+    const el = document.getElementById('verif-alert');
+    document.getElementById('alert-icon').textContent = type === 'success' ? '✅' : '⚠️';
+    document.getElementById('alert-msg').textContent = msg;
+    el.className = 'verif-alert ' + type;
+  }
+
+  function clearAlert() {
+    document.getElementById('verif-alert').className = 'verif-alert';
+  }
+
+  function startTimer() {
+    const timerEl = document.getElementById('otp-timer');
+    const countdownEl = document.getElementById('countdown');
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        timerEl.classList.add('expired');
+        return;
+      }
+      const m = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+      const s = String(timeLeft % 60).padStart(2, '0');
+      countdownEl.textContent = m + ':' + s;
+    }, 1000);
+  }
+
+  function setupOtp() {
+    const inputs = document.querySelectorAll('.otp-input');
+    inputs.forEach((inp, idx) => {
+      inp.addEventListener('input', e => {
+        const val = e.target.value.replace(/\D/g, '');
+        e.target.value = val.slice(-1);
+        e.target.classList.toggle('filled', val !== '');
+        clearAlert();
+        if (val && idx < inputs.length - 1) inputs[idx + 1].focus();
+        if (getCode().length === 6) submit();
+      });
+
+      inp.addEventListener('keydown', e => {
+        if (e.key === 'Backspace' && !inp.value && idx > 0) inputs[idx - 1].focus();
+        if (e.key === 'ArrowLeft' && idx > 0) inputs[idx - 1].focus();
+        if (e.key === 'ArrowRight' && idx < inputs.length - 1) inputs[idx + 1].focus();
+      });
+
+      inp.addEventListener('paste', e => {
+        e.preventDefault();
+        const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+        if (pasted.length >= 6) {
+          [...inputs].forEach((field, i) => {
+            field.value = pasted[i] || '';
+            field.classList.toggle('filled', !!pasted[i]);
+          });
+          inputs[Math.min(pasted.length - 1, 5)].focus();
+          setTimeout(submit, 200);
+        }
+      });
+    });
+    inputs[0].focus();
+  }
+
+  async function submit() {
+    const code = getCode();
+    const email = getEmail();
+    if (code.length < 6) {
+      showAlert('Veuillez saisir le code à 6 chiffres complet.', 'error');
+      document.querySelectorAll('.otp-input').forEach(i => i.classList.add('error'));
+      setTimeout(() => document.querySelectorAll('.otp-input').forEach(i => i.classList.remove('error')), 500);
+      return;
+    }
+
+    const btn = document.getElementById('btn-verif');
+    btn.disabled = true;
+    btn.classList.add('loading');
+    clearAlert();
+
+    try {
+      const res = await fetch('api/verify_otp.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, code })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        clearInterval(timerInterval);
+        document.getElementById('verif-main').style.display = 'none';
+        document.getElementById('verif-success').style.display = 'block';
+      } else {
+        showAlert(data.message || 'Code incorrect ou expiré. Vérifiez et réessayez.', 'error');
+        document.querySelectorAll('.otp-input').forEach(i => { i.classList.add('error'); i.value = ''; i.classList.remove('filled'); });
+        setTimeout(() => document.querySelectorAll('.otp-input').forEach(i => i.classList.remove('error')), 500);
+        document.querySelectorAll('.otp-input')[0].focus();
+      }
+    } catch {
+      showAlert('Erreur réseau. Vérifiez votre connexion et réessayez.', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.classList.remove('loading');
+    }
+  }
+
+  async function resend() {
+    const email = getEmail();
+    if (!email) { showAlert("Adresse e-mail introuvable. Recommencez l'inscription.", 'error'); return; }
+
+    const link = document.getElementById('resend-link');
+    link.textContent = 'Envoi en cours…';
+
+    try {
+      const res = await fetch('api/signup.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'resend_otp', email })
+      });
+      const data = await res.json();
+      if (data.success) {
+        timeLeft = OTP_DURATION;
+        clearInterval(timerInterval);
+        const timerEl = document.getElementById('otp-timer');
+        timerEl.classList.remove('expired');
+        document.getElementById('countdown').textContent = '10:00';
+        startTimer();
+        showAlert('Nouveau code envoyé à ' + email, 'success');
+      } else {
+        showAlert(data.message || 'Impossible de renvoyer le code.', 'error');
+      }
+    } catch {
+      showAlert('Erreur réseau lors du renvoi.', 'error');
+    } finally {
+      link.textContent = 'Renvoyer le code';
+    }
+  }
+
+  function init() {
+    const email = getEmail();
+    if (email) {
+      const at = email.indexOf('@');
+      const user = email.slice(0, at);
+      const domain = email.slice(at);
+      const masked = user.slice(0, 2) + '***' + domain;
+      document.getElementById('verif-email-display').textContent = masked;
+    }
+    setupOtp();
+    startTimer();
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+  return { submit, resend };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <meta name="description" content="Solutions d’investissement pour entreprises Global Trust Bank : gestion de trésorerie, placements stratégiques et croissance des actifs professionnels." />
+
+  <title>Investissement Entreprise — Global Trust Bank</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+
+    :root{
+      --green:#0D1B2A;
+      --dark:#091520;
+      --deeper:#050B14;
+      --gold:#D4AF37;
+
+      --g600:#6C757D;
+      --g800:#343A40;
+
+      --sand:#F5F7FA;
+      --success:#22C55E;
+
+      --shadow-md:0 12px 32px rgba(0,0,0,.08);
+      --shadow-lg:0 30px 80px rgba(0,0,0,.14);
+      --ease:cubic-bezier(.25,.46,.45,.94);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'DM Sans',sans-serif;
+      background:white;
+      color:var(--g800);
+      overflow-x:hidden;
+    }
+
+    a{text-decoration:none;color:inherit;}
+    img{max-width:100%;display:block;}
+
+    .container{
+      width:min(1200px, calc(100% - 2.5rem));
+      margin:auto;
+    }
+
+    /* ===== NAV ===== */
+    .nav{
+      position:fixed;
+      top:0;left:0;right:0;
+      height:72px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:0 2rem;
+      z-index:999;
+      transition:.3s;
+    }
+
+    .nav.scrolled{
+      background:rgba(5,11,20,.95);
+      backdrop-filter:blur(14px);
+    }
+
+    .logo-mark{
+      width:42px;height:42px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--gold),#f5d778);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:.8rem;
+      list-style:none;
+    }
+
+    .nav-links a{
+      color:rgba(255,255,255,.7);
+      padding:.6rem 1rem;
+      border-radius:999px;
+      font-size:.85rem;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover{
+      background:rgba(255,255,255,.08);
+      color:var(--gold);
+    }
+
+    .btn{
+      padding:.85rem 1.4rem;
+      border-radius:999px;
+      font-weight:700;
+      font-size:.85rem;
+      border:none;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,var(--gold),#f5d778);
+      color:#111;
+    }
+
+    .btn-ghost{
+      background:rgba(255,255,255,.08);
+      color:#fff;
+    }
+
+    /* ===== HERO (B2B ORIENTÉ) ===== */
+    .hero{
+      min-height:100vh;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      align-items:center;
+      padding-top:72px;
+      background:
+        radial-gradient(circle at top right, rgba(212,175,55,.14), transparent 40%),
+        radial-gradient(circle at bottom left, rgba(34,197,94,.08), transparent 40%),
+        var(--deeper);
+    }
+
+    .hero-content{
+      padding:5rem;
+    }
+
+    .badge{
+      display:inline-flex;
+      padding:.4rem 1rem;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      color:var(--gold);
+      font-size:.75rem;
+      margin-bottom:1.5rem;
+    }
+
+    .hero h1{
+      font-family:'DM Serif Display',serif;
+      font-size:clamp(2.8rem,5vw,5rem);
+      color:white;
+      line-height:1.05;
+      margin-bottom:1rem;
+    }
+
+    .hero h1 em{color:var(--gold);}
+
+    .hero p{
+      color:rgba(255,255,255,.65);
+      max-width:550px;
+      line-height:1.8;
+      margin-bottom:2rem;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:1rem;
+      flex-wrap:wrap;
+    }
+
+    /* ===== PANEL ENTREPRISE ===== */
+    .panel{
+      width:420px;
+      border-radius:32px;
+      overflow:hidden;
+      background:linear-gradient(160deg,var(--green),var(--dark));
+      box-shadow:var(--shadow-lg);
+      animation:float 5s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-12px);}
+    }
+
+    .panel-top{
+      padding:2rem;
+      background:linear-gradient(180deg, rgba(212,175,55,.16), transparent);
+      color:white;
+    }
+
+    .panel-top h3{
+      font-size:2.2rem;
+    }
+
+    .panel-body{
+      padding:2rem;
+      display:grid;
+      gap:1rem;
+    }
+
+    .stat{
+      display:flex;
+      justify-content:space-between;
+      padding:1rem;
+      border-radius:16px;
+      background:rgba(255,255,255,.05);
+      color:white;
+    }
+
+    /* ===== SECTIONS ===== */
+    section{padding:7rem 0;}
+
+    .section-head{
+      text-align:center;
+      margin-bottom:4rem;
+    }
+
+    .section-title{
+      font-family:'DM Serif Display',serif;
+      font-size:clamp(2rem,4vw,3.2rem);
+    }
+
+    .section-title em{color:var(--gold);}
+
+    /* ===== GRID ===== */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:2rem;
+    }
+
+    .card{
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid #eee;
+      transition:.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+      box-shadow:var(--shadow-md);
+    }
+
+    .card-content{
+      padding:2rem;
+    }
+
+    .tag{
+      display:inline-block;
+      padding:.3rem .8rem;
+      border-radius:999px;
+      background:rgba(212,175,55,.15);
+      color:var(--gold);
+      font-size:.7rem;
+      margin-bottom:1rem;
+    }
+
+    /* ===== ADVANTAGES ===== */
+    .advantages{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:1.5rem;
+    }
+
+    .adv{
+      background:linear-gradient(135deg,var(--green),var(--dark));
+      color:white;
+      padding:2rem;
+      border-radius:24px;
+      text-align:center;
+    }
+
+    /* ===== CTA ===== */
+    .cta{
+      text-align:center;
+      padding:5rem 2rem;
+      border-radius:40px;
+      background:linear-gradient(135deg,var(--green),var(--deeper));
+      color:white;
+    }
+
+    .cta h2{
+      font-family:'DM Serif Display',serif;
+      font-size:2.8rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:1100px){
+      .hero{grid-template-columns:1fr;}
+      .panel{display:none;}
+      .grid{grid-template-columns:1fr 1fr;}
+      .advantages{grid-template-columns:1fr 1fr;}
+    }
+
+    @media(max-width:768px){
+      .nav-links{display:none;}
+      .hero-content{padding:3rem 1.5rem;}
+      .grid{grid-template-columns:1fr;}
+      .advantages{grid-template-columns:1fr;}
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+
+  <a href="../../pages-publiques/index.html" class="logo">
+    <div class="logo-mark">GTB</div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="../../pages-publiques/index.html">Accueil</a></li>
+    <li><a href="../investissement/index.html">Investissement</a></li>
+    <li><a href="#" class="active">Entreprise</a></li>
+    <li><a href="../epargne/index.html">Épargne</a></li>
+    <li><a href="../credits/index.html">Crédits</a></li>
+  </ul>
+
+  <a href="../../authentification/signup.php" class="btn btn-primary">Accéder</a>
+
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="badge">Solutions financières B2B</div>
+
+    <h1>
+      Investissement <em>Entreprise</em>
+    </h1>
+
+    <p>
+      Optimisez la gestion de votre trésorerie et développez vos actifs
+      avec des stratégies financières adaptées aux entreprises modernes.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="../../authentification/signup.php">Ouvrir un compte entreprise</a>
+      <a class="btn btn-ghost" href="#solutions">Découvrir</a>
+    </div>
+
+  </div>
+
+  <div class="panel">
+
+    <div class="panel-top">
+      <small>Performance entreprise</small>
+      <h3>+9.4%</h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div class="stat"><span>Trésorerie gérée</span><strong>€3.2B</strong></div>
+      <div class="stat"><span>Entreprises clientes</span><strong>42K</strong></div>
+      <div class="stat"><span>Optimisation</span><strong>Active</strong></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SOLUTIONS -->
+<section id="solutions">
+
+  <div class="container">
+
+    <div class="section-head">
+      <h2 class="section-title">Solutions <em>Entreprise</em></h2>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=1400"/>
+        <div class="card-content">
+          <div class="tag">Trésorerie</div>
+          <h3>Gestion de trésorerie</h3>
+          <p>Optimisation des flux financiers de votre entreprise.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?q=80&w=1400"/>
+        <div class="card-content">
+          <div class="tag">Croissance</div>
+          <h3>Placements stratégiques</h3>
+          <p>Investissements adaptés aux objectifs long terme.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1642790551116-18e150f8a8e3?q=80&w=1400"/>
+        <div class="card-content">
+          <div class="tag">Corporate</div>
+          <h3>Conseil financier</h3>
+          <p>Accompagnement expert pour décisions financières.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ADVANTAGES -->
+<section class="section-alt">
+
+  <div class="container">
+
+    <div class="advantages">
+
+      <div class="adv">Optimisation fiscale</div>
+      <div class="adv">Gestion de risque</div>
+      <div class="adv">Croissance capital</div>
+      <div class="adv">Conseiller dédié</div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CTA -->
+<section>
+
+  <div class="container">
+
+    <div class="cta">
+      <h2>Développez votre <em>entreprise</em></h2>
+      <p>Des solutions financières adaptées aux entreprises modernes.</p>
+      <a class="btn btn-primary" href="../../authentification/login.php">Commencer</a>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll',()=>{
+    nav.classList.toggle('scrolled', window.scrollY>10);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Compte Professionnel — Global Trust Bank</title>
+
+<meta
+  name="description"
+  content="Découvrez le compte professionnel Global Trust Bank : gestion multi-utilisateurs, paiements internationaux, cartes business et outils de pilotage financier."
+/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
+rel="stylesheet"
+/>
+
+<style>
+
+:root{
+
+  --green:#0D1B2A;
+  --dark:#091520;
+  --deeper:#050B14;
+
+  --gold:#D4AF37;
+  --gold-light:#f5d778;
+
+  --white:#FFFFFF;
+  --sand:#F5F7FA;
+
+  --g100:#E9ECEF;
+  --g200:#DEE2E6;
+  --g500:#6C757D;
+  --g700:#343A40;
+
+  --success:#22C55E;
+
+  --shadow-sm:0 4px 12px rgba(0,0,0,.06);
+  --shadow-md:0 12px 32px rgba(0,0,0,.08);
+  --shadow-lg:0 30px 80px rgba(0,0,0,.16);
+
+  --radius:28px;
+
+  --ease:cubic-bezier(.25,.46,.45,.94);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:#fff;
+  color:var(--g700);
+  overflow-x:hidden;
+}
+
+img{
+  width:100%;
+  display:block;
+  object-fit:cover;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.container{
+  width:min(1200px, calc(100% - 2rem));
+  margin:auto;
+}
+
+/* NAV */
+
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+
+  height:72px;
+
+  z-index:999;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 2rem;
+
+  transition:.35s;
+}
+
+.nav.scrolled{
+  background:rgba(5,11,20,.94);
+  backdrop-filter:blur(14px);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:.8rem;
+}
+
+.logo-mark{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:var(--deeper);
+
+  font-family:'Sora',sans-serif;
+  font-weight:800;
+}
+
+.logo-text{
+  display:flex;
+  flex-direction:column;
+}
+
+.logo-text strong{
+  color:white;
+  font-size:.92rem;
+}
+
+.logo-text span{
+  color:rgba(255,255,255,.45);
+  font-size:.65rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+
+.nav-links{
+  display:flex;
+  list-style:none;
+  gap:.5rem;
+}
+
+.nav-links a{
+  color:rgba(255,255,255,.7);
+  padding:.7rem 1rem;
+  border-radius:999px;
+  transition:.25s;
+  font-size:.85rem;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  background:rgba(255,255,255,.08);
+  color:var(--gold);
+}
+
+.btn{
+  border:none;
+  cursor:pointer;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:999px;
+
+  font-weight:700;
+
+  transition:.3s var(--ease);
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  color:var(--deeper);
+
+  padding:1rem 1.6rem;
+
+  box-shadow:0 12px 30px rgba(212,175,55,.25);
+}
+
+.btn-primary:hover{
+  transform:translateY(-3px);
+}
+
+.btn-outline{
+  border:1px solid rgba(255,255,255,.15);
+  color:white;
+  padding:1rem 1.6rem;
+  background:rgba(255,255,255,.05);
+}
+
+.btn-outline:hover{
+  background:rgba(255,255,255,.1);
+}
+
+/* HERO */
+
+.hero{
+
+  min-height:100vh;
+
+  background:
+  radial-gradient(circle at top right, rgba(212,175,55,.15), transparent 30%),
+  radial-gradient(circle at bottom left, rgba(34,197,94,.08), transparent 30%),
+  var(--deeper);
+
+  padding-top:72px;
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  align-items:center;
+
+  overflow:hidden;
+}
+
+.hero-content{
+  padding:5rem;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+
+  background:rgba(255,255,255,.06);
+
+  border:1px solid rgba(255,255,255,.08);
+
+  padding:.5rem 1rem;
+
+  border-radius:999px;
+
+  margin-bottom:1.5rem;
+}
+
+.eyebrow-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--gold);
+}
+
+.eyebrow span:last-child{
+  color:var(--gold);
+  font-size:.72rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-weight:700;
+}
+
+.hero h1{
+  color:white;
+
+  font-size:clamp(3rem,5vw,5.2rem);
+
+  line-height:1.05;
+
+  font-family:'DM Serif Display',serif;
+
+  margin-bottom:1.5rem;
+}
+
+.hero h1 span{
+  color:var(--gold);
+}
+
+.hero p{
+  color:rgba(255,255,255,.65);
+
+  line-height:1.9;
+
+  max-width:560px;
+
+  margin-bottom:2rem;
+}
+
+.hero-actions{
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+.hero-panel{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:4rem;
+}
+
+.account-card{
+  width:430px;
+
+  border-radius:32px;
+
+  overflow:hidden;
+
+  background:linear-gradient(160deg,var(--green),var(--dark));
+
+  border:1px solid rgba(255,255,255,.08);
+
+  box-shadow:var(--shadow-lg);
+}
+
+.card-top{
+  padding:2rem;
+
+  background:linear-gradient(180deg, rgba(212,175,55,.16), transparent);
+}
+
+.card-top small{
+  color:rgba(255,255,255,.5);
+  display:block;
+  margin-bottom:.5rem;
+}
+
+.card-top h3{
+  color:white;
+  font-size:2.4rem;
+  font-family:'Sora',sans-serif;
+}
+
+.card-body{
+  padding:2rem;
+  display:grid;
+  gap:1rem;
+}
+
+.card-stat{
+  background:rgba(255,255,255,.05);
+  border-radius:18px;
+  padding:1rem 1.2rem;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.card-stat span{
+  color:rgba(255,255,255,.55);
+}
+
+.card-stat strong{
+  color:white;
+}
+
+/* SECTION */
+
+section{
+  padding:7rem 0;
+}
+
+.section-alt{
+  background:var(--sand);
+}
+
+.section-head{
+  text-align:center;
+  margin-bottom:4rem;
+}
+
+.section-label{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  font-size:.72rem;
+  font-weight:700;
+  margin-bottom:1rem;
+}
+
+.section-title{
+  font-family:'DM Serif Display',serif;
+  color:var(--green);
+
+  font-size:clamp(2rem,4vw,3.4rem);
+
+  line-height:1.08;
+
+  margin-bottom:1rem;
+}
+
+.section-title span{
+  color:var(--gold);
+}
+
+.section-sub{
+  max-width:720px;
+  margin:auto;
+  color:var(--g500);
+  line-height:1.8;
+}
+
+/* FEATURES */
+
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2rem;
+}
+
+.feature-card{
+  background:white;
+  border-radius:28px;
+  overflow:hidden;
+  border:1px solid var(--g100);
+  transition:.35s;
+}
+
+.feature-card:hover{
+  transform:translateY(-8px);
+  box-shadow:var(--shadow-md);
+}
+
+.feature-card img{
+  height:240px;
+}
+
+.feature-content{
+  padding:2rem;
+}
+
+.feature-tag{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:.45rem .9rem;
+
+  border-radius:999px;
+
+  background:rgba(212,175,55,.12);
+
+  color:var(--gold);
+
+  font-size:.72rem;
+  font-weight:700;
+
+  margin-bottom:1rem;
+}
+
+.feature-content h3{
+  color:var(--green);
+  margin-bottom:1rem;
+}
+
+.feature-content p{
+  color:var(--g500);
+  line-height:1.8;
+  margin-bottom:1.5rem;
+}
+
+.feature-list{
+  list-style:none;
+  display:grid;
+  gap:.7rem;
+}
+
+.feature-list li{
+  color:var(--g500);
+}
+
+.feature-list li::before{
+  content:"✓";
+  color:var(--success);
+  font-weight:700;
+  margin-right:.6rem;
+}
+
+/* STATS */
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2rem;
+}
+
+.stat-card{
+  background:linear-gradient(135deg,var(--green),var(--dark));
+  border-radius:28px;
+  padding:2rem;
+  text-align:center;
+}
+
+.stat-card h3{
+  color:var(--gold);
+  font-size:2.6rem;
+  margin-bottom:.8rem;
+  font-family:'Sora',sans-serif;
+}
+
+.stat-card p{
+  color:rgba(255,255,255,.65);
+}
+
+/* TOOLS */
+
+.tools-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:2rem;
+}
+
+.tool-card{
+  background:white;
+  border-radius:28px;
+  padding:2rem;
+  border:1px solid var(--g100);
+}
+
+.tool-card h3{
+  color:var(--green);
+  margin-bottom:1rem;
+}
+
+.tool-card p{
+  color:var(--g500);
+  line-height:1.8;
+  margin-bottom:1.5rem;
+}
+
+.tool-card ul{
+  list-style:none;
+  display:grid;
+  gap:.7rem;
+}
+
+.tool-card li::before{
+  content:"✓";
+  color:var(--success);
+  font-weight:700;
+  margin-right:.6rem;
+}
+
+/* CTA */
+
+.cta{
+
+  background:
+  radial-gradient(circle at top right, rgba(212,175,55,.14), transparent 25%),
+  linear-gradient(135deg,var(--green),var(--deeper));
+
+  border-radius:40px;
+
+  padding:5rem 2rem;
+
+  text-align:center;
+}
+
+.cta h2{
+  color:white;
+
+  font-size:clamp(2rem,4vw,3.4rem);
+
+  font-family:'DM Serif Display',serif;
+
+  margin-bottom:1rem;
+}
+
+.cta h2 span{
+  color:var(--gold);
+}
+
+.cta p{
+  color:rgba(255,255,255,.65);
+
+  max-width:700px;
+
+  margin:auto auto 2rem;
+
+  line-height:1.8;
+}
+
+/* FOOTER */
+
+footer{
+  background:var(--deeper);
+  padding:5rem 0 2rem;
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.08);
+
+  padding-top:1.5rem;
+
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+
+.footer-bottom span{
+  color:rgba(255,255,255,.35);
+  font-size:.82rem;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  .hero-panel{
+    display:none;
+  }
+
+  .features-grid,
+  .stats-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .tools-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:760px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .hero-content{
+    padding:3rem 1.5rem;
+  }
+
+  .features-grid,
+  .stats-grid,
+  .tools-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:2.6rem;
+  }
+
+  .section-title{
+    font-size:2.2rem;
+  }
+
+  .hero-actions{
+    flex-direction:column;
+  }
+
+  .btn-primary,
+  .btn-outline{
+    width:100%;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    text-align:center;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="nav" id="nav">
+
+  <a href="index.html" class="logo">
+
+    <div class="logo-mark">GTB</div>
+
+    <div class="logo-text">
+      <strong>Global Trust Bank</strong>
+      <span>Business Banking</span>
+    </div>
+
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="#" class="active">Compte Pro</a></li>
+    <li><a href="credit-pro.html">Crédit</a></li>
+    <li><a href="tresorerie.html">Trésorerie</a></li>
+  </ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="eyebrow">
+
+      <div class="eyebrow-dot"></div>
+
+      <span>Compte professionnel premium</span>
+
+    </div>
+
+    <h1>
+      Le compte business conçu pour les
+      <span>entreprises modernes</span>
+    </h1>
+
+    <p>
+      Centralisez vos opérations financières,
+      gérez vos équipes et pilotez votre activité
+      avec une plateforme bancaire sécurisée,
+      rapide et internationale.
+    </p>
+
+    <div class="hero-actions">
+
+      <a href="../../authentification/login.php" class="btn btn-primary">
+        Ouvrir un compte
+      </a>
+
+      <a href="#features" class="btn btn-outline">
+        Découvrir les avantages
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="hero-panel">
+
+    <div class="account-card">
+
+      <div class="card-top">
+
+        <small>Entreprises actives</small>
+
+        <h3>125K+</h3>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="card-stat">
+          <span>Paiements mensuels</span>
+          <strong>€8.4B</strong>
+        </div>
+
+        <div class="card-stat">
+          <span>Support premium</span>
+          <strong>24/7</strong>
+        </div>
+
+        <div class="card-stat">
+          <span>Transactions instantanées</span>
+          <strong>99.9%</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section id="features">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div class="section-label">
+        Fonctionnalités
+      </div>
+
+      <h2 class="section-title">
+        Tout ce dont votre entreprise a besoin
+        <span>en une plateforme</span>
+      </h2>
+
+      <p class="section-sub">
+        Une solution bancaire complète pensée pour
+        simplifier la gestion quotidienne et accélérer
+        votre croissance.
+      </p>
+
+    </div>
+
+    <div class="features-grid">
+
+      <div class="feature-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1400"
+          alt=""
+        />
+
+        <div class="feature-content">
+
+          <div class="feature-tag">
+            Paiements
+          </div>
+
+          <h3>Gestion des transactions</h3>
+
+          <p>
+            Effectuez des virements nationaux et internationaux
+            rapidement avec une sécurité bancaire avancée.
+          </p>
+
+          <ul class="feature-list">
+            <li>Virements SEPA & SWIFT</li>
+            <li>Paiements instantanés</li>
+            <li>Validation multi-utilisateurs</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="feature-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400"
+          alt=""
+        />
+
+        <div class="feature-content">
+
+          <div class="feature-tag">
+            Cartes Business
+          </div>
+
+          <h3>Cartes professionnelles</h3>
+
+          <p>
+            Offrez à vos équipes des cartes premium
+            avec plafonds personnalisés et suivi en temps réel.
+          </p>
+
+          <ul class="feature-list">
+            <li>Cartes virtuelles et physiques</li>
+            <li>Contrôle des dépenses</li>
+            <li>Gestion instantanée</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="feature-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=1400"
+          alt=""
+        />
+
+        <div class="feature-content">
+
+          <div class="feature-tag">
+            Reporting
+          </div>
+
+          <h3>Analyse financière</h3>
+
+          <p>
+            Suivez vos performances grâce à des tableaux
+            de bord intelligents et des rapports détaillés.
+          </p>
+
+          <ul class="feature-list">
+            <li>Reporting temps réel</li>
+            <li>Exports comptables</li>
+            <li>Prévisions de trésorerie</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="section-alt">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div class="section-label">
+        Performance
+      </div>
+
+      <h2 class="section-title">
+        Une infrastructure bancaire
+        <span>fiable et performante</span>
+      </h2>
+
+    </div>
+
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <h3>42</h3>
+        <p>Pays couverts</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>24/7</h3>
+        <p>Support dédié</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>99.9%</h3>
+        <p>Disponibilité plateforme</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>+8B€</h3>
+        <p>Transactions mensuelles</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- TOOLS -->
+
+<section>
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div class="section-label">
+        Outils avancés
+      </div>
+
+      <h2 class="section-title">
+        Automatisez la gestion de votre
+        <span>activité financière</span>
+      </h2>
+
+    </div>
+
+    <div class="tools-grid">
+
+      <div class="tool-card">
+
+        <h3>Gestion multi-utilisateurs</h3>
+
+        <p>
+          Créez des accès sécurisés pour vos collaborateurs
+          avec des rôles et permissions personnalisés.
+        </p>
+
+        <ul>
+          <li>Validation par niveaux</li>
+          <li>Historique des actions</li>
+          <li>Permissions avancées</li>
+        </ul>
+
+      </div>
+
+      <div class="tool-card">
+
+        <h3>Automatisation intelligente</h3>
+
+        <p>
+          Automatisez vos paiements récurrents,
+          vos exports comptables et vos rapports financiers.
+        </p>
+
+        <ul>
+          <li>Paiements automatiques</li>
+          <li>Synchronisation comptable</li>
+          <li>Rapports programmés</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CTA -->
+
+<section>
+
+  <div class="container">
+
+    <div class="cta">
+
+      <h2>
+        Faites évoluer votre entreprise avec
+        <span>Global Trust Bank</span>
+      </h2>
+
+      <p>
+        Rejoignez une plateforme bancaire moderne,
+        internationale et conçue pour les entreprises ambitieuses.
+      </p>
+
+      <a href="../../authentification/login.php" class="btn btn-primary">
+        Ouvrir mon compte professionnel
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="container">
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 Global Trust Bank — Tous droits réservés
+      </span>
+
+      <span>
+        Banque digitale internationale premium
+      </span>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+
+const nav = document.getElementById('nav');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+</script>
+
+</body>
+</html>

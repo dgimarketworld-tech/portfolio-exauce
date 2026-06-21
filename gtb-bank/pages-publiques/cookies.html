@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Politique des Cookies - Global Trust Bank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="bnp-nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">GTB</div>
+    <div class="nav-logo-text">
+      <span>Global Trust Bank</span>
+      <span>Banque en ligne</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="../pages-publiques/index.html" class="active">Accueil</a></li>
+    <li><a href="../pages-publiques/about.html">À propos</a></li>
+    <li><a href="../produits-bancaires/comptes/index.html">Comptes</a></li>
+    <li><a href="../produits-bancaires/comptes/index.html">Crédits</a></li>
+    <li><a href="../produits-bancaires/comptes/index.html">Entreprises</a></li>
+    <li><a href="../produits-bancaires/credits/index.html">Assurances</a></li>
+    <li><a href="../pages-publiques/contact.html">Contact</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <a href="../authentification/login.php" class="btn btn-ghost">Connexion</a>
+    <a href="../authentification/signup.php" class="btn btn-primary">Ouvrir un compte</a>
+  </div>
+
+  <button class="ham-btn" id="ham">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="cookiespage-header">
+  <div class="cookiespage-header-content reveal">
+    <h1>Gestion des <span style="color: var(--bnp-emerald);">Cookies</span></h1>
+    <p>Contrôlez vos préférences de suivi et d'analytique en temps réel</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="section">
+  <div class="container">
+    <div class="legal-content reveal">
+      
+      <div class="highlight-box">
+        <p>🍪 Dernière mise à jour : 15 décembre 2024 | Vous pouvez modifier vos préférences à tout moment</p>
+      </div>
+
+      <h2>Qu'est-ce qu'un cookie ?</h2>
+      <p>Un cookie est un petit fichier texte stocké sur votre ordinateur ou téléphone. Il permet à Global Trust Bank de :</p>
+      <ul>
+        <li>Vous reconnaître lors de vos visites</li>
+        <li>Mémoriser vos préférences</li>
+        <li>Analyser votre usage du site</li>
+        <li>Personnaliser votre expérience</li>
+      </ul>
+
+      <h2>Types de cookies que nous utilisons</h2>
+
+      <h3>1. Cookies essentiels (obligatoires)</h3>
+      <p>Ces cookies sont nécessaires au fonctionnement du site et ne peuvent pas être désactivés. Ils incluent :</p>
+      <table class="cookie-table">
+        <tr>
+          <th>Nom</th>
+          <th>Durée</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>session_id</td>
+          <td>Session</td>
+          <td>Identifie votre session de navigation</td>
+        </tr>
+        <tr>
+          <td>csrf_token</td>
+          <td>Session</td>
+          <td>Protection contre les attaques CSRF</td>
+        </tr>
+        <tr>
+          <td>cookie_consent</td>
+          <td>1 an</td>
+          <td>Mémorises vos préférences de cookies</td>
+        </tr>
+      </table>
+
+      <h3>2. Cookies analytiques</h3>
+      <p>Ces cookies nous aident à comprendre comment vous utilisez le site. Vous pouvez les désactiver :</p>
+      <div class="toggle-switch">
+        <div style="flex: 1;">
+          <strong style="display: block; margin-bottom: .3rem;">Google Analytics</strong>
+          <p style="font-size: .85rem; color: var(--gray600); margin: 0;">Analyse des visiteurs et du comportement utilisateur</p>
+        </div>
+        <div class="switch" id="analytics-toggle" onclick="toggleCookie(this, 'analytics')"></div>
+      </div>
+
+      <h3>3. Cookies marketing</h3>
+      <p>Ces cookies sont utilisés pour personnaliser les annonces et recommandations :</p>
+      <div class="toggle-switch">
+        <div style="flex: 1;">
+          <strong style="display: block; margin-bottom: .3rem;">Publicité personnalisée</strong>
+          <p style="font-size: .85rem; color: var(--gray600); margin: 0;">Affiche des annonces pertinentes basées sur vos intérêts</p>
+        </div>
+        <div class="switch" id="marketing-toggle" onclick="toggleCookie(this, 'marketing')"></div>
+      </div>
+
+      <div class="toggle-switch">
+        <div style="flex: 1;">
+          <strong style="display: block; margin-bottom: .3rem;">Recommandations produits</strong>
+          <p style="font-size: .85rem; color: var(--gray600); margin: 0;">Améliore les recommandations d'offres bancaires</p>
+        </div>
+        <div class="switch" id="recommendations-toggle" onclick="toggleCookie(this, 'recommendations')"></div>
+      </div>
+
+      <h2>Vos droits concernant les cookies</h2>
+      <p>Vous avez le droit de :</p>
+      <ul>
+        <li>Refuser les cookies non-essentiels à tout moment</li>
+        <li>Supprimer les cookies existants via les paramètres de votre navigateur</li>
+        <li>Modifier vos préférences en revisitant cette page</li>
+        <li>Utiliser un mode de navigation privée pour éviter les cookies</li>
+      </ul>
+
+      <h2>Comment gérer les cookies</h2>
+      <p><strong>Dans votre navigateur :</strong></p>
+      <ul>
+        <li><strong>Chrome :</strong> Paramètres > Confidentialité et sécurité > Cookies et autres données de site</li>
+        <li><strong>Firefox :</strong> Paramètres > Vie privée & Sécurité > Cookies et données des sites</li>
+        <li><strong>Safari :</strong> Préférences > Confidentialité > Gérer les données de site web</li>
+        <li><strong>Edge :</strong> Paramètres > Confidentialité > Cookies et données de site</li>
+      </ul>
+
+      <h2>Consentement aux cookies</h2>
+      <p>Global Trust Bank demande votre consentement explicite avant d'utiliser des cookies non-essentiels. Vous êtes libres de :</p>
+      <ul>
+        <li>Accepter tous les cookies</li>
+        <li>Refuser les cookies optionnels</li>
+        <li>Personnaliser votre sélection (ce que vous faites actuellement)</li>
+      </ul>
+
+      <div class="highlight-box">
+        <p>✓ Vos préférences sont sauvegardées dans un cookie sécurisé et respectées pendant 1 an</p>
+      </div>
+
+      <h2>Cookies tiers</h2>
+      <p>Nous utilisons des services tiers qui peuvent placer leurs propres cookies :</p>
+      <ul>
+        <li><strong>Google Analytics :</strong> analytiques.google.com</li>
+        <li><strong>Facebook Pixel :</strong> pour les conversions et publicités</li>
+        <li><strong>Intercom :</strong> chat en direct et support client</li>
+        <li><strong>Stripe :</strong> traitement sécurisé des paiements</li>
+      </ul>
+      <p>Ces services ont leur propre politique de cookies. Consultez leur politique de confidentialité pour plus d'informations.</p>
+
+      <h2>Durée de conservation</h2>
+      <p>Les cookies sont conservés pour les durées suivantes :</p>
+      <ul>
+        <li><strong>Cookies essentiels :</strong> jusqu'à 1 an</li>
+        <li><strong>Cookies analytiques :</strong> 2 ans (puis suppression automatique)</li>
+        <li><strong>Cookies marketing :</strong> 6 mois</li>
+        <li><strong>Cookies de session :</strong> durée de votre visite</li>
+      </ul>
+
+      <h2>Contact et plaintes</h2>
+      <p>Pour toute question sur notre gestion des cookies ou pour exercer vos droits :</p>
+      <ul>
+        <li>Email : <a href="mailto:cookies@globaltrustbank.fr" style="color: var(--bnp-emerald); text-decoration: none;">cookies@globaltrustbank.fr</a></li>
+        <li>Téléphone : +33 1 23 45 67 89</li>
+        <li>Formulaire : contactez-nous via la page <a href="contact.html" style="color: var(--bnp-emerald); text-decoration: none;">Contact</a></li>
+      </ul>
+
+      <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--gray100); font-size: 0.85rem; color: var(--gray600);">
+        Consultez également notre <a href="confidentialites.html" style="color: var(--bnp-emerald); text-decoration: none;">politique de confidentialité</a> pour en savoir plus sur la gestion de vos données personnelles.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bnp-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <div class="footer-logo-mark">GTB</div>
+          <div class="footer-logo-text">Global Trust Banque</div>
+        </div>
+        <p class="footer-tagline">La banque d'un monde qui change. Présent dans 65 pays, au service de millions de clients.</p>
+        <div style="display:flex;gap:.6rem">
+          <a href="#" style="width:32px;height:32px;border-radius:50%;background:#D4AF37;;display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none">𝕏</a>
+          <a href="#" style="width:32px;height:32px;border-radius:50%;background:#D4AF37;;display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none">in</a>
+          <a href="#" style="width:32px;height:32px;border-radius:50%;background:#D4AF37;;display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none">f</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Particuliers</h4>
+        <ul>
+          <li><a href="#">Compte courant</a></li>
+          <li><a href="#">Cartes bancaires</a></li>
+          <li><a href="#">Épargne</a></li>
+          <li><a href="#">Crédit immobilier</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Espace client</a></li>
+          <li><a href="#">Mon conseiller</a></li>
+          <li><a href="#">Aide & Contact</a></li>
+          <li><a href="#">Agences</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>GTB</h4>
+        <ul>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="security.html">Sécurité</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Global Trust Banque — Société Anonyme au capital de 2 499 597 122 €</span>
+      <div class="footer-legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialites.html">Confidentialité</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="#">Accessibilité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('elevated', window.scrollY > 20);
+});
+
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach((el, index) => {
+  if (!el.style.transitionDelay) {
+    el.style.transitionDelay = (index % 4) * 0.08 + 's';
+  }
+  revealObserver.observe(el);
+});
+
+const ham = document.getElementById('ham');
+const mobileMenu = document.createElement('div');
+mobileMenu.className = 'mobile-menu';
+mobileMenu.innerHTML = `
+  <a href="index.html">Accueil</a>
+  <a href="about.html">À propos</a>
+  <a href="#">Comptes</a>
+  <a href="#">Crédits</a>
+  <a href="contact.html">Contact</a>
+  <a href="../authentification/signup.php" class="mobile-cta">Ouvrir un compte</a>
+`;
+
+document.body.appendChild(mobileMenu);
+let menuOpen = false;
+
+ham?.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  ham.classList.toggle('active', menuOpen);
+  mobileMenu.classList.toggle('active', menuOpen);
+});
+
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    menuOpen = false;
+    ham.classList.remove('active');
+    mobileMenu.classList.remove('active');
+  });
+});
+
+/* COOKIE TOGGLE */
+function toggleCookie(element, name) {
+  element.classList.toggle('active');
+  const isActive = element.classList.contains('active');
+  localStorage.setItem(`cookie_${name}`, isActive ? 'true' : 'false');
+}
+
+// Load saved preferences
+window.addEventListener('DOMContentLoaded', () => {
+  const preferences = ['analytics', 'marketing', 'recommendations'];
+  preferences.forEach(pref => {
+    const saved = localStorage.getItem(`cookie_${pref}`);
+    const toggle = document.getElementById(`${pref}-toggle`);
+    if (saved === 'true') {
+      toggle.classList.add('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
