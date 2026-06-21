@@ -343,7 +343,7 @@ nav.scrolled{
 
 /* ── CONTACT ── */
 .contact{padding:10rem 5%}
-.contact-inner{max-width:640px}
+.contact-inner{max-width:640px;width:100%}
 .contact-title{
   font-family:'Syne',sans-serif;
   font-size:clamp(3rem,6vw,5.5rem);
@@ -400,6 +400,33 @@ footer{
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .reveal.visible{opacity:1;transform:none}
 
+/* ── HAMBURGER MENU ── */
+.nav-hamburger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:36px;height:36px;cursor:pointer;background:none;border:none;padding:4px;
+  z-index:200;
+}
+.nav-hamburger span{
+  display:block;height:1.5px;width:100%;background:var(--white);
+  transition:transform .3s var(--ease),opacity .3s;border-radius:2px;
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{
+  display:none;position:fixed;inset:0;z-index:150;
+  background:rgba(0,0,0,.97);backdrop-filter:blur(20px);
+  flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
+  opacity:0;pointer-events:none;transition:opacity .3s var(--ease);
+}
+.mobile-menu.open{opacity:1;pointer-events:all}
+.mobile-menu a{
+  font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;
+  color:var(--muted);text-decoration:none;letter-spacing:-.01em;
+  transition:color .2s;
+}
+.mobile-menu a:hover,.mobile-menu a:active{color:var(--white)}
+
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
   .about{grid-template-columns:1fr}
@@ -419,9 +446,23 @@ footer{
   .p-item:nth-child(1){aspect-ratio:4/3;grid-column:1}
   .t-grid{grid-template-columns:1fr}
   .nav-links{display:none}
+  .btn-nav{display:none}
+  .nav-hamburger{display:flex}
+  .mobile-menu{display:flex}
+  .vm-item{padding:1rem}
+  .video-meta{flex-wrap:wrap}
+  .footer-links{flex-wrap:wrap;gap:1rem}
 }
 @media(max-width:600px){
-  .hero h1{font-size:3.5rem}
+  .hero{padding:0 5% 4rem;min-height:85vh}
+  .hero h1{font-size:clamp(3rem,14vw,4.5rem)}
   .stats{grid-template-columns:1fr 1fr}
+  .stat{padding:2.5rem 1.5rem}
   .contact-title{font-size:2.5rem}
+  .contact{padding:6rem 5%}
+  .contact-inner{max-width:100%}
+  .p-step{padding:3rem 2rem}
+  .s-card{padding:2.5rem 5%}
+  footer{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .footer-links{flex-direction:column;gap:.75rem}
 }

@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 
 const DEFAULT_PROJECTS = [
@@ -21,6 +21,9 @@ export default function Home() {
   const [testimonials, setTestimonials] = useState(DEFAULT_TESTIMONIALS);
   const [form, setForm] = useState({ name:'', email:'', message:'' });
   const [status, setStatus] = useState('idle');
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
 
   useEffect(() => {
     fetch('/api/projects').then(r=>r.json()).then(d=>{if(d?.length)setProjects(d);}).catch(()=>{});
@@ -60,6 +63,16 @@ export default function Home() {
 
   return (
     <>
+      {/* MOBILE MENU */}
+      <div className={`mobile-menu${menuOpen?' open':''}`} onClick={closeMenu}>
+        <a href="#about" onClick={closeMenu}>À propos</a>
+        <a href="#portfolio" onClick={closeMenu}>Travaux</a>
+        <a href="#services" onClick={closeMenu}>Services</a>
+        <Link href="/cv" onClick={closeMenu}>CV & Tarifs</Link>
+        <a href="#contact" onClick={closeMenu}>Contact</a>
+        <Link href="/faq" onClick={closeMenu} style={{fontSize:'1.2rem'}}>FAQ</Link>
+      </div>
+
       {/* NAV */}
       <nav id="nav">
         <Link href="/" className="logo">EX<em>.</em>AUCÉ</Link>
@@ -71,6 +84,9 @@ export default function Home() {
           <li><a href="#contact">Contact</a></li>
         </ul>
         <a href="#contact" className="btn-nav">Démarrer un projet</a>
+        <button className={`nav-hamburger${menuOpen?' open':''}`} onClick={()=>setMenuOpen(o=>!o)} aria-label="Menu">
+          <span/><span/><span/>
+        </button>
       </nav>
 
       {/* HERO */}
@@ -280,10 +296,13 @@ export default function Home() {
         <Link href="/" className="footer-logo">EX<em>.</em>AUCÉ</Link>
         <div className="footer-links">
           <Link href="/cv">CV & Tarifs</Link>
+          <Link href="/faq">FAQ</Link>
           <a href="https://wa.me/22901495140" target="_blank" rel="noopener noreferrer">WhatsApp</a>
           <a href="mailto:Exaucejoel29@gmail.com">Email</a>
+          <Link href="/politique-de-confidentialite">Confidentialité</Link>
+          <Link href="/mentions-legales">Mentions légales</Link>
         </div>
-        <span className="footer-copy">© 2025 EXAUCÉ</span>
+        <span className="footer-copy">© 2025 EXAUCÉ · Abomey-Calavi, Bénin</span>
       </footer>
     </>
   );
