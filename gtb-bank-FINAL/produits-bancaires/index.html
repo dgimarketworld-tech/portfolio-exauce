@@ -1,0 +1,905 @@
+<!-- comparateur.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Produits bancaires Global Trust Bank — Comparez les offres bancaires, cartes, épargne, crédits et assurances."/>
+<title>Produits bancaires — Global Trust Bank</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+<style>
+:root{
+  --green:#0D1B2A;
+  --dark:#091520;
+  --deeper:#050B14;
+  --gold:#D4AF37;
+  --mint:#EAD9B5;
+  --sand:#F2F4F7;
+  --white:#FFFFFF;
+  --g100:#E9ECEF;
+  --g200:#DEE2E6;
+  --g400:#ADB5BD;
+  --g600:#6C757D;
+  --g800:#343A40;
+
+  --ease:cubic-bezier(.25,.46,.45,.94);
+
+  --r-sm:6px;
+  --r-md:12px;
+  --r-lg:20px;
+  --r-xl:32px;
+  --r-full:9999px;
+
+  --sh-sm:0 2px 8px rgba(13,27,42,.08);
+  --sh-md:0 8px 32px rgba(13,27,42,.12);
+  --sh-lg:0 24px 64px rgba(13,27,42,.16);
+}
+
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--white);
+  color:var(--g800);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+.container{
+  max-width:1240px;
+  margin:0 auto;
+  padding:0 clamp(1.25rem,4vw,2.5rem);
+}
+
+/* NAV */
+.bnp-nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 clamp(1.25rem,4vw,2.5rem);
+  background:rgba(5,11,20,.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.nav-logo{
+  display:flex;
+  align-items:center;
+  gap:.7rem;
+}
+
+.nav-logo-mark{
+  width:40px;
+  height:40px;
+  border-radius:var(--r-sm);
+  background:linear-gradient(135deg,var(--gold),rgba(212,175,55,.75));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Sora',sans-serif;
+  font-weight:800;
+  color:var(--deeper);
+  font-size:.8rem;
+}
+
+.nav-logo-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.1;
+}
+
+.nav-logo-text span:first-child{
+  font-family:'Sora',sans-serif;
+  font-weight:700;
+  font-size:.9rem;
+  color:white;
+}
+
+.nav-logo-text span:last-child{
+  font-size:.58rem;
+  color:rgba(255,255,255,.35);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.nav-links{
+  display:flex;
+  list-style:none;
+  gap:.4rem;
+}
+
+.nav-links a{
+  color:rgba(255,255,255,.65);
+  font-size:.82rem;
+  font-weight:500;
+  padding:.55rem .9rem;
+  border-radius:var(--r-full);
+  transition:.25s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  color:white;
+  background:rgba(255,255,255,.08);
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.45rem;
+  border:none;
+  border-radius:var(--r-full);
+  cursor:pointer;
+  transition:.25s var(--ease);
+  font-weight:700;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold),rgba(212,175,55,.85));
+  color:var(--deeper);
+  padding:.75rem 1.5rem;
+  box-shadow:0 6px 18px rgba(212,175,55,.3);
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  min-height:68vh;
+  background:
+    radial-gradient(circle at top right,rgba(212,175,55,.12),transparent 35%),
+    radial-gradient(circle at bottom left,rgba(212,175,55,.08),transparent 30%),
+    var(--deeper);
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  padding-top:72px;
+}
+
+.hero-grid{
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:50px 50px;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  width:100%;
+  text-align:center;
+  padding:6rem 0;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.1);
+  color:var(--gold);
+  padding:.45rem 1rem;
+  border-radius:var(--r-full);
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+
+.hero-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2.6rem,6vw,5rem);
+  color:white;
+  line-height:1.05;
+  letter-spacing:-.03em;
+  margin-bottom:1.2rem;
+}
+
+.hero-title em{
+  color:var(--gold);
+  font-style:italic;
+}
+
+.hero-sub{
+  max-width:760px;
+  margin:0 auto 2.5rem;
+  font-size:1.05rem;
+  line-height:1.8;
+  color:rgba(255,255,255,.6);
+}
+
+.hero-actions{
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+.btn-light{
+  background:white;
+  color:var(--green);
+  padding:.9rem 2rem;
+}
+
+.btn-outline{
+  border:1px solid rgba(255,255,255,.2);
+  color:white;
+  background:rgba(255,255,255,.06);
+  padding:.9rem 2rem;
+}
+
+/* COMPARATOR */
+.compare-section{
+  padding:clamp(5rem,9vw,8rem) 0;
+  background:var(--sand);
+}
+
+.section-head{
+  text-align:center;
+  margin-bottom:4rem;
+}
+
+.section-label{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:.72rem;
+  font-weight:700;
+  margin-bottom:.8rem;
+}
+
+.section-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2rem,4vw,3.4rem);
+  color:var(--green);
+  line-height:1.1;
+  margin-bottom:1rem;
+}
+
+.section-title em{
+  color:var(--gold);
+}
+
+.section-sub{
+  max-width:720px;
+  margin:0 auto;
+  color:var(--g600);
+  line-height:1.8;
+}
+
+.compare-table-wrap{
+  overflow:auto;
+  border-radius:var(--r-xl);
+  box-shadow:var(--sh-lg);
+}
+
+.compare-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:980px;
+  background:white;
+}
+
+.compare-table thead th{
+  background:var(--green);
+  color:white;
+  padding:1.5rem 1rem;
+  text-align:center;
+  font-family:'Sora',sans-serif;
+  font-size:.88rem;
+  border-right:1px solid rgba(255,255,255,.06);
+}
+
+.compare-table thead th:first-child{
+  text-align:left;
+  width:240px;
+}
+
+.plan-card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.45rem;
+}
+
+.plan-badge{
+  background:rgba(212,175,55,.14);
+  color:var(--gold);
+  border:1px solid rgba(212,175,55,.2);
+  font-size:.65rem;
+  padding:.25rem .7rem;
+  border-radius:var(--r-full);
+}
+
+.plan-price{
+  font-size:1.5rem;
+  font-weight:800;
+  color:var(--gold);
+}
+
+.plan-sub{
+  font-size:.72rem;
+  color:rgba(255,255,255,.55);
+}
+
+.compare-table tbody tr:nth-child(even){
+  background:#fafafa;
+}
+
+.compare-table td{
+  padding:1.2rem 1rem;
+  border-bottom:1px solid var(--g100);
+  text-align:center;
+  font-size:.92rem;
+}
+
+.compare-table td:first-child{
+  text-align:left;
+  font-weight:700;
+  color:var(--green);
+}
+
+.check{
+  color:#22C55E;
+  font-size:1.1rem;
+  font-weight:800;
+}
+
+.cross{
+  color:#E5373A;
+  font-size:1rem;
+  font-weight:700;
+}
+
+.compare-cta{
+  margin-top:3rem;
+  display:flex;
+  justify-content:center;
+}
+
+/* CARDS */
+.cards-section{
+  padding:clamp(5rem,9vw,8rem) 0;
+}
+
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.6rem;
+}
+
+.info-card{
+  background:white;
+  border:1px solid var(--g100);
+  border-radius:var(--r-xl);
+  padding:2rem;
+  transition:.3s var(--ease);
+  box-shadow:var(--sh-sm);
+}
+
+.info-card:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--sh-lg);
+}
+
+.info-icon{
+  width:60px;
+  height:60px;
+  border-radius:18px;
+  background:rgba(212,175,55,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.5rem;
+  margin-bottom:1.2rem;
+}
+
+.info-card h3{
+  font-family:'Sora',sans-serif;
+  color:var(--green);
+  margin-bottom:.8rem;
+  font-size:1.1rem;
+}
+
+.info-card p{
+  color:var(--g600);
+  line-height:1.7;
+  font-size:.92rem;
+}
+
+/* CTA */
+.cta-banner{
+  background:linear-gradient(135deg,var(--green),var(--dark),var(--deeper));
+  padding:5rem 0;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.cta-banner::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:42px 42px;
+}
+
+.cta-inner{
+  position:relative;
+  z-index:2;
+}
+
+.cta-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2rem,4vw,3.4rem);
+  color:white;
+  margin-bottom:1rem;
+}
+
+.cta-title em{
+  color:var(--gold);
+}
+
+.cta-text{
+  color:rgba(255,255,255,.6);
+  margin-bottom:2rem;
+  font-size:1rem;
+}
+
+/* FOOTER */
+.footer{
+  background:var(--deeper);
+  padding:3rem 0 2rem;
+}
+
+.footer-top{
+  display:flex;
+  justify-content:space-between;
+  gap:2rem;
+  flex-wrap:wrap;
+  margin-bottom:2rem;
+}
+
+.footer-brand{
+  max-width:320px;
+}
+
+.footer-brand p{
+  margin-top:1rem;
+  color:rgba(255,255,255,.45);
+  line-height:1.7;
+  font-size:.88rem;
+}
+
+.footer-links{
+  display:flex;
+  gap:4rem;
+  flex-wrap:wrap;
+}
+
+.footer-col h4{
+  color:white;
+  margin-bottom:1rem;
+  font-size:.82rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.footer-col ul{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:.6rem;
+}
+
+.footer-col a{
+  color:rgba(255,255,255,.45);
+  font-size:.84rem;
+  transition:.2s;
+}
+
+.footer-col a:hover{
+  color:var(--gold);
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.06);
+  padding-top:1.4rem;
+  color:rgba(255,255,255,.28);
+  font-size:.74rem;
+  text-align:center;
+}
+
+/* RESPONSIVE */
+@media(max-width:980px){
+  .cards-grid{
+    grid-template-columns:1fr;
+  }
+
+  .nav-links{
+    display:none;
+  }
+}
+
+@media(max-width:640px){
+  .hero-actions{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .btn-light,
+  .btn-outline{
+    width:100%;
+    max-width:320px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="bnp-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">GTB</div>
+    <div class="nav-logo-text">
+      <span>Global Trust Bank</span>
+      <span>Produits bancaires bancaire</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="comparateur.html" class="active">Produits bancaires</a></li>
+    <li><a href="../produits-bancaires/comptes/index.html">Comptes</a></li>
+    <li><a href="../produits-bancaires/cartes/index.html">Cartes</a></li>
+    <li><a href="../produits-bancaires/epargne/index.html">Épargne</a></li>
+    <li><a href="../pages-publiques/contact.html">Contact</a></li>
+  </ul>
+
+  <a href="../authentification/login.php" class="btn btn-primary">
+    Ouvrir un compte
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+
+  <div class="container hero-content">
+    <div class="hero-badge">
+      ⚡ Produits bancaires intelligent GTB
+    </div>
+
+    <h1 class="hero-title">
+      Comparez les offres<br>
+      bancaires <em>en un instant</em>
+    </h1>
+
+    <p class="hero-sub">
+      Trouvez le compte, la carte ou l’offre bancaire parfaitement adaptée à vos besoins grâce à notre comparateur premium conçu pour les particuliers, professionnels et investisseurs.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#comparateur" class="btn btn-light">
+        Comparer les offres
+      </a>
+
+      <a href="../authentification/login.php" class="btn btn-outline">
+        Ouvrir un compte
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATOR -->
+<section class="compare-section" id="comparateur">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-label">Produits bancaires GTB</div>
+
+      <h2 class="section-title">
+        Choisissez la formule <em>idéale</em>
+      </h2>
+
+      <p class="section-sub">
+        Comparez nos différentes offres bancaires et découvrez les avantages inclus selon votre profil et vos objectifs financiers.
+      </p>
+    </div>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+
+        <thead>
+          <tr>
+            <th>Fonctionnalités</th>
+
+            <th>
+              <div class="plan-card">
+                <div class="plan-badge">Essentiel</div>
+                <div>GTB Start</div>
+                <div class="plan-price">0€</div>
+                <div class="plan-sub">/ mois</div>
+              </div>
+            </th>
+
+            <th>
+              <div class="plan-card">
+                <div class="plan-badge">Populaire</div>
+                <div>GTB Premium</div>
+                <div class="plan-price">9,90€</div>
+                <div class="plan-sub">/ mois</div>
+              </div>
+            </th>
+
+            <th>
+              <div class="plan-card">
+                <div class="plan-badge">Exclusif</div>
+                <div>GTB Infinite</div>
+                <div class="plan-price">24,90€</div>
+                <div class="plan-sub">/ mois</div>
+              </div>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Compte courant</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+
+          <tr>
+            <td>Carte bancaire internationale</td>
+            <td>Visa Classic</td>
+            <td>Visa Premier</td>
+            <td>Visa Infinite</td>
+          </tr>
+
+          <tr>
+            <td>Frais à l'étranger</td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+
+          <tr>
+            <td>Virements instantanés</td>
+            <td>5 / mois</td>
+            <td>Illimités</td>
+            <td>Illimités</td>
+          </tr>
+
+          <tr>
+            <td>Cashback</td>
+            <td>0%</td>
+            <td>2%</td>
+            <td>5%</td>
+          </tr>
+
+          <tr>
+            <td>Assurance voyage</td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+
+          <tr>
+            <td>Retraits internationaux</td>
+            <td>3 / mois</td>
+            <td>Illimités</td>
+            <td>Illimités</td>
+          </tr>
+
+          <tr>
+            <td>Support prioritaire</td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+
+          <tr>
+            <td>Conciergerie privée</td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="cross">✕</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+
+          <tr>
+            <td>Plafond de paiement</td>
+            <td>2 000€</td>
+            <td>10 000€</td>
+            <td>50 000€</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="compare-cta">
+      <a href="../authentification/login.php" class="btn btn-primary">
+        Choisir mon offre
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CARDS -->
+<section class="cards-section">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="section-label">Avantages</div>
+
+      <h2 class="section-title">
+        Pourquoi choisir <em>GTB</em>
+      </h2>
+    </div>
+
+    <div class="cards-grid">
+
+      <div class="info-card">
+        <div class="info-icon">🔐</div>
+        <h3>Sécurité bancaire avancée</h3>
+        <p>
+          Authentification biométrique, surveillance anti-fraude et chiffrement de niveau bancaire pour protéger toutes vos opérations.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">⚡</div>
+        <h3>Ouverture rapide</h3>
+        <p>
+          Créez votre compte en moins de 10 minutes directement depuis votre smartphone, sans déplacement en agence.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">🌍</div>
+        <h3>Banque internationale</h3>
+        <p>
+          Payez et retirez dans plus de 190 pays avec des taux transparents et des services premium accessibles partout.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="container cta-inner">
+
+    <h2 class="cta-title">
+      Passez à une banque <em>nouvelle génération</em>
+    </h2>
+
+    <p class="cta-text">
+      Rejoignez des millions de clients qui utilisent déjà Global Trust Bank au quotidien.
+    </p>
+
+    <a href="../authentification/login.php" class="btn btn-light">
+      Ouvrir mon compte maintenant
+    </a>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="nav-logo-mark">GTB</div>
+
+          <div class="nav-logo-text">
+            <span>Global Trust Bank</span>
+            <span>Banque en ligne</span>
+          </div>
+        </div>
+
+        <p>
+          La banque d’un monde qui change. Comparez, choisissez et gérez vos finances avec une expérience bancaire moderne et sécurisée.
+        </p>
+      </div>
+
+      <div class="footer-links">
+
+        <div class="footer-col">
+          <h4>Produits</h4>
+
+          <ul>
+            <li><a href="comptes/index.html">Comptes</a></li>
+            <li><a href="cartes/index.html">Cartes</a></li>
+            <li><a href="credits/index.html">Crédits</a></li>
+            <li><a href="assurances/index.html">Assurances</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+
+          <ul>
+            <li><a href="../pages-publiques/about.html">Application mobile</a></li>
+            <li><a href="../pages-publiques/contact.html">Support client</a></li>
+            <li><a href="credits/simulateur.html">Simulateurs</a></li>
+            <li><a href="../pages-publiques/contact.html">Centre d’aide</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Entreprise</h4>
+
+          <ul>
+            <li><a href="../pages-publiques/about.html">À propos</a></li>
+            <li><a href="../pages-publiques/about.html">Carrières</a></li>
+            <li><a href="../pages-publiques/about.html">Presse</a></li>
+            <li><a href="../pages-publiques/mentions-legales.html">Mentions légales</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Global Trust Bank — Tous droits réservés.
+    </div>
+
+  </div>
+</footer>
+
+<script>
+/* Smooth scroll */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if(!target) return;
+
+    e.preventDefault();
+
+    target.scrollIntoView({
+      behavior:'smooth'
+    });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+# ================================================================
+#  .htaccess — Racine du projet Global Trust Bank
+# ================================================================
+#  RÈGLE DE SÉCURITÉ FONDAMENTALE :
+#  Les dossiers backend/, bin/, sql/ contiennent des fichiers PHP
+#  sensibles qui ne doivent JAMAIS être accessibles directement
+#  via une URL. Cette règle les bloque au niveau Apache.
+# ================================================================
+
+# Activer le module rewrite
+RewriteEngine On
+
+# ── Redirection racine vers la page d'accueil ──
+RewriteRule ^$ /pages-publiques/index.html [R=301,L]
+
+# ── Bloquer l'accès direct aux dossiers sensibles ──
+RewriteRule ^backend/   - [F,L]
+RewriteRule ^bin/       - [F,L]
+RewriteRule ^sql/       - [F,L]
+
+# ── Headers de sécurité HTTP ──
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set X-XSS-Protection "1; mode=block"
+    # ⚠ Décommenter en HTTPS production :
+    # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ── Pas d'accès aux fichiers sensibles ──
+<FilesMatch "\.(env|sql|log|sh|bak|git)$">
+    Require all denied
+</FilesMatch>
+
+# ── Désactiver la navigation de dossiers ──
+Options -Indexes

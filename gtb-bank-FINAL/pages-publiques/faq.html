@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>FAQ — Aide & Questions fréquentes - Global Trust Bank</title>
+<meta name="description" content="Trouvez des réponses à toutes vos questions sur les comptes, virements, cartes et services GTB Bank."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+/* ── FAQ PAGE ─────────────────────────────────────────────── */
+.faq-hero{
+  padding:clamp(6rem,12vw,9rem) 0 clamp(3rem,6vw,5rem);
+  background:linear-gradient(135deg,var(--green) 0%,var(--dark) 60%,var(--deeper) 100%);
+  position:relative;overflow:hidden;text-align:center;
+}
+.faq-hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:50px 50px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
+}
+.faq-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;padding:0 1.5rem}
+.faq-hero-inner h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2.2rem,5vw,3.5rem);
+  color:white;line-height:1.1;letter-spacing:-.03em;margin-bottom:1rem;
+}
+.faq-hero-inner p{font-size:clamp(.95rem,1.5vw,1.1rem);color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:2rem}
+.faq-search-wrap{
+  max-width:540px;margin:0 auto;
+  display:flex;gap:.5rem;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  border-radius:var(--r-full);padding:.4rem .4rem .4rem 1.2rem;
+  backdrop-filter:blur(10px);
+}
+.faq-search-wrap input{
+  flex:1;background:none;border:none;outline:none;
+  font-family:'DM Sans',sans-serif;font-size:.92rem;color:white;
+}
+.faq-search-wrap input::placeholder{color:rgba(255,255,255,.45)}
+.faq-search-btn{
+  padding:.6rem 1.4rem;background:var(--gold);color:var(--deeper);
+  font-weight:700;font-size:.82rem;border-radius:var(--r-full);
+  border:none;cursor:pointer;transition:opacity .2s;white-space:nowrap;
+}
+.faq-search-btn:hover{opacity:.88}
+
+/* ── BODY ─────────────────────────────────────────────────── */
+.faq-body{padding:clamp(3rem,7vw,6rem) 0;background:var(--g50)}
+.faq-layout{display:grid;grid-template-columns:240px 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+
+/* Sidebar catégories */
+.faq-cats{position:sticky;top:88px;background:white;border:1.5px solid var(--g100);border-radius:var(--r-xl);overflow:hidden}
+.faq-cats-title{
+  padding:1rem 1.2rem;font-family:'Sora',sans-serif;font-size:.7rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(13,27,42,.35);
+  border-bottom:1px solid var(--g100);
+}
+.faq-cat-btn{
+  width:100%;display:flex;align-items:center;gap:.85rem;
+  padding:.85rem 1.2rem;border:none;background:none;cursor:pointer;
+  text-align:left;transition:background .2s;border-bottom:1px solid var(--g50);
+  font-family:'DM Sans',sans-serif;
+}
+.faq-cat-btn:last-child{border-bottom:none}
+.faq-cat-btn:hover{background:var(--g50)}
+.faq-cat-btn.active{background:rgba(13,27,42,.04)}
+.faq-cat-btn.active .faq-cat-label{color:var(--green);font-weight:700}
+.faq-cat-btn.active .faq-cat-icon-wrap{background:var(--green);border-color:var(--green)}
+.faq-cat-icon-wrap{
+  width:36px;height:36px;border-radius:var(--r-md);
+  background:var(--g100);border:1px solid var(--g200);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;flex-shrink:0;transition:all .2s;
+}
+.faq-cat-label{font-size:.82rem;font-weight:600;color:var(--g800);transition:color .2s}
+.faq-cat-count{margin-left:auto;font-size:.7rem;font-weight:700;color:white;background:var(--gold);border-radius:var(--r-full);padding:.15rem .55rem;min-width:22px;text-align:center}
+
+/* Section FAQ */
+.faq-section{display:none}
+.faq-section.active{display:block}
+.faq-section-title{
+  font-family:'Sora',sans-serif;font-weight:800;font-size:1.1rem;
+  color:var(--green);margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.faq-section-title::after{content:'';flex:1;height:1px;background:var(--g100)}
+
+/* Accordéon */
+.faq-item{
+  background:white;border:1.5px solid var(--g100);border-radius:var(--r-lg);
+  margin-bottom:.85rem;overflow:hidden;
+  transition:border-color .25s,box-shadow .25s;
+}
+.faq-item:hover{border-color:rgba(212,175,55,.3)}
+.faq-item.open{border-color:rgba(13,27,42,.15);box-shadow:var(--sh-md)}
+.faq-q{
+  width:100%;display:flex;align-items:center;gap:1rem;
+  padding:1.1rem 1.3rem;text-align:left;
+  background:none;border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+}
+.faq-q-icon{
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;flex-shrink:0;
+}
+.faq-q-text{
+  flex:1;font-size:.9rem;font-weight:600;color:var(--g800);
+  text-align:left;line-height:1.4;
+}
+.faq-item.open .faq-q-text{color:var(--green)}
+.faq-chevron{
+  font-size:.75rem;color:var(--g400);flex-shrink:0;
+  transition:transform .3s var(--ease);
+}
+.faq-item.open .faq-chevron{transform:rotate(180deg);color:var(--gold)}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s var(--ease),padding .3s;
+}
+.faq-a-inner{
+  padding:0 1.3rem 1.2rem calc(1.3rem + 32px + 1rem);
+  font-size:.88rem;color:var(--g600);line-height:1.75;
+}
+.faq-a-inner ul{margin:.6rem 0 .6rem 1rem;display:flex;flex-direction:column;gap:.4rem}
+.faq-a-inner a{color:var(--gold);font-weight:600}
+.faq-a-inner .faq-tip{
+  background:rgba(34,197,94,.07);border-left:3px solid var(--bnp-green);
+  border-radius:0 var(--r-sm) var(--r-sm) 0;
+  padding:.7rem 1rem;margin-top:.8rem;font-size:.83rem;color:var(--g800);
+}
+
+/* Résultats de recherche */
+.faq-no-result{
+  text-align:center;padding:3rem 1rem;
+  display:none;
+}
+.faq-no-result p{font-size:.95rem;color:var(--g600);margin-bottom:1rem}
+
+/* Banner "Pas trouvé ?" */
+.faq-cta{
+  background:linear-gradient(135deg,var(--green),var(--dark));
+  border-radius:var(--r-xl);padding:2.5rem 2rem;
+  text-align:center;margin-top:2.5rem;
+}
+.faq-cta h3{font-family:'Sora',sans-serif;font-weight:800;font-size:1.15rem;color:white;margin-bottom:.5rem}
+.faq-cta p{font-size:.88rem;color:rgba(255,255,255,.55);margin-bottom:1.5rem}
+.faq-cta-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.faq-cta-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.72rem 1.5rem;border-radius:var(--r-full);
+  font-family:'DM Sans',sans-serif;font-weight:700;font-size:.85rem;
+  transition:all .25s;cursor:pointer;
+}
+.faq-cta-btn.primary{background:var(--gold);color:var(--deeper)}
+.faq-cta-btn.ghost{background:rgba(255,255,255,.1);color:white;border:1px solid rgba(255,255,255,.2)}
+.faq-cta-btn:hover{transform:translateY(-2px)}
+
+/* ── STATS ────────────────────────────────────────────────── */
+.faq-stats{
+  display:flex;justify-content:center;gap:clamp(1.5rem,4vw,3rem);
+  padding:2rem 0;margin-bottom:2rem;
+  border-bottom:1px solid var(--g100);
+  flex-wrap:wrap;
+}
+.faq-stat{text-align:center}
+.faq-stat-num{font-family:'Sora',sans-serif;font-weight:800;font-size:1.5rem;color:var(--green)}
+.faq-stat-label{font-size:.75rem;color:var(--g600);margin-top:.2rem}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media(max-width:900px){
+  .faq-layout{grid-template-columns:1fr}
+  .faq-cats{position:static;border-radius:var(--r-lg)}
+  .faq-cats-inner{display:flex;overflow-x:auto;gap:.4rem;padding:.8rem;border-top:1px solid var(--g100)}
+  .faq-cat-btn{min-width:max-content;border-radius:var(--r-full);padding:.55rem 1rem;border-bottom:none;background:var(--g100)}
+  .faq-cat-btn.active{background:var(--green)}
+  .faq-cat-btn.active .faq-cat-label{color:white}
+  .faq-cat-icon-wrap{display:none}
+}
+@media(max-width:640px){
+  .faq-cta-btns{flex-direction:column;align-items:center}
+  .faq-a-inner{padding-left:1.3rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="bnp-nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">GTB</div>
+    <div class="nav-logo-text">
+      <span>Global Trust Bank</span>
+      <span>Banque en ligne</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="about.html">À propos</a></li>
+    <li><a href="../produits-bancaires/comptes/index.html">Comptes</a></li>
+    <li><a href="../produits-bancaires/credits/index.html">Crédits</a></li>
+    <li><a href="../produits-bancaires/entreprises/index.html">Entreprises</a></li>
+    <li><a href="../produits-bancaires/assurances/index.html">Assurances</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="../authentification/login.php" class="btn btn-ghost">Connexion</a>
+    <a href="../authentification/signup.php" class="btn btn-primary">Ouvrir un compte</a>
+  </div>
+  <button class="ham-btn" id="ham"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section class="faq-hero">
+  <div class="faq-hero-inner reveal">
+    <div class="section-label" style="justify-content:center;margin-bottom:1rem">
+      <span>Centre d'aide</span>
+    </div>
+    <h1>Comment pouvons-nous<br>vous <em style="font-style:italic;color:var(--gold)">aider</em> ?</h1>
+    <p>Parcourez nos réponses aux questions les plus fréquentes ou contactez notre équipe 24h/24.</p>
+    <div class="faq-search-wrap">
+      <input type="text" id="faqSearch" placeholder="Rechercher une question…" autocomplete="off"/>
+      <button class="faq-search-btn" onclick="searchFAQ()">🔍 Rechercher</button>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<section class="faq-body">
+  <div class="container">
+
+    <!-- Stats -->
+    <div class="faq-stats reveal">
+      <div class="faq-stat"><div class="faq-stat-num">50+</div><div class="faq-stat-label">Questions répondues</div></div>
+      <div class="faq-stat"><div class="faq-stat-num">24/7</div><div class="faq-stat-label">Disponibilité support</div></div>
+      <div class="faq-stat"><div class="faq-stat-num">98%</div><div class="faq-stat-label">Satisfaction client</div></div>
+      <div class="faq-stat"><div class="faq-stat-num">&lt; 2h</div><div class="faq-stat-label">Temps de réponse</div></div>
+    </div>
+
+    <div class="faq-layout">
+
+      <!-- SIDEBAR CATÉGORIES -->
+      <aside class="faq-cats" id="faqCats">
+        <div class="faq-cats-title">Catégories</div>
+        <div class="faq-cats-inner" id="faqCatsList">
+          <button class="faq-cat-btn active" data-target="ouverture" onclick="showCat(this)">
+            <div class="faq-cat-icon-wrap">🏦</div>
+            <span class="faq-cat-label">Ouverture de compte</span>
+            <span class="faq-cat-count">6</span>
+          </button>
+          <button class="faq-cat-btn" data-target="virements" onclick="showCat(this)">
+            <div class="faq-cat-icon-wrap">💸</div>
+            <span class="faq-cat-label">Virements & Paiements</span>
+            <span class="faq-cat-count">7</span>
+          </button>
+          <button class="faq-cat-btn" data-target="cartes" onclick="showCat(this)">
+            <div class="faq-cat-icon-wrap">💳</div>
+            <span class="faq-cat-label">Cartes bancaires</span>
+            <span class="faq-cat-count">6</span>
+          </button>
+          <button class="faq-cat-btn" data-target="epargne" onclick="showCat(this)">
+            <div class="faq-cat-icon-wrap">📈</div>
+            <span class="faq-cat-label">Épargne & Investissement</span>
+            <span class="faq-cat-count">5</span>
+          </button>
+          <button class="faq-cat-btn" data-target="securite" onclick="showCat(this)">
+            <div class="faq-cat-icon-wrap">🔐</div>
+            <span class="faq-cat-label">Sécurité</span>
+            <span class="faq-cat-count">6</span>
+          </button>
+          <button class="faq-cat-btn" data-target="credit" onclick="showCat(this)">
+            <div class="faq-cat-icon-wrap">🏠</div>
+            <span class="faq-cat-label">Crédits & Prêts</span>
+            <span class="faq-cat-count">5</span>
+          </button>
+          <button class="faq-cat-btn" data-target="frais" onclick="showCat(this)">
+            <div class="faq-cat-icon-wrap">💰</div>
+            <span class="faq-cat-label">Frais & Tarifs</span>
+            <span class="faq-cat-count">5</span>
+          </button>
+          <button class="faq-cat-btn" data-target="compte" onclick="showCat(this)">
+            <div class="faq-cat-icon-wrap">⚙️</div>
+            <span class="faq-cat-label">Gestion du compte</span>
+            <span class="faq-cat-count">5</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- CONTENU FAQ -->
+      <div>
+        <div id="faqNoResult" class="faq-no-result">
+          <div style="font-size:3rem;margin-bottom:1rem">🔍</div>
+          <p>Aucun résultat pour votre recherche.</p>
+          <a href="contact.html" class="btn btn-primary">Contacter le support</a>
+        </div>
+
+        <!-- === OUVERTURE DE COMPTE === -->
+        <div class="faq-section active" id="sec-ouverture">
+          <div class="faq-section-title">🏦 Ouverture de compte</div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">❓</div>
+              <span class="faq-q-text">Comment ouvrir un compte GTB Bank ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>L'ouverture de compte se fait entièrement en ligne en <strong>moins de 10 minutes</strong> :</p>
+              <ul>
+                <li>Rendez-vous sur la page <a href="../authentification/signup.php">Ouvrir un compte</a></li>
+                <li>Renseignez vos informations personnelles (nom, prénom, date de naissance)</li>
+                <li>Vérifiez votre identité via un selfie + pièce d'identité</li>
+                <li>Signez électroniquement votre contrat</li>
+                <li>Votre IBAN est disponible immédiatement</li>
+              </ul>
+              <div class="faq-tip">✅ Aucun dépôt minimum requis. Votre compte est gratuit à vie.</div>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">📋</div>
+              <span class="faq-q-text">Quels documents sont nécessaires pour l'ouverture ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Pour ouvrir un compte, vous aurez besoin de :</p>
+              <ul>
+                <li><strong>Pièce d'identité valide</strong> : carte nationale d'identité, passeport ou titre de séjour</li>
+                <li><strong>Justificatif de domicile</strong> : facture d'électricité, gaz, internet (moins de 3 mois)</li>
+                <li><strong>Numéro fiscal</strong> (optionnel selon les services souhaités)</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">⏱️</div>
+              <span class="faq-q-text">Combien de temps faut-il pour que le compte soit opérationnel ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Votre compte est créé <strong>instantanément</strong> après validation de votre identité. Vous recevrez :</p>
+              <ul>
+                <li>Votre IBAN immédiatement par email</li>
+                <li>Votre carte bancaire sous 3 à 5 jours ouvrés</li>
+                <li>L'accès complet à votre espace client en quelques minutes</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🌍</div>
+              <span class="faq-q-text">Puis-je ouvrir un compte depuis l'étranger ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Oui, GTB Bank est accessible depuis <strong>65 pays</strong>. L'ouverture de compte peut se faire entièrement en ligne depuis n'importe où dans le monde. Des frais spécifiques peuvent s'appliquer pour certains services internationaux.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">👶</div>
+              <span class="faq-q-text">Y a-t-il un âge minimum pour ouvrir un compte ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>L'âge minimum est de <strong>18 ans</strong> pour un compte individuel standard. Pour les mineurs de 12 à 17 ans, un compte sous tutelle parentale est disponible — contactez notre support pour en savoir plus.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🏢</div>
+              <span class="faq-q-text">Comment ouvrir un compte professionnel ou entreprise ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>GTB Bank propose des comptes dédiés aux entreprises et professionnels. En plus des documents personnels, vous devrez fournir :</p>
+              <ul>
+                <li>Extrait Kbis (pour les sociétés)</li>
+                <li>Statuts de la société</li>
+                <li>Justificatif d'immatriculation</li>
+              </ul>
+              <p>Consultez notre page <a href="../produits-bancaires/entreprises/index.html">Entreprises</a> pour plus d'informations.</p>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- === VIREMENTS === -->
+        <div class="faq-section" id="sec-virements">
+          <div class="faq-section-title">💸 Virements & Paiements</div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">⚡</div>
+              <span class="faq-q-text">Combien de temps prend un virement SEPA ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Les virements SEPA chez GTB Bank sont :</p>
+              <ul>
+                <li><strong>Virements standards</strong> : traités le jour ouvré suivant (J+1)</li>
+                <li><strong>Virements instantanés</strong> : reçus en moins de 10 secondes, 24h/24, 7j/7</li>
+              </ul>
+              <div class="faq-tip">ℹ️ Les virements instantanés sont disponibles vers les banques compatibles SCT Inst.</div>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">💶</div>
+              <span class="faq-q-text">Quels sont les plafonds de virement ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <ul>
+                <li><strong>Plafond journalier</strong> : 10 000 €</li>
+                <li><strong>Plafond mensuel</strong> : 50 000 €</li>
+                <li><strong>Virement instantané</strong> : 5 000 € par opération</li>
+                <li><strong>Virement international</strong> : sur demande (limites spécifiques)</li>
+              </ul>
+              <p>Ces plafonds peuvent être augmentés sur demande auprès de notre service client.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🌐</div>
+              <span class="faq-q-text">Comment effectuer un virement international ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Pour un virement international (hors zone SEPA), connectez-vous à votre espace client et sélectionnez « Virement international ». Vous aurez besoin :</p>
+              <ul>
+                <li>Du code SWIFT/BIC de la banque destinataire</li>
+                <li>De l'IBAN ou numéro de compte local</li>
+                <li>De la devise souhaitée</li>
+              </ul>
+              <p>Des <strong>frais de 8 €</strong> s'appliquent par virement international.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🔄</div>
+              <span class="faq-q-text">Puis-je programmer des virements récurrents ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Oui ! Depuis votre espace client, rubrique <strong>Virements > Récurrents</strong>, vous pouvez programmer des virements automatiques (hebdomadaires, mensuels, etc.) vers vos bénéficiaires enregistrés.</p>
+              <div class="faq-tip">✅ Pratique pour les loyers, remboursements de prêts ou épargne automatique.</div>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">❌</div>
+              <span class="faq-q-text">Comment annuler un virement déjà effectué ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Un virement déjà exécuté <strong>ne peut pas être annulé directement</strong>. Vous devez contacter notre support dans les plus brefs délais. Pour les virements en attente, vous pouvez les annuler depuis Virements > Historique.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🏪</div>
+              <span class="faq-q-text">Comment payer mes factures en ligne ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>GTB Bank prend en charge les paiements de factures via :</p>
+              <ul>
+                <li>Virement SEPA vers le RIB de votre fournisseur</li>
+                <li>Prélèvement automatique (mandat SEPA)</li>
+                <li>Paiement par carte sur les sites marchands</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">📱</div>
+              <span class="faq-q-text">Puis-je recevoir des alertes SMS pour mes transactions ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Oui, via notre service <strong>SMS Banking</strong>. Activez les alertes depuis votre espace client > SMS Banking. Vous serez notifié pour chaque débit, crédit ou alerte de sécurité.</p>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- === CARTES === -->
+        <div class="faq-section" id="sec-cartes">
+          <div class="faq-section-title">💳 Cartes bancaires</div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🃏</div>
+              <span class="faq-q-text">Quels types de cartes GTB Bank propose-t-il ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>GTB Bank propose plusieurs gammes de cartes :</p>
+              <ul>
+                <li><strong>Carte Standard</strong> (gratuite) : Visa classique, paiements et retraits en France et Europe</li>
+                <li><strong>Carte Premium Gold</strong> : avantages voyages, assurances, conciergerie</li>
+                <li><strong>Carte Black Metal</strong> : services exclusifs, lounge aéroport, assurances premium</li>
+                <li><strong>Carte Entreprise</strong> : gestion des dépenses professionnels</li>
+              </ul>
+              <p>Découvrez toutes nos cartes sur <a href="../produits-bancaires/cartes/index.html">la page Cartes</a>.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🚫</div>
+              <span class="faq-q-text">Comment bloquer ma carte immédiatement ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>En cas de perte ou vol, bloquez votre carte <strong>immédiatement</strong> via :</p>
+              <ul>
+                <li>Votre espace client : Cartes > Bloquer la carte</li>
+                <li>Notre application mobile (bouton d'urgence)</li>
+                <li>Notre hotline 24/7 : +33 1 23 45 67 89</li>
+              </ul>
+              <div class="faq-tip">⚠️ Le blocage est instantané. Vous pouvez débloquer la carte si elle a été retrouvée.</div>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">📍</div>
+              <span class="faq-q-text">Puis-je utiliser ma carte à l'étranger ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Oui, votre carte GTB est acceptée partout dans le monde où le réseau Visa est présent. Les paiements en devise étrangère appliquent un <strong>taux de change interbancaire</strong> sans frais cachés pour la carte Standard.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🏧</div>
+              <span class="faq-q-text">Quels sont les plafonds de retrait au distributeur ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <ul>
+                <li><strong>Standard</strong> : 500 €/jour, 1 500 €/semaine</li>
+                <li><strong>Premium Gold</strong> : 1 000 €/jour, 3 000 €/semaine</li>
+                <li><strong>Black Metal</strong> : 2 000 €/jour, illimité sur demande</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">📱</div>
+              <span class="faq-q-text">Comment activer le paiement sans contact (NFC) ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Le paiement sans contact est <strong>activé par défaut</strong> sur toutes les cartes GTB. Si vous souhaitez le désactiver temporairement, rendez-vous dans Cartes > Paramètres > Sans contact.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">⏳</div>
+              <span class="faq-q-text">Combien de temps pour recevoir ma carte ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Votre carte vous sera livrée <strong>sous 3 à 5 jours ouvrés</strong> à votre adresse de domicile. Pour les clients Premium et Black, une livraison express (24-48h) est disponible sur demande.</p>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- === ÉPARGNE === -->
+        <div class="faq-section" id="sec-epargne">
+          <div class="faq-section-title">📈 Épargne & Investissement</div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">💹</div>
+              <span class="faq-q-text">Quels produits d'épargne GTB Bank propose-t-il ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <ul>
+                <li><strong>Livret d'épargne</strong> : taux 3,5 % brut, disponible à tout moment</li>
+                <li><strong>Livret Jeune</strong> (18-25 ans) : taux bonifié jusqu'à 4,5 %</li>
+                <li><strong>Compte à terme</strong> : taux fixe garanti sur 1 à 5 ans</li>
+                <li><strong>PEL</strong> : Plan Épargne Logement, taux 2,25 %</li>
+                <li><strong>Assurance-vie</strong> : support fonds euros + unités de compte</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">📊</div>
+              <span class="faq-q-text">Comment investir en bourse avec GTB ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>GTB Bank propose trois formules d'investissement :</p>
+              <ul>
+                <li><strong>Investissement sécurisé</strong> : portefeuilles gérés, risque faible</li>
+                <li><strong>Investissement Premium</strong> : ETF et SICAV diversifiés</li>
+                <li><strong>Investissement Entreprise</strong> : solutions sur-mesure, accès marchés internationaux</li>
+              </ul>
+              <p>Consultez <a href="../produits-bancaires/investissement/index.html">notre page Investissements</a>.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">💰</div>
+              <span class="faq-q-text">Les dépôts sont-ils garantis ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Oui. GTB Bank est membre du Fonds de Garantie des Dépôts et de Résolution (FGDR). Vos dépôts sont garantis jusqu'à <strong>100 000 € par personne</strong>. En cas de faillite bancaire, le FGDR rembourse sous 7 jours ouvrés.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">📅</div>
+              <span class="faq-q-text">Comment retirer mon épargne en cas de besoin urgent ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Le <strong>livret d'épargne</strong> est disponible à tout moment sans pénalité. Pour les comptes à terme, un retrait anticipé est possible mais entraîne une réduction du taux d'intérêt. Contactez notre support pour les options disponibles.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🎯</div>
+              <span class="faq-q-text">Y a-t-il un montant minimum pour commencer à épargner ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Non, il n'y a <strong>aucun montant minimum</strong> pour ouvrir un livret d'épargne GTB. Vous pouvez commencer à partir de 1 €. Pour les produits d'investissement, un minimum de 500 € est recommandé.</p>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- === SÉCURITÉ === -->
+        <div class="faq-section" id="sec-securite">
+          <div class="faq-section-title">🔐 Sécurité</div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🛡️</div>
+              <span class="faq-q-text">Comment GTB Bank protège-t-il mes données ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>GTB Bank utilise les standards de sécurité les plus élevés :</p>
+              <ul>
+                <li><strong>Chiffrement SSL/TLS 256-bit</strong> pour toutes les communications</li>
+                <li><strong>Authentification à deux facteurs</strong> (2FA) obligatoire</li>
+                <li><strong>Surveillance 24/7</strong> de toute activité suspecte</li>
+                <li><strong>Certifications</strong> : PCI DSS Level 1, ISO 27001, SOC 2</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🚨</div>
+              <span class="faq-q-text">Que faire si je suspecte une activité frauduleuse ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>En cas de fraude suspectée :</p>
+              <ul>
+                <li><strong>Bloquez immédiatement</strong> votre carte depuis l'espace client</li>
+                <li>Changez votre mot de passe</li>
+                <li>Contactez notre hotline fraude : <strong>+33 1 23 45 67 89</strong></li>
+                <li>Déposez un rapport auprès de la police si nécessaire</li>
+              </ul>
+              <div class="faq-tip">✅ GTB Bank garantit le remboursement à 100% des transactions frauduleuses non autorisées.</div>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🔑</div>
+              <span class="faq-q-text">Comment réinitialiser mon mot de passe ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Pour réinitialiser votre mot de passe, cliquez sur « Mot de passe oublié » sur la <a href="../authentification/login.php">page de connexion</a>. Vous recevrez un email sécurisé pour définir un nouveau mot de passe. La procédure expire dans 5 minutes.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">📧</div>
+              <span class="faq-q-text">Comment reconnaître les emails frauduleux (phishing) ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>GTB Bank <strong>ne vous demandera jamais</strong> votre mot de passe, code PIN ou informations bancaires par email. Méfiez-vous des emails qui :</p>
+              <ul>
+                <li>Créent une urgence artificielle</li>
+                <li>Viennent d'adresses non officielles (@globaltrustbank.fr)</li>
+                <li>Contiennent des liens suspects</li>
+                <li>Demandent des informations confidentielles</li>
+              </ul>
+              <p>Signalez tout email suspect à <a href="mailto:security@globaltrustbank.fr">security@globaltrustbank.fr</a>.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">📱</div>
+              <span class="faq-q-text">Comment activer l'authentification à deux facteurs (2FA) ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Le 2FA est <strong>activé par défaut</strong> et obligatoire pour toutes les transactions. À chaque connexion sensible, un code OTP vous sera envoyé par SMS ou email pour confirmer votre identité.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🔒</div>
+              <span class="faq-q-text">Mon compte est-il bloqué après plusieurs tentatives échouées ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Oui, après <strong>5 tentatives de connexion échouées</strong>, votre compte est temporairement verrouillé pendant 15 minutes pour votre protection. Si vous avez oublié votre mot de passe, utilisez la procédure de réinitialisation.</p>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- === CRÉDITS === -->
+        <div class="faq-section" id="sec-credit">
+          <div class="faq-section-title">🏠 Crédits & Prêts</div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🏡</div>
+              <span class="faq-q-text">Quels types de crédits GTB Bank propose-t-il ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <ul>
+                <li><strong>Crédit immobilier</strong> : résidence principale, secondaire ou investissement locatif</li>
+                <li><strong>Crédit auto</strong> : neuf, occasion ou leasing</li>
+                <li><strong>Crédit travaux</strong> : rénovation, extension, amélioration énergétique</li>
+                <li><strong>Crédit professionnel</strong> : financement d'équipements, trésorerie</li>
+                <li><strong>Prêt personnel</strong> : tout projet (sans justificatif)</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">📊</div>
+              <span class="faq-q-text">Comment simuler un crédit ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Utilisez notre <a href="../produits-bancaires/credits/simulateur.html">simulateur de crédit en ligne</a> pour obtenir une estimation personnalisée de vos mensualités, du taux d'intérêt et du coût total du crédit en quelques secondes.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">⏱️</div>
+              <span class="faq-q-text">Quel est le délai d'obtention d'un crédit ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <ul>
+                <li><strong>Prêt personnel</strong> : réponse sous 24h, fonds disponibles sous 48-72h</li>
+                <li><strong>Crédit auto</strong> : décision sous 48h</li>
+                <li><strong>Crédit immobilier</strong> : étude complète sous 15 jours ouvrés</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">📋</div>
+              <span class="faq-q-text">Quelles conditions pour obtenir un crédit immobilier ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Pour un crédit immobilier GTB :</p>
+              <ul>
+                <li>Être client GTB Bank (ou ouvrir un compte)</li>
+                <li>Taux d'endettement inférieur à 35 %</li>
+                <li>Apport personnel recommandé : 10 à 20 % du prix</li>
+                <li>Revenus stables (CDI, fonctionnaire, revenus locatifs)</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">💳</div>
+              <span class="faq-q-text">Puis-je rembourser mon crédit par anticipation ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Oui, le remboursement anticipé est possible à tout moment. Des <strong>indemnités de remboursement anticipé (IRA)</strong> peuvent s'appliquer selon le type de crédit (légalement plafonnées). Consultez votre contrat de prêt pour les conditions spécifiques.</p>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- === FRAIS === -->
+        <div class="faq-section" id="sec-frais">
+          <div class="faq-section-title">💰 Frais & Tarifs</div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🆓</div>
+              <span class="faq-q-text">Le compte courant GTB est-il vraiment gratuit ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Oui, le compte courant Standard est <strong>100% gratuit</strong> : aucune cotisation mensuelle, aucun frais d'ouverture ou de clôture. Sont inclus :</p>
+              <ul>
+                <li>Carte Visa Standard</li>
+                <li>Virements SEPA illimités</li>
+                <li>Accès à l'espace client web et mobile</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">💸</div>
+              <span class="faq-q-text">Y a-t-il des frais pour les retraits en euros en Europe ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Non, les retraits dans la zone euro sont <strong>gratuits et illimités</strong> avec toutes les cartes GTB Bank. Hors zone euro, des frais de 1,5 % s'appliquent sur le montant retiré.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">📨</div>
+              <span class="faq-q-text">Quels sont les frais pour un virement instantané ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Un virement instantané (reçu en moins de 10 secondes) coûte <strong>1 € par opération</strong>. Les virements SEPA standards restent gratuits.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🌍</div>
+              <span class="faq-q-text">Quels frais pour les paiements en devise étrangère ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <ul>
+                <li><strong>Carte Standard</strong> : 1,5 % du montant converti</li>
+                <li><strong>Carte Premium Gold</strong> : gratuit jusqu'à 1 000 €/mois, puis 0,5 %</li>
+                <li><strong>Carte Black Metal</strong> : aucun frais de change</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">📄</div>
+              <span class="faq-q-text">Où puis-je consulter la grille tarifaire complète ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>La brochure tarifaire complète est disponible dans votre espace client, section Documents. Vous pouvez aussi la demander à notre service client à <a href="mailto:support@globaltrustbank.fr">support@globaltrustbank.fr</a> ou via notre <a href="contact.html">page de contact</a>.</p>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- === GESTION COMPTE === -->
+        <div class="faq-section" id="sec-compte">
+          <div class="faq-section-title">⚙️ Gestion du compte</div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">📝</div>
+              <span class="faq-q-text">Comment modifier mes informations personnelles ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Connectez-vous à votre espace client et accédez à <strong>Profil > Informations personnelles</strong>. Vous pouvez modifier votre adresse, numéro de téléphone et email. Certaines modifications nécessitent une vérification d'identité supplémentaire.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">📊</div>
+              <span class="faq-q-text">Comment télécharger mes relevés bancaires ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Vos relevés mensuels sont disponibles dans <strong>Espace client > Relevés de compte</strong>. Vous pouvez les télécharger au format PDF pour les 10 dernières années. Ils sont également envoyés automatiquement chaque mois par email.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🔔</div>
+              <span class="faq-q-text">Comment gérer mes notifications et alertes ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Depuis votre espace client, allez dans <strong>Paramètres > Notifications</strong>. Vous pouvez personnaliser les alertes pour chaque type d'opération (paiement, virement, connexion, etc.) par email, SMS ou notification push.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">👥</div>
+              <span class="faq-q-text">Comment ajouter un bénéficiaire pour les virements ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>Dans votre espace client, allez dans <strong>Virements > Mes bénéficiaires > Ajouter</strong>. Renseignez l'IBAN et le nom du bénéficiaire. Une confirmation par code OTP sera requise lors du premier ajout.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <div class="faq-q-icon">🗑️</div>
+              <span class="faq-q-text">Comment clôturer mon compte ?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">
+              <p>La clôture de compte se fait gratuitement sur simple demande. Avant de clôturer :</p>
+              <ul>
+                <li>Transférez le solde restant vers un autre compte</li>
+                <li>Arrêtez les virements permanents et prélèvements</li>
+                <li>Téléchargez vos relevés bancaires</li>
+              </ul>
+              <p>Contactez notre service client à <a href="mailto:support@globaltrustbank.fr">support@globaltrustbank.fr</a> pour initier la procédure.</p>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- Banner CTA -->
+        <div class="faq-cta reveal">
+          <h3>Vous n'avez pas trouvé votre réponse ?</h3>
+          <p>Notre équipe est disponible 24h/24 et 7j/7 pour répondre à toutes vos questions.</p>
+          <div class="faq-cta-btns">
+            <a href="contact.html" class="faq-cta-btn primary">✉️ Nous contacter</a>
+            <a href="tel:+33123456789" class="faq-cta-btn ghost">📞 +33 1 23 45 67 89</a>
+            <a href="../authentification/login.php" class="faq-cta-btn ghost">💬 Chat en ligne</a>
+          </div>
+        </div>
+      </div><!-- /.faq-content -->
+    </div><!-- /.faq-layout -->
+  </div><!-- /.container -->
+</section>
+
+<!-- FOOTER -->
+<footer class="bnp-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <div class="footer-logo-mark">GTB</div>
+          <div class="footer-logo-text">Global Trust Bank</div>
+        </div>
+        <p class="footer-tagline">La banque d'un monde qui change. Présent dans 65 pays, au service de millions de clients.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Particuliers</h4>
+        <ul>
+          <li><a href="../produits-bancaires/comptes/index.html">Compte courant</a></li>
+          <li><a href="../produits-bancaires/cartes/index.html">Cartes bancaires</a></li>
+          <li><a href="../produits-bancaires/epargne/index.html">Épargne</a></li>
+          <li><a href="../produits-bancaires/credits/index.html">Crédit immobilier</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Aide</h4>
+        <ul>
+          <li><a href="faq.html" style="color:var(--gold)">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="security.html">Sécurité</a></li>
+          <li><a href="../dashboard/index.php">Espace client</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>GTB</h4>
+        <ul>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="confidentialites.html">Confidentialité</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Global Trust Bank — Société Anonyme au capital de 2 499 597 122 €</span>
+      <div class="footer-legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialites.html">Confidentialité</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* NAV SCROLL */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('elevated', window.scrollY > 20));
+
+/* MOBILE MENU */
+const ham = document.getElementById('ham');
+const mobileMenu = document.createElement('div');
+mobileMenu.className = 'mobile-menu';
+mobileMenu.innerHTML = `
+  <a href="index.html">Accueil</a>
+  <a href="about.html">À propos</a>
+  <a href="faq.html" style="color:var(--gold)">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="../authentification/signup.php" class="mobile-cta">Ouvrir un compte</a>
+`;
+document.body.appendChild(mobileMenu);
+let menuOpen = false;
+ham?.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  ham.classList.toggle('active', menuOpen);
+  mobileMenu.classList.toggle('active', menuOpen);
+});
+document.querySelectorAll('.mobile-menu a').forEach(l => l.addEventListener('click', () => {
+  menuOpen = false; ham.classList.remove('active'); mobileMenu.classList.remove('active');
+}));
+
+/* REVEAL */
+const revObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObserver.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  if (!el.style.transitionDelay) el.style.transitionDelay = (i % 4) * 0.07 + 's';
+  revObserver.observe(el);
+});
+
+/* CATÉGORIES */
+function showCat(btn) {
+  document.querySelectorAll('.faq-cat-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.faq-section').forEach(s => s.classList.remove('active'));
+  btn.classList.add('active');
+  const target = btn.dataset.target;
+  const sec = document.getElementById('sec-' + target);
+  if (sec) { sec.classList.add('active'); sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+}
+
+/* ACCORDÉON FAQ */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const answer = item.querySelector('.faq-a');
+  const isOpen = item.classList.contains('open');
+  // Fermer tous
+  document.querySelectorAll('.faq-item.open').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.faq-a').style.maxHeight = '0';
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+
+/* RECHERCHE */
+function searchFAQ() {
+  const query = document.getElementById('faqSearch').value.toLowerCase().trim();
+  if (!query) return;
+  let found = 0;
+  document.querySelectorAll('.faq-section').forEach(sec => {
+    sec.classList.remove('active');
+    sec.querySelectorAll('.faq-item').forEach(item => {
+      const text = item.textContent.toLowerCase();
+      if (text.includes(query)) {
+        item.style.display = '';
+        sec.classList.add('active');
+        found++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+  // Si plusieurs sections actives, garder toutes
+  const noResult = document.getElementById('faqNoResult');
+  noResult.style.display = found === 0 ? 'block' : 'none';
+  // Désactiver toutes les catégories
+  document.querySelectorAll('.faq-cat-btn').forEach(b => b.classList.remove('active'));
+}
+
+document.getElementById('faqSearch').addEventListener('keydown', e => {
+  if (e.key === 'Enter') searchFAQ();
+  if (e.key === 'Escape') {
+    document.getElementById('faqSearch').value = '';
+    document.querySelectorAll('.faq-item').forEach(i => i.style.display = '');
+    document.querySelectorAll('.faq-section').forEach(s => s.classList.remove('active'));
+    document.getElementById('sec-ouverture').classList.add('active');
+    document.querySelectorAll('.faq-cat-btn')[0].classList.add('active');
+    document.getElementById('faqNoResult').style.display = 'none';
+  }
+});
+</script>
+</body>
+</html>
