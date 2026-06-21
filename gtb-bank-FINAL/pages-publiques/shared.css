@@ -267,7 +267,31 @@ textarea.input-field{min-height:130px;resize:vertical}
   border-radius:var(--r-sm);transition:all .2s;
 }
 .legal-nav ul a:hover{color:var(--green);background:var(--g50)}
-.legal-nav ul a.active{color:var(--gold);background:rgba(212,175,55,.08);font-weight:600}
+.legal-nav ul a.active,.legal-nav-link.active{color:var(--gold);background:rgba(212,175,55,.08);font-weight:600}
+.legal-nav-title{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g400);margin-bottom:.75rem;padding:.2rem .9rem}
+.legal-nav-link{display:block;padding:.55rem .9rem;font-size:.82rem;font-weight:500;color:var(--g600);border-radius:var(--r-sm);transition:all .2s;text-decoration:none}
+.legal-nav-link:hover{color:var(--green);background:var(--g50)}
+
+/* Legal sections */
+.legal-section{padding-bottom:2.5rem;margin-bottom:2.5rem;border-bottom:1px solid var(--g100)}
+.legal-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.legal-section-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+.legal-section-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--green),rgba(13,27,42,.8));
+  color:white;font-size:.7rem;font-weight:700;letter-spacing:.04em;
+}
+.legal-section-header h2{margin:0;border:none;padding:0;font-family:'DM Serif Display',serif;font-size:clamp(1.2rem,2.5vw,1.55rem);color:var(--green);letter-spacing:-.02em}
+
+/* Header badges */
+.legal-badge{
+  display:inline-block;background:rgba(212,175,55,.15);color:var(--gold);
+  font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  border-radius:var(--r-full);padding:.3rem .9rem;margin-bottom:1rem;
+  border:1px solid rgba(212,175,55,.25);
+}
+.legal-updated{font-size:.8rem;color:rgba(255,255,255,.55);margin-top:.75rem}
 
 .legal-content{max-width:none}
 .legal-content h2{
@@ -312,7 +336,7 @@ textarea.input-field{min-height:130px;resize:vertical}
 
 /* Security badge */
 .security-badge{
-  display:flex;gap:1rem;align-items:center;
+  display:block;
   background:linear-gradient(135deg,rgba(13,27,42,.04),rgba(13,27,42,.02));
   border:1.5px solid var(--g100);border-left:3px solid var(--bnp-green);
   border-radius:0 var(--r-md) var(--r-md) 0;

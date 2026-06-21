@@ -20,144 +20,267 @@
       <span>Banque en ligne</span>
     </div>
   </a>
-
   <ul class="nav-links">
-    <li><a href="index.html" class="active">Accueil</a></li>
+    <li><a href="index.html">Accueil</a></li>
     <li><a href="about.html">À propos</a></li>
     <li><a href="../produits-bancaires/comptes/index.html">Comptes</a></li>
-    <li><a href="../produits-bancaires/comptes/index.html">Crédits</a></li>
-    <li><a href="../produits-bancaires/comptes/index.html">Entreprises</a></li>
-    <li><a href="../produits-bancaires/credits/index.html">Assurances</a></li>
+    <li><a href="../produits-bancaires/credits/index.html">Crédits</a></li>
+    <li><a href="../produits-bancaires/entreprises/index.html">Entreprises</a></li>
+    <li><a href="../produits-bancaires/assurances/index.html">Assurances</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-
   <div class="nav-actions">
     <a href="../authentification/login.php" class="btn btn-ghost">Connexion</a>
     <a href="../authentification/signup.php" class="btn btn-primary">Ouvrir un compte</a>
   </div>
-
-  <button class="ham-btn" id="ham">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="ham-btn" id="ham"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- PAGE HEADER -->
 <section class="mentionpage-header">
   <div class="mentionpage-header-content reveal">
-    <h1>Mentions <span style="color: var(--bnp-emerald);">légales</span></h1>
-    <p>Informations légales et responsabilités de Global Trust Bank</p>
+    <p class="legal-badge">Document officiel</p>
+    <h1>Mentions <span style="color:var(--bnp-emerald);">légales</span></h1>
+    <p>Informations légales et réglementaires de Global Trust Bank</p>
+    <p class="legal-updated">Dernière mise à jour : 15 décembre 2024 — Version 3.0</p>
   </div>
 </section>
 
 <!-- CONTENT -->
-<section class="section">
+<section class="section" style="padding-top:3rem">
   <div class="container">
-    <div class="legal-content reveal">
+    <div class="legal-layout">
 
-      <h2>1. Identification du site et de l'éditeur</h2>
-      <div class="info-box">
-        <p><strong>Dénomination :</strong> Global Trust Bank<br>
-        <strong>Forme juridique :</strong> Société Anonyme<br>
-        <strong>Capital social :</strong> 2 499 597 122 €<br>
-        <strong>Siège social :</strong> 123 Avenue des Champs-Élysées, 75008 Paris, France<br>
-        <strong>Numéro SIRET :</strong> 123 456 789 00012<br>
-        <strong>Numéro de licence bancaire :</strong> FR-2024-GTB-001</p>
-      </div>
+      <!-- SIDEBAR -->
+      <aside class="legal-nav">
+        <p class="legal-nav-title">Sommaire</p>
+        <ul>
+          <li><a href="#identification" class="legal-nav-link active">1. Identification</a></li>
+          <li><a href="#hebergement" class="legal-nav-link">2. Hébergement</a></li>
+          <li><a href="#propriete" class="legal-nav-link">3. Propriété intellectuelle</a></li>
+          <li><a href="#conditions" class="legal-nav-link">4. Conditions d'utilisation</a></li>
+          <li><a href="#responsabilite" class="legal-nav-link">5. Responsabilité</a></li>
+          <li><a href="#lois" class="legal-nav-link">6. Lois applicables</a></li>
+          <li><a href="#donnees" class="legal-nav-link">7. Données personnelles</a></li>
+          <li><a href="#limitation" class="legal-nav-link">8. Limitation de responsabilité</a></li>
+          <li><a href="#litiges" class="legal-nav-link">9. Litiges clients</a></li>
+          <li><a href="#signalement" class="legal-nav-link">10. Signalement</a></li>
+          <li><a href="#reglementation" class="legal-nav-link">11. Réglementation</a></li>
+          <li><a href="#modifications" class="legal-nav-link">12. Modifications</a></li>
+        </ul>
+        <div style="margin-top:2rem;padding:1rem;background:var(--bnp-dark);border-radius:10px;color:#fff">
+          <p style="font-size:.78rem;font-weight:600;margin-bottom:.5rem">Besoin d'aide ?</p>
+          <p style="font-size:.75rem;color:#94A3B8;margin-bottom:.75rem">Notre équipe juridique répond à vos questions.</p>
+          <a href="contact.html" style="display:inline-block;background:var(--bnp-gold);color:#000;font-size:.75rem;font-weight:700;padding:.4rem .9rem;border-radius:6px;text-decoration:none">Nous contacter</a>
+        </div>
+      </aside>
 
-      <h2>2. Responsabilité de l'éditeur</h2>
-      <p>Global Trust Bank s'engage à fournir des informations exactes et à jour sur ce site. Cependant, nous ne pouvons pas garantir l'absence d'erreurs, omissions ou interruptions du service.</p>
-      <ul>
-        <li>Nous déclinons toute responsabilité en cas de dommages directs ou indirects résultant de l'accès au site</li>
-        <li>Vous utilisez ce site à vos risques et périls</li>
-        <li>Nous ne sommes pas responsables de la disponibilité constante du service</li>
-      </ul>
+      <!-- MAIN CONTENT -->
+      <div class="legal-content">
 
-      <h2>3. Propriété intellectuelle</h2>
-      <p>Tous les contenus de ce site (textes, images, logos, vidéos, etc.) sont la propriété exclusive de Global Trust Bank ou de ses partenaires. <em>Vous ne pouvez pas reproduire, modifier ou distribuer ces contenus sans autorisation écrite préalable.</em></p>
+        <section id="identification" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">01</span>
+            <h2>Identification du site et de l'éditeur</h2>
+          </div>
+          <div class="info-box">
+            <table style="width:100%;border-collapse:collapse;font-size:.9rem">
+              <tr><td style="padding:.4rem 0;color:var(--gray600);width:200px">Dénomination</td><td><strong>Global Trust Bank</strong></td></tr>
+              <tr><td style="padding:.4rem 0;color:var(--gray600)">Forme juridique</td><td>Société Anonyme (SA)</td></tr>
+              <tr><td style="padding:.4rem 0;color:var(--gray600)">Capital social</td><td>2 499 597 122 €</td></tr>
+              <tr><td style="padding:.4rem 0;color:var(--gray600)">Siège social</td><td>123 Avenue des Champs-Élysées, 75008 Paris, France</td></tr>
+              <tr><td style="padding:.4rem 0;color:var(--gray600)">SIRET</td><td>123 456 789 00012</td></tr>
+              <tr><td style="padding:.4rem 0;color:var(--gray600)">Licence bancaire</td><td>FR-2024-GTB-001</td></tr>
+              <tr><td style="padding:.4rem 0;color:var(--gray600)">Directeur de publication</td><td>Jean-Michel Durand, Directeur Général</td></tr>
+              <tr><td style="padding:.4rem 0;color:var(--gray600)">Contact</td><td><a href="mailto:legal@globaltrustbank.fr" style="color:var(--bnp-emerald);text-decoration:none">legal@globaltrustbank.fr</a></td></tr>
+            </table>
+          </div>
+        </section>
 
-      <h2>4. Conditions d'utilisation du site</h2>
-      <p>En accédant et en utilisant ce site, vous acceptez de :</p>
-      <ul>
-        <li>Respecter toutes les lois et réglementations applicables</li>
-        <li>Ne pas utiliser le site à des fins illégales ou contraires à l'éthique</li>
-        <li>Ne pas tenter de pirater ou compromettre la sécurité du site</li>
-        <li>Ne pas collecter de données personnelles sans consentement</li>
-        <li>Ne pas harceler ou menacer d'autres utilisateurs</li>
-      </ul>
+        <section id="hebergement" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">02</span>
+            <h2>Hébergement du site</h2>
+          </div>
+          <p>Le site <strong>globaltrust-b.com</strong> est hébergé par :</p>
+          <div class="info-box">
+            <table style="width:100%;border-collapse:collapse;font-size:.9rem">
+              <tr><td style="padding:.4rem 0;color:var(--gray600);width:200px">Hébergeur</td><td><strong>OVHcloud SAS</strong></td></tr>
+              <tr><td style="padding:.4rem 0;color:var(--gray600)">Adresse</td><td>2 rue Kellermann, 59100 Roubaix, France</td></tr>
+              <tr><td style="padding:.4rem 0;color:var(--gray600)">Téléphone</td><td>+33 9 72 10 10 07</td></tr>
+              <tr><td style="padding:.4rem 0;color:var(--gray600)">Site</td><td>www.ovhcloud.com</td></tr>
+            </table>
+          </div>
+        </section>
 
-      <div class="info-box">
-        <p>Tout non-respect de ces conditions peut entraîner le blocage de votre accès au site sans avis préalable.</p>
-      </div>
+        <section id="propriete" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">03</span>
+            <h2>Propriété intellectuelle</h2>
+          </div>
+          <p>L'ensemble des éléments présents sur ce site (textes, images, logos, graphismes, vidéos, sons, données, base de données, logiciels, etc.) est la propriété exclusive de <strong>Global Trust Bank</strong> ou de ses partenaires, et est protégé par les lois françaises et internationales relatives à la propriété intellectuelle.</p>
+          <ul>
+            <li>Toute reproduction, représentation, modification, publication ou adaptation, totale ou partielle, est <strong>strictement interdite</strong> sans autorisation écrite préalable de GTB</li>
+            <li>La marque « Global Trust Bank » et le logo GTB sont des marques déposées</li>
+            <li>Toute utilisation commerciale non autorisée fera l'objet de poursuites judiciaires</li>
+          </ul>
+          <div class="highlight-box">
+            <p>© 2024 Global Trust Bank. Tous droits réservés. Reproduction interdite sans autorisation.</p>
+          </div>
+        </section>
 
-      <h2>5. Lois applicables et juridiction</h2>
-      <p>Ce site et ses conditions d'utilisation sont régis par <strong>la loi française</strong>.</p>
-      <ul>
-        <li>Tout litige relatif au site relève de la compétence exclusive des tribunaux de <strong>Paris</strong></li>
-        <li>Global Trust Bank conserve le droit de modifier ces mentions légales à tout moment sans avis</li>
-        <li>Pour les clients professionnels, la convention CFONB s'applique</li>
-      </ul>
+        <section id="conditions" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">04</span>
+            <h2>Conditions d'utilisation du site</h2>
+          </div>
+          <p>En accédant et en utilisant ce site internet, vous acceptez de :</p>
+          <ul>
+            <li>Respecter toutes les lois et réglementations applicables</li>
+            <li>Ne pas utiliser le site à des fins illégales ou contraires à l'éthique</li>
+            <li>Ne pas tenter de pirater, compromettre ou perturber la sécurité du site</li>
+            <li>Ne pas collecter de données personnelles d'autres utilisateurs sans consentement</li>
+            <li>Ne pas diffuser de contenus frauduleux, diffamatoires ou trompeurs</li>
+            <li>Ne pas utiliser de robots ou scripts automatisés sans autorisation</li>
+          </ul>
+          <div class="info-box">
+            <p><strong>⚠️ Attention :</strong> Tout non-respect de ces conditions peut entraîner le blocage immédiat de votre accès au site et des poursuites judiciaires selon la gravité des faits.</p>
+          </div>
+        </section>
 
-      <h2>6. Données personnelles et vie privée</h2>
-      <p>La gestion de vos données personnelles est régie par notre <a href="confidentialites.html" style="color: var(--bnp-emerald); text-decoration: none;">politique de confidentialité</a>. Nous vous encourageons à la consulter pour comprendre :</p>
-      <ul>
-        <li>Comment nous collectons et utilisons vos données</li>
-        <li>Vos droits en vertu du RGPD</li>
-        <li>Comment exercer vos droits d'accès, rectification et suppression</li>
-      </ul>
+        <section id="responsabilite" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">05</span>
+            <h2>Responsabilité de l'éditeur</h2>
+          </div>
+          <p>Global Trust Bank s'engage à fournir des informations exactes et à jour sur ce site. Toutefois :</p>
+          <ul>
+            <li>Nous ne garantissons pas l'exhaustivité, l'exactitude ou l'actualité des informations publiées</li>
+            <li>Nous ne pouvons garantir l'absence d'interruptions ou d'erreurs du service</li>
+            <li>Nous déclinons toute responsabilité pour les dommages directs ou indirects résultant de l'utilisation du site</li>
+            <li>Les liens hypertextes vers des sites tiers sont fournis à titre indicatif uniquement</li>
+          </ul>
+        </section>
 
-      <h2>7. Limitation de responsabilité</h2>
-      <p>Global Trust Bank décline toute responsabilité pour :</p>
-      <ul>
-        <li><strong>Contenu tiers :</strong> liens externes, publicités, contenu fourni par d'autres utilisateurs</li>
-        <li><strong>Interruptions du service :</strong> maintenance, attaques, problèmes techniques</li>
-        <li><strong>Perte de données :</strong> virus, malwares, accès non autorisé</li>
-        <li><strong>Erreurs de cours :</strong> fluctuations de change, taux d'intérêt, cours boursiers</li>
-      </ul>
+        <section id="lois" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">06</span>
+            <h2>Lois applicables et juridiction</h2>
+          </div>
+          <p>Les présentes mentions légales sont régies par <strong>la loi française</strong>.</p>
+          <ul>
+            <li>Tout litige relatif à ce site relève de la compétence exclusive des <strong>tribunaux de Paris</strong></li>
+            <li>En cas de différend, les parties s'engagent à rechercher une solution amiable avant toute action judiciaire</li>
+            <li>Pour les clients professionnels, la convention CFONB s'applique en complément</li>
+            <li>Les dispositions du Code monétaire et financier s'appliquent pour les services bancaires</li>
+          </ul>
+        </section>
 
-      <h2>8. Garanties</h2>
-      <p>Global Trust Bank décline toute garantie expresse ou implicite concernant :</p>
-      <ul>
-        <li>La pertinence ou l'actualité des informations publiées</li>
-        <li>L'absence de virus ou de malwares</li>
-        <li>La conformité aux objectifs de l'utilisateur</li>
-        <li>La qualité des services (sauf garanties légales obligatoires)</li>
-      </ul>
+        <section id="donnees" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">07</span>
+            <h2>Données personnelles et vie privée</h2>
+          </div>
+          <p>La collecte et le traitement de vos données personnelles sont régis par notre <a href="confidentialites.html" style="color:var(--bnp-emerald);text-decoration:none;font-weight:600">Politique de confidentialité</a>, conformément au <strong>Règlement Général sur la Protection des Données (RGPD)</strong>.</p>
+          <ul>
+            <li>Vous disposez d'un droit d'accès, de rectification et de suppression de vos données</li>
+            <li>Vos données ne sont jamais vendues à des tiers commerciaux</li>
+            <li>Vous pouvez exercer vos droits en contactant : <a href="mailto:privacy@globaltrustbank.fr" style="color:var(--bnp-emerald);text-decoration:none">privacy@globaltrustbank.fr</a></li>
+            <li>En cas de réclamation, vous pouvez saisir la CNIL (www.cnil.fr)</li>
+          </ul>
+        </section>
 
-      <h2>9. Litiges avec les clients</h2>
-      <p>En cas de litige avec Global Trust Bank concernant nos services bancaires :</p>
-      <div class="info-box">
-        <p>
-          <strong>1. Tentative de résolution amiable :</strong> Contactez notre service client à <a href="mailto:support@globaltrustbank.fr" style="color: var(--bnp-emerald); text-decoration: none;">support@globaltrustbank.fr</a><br>
-          <strong>2. Médiation :</strong> Médiateur bancaire : mediateur@globaltrustbank.fr<br>
-          <strong>3. Autorités :</strong> ACPR - Banque de France, CNIL, AMF selon le type de litige
-        </p>
-      </div>
+        <section id="limitation" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">08</span>
+            <h2>Limitation de responsabilité</h2>
+          </div>
+          <p>Global Trust Bank décline expressément toute responsabilité pour :</p>
+          <ul>
+            <li><strong>Contenus tiers :</strong> liens externes, publicités, contenus fournis par des partenaires</li>
+            <li><strong>Interruptions du service :</strong> maintenance planifiée, incidents techniques, cyberattaques</li>
+            <li><strong>Perte de données :</strong> virus, malwares, accès non autorisé par des tiers</li>
+            <li><strong>Inexactitudes financières :</strong> fluctuations de change, taux d'intérêt, cours boursiers</li>
+            <li><strong>Décisions d'investissement :</strong> les informations publiées ne constituent pas des conseils financiers</li>
+          </ul>
+        </section>
 
-      <h2>10. Signalement de contenu illégal</h2>
-      <p>Si vous découvrez du contenu illégal sur notre site, signalez-le immédiatement à :</p>
-      <ul>
-        <li>Email : <a href="mailto:legal@globaltrustbank.fr" style="color: var(--bnp-emerald); text-decoration: none;">legal@globaltrustbank.fr</a></li>
-        <li>Téléphone : +33 1 23 45 67 89</li>
-        <li>Formulaire : <a href="contact.html" style="color: var(--bnp-emerald); text-decoration: none;">Page de contact</a></li>
-      </ul>
+        <section id="litiges" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">09</span>
+            <h2>Litiges avec les clients</h2>
+          </div>
+          <p>En cas de litige avec Global Trust Bank concernant nos services, nous appliquons la procédure suivante :</p>
+          <div class="info-box">
+            <p>
+              <strong>Étape 1 — Résolution amiable :</strong> Contactez notre service client dans un délai de 30 jours.<br>
+              <a href="mailto:support@globaltrustbank.fr" style="color:var(--bnp-emerald);text-decoration:none">support@globaltrustbank.fr</a> | Tél. : +33 1 23 45 67 89
+            </p>
+            <p style="margin-top:.75rem">
+              <strong>Étape 2 — Médiation bancaire :</strong> Si la réponse ne vous satisfait pas sous 60 jours, saisissez le médiateur.<br>
+              <a href="mailto:mediateur@globaltrustbank.fr" style="color:var(--bnp-emerald);text-decoration:none">mediateur@globaltrustbank.fr</a>
+            </p>
+            <p style="margin-top:.75rem">
+              <strong>Étape 3 — Autorités compétentes :</strong> ACPR (Banque de France), CNIL, AMF selon la nature du litige.
+            </p>
+          </div>
+        </section>
 
-      <h2>11. Réglementation bancaire</h2>
-      <p>Global Trust Bank est une institution financière réglementée par :</p>
-      <ul>
-        <li><strong>ACPR</strong> (Autorité de Contrôle Prudentiel et de Résolution) - Banque de France</li>
-        <li><strong>AMF</strong> (Autorité des Marchés Financiers) - pour les services d'investissement</li>
-        <li><strong>CNIL</strong> (Commission Nationale Informatique et Libertés) - protection des données</li>
-      </ul>
+        <section id="signalement" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">10</span>
+            <h2>Signalement de contenu illégal</h2>
+          </div>
+          <p>Si vous découvrez du contenu illégal ou contraire à l'éthique sur notre site, signalez-le immédiatement :</p>
+          <ul>
+            <li>Email : <a href="mailto:legal@globaltrustbank.fr" style="color:var(--bnp-emerald);text-decoration:none">legal@globaltrustbank.fr</a></li>
+            <li>Téléphone : +33 1 23 45 67 89 (du lundi au vendredi, 9h–18h)</li>
+            <li>Formulaire en ligne : <a href="contact.html" style="color:var(--bnp-emerald);text-decoration:none">Page de contact</a></li>
+          </ul>
+          <p>Conformément à la loi LCEN, nous traiterons votre signalement dans les plus brefs délais.</p>
+        </section>
 
-      <h2>12. Modifications des conditions</h2>
-      <p>Global Trust Bank se réserve le droit de modifier ces mentions légales à tout moment sans avis préalable. Les modifications prennent effet immédiatement après leur publication.</p>
+        <section id="reglementation" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">11</span>
+            <h2>Réglementation bancaire</h2>
+          </div>
+          <p>Global Trust Bank est une institution financière agréée et réglementée par les autorités compétentes :</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem">
+            <div class="security-badge">
+              <div style="font-size:1.5rem;margin-bottom:.5rem">🏦</div>
+              <strong>ACPR</strong>
+              <p style="font-size:.8rem;color:var(--gray600);margin:.25rem 0 0">Autorité de Contrôle Prudentiel et de Résolution — Banque de France</p>
+            </div>
+            <div class="security-badge">
+              <div style="font-size:1.5rem;margin-bottom:.5rem">📈</div>
+              <strong>AMF</strong>
+              <p style="font-size:.8rem;color:var(--gray600);margin:.25rem 0 0">Autorité des Marchés Financiers — services d'investissement</p>
+            </div>
+            <div class="security-badge">
+              <div style="font-size:1.5rem;margin-bottom:.5rem">🔐</div>
+              <strong>CNIL</strong>
+              <p style="font-size:.8rem;color:var(--gray600);margin:.25rem 0 0">Commission Nationale Informatique et Libertés — protection des données</p>
+            </div>
+          </div>
+        </section>
 
-      <div class="info-box">
-        <p><strong>Dernière mise à jour :</strong> 15 décembre 2024<br>
-        Pour toute question concernant ces mentions légales, contactez : <a href="mailto:legal@globaltrustbank.fr" style="color: var(--bnp-emerald); text-decoration: none;">legal@globaltrustbank.fr</a></p>
-      </div>
+        <section id="modifications" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">12</span>
+            <h2>Modifications des mentions légales</h2>
+          </div>
+          <p>Global Trust Bank se réserve le droit de modifier les présentes mentions légales à tout moment. Les modifications entrent en vigueur dès leur publication sur ce site.</p>
+          <p>Nous vous encourageons à consulter régulièrement cette page pour rester informé de tout changement.</p>
+          <div class="info-box">
+            <p><strong>Dernière mise à jour :</strong> 15 décembre 2024<br>
+            <strong>Contact juridique :</strong> <a href="mailto:legal@globaltrustbank.fr" style="color:var(--bnp-emerald);text-decoration:none">legal@globaltrustbank.fr</a><br>
+            <strong>Téléphone :</strong> +33 1 23 45 67 89</p>
+          </div>
+        </section>
 
-    </div>
+      </div><!-- /.legal-content -->
+    </div><!-- /.legal-layout -->
   </div>
 </section>
 
@@ -219,51 +342,49 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('elevated', window.scrollY > 20);
 });
 
+// Reveal animation
 const reveals = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach((el, i) => { if (!el.style.transitionDelay) el.style.transitionDelay = (i % 4) * 0.08 + 's'; revealObs.observe(el); });
+
+// Sidebar active link on scroll
+const sections = document.querySelectorAll('.legal-section');
+const navLinks = document.querySelectorAll('.legal-nav-link');
+const scrollObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector('.legal-nav-link[href="#' + e.target.id + '"]');
+      if (link) link.classList.add('active');
     }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.4 });
+sections.forEach(s => scrollObs.observe(s));
 
-reveals.forEach((el, index) => {
-  if (!el.style.transitionDelay) {
-    el.style.transitionDelay = (index % 4) * 0.08 + 's';
-  }
-  revealObserver.observe(el);
-});
-
+// Mobile menu
 const ham = document.getElementById('ham');
 const mobileMenu = document.createElement('div');
 mobileMenu.className = 'mobile-menu';
 mobileMenu.innerHTML = `
   <a href="index.html">Accueil</a>
   <a href="about.html">À propos</a>
-  <a href="#">Comptes</a>
-  <a href="#">Crédits</a>
+  <a href="../produits-bancaires/comptes/index.html">Comptes</a>
+  <a href="../produits-bancaires/credits/index.html">Crédits</a>
   <a href="contact.html">Contact</a>
   <a href="../authentification/signup.php" class="mobile-cta">Ouvrir un compte</a>
 `;
-
 document.body.appendChild(mobileMenu);
 let menuOpen = false;
-
 ham?.addEventListener('click', () => {
   menuOpen = !menuOpen;
   ham.classList.toggle('active', menuOpen);
   mobileMenu.classList.toggle('active', menuOpen);
 });
-
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-  link.addEventListener('click', () => {
-    menuOpen = false;
-    ham.classList.remove('active');
-    mobileMenu.classList.remove('active');
-  });
-});
+document.querySelectorAll('.mobile-menu a').forEach(l => l.addEventListener('click', () => {
+  menuOpen = false; ham.classList.remove('active'); mobileMenu.classList.remove('active');
+}));
 </script>
 </body>
 </html>

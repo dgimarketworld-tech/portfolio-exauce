@@ -20,152 +20,304 @@
       <span>Banque en ligne</span>
     </div>
   </a>
-
   <ul class="nav-links">
-    <li><a href="index.html" class="active">Accueil</a></li>
+    <li><a href="index.html">Accueil</a></li>
     <li><a href="about.html">À propos</a></li>
     <li><a href="../produits-bancaires/comptes/index.html">Comptes</a></li>
-    <li><a href="../produits-bancaires/comptes/index.html">Crédits</a></li>
-    <li><a href="../produits-bancaires/comptes/index.html">Entreprises</a></li>
-    <li><a href="../produits-bancaires/credits/index.html">Assurances</a></li>
+    <li><a href="../produits-bancaires/credits/index.html">Crédits</a></li>
+    <li><a href="../produits-bancaires/entreprises/index.html">Entreprises</a></li>
+    <li><a href="../produits-bancaires/assurances/index.html">Assurances</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-
   <div class="nav-actions">
     <a href="../authentification/login.php" class="btn btn-ghost">Connexion</a>
     <a href="../authentification/signup.php" class="btn btn-primary">Ouvrir un compte</a>
   </div>
-
-  <button class="ham-btn" id="ham">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="ham-btn" id="ham"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- PAGE HEADER -->
 <section class="confidentialitespage-header">
   <div class="confidentialitespage-header-content reveal">
-    <h1>Politique de <span style="color: var(--bnp-emerald);">confidentialité</span></h1>
-    <p>Votre vie privée est importante pour nous. Découvrez comment nous protégeons vos données</p>
+    <p class="legal-badge">RGPD conforme</p>
+    <h1>Politique de <span style="color:var(--bnp-emerald);">confidentialité</span></h1>
+    <p>Votre vie privée est notre priorité. Découvrez comment nous protégeons vos données personnelles.</p>
+    <p class="legal-updated">Dernière mise à jour : 15 décembre 2024 — Version 2.0</p>
   </div>
 </section>
 
 <!-- CONTENT -->
-<section class="section">
+<section class="section" style="padding-top:3rem">
   <div class="container">
-    <div class="legal-content reveal">
-      
-      <div class="highlight-box">
-        <p>✓ Dernière mise à jour : 15 décembre 2024 | Version 2.0</p>
-      </div>
+    <div class="legal-layout">
 
-      <h2>1. Collecte de données</h2>
-      <p>Global Trust Bank collecte les données suivantes pour fournir nos services :</p>
-      <ul>
-        <li><strong>Données d'identité :</strong> nom, prénom, date de naissance, adresse</li>
-        <li><strong>Données de contact :</strong> email, téléphone, adresse postale</li>
-        <li><strong>Données financières :</strong> compte bancaire, historique de transactions</li>
-        <li><strong>Données comportementales :</strong> localisation, appareils utilisés, patterns de navigation</li>
-        <li><strong>Données de conformité :</strong> pièces d'identité, justificatifs de revenus</li>
-      </ul>
+      <!-- SIDEBAR -->
+      <aside class="legal-nav">
+        <p class="legal-nav-title">Sommaire</p>
+        <ul>
+          <li><a href="#collecte" class="legal-nav-link active">1. Collecte de données</a></li>
+          <li><a href="#base-legale" class="legal-nav-link">2. Base légale</a></li>
+          <li><a href="#utilisation" class="legal-nav-link">3. Utilisation</a></li>
+          <li><a href="#partage" class="legal-nav-link">4. Partage</a></li>
+          <li><a href="#transferts" class="legal-nav-link">5. Transferts internationaux</a></li>
+          <li><a href="#conservation" class="legal-nav-link">6. Conservation</a></li>
+          <li><a href="#droits" class="legal-nav-link">7. Vos droits</a></li>
+          <li><a href="#securite" class="legal-nav-link">8. Sécurité</a></li>
+          <li><a href="#cookies" class="legal-nav-link">9. Cookies</a></li>
+          <li><a href="#mineurs" class="legal-nav-link">10. Mineurs</a></li>
+          <li><a href="#contact-rgpd" class="legal-nav-link">11. Contact &amp; réclamations</a></li>
+          <li><a href="#modifications" class="legal-nav-link">12. Modifications</a></li>
+        </ul>
+        <div style="margin-top:2rem;padding:1rem;background:var(--bnp-dark);border-radius:10px;color:#fff">
+          <p style="font-size:.78rem;font-weight:600;margin-bottom:.5rem">Exercer vos droits</p>
+          <p style="font-size:.75rem;color:#94A3B8;margin-bottom:.75rem">Accès, rectification, suppression de vos données.</p>
+          <a href="mailto:privacy@globaltrustbank.fr" style="display:inline-block;background:var(--bnp-gold);color:#000;font-size:.75rem;font-weight:700;padding:.4rem .9rem;border-radius:6px;text-decoration:none">privacy@globaltrustbank.fr</a>
+        </div>
+      </aside>
 
-      <h2>2. Base légale du traitement</h2>
-      <p>Nous traitons vos données sur les bases légales suivantes :</p>
-      <ul>
-        <li><strong>Contrat :</strong> pour l'exécution du contrat de services bancaires</li>
-        <li><strong>Obligation légale :</strong> conformité aux lois AML, KYC, RGPD</li>
-        <li><strong>Intérêt légitime :</strong> prévention de la fraude, sécurité, amélioration des services</li>
-        <li><strong>Consentement :</strong> pour le marketing et les communications optionnelles</li>
-      </ul>
+      <!-- MAIN CONTENT -->
+      <div class="legal-content">
 
-      <h2>3. Utilisation de vos données</h2>
-      <p>Vos données sont utilisées pour :</p>
-      <ul>
-        <li>Ouvrir et gérer votre compte bancaire</li>
-        <li>Traiter vos transactions et virements</li>
-        <li>Vérifier votre identité (Know Your Customer)</li>
-        <li>Prévenir la fraude et les activités illégales</li>
-        <li>Vous contacter pour des raisons de service ou de sécurité</li>
-        <li>Améliorer nos services et recommandations</li>
-        <li>Conformité réglementaire et obligations légales</li>
-        <li>Communications marketing (avec votre consentement)</li>
-      </ul>
+        <div class="highlight-box" style="margin-bottom:2rem">
+          <p>✅ <strong>Engagement GTB :</strong> Nous ne vendons jamais vos données personnelles à des tiers. Vous restez propriétaire de vos informations à tout moment.</p>
+        </div>
 
-      <div class="highlight-box">
-        <p>Nous ne vendons jamais vos données personnelles à des tiers. Vous êtes propriétaire de vos données.</p>
-      </div>
+        <section id="collecte" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">01</span>
+            <h2>Collecte de données</h2>
+          </div>
+          <p>Dans le cadre de la fourniture de nos services bancaires, Global Trust Bank collecte les catégories de données suivantes :</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:1.25rem 0">
+            <div class="info-box" style="margin:0">
+              <strong>🪪 Identité</strong>
+              <p style="font-size:.85rem;margin-top:.5rem;color:var(--gray600)">Nom, prénom, date et lieu de naissance, nationalité, pièce d'identité</p>
+            </div>
+            <div class="info-box" style="margin:0">
+              <strong>📬 Coordonnées</strong>
+              <p style="font-size:.85rem;margin-top:.5rem;color:var(--gray600)">Email, téléphone, adresse postale, pays de résidence</p>
+            </div>
+            <div class="info-box" style="margin:0">
+              <strong>💰 Données financières</strong>
+              <p style="font-size:.85rem;margin-top:.5rem;color:var(--gray600)">Comptes, transactions, virements, soldes, historique bancaire</p>
+            </div>
+            <div class="info-box" style="margin:0">
+              <strong>🖥️ Données techniques</strong>
+              <p style="font-size:.85rem;margin-top:.5rem;color:var(--gray600)">Adresse IP, navigateur, appareil, logs de connexion, cookies</p>
+            </div>
+            <div class="info-box" style="margin:0">
+              <strong>📋 Conformité (KYC)</strong>
+              <p style="font-size:.85rem;margin-top:.5rem;color:var(--gray600)">Justificatifs de revenus, preuves d'adresse, questionnaire de risque</p>
+            </div>
+            <div class="info-box" style="margin:0">
+              <strong>📍 Données comportementales</strong>
+              <p style="font-size:.85rem;margin-top:.5rem;color:var(--gray600)">Préférences, patterns de navigation, géolocalisation (avec accord)</p>
+            </div>
+          </div>
+        </section>
 
-      <h2>4. Partage de données</h2>
-      <p>Vos données peuvent être partagées avec :</p>
-      <ul>
-        <li><strong>Autorités compétentes :</strong> pour la conformité légale et réglementaire</li>
-        <li><strong>Prestataires :</strong> hébergement cloud, traitement de paiements, assurances</li>
-        <li><strong>Partenaires financiers :</strong> pour les services de crédit et épargne</li>
-        <li><strong>Tiers agrégateurs :</strong> uniquement avec votre consentement explicite</li>
-      </ul>
+        <section id="base-legale" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">02</span>
+            <h2>Base légale du traitement</h2>
+          </div>
+          <p>Conformément au RGPD, nous traitons vos données sur les bases légales suivantes :</p>
+          <ul>
+            <li><strong>Exécution du contrat (Art. 6.1.b) :</strong> gestion de votre compte, traitement des virements et services bancaires</li>
+            <li><strong>Obligation légale (Art. 6.1.c) :</strong> conformité aux lois LCB-FT, KYC, DSP2, réglementations bancaires françaises et européennes</li>
+            <li><strong>Intérêt légitime (Art. 6.1.f) :</strong> prévention de la fraude, amélioration des services, sécurité informatique</li>
+            <li><strong>Consentement (Art. 6.1.a) :</strong> communications marketing, cookies non-essentiels, partage avec partenaires commerciaux</li>
+          </ul>
+        </section>
 
-      <h2>5. Transferts internationaux</h2>
-      <p>Certaines de vos données peuvent être transférées vers d'autres pays, notamment pour :</p>
-      <ul>
-        <li>Hébergement dans plusieurs data centers (UE, USA, Asie)</li>
-        <li>Conformité aux obligations des pays où nous opérons</li>
-        <li>Partage avec nos partenaires internationaux</li>
-      </ul>
-      <p>Tous les transferts vers des pays non-UE bénéficient de garanties contractuelles conformes au RGPD (clauses contractuelles types, Adequacy Decision).</p>
+        <section id="utilisation" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">03</span>
+            <h2>Utilisation de vos données</h2>
+          </div>
+          <p>Vos données personnelles sont utilisées exclusivement pour :</p>
+          <ul>
+            <li>Ouvrir, gérer et maintenir votre compte bancaire</li>
+            <li>Traiter vos transactions, virements et paiements</li>
+            <li>Vérifier votre identité et prévenir la fraude (KYC / AML)</li>
+            <li>Vous informer sur l'état de votre compte et nos services</li>
+            <li>Respecter nos obligations réglementaires et légales</li>
+            <li>Améliorer la qualité et la pertinence de nos services</li>
+            <li>Vous proposer des offres personnalisées (avec votre consentement)</li>
+          </ul>
+          <div class="highlight-box">
+            <p>🚫 Vos données ne sont <strong>jamais</strong> vendues, louées ou cédées à des fins commerciales sans votre consentement explicite.</p>
+          </div>
+        </section>
 
-      <h2>6. Durée de conservation</h2>
-      <p>Vos données sont conservées :</p>
-      <ul>
-        <li><strong>Données d'identité :</strong> durée de la relation client + 5 ans</li>
-        <li><strong>Données de transactions :</strong> 10 ans (obligation légale bancaire)</li>
-        <li><strong>Données de marketing :</strong> jusqu'à désabonnement</li>
-        <li><strong>Logs de sécurité :</strong> 1 an (à titre de preuves)</li>
-      </ul>
+        <section id="partage" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">04</span>
+            <h2>Partage de données</h2>
+          </div>
+          <p>Dans des cas strictement encadrés, vos données peuvent être partagées avec :</p>
+          <ul>
+            <li><strong>Autorités compétentes :</strong> ACPR, AMF, Tracfin, services fiscaux — sur obligation légale uniquement</li>
+            <li><strong>Prestataires techniques :</strong> hébergement cloud (OVH), traitement de paiements (certifiés PCI DSS)</li>
+            <li><strong>Partenaires assurance / crédit :</strong> uniquement pour les services que vous avez souscrits</li>
+            <li><strong>Correspondants bancaires :</strong> pour l'exécution de virements internationaux (SWIFT)</li>
+            <li><strong>Tiers agrégateurs :</strong> uniquement avec votre consentement explicite et révocable (Open Banking DSP2)</li>
+          </ul>
+          <div class="info-box">
+            <p>Tous nos prestataires sont liés par des contrats de traitement de données (DPA) conformes au RGPD et soumis à des audits de sécurité réguliers.</p>
+          </div>
+        </section>
 
-      <h2>7. Vos droits</h2>
-      <p>Vous disposez des droits suivants en vertu du RGPD :</p>
-      <ul>
-        <li><strong>Droit d'accès :</strong> demander copie de vos données</li>
-        <li><strong>Droit de rectification :</strong> corriger des données inexactes</li>
-        <li><strong>Droit à l'effacement :</strong> demander suppression (sous conditions)</li>
-        <li><strong>Droit à la limitation :</strong> restreindre l'utilisation de vos données</li>
-        <li><strong>Droit à la portabilité :</strong> recevoir vos données dans un format utilisable</li>
-        <li><strong>Droit d'opposition :</strong> refuser certains traitements</li>
-      </ul>
+        <section id="transferts" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">05</span>
+            <h2>Transferts internationaux</h2>
+          </div>
+          <p>Certaines de vos données peuvent être traitées hors de l'Union Européenne, notamment pour :</p>
+          <ul>
+            <li>L'hébergement dans des data centers multi-régions (UE prioritaire, USA, Asie en secours)</li>
+            <li>La conformité aux obligations réglementaires des pays où nous opérons</li>
+            <li>Les échanges avec nos correspondants bancaires internationaux</li>
+          </ul>
+          <p>Tout transfert hors UE est couvert par des <strong>Clauses Contractuelles Types (CCT)</strong> approuvées par la Commission Européenne, ou bénéficie d'une décision d'adéquation de la Commission.</p>
+        </section>
 
-      <p>Pour exercer ces droits, contactez <a href="mailto:privacy@globaltrustbank.fr" style="color: var(--bnp-emerald); text-decoration: none;">privacy@globaltrustbank.fr</a></p>
+        <section id="conservation" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">06</span>
+            <h2>Durée de conservation</h2>
+          </div>
+          <p>Vos données sont conservées uniquement le temps nécessaire aux finalités pour lesquelles elles ont été collectées :</p>
+          <table class="cookie-table">
+            <thead>
+              <tr><th>Type de données</th><th>Durée de conservation</th><th>Base légale</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Données d'identité client</td><td>Durée de la relation + 5 ans</td><td>Obligation légale</td></tr>
+              <tr><td>Historique de transactions</td><td>10 ans</td><td>Code monétaire et financier</td></tr>
+              <tr><td>Documents KYC</td><td>5 ans après clôture du compte</td><td>LCB-FT</td></tr>
+              <tr><td>Logs de sécurité / connexion</td><td>12 mois</td><td>Intérêt légitime</td></tr>
+              <tr><td>Données marketing</td><td>Jusqu'à désabonnement</td><td>Consentement</td></tr>
+              <tr><td>Cookies analytiques</td><td>13 mois maximum</td><td>Consentement</td></tr>
+            </tbody>
+          </table>
+        </section>
 
-      <h2>8. Sécurité</h2>
-      <p>Vos données sont protégées par :</p>
-      <ul>
-        <li>Chiffrement AES-256 et SSL/TLS</li>
-        <li>Authentification multifacteur</li>
-        <li>Contrôle d'accès basé sur les rôles</li>
-        <li>Audits de sécurité réguliers</li>
-        <li>Conformité PCI DSS, ISO 27001, SOC 2</li>
-      </ul>
+        <section id="droits" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">07</span>
+            <h2>Vos droits RGPD</h2>
+          </div>
+          <p>En tant que personne concernée, vous disposez des droits suivants que vous pouvez exercer à tout moment :</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1.25rem 0">
+            <div class="security-badge">
+              <strong>👁️ Droit d'accès</strong>
+              <p style="font-size:.8rem;color:var(--gray600);margin:.4rem 0 0">Obtenir une copie de toutes vos données personnelles que nous détenons.</p>
+            </div>
+            <div class="security-badge">
+              <strong>✏️ Droit de rectification</strong>
+              <p style="font-size:.8rem;color:var(--gray600);margin:.4rem 0 0">Corriger ou mettre à jour des données inexactes ou incomplètes.</p>
+            </div>
+            <div class="security-badge">
+              <strong>🗑️ Droit à l'effacement</strong>
+              <p style="font-size:.8rem;color:var(--gray600);margin:.4rem 0 0">Demander la suppression de vos données (sous réserve des obligations légales).</p>
+            </div>
+            <div class="security-badge">
+              <strong>⏸️ Droit à la limitation</strong>
+              <p style="font-size:.8rem;color:var(--gray600);margin:.4rem 0 0">Restreindre le traitement de vos données dans certaines circonstances.</p>
+            </div>
+            <div class="security-badge">
+              <strong>📦 Droit à la portabilité</strong>
+              <p style="font-size:.8rem;color:var(--gray600);margin:.4rem 0 0">Recevoir vos données dans un format structuré et lisible par machine.</p>
+            </div>
+            <div class="security-badge">
+              <strong>🚫 Droit d'opposition</strong>
+              <p style="font-size:.8rem;color:var(--gray600);margin:.4rem 0 0">Refuser le traitement pour des raisons de marketing ou d'intérêt légitime.</p>
+            </div>
+          </div>
+          <div class="info-box">
+            <p>Pour exercer vos droits, envoyez votre demande à <a href="mailto:privacy@globaltrustbank.fr" style="color:var(--bnp-emerald);text-decoration:none;font-weight:600">privacy@globaltrustbank.fr</a> avec une copie de votre pièce d'identité. Délai de réponse : <strong>30 jours maximum</strong>.</p>
+          </div>
+        </section>
 
-      <h2>9. Cookies et suivi</h2>
-      <p>Nous utilisons des cookies pour :</p>
-      <ul>
-        <li><strong>Cookies essentiels :</strong> gestion de session, sécurité</li>
-        <li><strong>Cookies analytiques :</strong> amélioration des services (Google Analytics)</li>
-        <li><strong>Cookies marketing :</strong> recommandations personnalisées (avec consentement)</li>
-      </ul>
-      <p>Consultez notre <a href="cookies.html" style="color: var(--bnp-emerald); text-decoration: none;">politique des cookies</a> pour plus de détails.</p>
+        <section id="securite" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">08</span>
+            <h2>Sécurité de vos données</h2>
+          </div>
+          <p>Global Trust Bank met en œuvre des mesures techniques et organisationnelles de haut niveau pour protéger vos données :</p>
+          <ul>
+            <li><strong>Chiffrement :</strong> AES-256 pour les données au repos, TLS 1.3 pour les données en transit</li>
+            <li><strong>Authentification :</strong> double facteur (2FA) obligatoire, tokens CSRF, sessions sécurisées</li>
+            <li><strong>Contrôle d'accès :</strong> principe du moindre privilège, accès basé sur les rôles (RBAC)</li>
+            <li><strong>Surveillance :</strong> détection d'intrusion (IDS), journalisation des accès, alertes en temps réel</li>
+            <li><strong>Audits :</strong> tests de pénétration annuels, conformité PCI DSS, ISO 27001, SOC 2 Type II</li>
+            <li><strong>Plan de réponse :</strong> procédure de notification des violations sous 72h (Art. 33 RGPD)</li>
+          </ul>
+        </section>
 
-      <h2>10. Contact et réclamations</h2>
-      <p>Pour toute question concernant notre politique de confidentialité ou pour exercer vos droits :</p>
-      <ul>
-        <li>Email : <a href="mailto:privacy@globaltrustbank.fr" style="color: var(--bnp-emerald); text-decoration: none;">privacy@globaltrustbank.fr</a></li>
-        <li>Adresse : 123 Avenue des Champs-Élysées, 75008 Paris, France</li>
-        <li>Téléphone : +33 1 23 45 67 89</li>
-      </ul>
+        <section id="cookies" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">09</span>
+            <h2>Cookies et traceurs</h2>
+          </div>
+          <p>Notre site utilise des cookies pour fonctionner et améliorer votre expérience :</p>
+          <ul>
+            <li><strong>Cookies essentiels :</strong> gestion de session, CSRF, sécurité — toujours actifs, sans consentement requis</li>
+            <li><strong>Cookies analytiques :</strong> mesure d'audience anonymisée (statistiques de visite) — avec consentement</li>
+            <li><strong>Cookies de préférences :</strong> mémorisation de vos choix (langue, thème) — avec consentement</li>
+            <li><strong>Cookies marketing :</strong> recommandations personnalisées — avec consentement explicite</li>
+          </ul>
+          <p>Vous pouvez gérer vos préférences cookies à tout moment depuis notre <a href="cookies.html" style="color:var(--bnp-emerald);text-decoration:none;font-weight:600">page de gestion des cookies</a>.</p>
+        </section>
 
-      <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--gray100); font-size: 0.85rem; color: var(--gray600);">
-        Si vous n'êtes pas satisfait de notre réponse, vous pouvez également vous adresser à la <strong>CNIL</strong> (Commission Nationale Informatique et Libertés) : www.cnil.fr
-      </p>
+        <section id="mineurs" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">10</span>
+            <h2>Protection des mineurs</h2>
+          </div>
+          <p>Les services de Global Trust Bank sont destinés aux personnes majeures (18 ans et plus). Nous ne collectons pas sciemment de données personnelles concernant des mineurs.</p>
+          <p>Si vous êtes parent ou tuteur légal et que vous pensez que votre enfant nous a fourni des informations personnelles, contactez-nous immédiatement à <a href="mailto:privacy@globaltrustbank.fr" style="color:var(--bnp-emerald);text-decoration:none">privacy@globaltrustbank.fr</a> afin que nous puissions les supprimer.</p>
+          <p>Des comptes juniors peuvent être ouverts pour les 12–17 ans avec l'accord et la co-gestion d'un responsable légal.</p>
+        </section>
 
-    </div>
+        <section id="contact-rgpd" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">11</span>
+            <h2>Contact et réclamations</h2>
+          </div>
+          <p>Pour toute question relative à la protection de vos données personnelles :</p>
+          <div class="info-box">
+            <p>
+              <strong>Délégué à la Protection des Données (DPO) :</strong><br>
+              <a href="mailto:privacy@globaltrustbank.fr" style="color:var(--bnp-emerald);text-decoration:none">privacy@globaltrustbank.fr</a><br>
+              Global Trust Bank — DPO, 123 Avenue des Champs-Élysées, 75008 Paris
+            </p>
+          </div>
+          <p>Si vous estimez que le traitement de vos données n'est pas conforme à la réglementation, vous pouvez saisir la <strong>CNIL</strong> (Commission Nationale Informatique et Libertés) :</p>
+          <ul>
+            <li>Site internet : <strong>www.cnil.fr</strong></li>
+            <li>Adresse : 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07</li>
+            <li>Téléphone : +33 1 53 73 22 22</li>
+          </ul>
+        </section>
+
+        <section id="modifications" class="legal-section">
+          <div class="legal-section-header">
+            <span class="legal-section-num">12</span>
+            <h2>Modifications de la politique</h2>
+          </div>
+          <p>Global Trust Bank peut modifier la présente politique de confidentialité pour refléter des changements législatifs, réglementaires ou opérationnels. En cas de modification substantielle, nous vous en informerons par email ou notification dans l'application au moins 30 jours avant l'entrée en vigueur.</p>
+          <p>La poursuite de l'utilisation de nos services après notification vaut acceptation des nouvelles conditions.</p>
+          <div class="info-box">
+            <p><strong>Version actuelle :</strong> 2.0<br>
+            <strong>Entrée en vigueur :</strong> 15 décembre 2024<br>
+            <strong>Contact DPO :</strong> <a href="mailto:privacy@globaltrustbank.fr" style="color:var(--bnp-emerald);text-decoration:none">privacy@globaltrustbank.fr</a></p>
+          </div>
+        </section>
+
+      </div><!-- /.legal-content -->
+    </div><!-- /.legal-layout -->
   </div>
 </section>
 
@@ -227,51 +379,49 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('elevated', window.scrollY > 20);
 });
 
+// Reveal animation
 const reveals = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach((el, i) => { if (!el.style.transitionDelay) el.style.transitionDelay = (i % 4) * 0.08 + 's'; revealObs.observe(el); });
+
+// Sidebar active link on scroll
+const sections = document.querySelectorAll('.legal-section');
+const navLinks = document.querySelectorAll('.legal-nav-link');
+const scrollObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector('.legal-nav-link[href="#' + e.target.id + '"]');
+      if (link) link.classList.add('active');
     }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.4 });
+sections.forEach(s => scrollObs.observe(s));
 
-reveals.forEach((el, index) => {
-  if (!el.style.transitionDelay) {
-    el.style.transitionDelay = (index % 4) * 0.08 + 's';
-  }
-  revealObserver.observe(el);
-});
-
+// Mobile menu
 const ham = document.getElementById('ham');
 const mobileMenu = document.createElement('div');
 mobileMenu.className = 'mobile-menu';
 mobileMenu.innerHTML = `
   <a href="index.html">Accueil</a>
   <a href="about.html">À propos</a>
-  <a href="#">Comptes</a>
-  <a href="#">Crédits</a>
+  <a href="../produits-bancaires/comptes/index.html">Comptes</a>
+  <a href="../produits-bancaires/credits/index.html">Crédits</a>
   <a href="contact.html">Contact</a>
   <a href="../authentification/signup.php" class="mobile-cta">Ouvrir un compte</a>
 `;
-
 document.body.appendChild(mobileMenu);
 let menuOpen = false;
-
 ham?.addEventListener('click', () => {
   menuOpen = !menuOpen;
   ham.classList.toggle('active', menuOpen);
   mobileMenu.classList.toggle('active', menuOpen);
 });
-
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-  link.addEventListener('click', () => {
-    menuOpen = false;
-    ham.classList.remove('active');
-    mobileMenu.classList.remove('active');
-  });
-});
+document.querySelectorAll('.mobile-menu a').forEach(l => l.addEventListener('click', () => {
+  menuOpen = false; ham.classList.remove('active'); mobileMenu.classList.remove('active');
+}));
 </script>
 </body>
 </html>
