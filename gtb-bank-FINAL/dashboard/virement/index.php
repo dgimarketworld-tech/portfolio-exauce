@@ -876,6 +876,7 @@ window.initChips=function(cid,fn){document.getElementById(cid)?.querySelectorAll
 document.querySelectorAll('.toggle').forEach(t=>{t.addEventListener('click',()=>{t.classList.toggle('on');showToast((t.dataset.label||'Option')+(t.classList.contains('on')?' activé':' désactivé'),t.classList.contains('on')?'success':'info');});});
 })();
 </script>
+<script src="../app-nav.js"></script>
 </body></html>
 <script>
 function updateSolde(sel){const o=sel.options[sel.selectedIndex];const s=o.dataset.solde;document.getElementById('solde_disp').textContent=s?'Solde disponible : '+parseFloat(s).toLocaleString('fr-FR',{style:'currency',currency:'EUR'}):'';  }

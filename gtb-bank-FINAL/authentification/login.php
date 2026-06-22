@@ -677,5 +677,6 @@ document.getElementById('eye-btn').addEventListener('click', function () {
 GTB.auth.initOTP();
 </script>
 
+<script src="../pages-publiques/app-nav.js"></script>
 </body>
 </html>

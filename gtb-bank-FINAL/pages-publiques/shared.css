@@ -477,3 +477,59 @@ textarea.input-field{min-height:130px;resize:vertical}
   /* Sécurité */
   .security-badge{margin:.5rem 0}
 }
+
+/* ============================================================
+   BOTTOM NAV PUBLIC (injecté via app-nav.js)
+   ============================================================ */
+.gtb-pub-bottom-nav{
+  display:none;
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:1001;
+  background:rgba(5,11,20,.97);
+  backdrop-filter:blur(16px) saturate(1.8);
+  border-top:1px solid rgba(255,255,255,.08);
+  box-shadow:0 -2px 24px rgba(0,0,0,.2);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.gtb-pub-bottom-nav__inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  height:60px;
+  padding:0 .25rem;
+}
+.gtb-pbn-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  flex:1;
+  padding:.5rem .2rem;
+  text-decoration:none;
+  color:rgba(255,255,255,.35);
+  font-family:'DM Sans',sans-serif;
+  border-radius:10px;
+  transition:color .2s;
+  min-height:52px;
+}
+.gtb-pbn-item.active{color:#D4AF37}
+.gtb-pbn-icon{
+  font-size:1.2rem;
+  line-height:1;
+  display:block;
+}
+.gtb-pbn-label{
+  font-size:.52rem;
+  font-weight:600;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  line-height:1;
+}
+
+@media(max-width:768px){
+  .gtb-pub-bottom-nav{display:block}
+  /* Cacher le footer mobile bas (évite double espace) */
+  .bnp-footer{padding-bottom:calc(68px + env(safe-area-inset-bottom))}
+}

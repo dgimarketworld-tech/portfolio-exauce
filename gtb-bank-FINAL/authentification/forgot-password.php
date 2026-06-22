@@ -83,5 +83,6 @@ function showMsg(text, type) {
   msg.style.display = 'block';
 }
 </script>
+<script src="../pages-publiques/app-nav.js"></script>
 </body>
 </html>

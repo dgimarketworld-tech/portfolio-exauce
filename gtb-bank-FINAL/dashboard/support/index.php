@@ -808,4 +808,5 @@ window.confirmDlg=function(msg,onOk,type){const clr={danger:'var(--red)',warning
 window.initChips=function(cid,fn){document.getElementById(cid)?.querySelectorAll('[data-filter]').forEach(c=>{c.addEventListener('click',()=>{document.getElementById(cid).querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));c.classList.add('active');fn(c.dataset.filter);});});};
 document.querySelectorAll('.toggle').forEach(t=>{t.addEventListener('click',()=>{t.classList.toggle('on');showToast((t.dataset.label||'Option')+(t.classList.contains('on')?' activé':' désactivé'),t.classList.contains('on')?'success':'info');});});
 })();
-</script></body></html>
+</script><script src="../app-nav.js"></script>
+</body></html>

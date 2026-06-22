@@ -850,7 +850,8 @@ window.closeModal=function(id){const m=document.getElementById(id);if(m){m.class
 document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o){o.classList.remove('open');document.body.style.overflow='';}}));
 document.querySelectorAll('.toggle').forEach(t=>{t.addEventListener('click',()=>{t.classList.toggle('on');showToast((t.dataset.label||'Option')+(t.classList.contains('on')?' activé':' désactivé'),t.classList.contains('on')?'success':'info');});});
 })();
-</script></body></html>
+</script><script src="../app-nav.js"></script>
+</body></html>
 <script>
 const RATES={immobilier:1.9,auto:3.2,travaux:3.8,consommation:4.5};
 let _rate=0;

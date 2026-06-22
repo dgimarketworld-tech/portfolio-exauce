@@ -867,7 +867,8 @@ window.closeModal=function(id){const m=document.getElementById(id);if(m){m.class
 document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o){o.classList.remove('open');document.body.style.overflow='';}}));
 document.querySelectorAll('.toggle').forEach(t=>{t.addEventListener('click',()=>{t.classList.toggle('on');showToast((t.dataset.label||'Option')+(t.classList.contains('on')?' activé':' désactivé'),t.classList.contains('on')?'success':'info');});});
 })();
-</script></body></html>
+</script><script src="../app-nav.js"></script>
+</body></html>
 <style>
 .pnav-btn{display:flex;align-items:center;gap:.5rem;width:100%;padding:.62rem .85rem;border-radius:var(--r-md);font-size:.82rem;font-weight:500;color:var(--gray600);background:none;border:none;cursor:pointer;text-align:left;transition:.2s;margin-bottom:.15rem}
 .pnav-btn:hover{background:var(--gray50);color:var(--bnp-dark)}.pnav-btn.active{background:rgba(212,175,55,.1);color:var(--bnp-dark);font-weight:700}

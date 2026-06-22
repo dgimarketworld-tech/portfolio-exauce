@@ -31,7 +31,8 @@ tbody td{padding:.45rem .75rem;border-bottom:1px solid #eee;font-size:.82rem}
 <?php endforeach;?>
 </tbody></table>
 <div class="footer">Global Trust Bank — Document non contractuel généré automatiquement.</div>
-<script>window.print();</script></body></html><?php
+<script>window.print();</script><script src="app-nav.js"></script>
+</body></html><?php
     }
     exit;
 }
@@ -828,4 +829,5 @@ window.closeModal=function(id){const m=document.getElementById(id);if(m){m.class
 document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o){o.classList.remove('open');document.body.style.overflow='';}}));
 document.querySelectorAll('.toggle').forEach(t=>{t.addEventListener('click',()=>{t.classList.toggle('on');showToast((t.dataset.label||'Option')+(t.classList.contains('on')?' activé':' désactivé'),t.classList.contains('on')?'success':'info');});});
 })();
-</script></body></html>
+</script><script src="app-nav.js"></script>
+</body></html>

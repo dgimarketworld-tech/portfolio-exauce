@@ -635,5 +635,6 @@ const GTB = {
   }
 };
 </script>
+<script src="../pages-publiques/app-nav.js"></script>
 </body>
 </html>

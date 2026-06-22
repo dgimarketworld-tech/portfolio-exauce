@@ -864,5 +864,6 @@ document.querySelectorAll('.toggle').forEach(t=>{t.addEventListener('click',()=>
 })();
 
 </script>
+<script src="app-nav.js"></script>
 </body>
 </html>
