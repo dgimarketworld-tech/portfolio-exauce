@@ -707,6 +707,194 @@ a, button, input, select, textarea,
   }
 }
 
+/* ============================================================
+   GTB ICON SYSTEM — Micro-interactions v1.0
+   Classes créées :
+     .gtb-icon          Base SVG (line-art, currentColor, 1.5px)
+     .gtb-icon-wrap     Conteneur parent avec hover context
+     .gtb-icon-bounce   Rebond organique au hover  ↕
+     .gtb-icon-spin     Rotation douce au hover    ↻
+     .gtb-icon-pulse    Battement continu          ♡
+     .gtb-icon-shake    Secousse d'alerte          ≈
+     .gtb-icon-pop      Scale pop au hover         ◉
+     .gtb-icon-glow     Halo doré au hover         ✦
+   ============================================================ */
+
+/* ── Base icône SVG ─────────────────────────────────────────── */
+.gtb-icon {
+  display: inline-block;
+  vertical-align: -0.15em;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  transition:
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color     0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter    0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity   0.22s ease;
+}
+
+/* ── Conteneur parent hover ─────────────────────────────────── */
+.gtb-icon-wrap {
+  transition: color 0.22s ease;
+}
+.gtb-icon-wrap:hover > .gtb-icon,
+.gtb-icon-wrap:focus-within > .gtb-icon {
+  color: var(--ds-gold, #D4AF37);
+}
+
+/* ── .gtb-icon-bounce — rebond ↕ ───────────────────────────── */
+.gtb-icon-bounce {
+  transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.gtb-icon-wrap:hover .gtb-icon-bounce,
+a:hover .gtb-icon-bounce,
+button:hover .gtb-icon-bounce,
+.btn:hover .gtb-icon-bounce {
+  transform: translateY(-3px) scale(1.12);
+}
+.gtb-icon-wrap:active .gtb-icon-bounce,
+a:active .gtb-icon-bounce,
+button:active .gtb-icon-bounce,
+.btn:active .gtb-icon-bounce {
+  transform: translateY(1px) scale(0.94);
+  transition-duration: 0.12s;
+}
+
+/* ── .gtb-icon-spin — rotation ↻ ───────────────────────────── */
+.gtb-icon-spin {
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.gtb-icon-wrap:hover .gtb-icon-spin {
+  transform: rotate(15deg) scale(1.1);
+}
+.gtb-icon-wrap:active .gtb-icon-spin {
+  transform: rotate(-10deg) scale(0.95);
+  transition-duration: 0.15s;
+}
+
+/* ── .gtb-icon-pulse — battement continu ♡ ─────────────────── */
+@keyframes gtb-pulse {
+  0%, 100% { transform: scale(1);    opacity: 1; }
+  50%       { transform: scale(1.18); opacity: 0.8; }
+}
+.gtb-icon-pulse {
+  animation: gtb-pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.gtb-icon-wrap:hover .gtb-icon-pulse {
+  animation-duration: 0.9s;
+}
+
+/* ── .gtb-icon-shake — alerte ≈ ────────────────────────────── */
+@keyframes gtb-shake {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  15%       { transform: translateX(-3px) rotate(-4deg); }
+  30%       { transform: translateX(3px)  rotate(4deg); }
+  45%       { transform: translateX(-2px) rotate(-2deg); }
+  60%       { transform: translateX(2px)  rotate(2deg); }
+  75%       { transform: translateX(-1px) rotate(-1deg); }
+}
+.gtb-icon-shake {
+  animation: gtb-shake 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+.gtb-icon-shake:hover {
+  animation-iteration-count: infinite;
+  animation-duration: 0.7s;
+}
+
+/* ── .gtb-icon-pop — scale pop ◉ ───────────────────────────── */
+.gtb-icon-pop {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center;
+}
+.gtb-icon-wrap:hover .gtb-icon-pop,
+.feat-card:hover .gtb-icon-pop,
+.saving-card:hover .gtb-icon-pop,
+.rate-card:hover .gtb-icon-pop {
+  transform: scale(1.22) rotate(-4deg);
+}
+.gtb-icon-wrap:active .gtb-icon-pop {
+  transform: scale(0.92);
+  transition-duration: 0.1s;
+}
+
+/* ── .gtb-icon-glow — halo doré ✦ ─────────────────────────── */
+@keyframes gtb-glow {
+  0%, 100% { filter: drop-shadow(0 0 0px rgba(212,175,55,0)); }
+  50%       { filter: drop-shadow(0 0 6px rgba(212,175,55,0.7)); }
+}
+.gtb-icon-glow {
+  animation: gtb-glow 3s ease-in-out infinite;
+}
+.gtb-icon-wrap:hover .gtb-icon-glow {
+  animation-duration: 0.8s;
+  filter: drop-shadow(0 0 8px rgba(212,175,55,0.9));
+}
+
+/* ── Icône dans les feat-card / step ────────────────────────── */
+.feat-icon,
+.step-num {
+  transition:
+    transform   0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow  0.28s ease,
+    background  0.28s ease;
+}
+.feat-card:hover .feat-icon {
+  transform: scale(1.15) rotate(-5deg);
+}
+.step:hover .step-num {
+  transform: scale(1.12);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35);
+}
+
+/* ── Icône dans les boutons ─────────────────────────────────── */
+.btn .gtb-icon,
+a .gtb-icon {
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.btn:hover .gtb-icon,
+a:hover .gtb-icon {
+  transform: translateX(3px);
+}
+.btn:active .gtb-icon,
+a:active .gtb-icon {
+  transform: translateX(-1px);
+  transition-duration: 0.1s;
+}
+
+/* ── Icône dans les listes footer ───────────────────────────── */
+.footer-col li a .gtb-icon {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity   0.22s ease,
+    transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.footer-col li a:hover .gtb-icon {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Entrée staggered pour grilles d'icônes ─────────────────── */
+@keyframes gtb-icon-enter {
+  from { opacity: 0; transform: translateY(8px) scale(0.8); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.feat-card.visible .gtb-icon,
+.step.visible .gtb-icon {
+  animation: gtb-icon-enter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.feat-card:nth-child(1).visible .gtb-icon { animation-delay: 0.05s; }
+.feat-card:nth-child(2).visible .gtb-icon { animation-delay: 0.12s; }
+.feat-card:nth-child(3).visible .gtb-icon { animation-delay: 0.19s; }
+.feat-card:nth-child(4).visible .gtb-icon { animation-delay: 0.26s; }
+.feat-card:nth-child(5).visible .gtb-icon { animation-delay: 0.33s; }
+.feat-card:nth-child(6).visible .gtb-icon { animation-delay: 0.40s; }
+.step:nth-child(1).visible .gtb-icon { animation-delay: 0.08s; }
+.step:nth-child(2).visible .gtb-icon { animation-delay: 0.16s; }
+.step:nth-child(3).visible .gtb-icon { animation-delay: 0.24s; }
+.step:nth-child(4).visible .gtb-icon { animation-delay: 0.32s; }
+
 /* ── Prefers reduced motion ─────────────────────────────────── */
 @media(prefers-reduced-motion:reduce) {
   *, *::before, *::after {
