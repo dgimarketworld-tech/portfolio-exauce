@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Livret d'épargne GTB — Taux boosté à 4,5%, disponibilité immédiate, sans frais ni plafond de versement."/>
+<title>Livret d'Épargne — Global Trust Bank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--green:#0D1B2A;--dark:#091520;--deeper:#050B14;--gold:#D4AF37;--mint:#EAD9B5;--white:#fff;--sand:#F5F7FA;--g100:#E9ECEF;--g200:#DEE2E6;--g400:#ADB5BD;--g600:#6C757D;--g800:#343A40;--success:#22C55E;--r-sm:8px;--r-md:14px;--r-lg:24px;--r-xl:36px;--r-full:999px;--sh-sm:0 4px 12px rgba(0,0,0,.06);--sh-md:0 12px 32px rgba(0,0,0,.08);--sh-lg:0 30px 80px rgba(0,0,0,.14);--ease:cubic-bezier(.25,.46,.45,.94)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:white;color:var(--g800);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}button{font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:none}img{display:block;max-width:100%;object-fit:cover}
+.container{width:min(1200px,calc(100% - 2.5rem));margin:auto}
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;transition:.35s var(--ease)}
+.nav.scrolled{background:rgba(5,11,20,.94);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(255,255,255,.05)}
+.logo{display:flex;align-items:center;gap:.8rem}
+.logo-mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--gold),#f5d778);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:800;color:var(--deeper)}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-text strong{color:white;font-size:.92rem;font-family:'Sora',sans-serif}
+.logo-text span{font-size:.62rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.12em}
+.nav-links{display:flex;align-items:center;gap:.5rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.65);font-size:.85rem;font-weight:500;padding:.65rem 1rem;border-radius:999px;transition:.25s}
+.nav-links a:hover,.nav-links a.active{background:rgba(255,255,255,.08);color:var(--gold)}
+.nav-actions{display:flex;align-items:center;gap:.8rem}
+.btn{border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:.9rem 1.5rem;border-radius:999px;font-weight:700;font-size:.85rem;transition:.3s var(--ease)}
+.btn-primary{background:linear-gradient(135deg,var(--gold),#f5d778);color:var(--deeper);box-shadow:0 12px 30px rgba(212,175,55,.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(212,175,55,.35)}
+.btn-ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:white}
+.btn-ghost:hover{background:rgba(255,255,255,.14)}
+.btn-lg{padding:1rem 2rem;font-size:.95rem}
+.ham-btn{display:none;flex-direction:column;gap:5px;padding:7px;background:rgba(255,255,255,.08);border-radius:8px;border:1px solid rgba(255,255,255,.12)}
+.ham-btn span{display:block;width:20px;height:2px;background:rgba(255,255,255,.85);border-radius:2px;transition:.3s}
+.mobile-menu{position:fixed;inset:0;z-index:998;background:var(--deeper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;opacity:0;visibility:hidden;transition:.35s}
+.mobile-menu.active{opacity:1;visibility:visible}
+.mobile-menu a{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;color:rgba(255,255,255,.7)}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-cta{background:linear-gradient(135deg,var(--gold),rgba(212,175,55,.85))!important;color:var(--deeper)!important;padding:.9rem 2.4rem!important;border-radius:999px;margin-top:.5rem}
+
+/* HERO */
+.hero{min-height:100vh;background:radial-gradient(circle at top right,rgba(212,175,55,.15),transparent 30%),radial-gradient(circle at bottom left,rgba(34,197,94,.08),transparent 30%),var(--deeper);display:grid;grid-template-columns:1fr 1fr;align-items:center;padding-top:72px;overflow:hidden;position:relative}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(circle at center,black 45%,transparent 100%)}
+.hero-content{position:relative;z-index:2;padding:4rem 4rem 4rem 5rem}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);padding:.45rem .95rem;border-radius:999px;margin-bottom:1.5rem}
+.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.eyebrow span:last-child{color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.8rem,4.5vw,4.2rem);line-height:1.05;color:white;margin-bottom:1.25rem;letter-spacing:-.04em}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero p{max-width:520px;color:rgba(255,255,255,.62);line-height:1.8;margin-bottom:2rem;font-size:1rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.rate-badge{display:inline-flex;align-items:center;gap:1rem;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.25);border-radius:16px;padding:1rem 1.5rem;margin-bottom:2rem}
+.rate-val{font-family:'Sora',sans-serif;font-weight:800;font-size:2.5rem;color:var(--gold);line-height:1}
+.rate-info .r1{font-size:.75rem;font-weight:700;color:rgba(255,255,255,.7)}
+.rate-info .r2{font-size:.68rem;color:rgba(255,255,255,.35);margin-top:.15rem}
+.hero-visual{display:flex;align-items:center;justify-content:center;padding:3rem}
+
+/* App card */
+.livret-card{width:340px;background:linear-gradient(160deg,#0D1B2A,#1a2e40);border-radius:28px;padding:2rem;border:1px solid rgba(255,255,255,.1);box-shadow:var(--sh-lg);animation:float 5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.lc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem}
+.lc-type{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4)}
+.lc-badge{background:rgba(34,197,94,.15);color:#22C55E;font-size:.65rem;font-weight:700;padding:.2rem .65rem;border-radius:99px}
+.lc-balance-label{font-size:.72rem;color:rgba(255,255,255,.4);margin-bottom:.3rem}
+.lc-balance{font-family:'Sora',sans-serif;font-weight:800;font-size:2.2rem;color:white;margin-bottom:.4rem}
+.lc-interest{font-size:.8rem;color:#22C55E;font-weight:600;margin-bottom:1.5rem}
+.lc-bar-wrap{background:rgba(255,255,255,.08);border-radius:99px;height:6px;overflow:hidden;margin-bottom:.5rem}
+.lc-bar{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gold),#22C55E);width:72%}
+.lc-bar-info{display:flex;justify-content:space-between;font-size:.68rem;color:rgba(255,255,255,.35)}
+.lc-divider{height:1px;background:rgba(255,255,255,.07);margin:1.25rem 0}
+.lc-row{display:flex;justify-content:space-between;align-items:center;font-size:.78rem}
+.lc-row .key{color:rgba(255,255,255,.4)}
+.lc-row .val{font-family:'Sora',sans-serif;font-weight:700;color:white}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin:3rem 0}
+.feat-card{background:white;border:1px solid var(--g100);border-radius:20px;padding:1.75rem;text-align:center;box-shadow:var(--sh-sm);transition:.3s}
+.feat-card:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
+.feat-icon{font-size:1.8rem;margin-bottom:1rem}
+.feat-card h3{font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;color:var(--green);margin-bottom:.4rem}
+.feat-card p{font-size:.8rem;color:var(--g600);line-height:1.65}
+
+/* COMPARE TABLE */
+.compare-table{width:100%;border-collapse:collapse;border-radius:16px;overflow:hidden;border:1px solid var(--g100)}
+.compare-table th{padding:.85rem 1.25rem;background:var(--deeper);color:white;font-family:'Sora',sans-serif;font-size:.75rem;font-weight:700;text-align:left}
+.compare-table th:not(:first-child){text-align:center}
+.compare-table td{padding:.85rem 1.25rem;border-bottom:1px solid var(--g100);font-size:.85rem;color:var(--g800)}
+.compare-table td:not(:first-child){text-align:center;font-family:'Sora',sans-serif;font-weight:700;color:var(--green)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table .highlight td{background:rgba(212,175,55,.04)}
+.check{color:#22C55E;font-size:1.1rem}
+.cross{color:var(--g400);font-size:1.1rem}
+
+/* CTA */
+.cta-section{background:linear-gradient(145deg,var(--deeper),#0a1f2e);padding:5rem 0;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(212,175,55,.1),transparent)}
+.cta-section h2{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3rem);color:white;margin-bottom:1rem;position:relative;z-index:1}
+.cta-section h2 em{color:var(--gold);font-style:italic}
+.cta-section p{color:rgba(255,255,255,.55);font-size:1rem;margin-bottom:2rem;position:relative;z-index:1}
+
+/* FOOTER */
+.footer{background:var(--deeper);padding:4rem 0 2rem;border-top:1px solid rgba(255,255,255,.05)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-brand .footer-logo-mark{width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,var(--gold),rgba(212,175,55,.75));display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:800;font-size:.8rem;color:var(--deeper)}
+.footer-logo-row{display:flex;align-items:center;gap:.7rem;margin-bottom:.75rem}
+.footer-logo-text{font-family:'Sora',sans-serif;font-weight:700;font-size:.92rem;color:white}
+.footer-tagline{font-size:.82rem;color:rgba(255,255,255,.35);line-height:1.65;max-width:260px}
+.footer-col h4{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.footer-col ul a{font-size:.82rem;color:rgba(255,255,255,.45);transition:.2s}
+.footer-col ul a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:.7rem;color:rgba(255,255,255,.25)}
+.footer-legal{display:flex;gap:1.4rem;flex-wrap:wrap}
+.footer-legal a{font-size:.7rem;color:rgba(255,255,255,.25);transition:.2s}
+.footer-legal a:hover{color:rgba(255,255,255,.55)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:1024px){.hero{grid-template-columns:1fr}.hero-visual{display:none}.hero-content{padding:4rem 2rem}}
+@media(max-width:768px){.features-grid{grid-template-columns:1fr 1fr}.nav-links,.nav-actions{display:none}.ham-btn{display:flex}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.features-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="../../assets/gtb-ds.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="../../pages-publiques/index.html" class="logo">
+    <div class="logo-mark">GTB</div>
+    <div class="logo-text"><strong>Global Trust Bank</strong><span>Banque digitale</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../../pages-publiques/index.html">Accueil</a></li>
+    <li><a href="../../pages-publiques/about.html">À propos</a></li>
+    <li><a href="../comptes/index.html">Comptes</a></li>
+    <li><a href="index.html" class="active">Épargne</a></li>
+    <li><a href="../credits/index.html">Crédits</a></li>
+    <li><a href="../../pages-publiques/contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="../../authentification/login.php" class="btn btn-ghost">Connexion</a>
+    <a href="../../authentification/signup.php" class="btn btn-primary">Ouvrir un compte</a>
+  </div>
+  <button class="ham-btn" id="ham"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../../pages-publiques/index.html">Accueil</a>
+  <a href="index.html">Épargne</a>
+  <a href="../credits/index.html">Crédits</a>
+  <a href="../../pages-publiques/contact.html">Contact</a>
+  <a href="../../authentification/signup.php" class="mobile-cta">Ouvrir un compte</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow"><div class="eyebrow-dot"></div><span>Épargne flexible</span></div>
+    <h1>Votre argent travaille,<br><em>chaque jour</em></h1>
+    <p>Le Livret GTB combine un taux attractif, une disponibilité immédiate et une gestion 100% digitale. Vos fonds sont disponibles à tout moment, sans frais, sans délai.</p>
+    <div class="rate-badge">
+      <div class="rate-val">4,5%</div>
+      <div class="rate-info"><div class="r1">Taux annuel brut</div><div class="r2">Pendant les 3 premiers mois · Révisable</div></div>
+    </div>
+    <div class="hero-btns">
+      <a href="../../authentification/signup.php" class="btn btn-primary btn-lg">Ouvrir mon livret →</a>
+      <a href="index.html" class="btn btn-ghost btn-lg">Voir tous les produits épargne</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="livret-card">
+      <div class="lc-top"><div class="lc-type">Livret GTB</div><div class="lc-badge">● Actif</div></div>
+      <div class="lc-balance-label">Solde disponible</div>
+      <div class="lc-balance">12 450,00 €</div>
+      <div class="lc-interest">+46,87 € d'intérêts ce mois</div>
+      <div class="lc-bar-wrap"><div class="lc-bar"></div></div>
+      <div class="lc-bar-info"><span>Objectif annuel</span><span>72% atteint</span></div>
+      <div class="lc-divider"></div>
+      <div class="lc-row" style="margin-bottom:.5rem"><span class="key">Taux en cours</span><span class="val" style="color:var(--gold)">4,5% / an</span></div>
+      <div class="lc-row" style="margin-bottom:.5rem"><span class="key">Plafond</span><span class="val">Illimité</span></div>
+      <div class="lc-row"><span class="key">Disponibilité</span><span class="val" style="color:#22C55E">Immédiate</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section style="padding:5rem 0;background:var(--sand)">
+  <div class="container">
+    <div class="section-head center reveal" style="text-align:center;margin-bottom:2.5rem">
+      <p style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem">● Pourquoi choisir le Livret GTB</p>
+      <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--green);line-height:1.15;letter-spacing:-.025em">Simplicité et <em style="font-style:italic;color:var(--gold)">performance</em></h2>
+    </div>
+    <div class="features-grid reveal">
+      <div class="feat-card"><div class="feat-icon">⚡</div><h3>Disponibilité immédiate</h3><p>Retirez vos fonds à tout moment, virés sur votre compte courant en quelques secondes.</p></div>
+      <div class="feat-card"><div class="feat-icon">📈</div><h3>Taux boosté 4,5%</h3><p>Profitez d'un taux de bienvenue pendant 3 mois, puis d'un taux révisable compétitif.</p></div>
+      <div class="feat-card"><div class="feat-icon">🚫</div><h3>Zéro frais</h3><p>Ouverture, gestion, retrait, clôture — tout est gratuit, sans condition de revenus.</p></div>
+      <div class="feat-card"><div class="feat-icon">📊</div><h3>Versements libres</h3><p>Aucun plafond de dépôt, aucun versement minimum obligatoire. Épargnez à votre rythme.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIF -->
+<section style="padding:5rem 0">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <p style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem">● Comparatif</p>
+      <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3.5vw,2.5rem);color:var(--green)">Livret GTB vs <em style="font-style:italic;color:var(--gold)">concurrents</em></h2>
+    </div>
+    <div style="overflow-x:auto" class="reveal">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Critère</th>
+            <th style="background:rgba(212,175,55,.15)">Livret GTB</th>
+            <th>Livret A</th>
+            <th>Banque traditionnelle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight"><td>Taux d'intérêt</td><td style="color:var(--gold)">4,5% (boosté)</td><td>3,0%</td><td>0,5% à 1,5%</td></tr>
+          <tr><td>Plafond</td><td>Illimité</td><td>22 950 €</td><td>Variable</td></tr>
+          <tr class="highlight"><td>Disponibilité des fonds</td><td><span class="check">✓</span> Immédiate</td><td>Sous 72h</td><td>Sous 24h-48h</td></tr>
+          <tr><td>Frais d'ouverture</td><td><span class="check">✓</span> Gratuit</td><td><span class="check">✓</span> Gratuit</td><td><span class="cross">✗</span> Parfois payant</td></tr>
+          <tr class="highlight"><td>Gestion mobile</td><td><span class="check">✓</span> 100% digital</td><td>Partielle</td><td>Partielle</td></tr>
+          <tr><td>Virements automatiques</td><td><span class="check">✓</span> Oui</td><td><span class="cross">✗</span> Non</td><td>Variable</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="reveal">Commencez à épargner<br><em>dès aujourd'hui</em></h2>
+    <p class="reveal">Ouverture en 2 minutes, depuis votre application. Aucun document requis.</p>
+    <div class="reveal">
+      <a href="../../authentification/signup.php" class="btn btn-primary btn-lg">Ouvrir mon Livret GTB →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-row"><div class="footer-logo-mark">GTB</div><div class="footer-logo-text">Global Trust Bank</div></div>
+        <p class="footer-tagline">La banque d'un monde qui change. Présent dans 65 pays, au service de 12 millions de clients.</p>
+      </div>
+      <div class="footer-col"><h4>Épargne</h4><ul>
+        <li><a href="index.html">Tous les produits</a></li>
+        <li><a href="livret.html">Livret GTB</a></li>
+        <li><a href="pel.html">Plan Épargne Logement</a></li>
+        <li><a href="compte-terme.html">Compte à terme</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Produits</h4><ul>
+        <li><a href="../comptes/index.html">Comptes</a></li>
+        <li><a href="../cartes/index.html">Cartes</a></li>
+        <li><a href="../credits/index.html">Crédits</a></li>
+        <li><a href="../assurances/index.html">Assurances</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Aide</h4><ul>
+        <li><a href="../../pages-publiques/faq.html">FAQ</a></li>
+        <li><a href="../../pages-publiques/contact.html">Contact</a></li>
+        <li><a href="../../pages-publiques/security.html">Sécurité</a></li>
+        <li><a href="../../pages-publiques/mentions-legales.html">Mentions légales</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Global Trust Bank — Tous droits réservés</span>
+      <div class="footer-legal">
+        <a href="../../pages-publiques/mentions-legales.html">Mentions légales</a>
+        <a href="../../pages-publiques/confidentialites.html">Confidentialité</a>
+        <a href="../../pages-publiques/cookies.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>10));
+const ham=document.getElementById('ham');
+const mm=document.getElementById('mobileMenu');
+ham.addEventListener('click',()=>mm.classList.toggle('active'));
+const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>

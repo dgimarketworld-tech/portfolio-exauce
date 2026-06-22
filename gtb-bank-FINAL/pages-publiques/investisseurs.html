@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Relations investisseurs Global Trust Bank — Résultats financiers, gouvernance, actionnariat et informations réglementaires."/>
+<title>Relations Investisseurs — Global Trust Bank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+<link rel="stylesheet" href="../assets/gtb-ds.css">
+<style>
+.inv-hero{min-height:52vh;background:linear-gradient(145deg,var(--deeper) 0%,#0a1f2e 60%,#05140f 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 4rem;position:relative;overflow:hidden}
+.inv-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 0%,rgba(212,175,55,.13),transparent),radial-gradient(ellipse 40% 40% at 100% 100%,rgba(0,198,122,.07),transparent)}
+.inv-hero-inner{position:relative;z-index:1;max-width:760px}
+.inv-hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.25);border-radius:99px;padding:.4rem 1rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+.inv-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);color:white;line-height:1.1;margin-bottom:1rem;letter-spacing:-.03em}
+.inv-hero h1 em{color:var(--gold);font-style:italic}
+.inv-hero p{font-size:1.05rem;color:rgba(255,255,255,.6);line-height:1.7;max-width:560px;margin:0 auto}
+
+.kpi-strip{background:var(--deeper);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);padding:2.5rem 0}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.kpi-val{font-family:'Sora',sans-serif;font-weight:800;font-size:2.2rem;color:var(--gold);line-height:1;margin-bottom:.35rem}
+.kpi-label{font-size:.8rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+
+.inv-grid{display:grid;grid-template-columns:2fr 1fr;gap:2.5rem;align-items:start}
+.inv-card{background:white;border:1px solid var(--g100);border-radius:20px;padding:2rem;box-shadow:0 4px 24px rgba(13,27,42,.06);transition:box-shadow .3s,transform .3s}
+.inv-card:hover{box-shadow:0 12px 40px rgba(13,27,42,.1);transform:translateY(-2px)}
+.inv-card-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.inv-card h3{font-family:'Sora',sans-serif;font-weight:700;font-size:1.05rem;color:var(--green);margin-bottom:.75rem}
+.inv-card p{font-size:.88rem;color:var(--g600);line-height:1.7;margin-bottom:1.25rem}
+
+.result-row{display:grid;grid-template-columns:1fr auto auto;gap:1rem;align-items:center;padding:.9rem 0;border-bottom:1px solid var(--g100);font-size:.85rem}
+.result-row:last-child{border-bottom:none}
+.result-row .label{font-weight:500;color:var(--green)}
+.result-row .val{font-family:'Sora',sans-serif;font-weight:700;color:var(--green)}
+.result-row .delta{font-size:.75rem;font-weight:600;padding:.2rem .55rem;border-radius:99px;background:rgba(34,197,94,.1);color:#22C55E}
+.result-row .delta.neg{background:rgba(229,55,58,.1);color:#E5373A}
+
+.download-btn{display:inline-flex;align-items:center;gap:.6rem;padding:.7rem 1.4rem;border-radius:99px;border:1.5px solid var(--g200);font-size:.82rem;font-weight:600;color:var(--green);transition:.2s;cursor:pointer;text-decoration:none}
+.download-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+.agenda-item{display:flex;gap:1.25rem;padding:1rem 0;border-bottom:1px solid var(--g100)}
+.agenda-item:last-child{border-bottom:none}
+.agenda-date{min-width:52px;text-align:center;background:var(--deeper);border-radius:12px;padding:.6rem .4rem;color:white}
+.agenda-date .day{font-family:'Sora',sans-serif;font-weight:800;font-size:1.5rem;line-height:1;color:var(--gold)}
+.agenda-date .mon{font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5)}
+.agenda-info .event{font-size:.88rem;font-weight:600;color:var(--green)}
+.agenda-info .type{font-size:.75rem;color:var(--g400);margin-top:.2rem}
+
+.governance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.gov-card{background:var(--sand);border-radius:16px;padding:1.5rem;text-align:center;transition:.3s}
+.gov-card:hover{background:white;box-shadow:0 8px 32px rgba(13,27,42,.08)}
+.gov-avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--deeper),#1a2e40);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:800;font-size:1.3rem;color:var(--gold);margin:0 auto 1rem;border:3px solid rgba(212,175,55,.2)}
+.gov-name{font-family:'Sora',sans-serif;font-weight:700;font-size:.92rem;color:var(--green)}
+.gov-role{font-size:.78rem;color:var(--g600);margin-top:.25rem}
+
+@media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.inv-grid{grid-template-columns:1fr}.governance-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.kpi-grid{grid-template-columns:1fr 1fr;gap:1rem}.governance-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="bnp-nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">GTB</div>
+    <div class="nav-logo-text"><span>Global Trust Bank</span><span>Banque en ligne</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="about.html">À propos</a></li>
+    <li><a href="../produits-bancaires/comptes/index.html">Comptes</a></li>
+    <li><a href="../produits-bancaires/credits/index.html">Crédits</a></li>
+    <li><a href="../produits-bancaires/entreprises/index.html">Entreprises</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="../authentification/login.php" class="btn btn-ghost">Connexion</a>
+    <a href="../authentification/signup.php" class="btn btn-primary">Ouvrir un compte</a>
+  </div>
+  <button class="ham-btn" id="ham"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section class="inv-hero">
+  <div class="inv-hero-inner reveal">
+    <div class="inv-hero-badge">● Relations Investisseurs</div>
+    <h1>Croissance durable,<br><em>transparence totale</em></h1>
+    <p>Global Trust Bank publie ses résultats financiers, ses indicateurs de gouvernance et toutes les informations réglementaires pour ses actionnaires et partenaires.</p>
+  </div>
+</section>
+
+<!-- KPI STRIP -->
+<section class="kpi-strip">
+  <div class="container">
+    <div class="kpi-grid">
+      <div class="reveal"><div class="kpi-val">€2,5Md</div><div class="kpi-label">PNB 2025</div></div>
+      <div class="reveal"><div class="kpi-val">+18%</div><div class="kpi-label">Croissance annuelle</div></div>
+      <div class="reveal"><div class="kpi-val">12M+</div><div class="kpi-label">Clients actifs</div></div>
+      <div class="reveal"><div class="kpi-val">AA-</div><div class="kpi-label">Note Moody's</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉSULTATS + AGENDA -->
+<section class="section">
+  <div class="container">
+    <div class="inv-grid">
+      <!-- Résultats financiers -->
+      <div>
+        <div class="section-head">
+          <div class="section-label">Résultats financiers</div>
+          <h2 class="section-title">Performances <em>2025</em></h2>
+          <p class="section-sub">Données consolidées au 31 décembre 2025, auditées par PricewaterhouseCoopers.</p>
+        </div>
+
+        <div class="inv-card reveal">
+          <div class="inv-card-label">Compte de résultat</div>
+          <div class="result-row"><span class="label">Produit Net Bancaire</span><span class="val">2 499 M€</span><span class="delta">+18%</span></div>
+          <div class="result-row"><span class="label">Résultat brut d'exploitation</span><span class="val">1 187 M€</span><span class="delta">+22%</span></div>
+          <div class="result-row"><span class="label">Résultat net part du groupe</span><span class="val">743 M€</span><span class="delta">+15%</span></div>
+          <div class="result-row"><span class="label">Coefficient d'exploitation</span><span class="val">52,4%</span><span class="delta">-3pts</span></div>
+          <div class="result-row"><span class="label">Ratio CET1</span><span class="val">15,8%</span><span class="delta">+0,9pts</span></div>
+          <div class="result-row"><span class="label">Dividende par action</span><span class="val">1,45 €</span><span class="delta">+12%</span></div>
+        </div>
+
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem" class="reveal">
+          <a href="#" class="download-btn">📄 Rapport annuel 2025</a>
+          <a href="#" class="download-btn">📊 Présentation investisseurs</a>
+          <a href="#" class="download-btn">📑 Document d'enregistrement</a>
+        </div>
+      </div>
+
+      <!-- Agenda + Contact IR -->
+      <div style="display:flex;flex-direction:column;gap:1.5rem">
+        <div class="inv-card reveal">
+          <div class="inv-card-label">Agenda financier 2026</div>
+          <div class="agenda-item">
+            <div class="agenda-date"><div class="day">14</div><div class="mon">Mar</div></div>
+            <div class="agenda-info"><div class="event">Résultats annuels 2025</div><div class="type">Conférence de presse — Paris</div></div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-date"><div class="day">28</div><div class="mon">Avr</div></div>
+            <div class="agenda-info"><div class="event">Assemblée Générale Ordinaire</div><div class="type">Paris La Défense Arena</div></div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-date"><div class="day">31</div><div class="mon">Jul</div></div>
+            <div class="agenda-info"><div class="event">Résultats S1 2026</div><div class="type">Webinaire investisseurs</div></div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-date"><div class="day">12</div><div class="mon">Nov</div></div>
+            <div class="agenda-info"><div class="event">Journée investisseurs</div><div class="type">Présentation stratégique 2027-2030</div></div>
+          </div>
+        </div>
+
+        <div class="inv-card reveal">
+          <div class="inv-card-label">Contact Relations Investisseurs</div>
+          <h3>Direction Financière</h3>
+          <p>Pour toute question relative à l'actionnariat, aux résultats ou aux événements financiers, contactez notre équipe dédiée.</p>
+          <a href="mailto:investors@globaltrustbank.fr" class="download-btn" style="width:100%;justify-content:center">✉ investors@globaltrustbank.fr</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOUVERNANCE -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="section-label">Gouvernance</div>
+      <h2 class="section-title">Conseil d'<em>Administration</em></h2>
+      <p class="section-sub">Un conseil indépendant, diversifié, engagé pour la création de valeur durable.</p>
+    </div>
+    <div class="governance-grid reveal">
+      <div class="gov-card"><div class="gov-avatar">JD</div><div class="gov-name">Jean-Michel Durand</div><div class="gov-role">Directeur Général</div></div>
+      <div class="gov-card"><div class="gov-avatar">SC</div><div class="gov-name">Sophie Chevalier</div><div class="gov-role">DGA — Finance & Risques</div></div>
+      <div class="gov-card"><div class="gov-avatar">AM</div><div class="gov-name">Antoine Martin</div><div class="gov-role">DGA — Technologie & Innovation</div></div>
+      <div class="gov-card"><div class="gov-avatar">LB</div><div class="gov-name">Lucie Bernard</div><div class="gov-role">Directrice Juridique & Conformité</div></div>
+      <div class="gov-card"><div class="gov-avatar">PR</div><div class="gov-name">Pierre Rousseau</div><div class="gov-role">Administrateur indépendant</div></div>
+      <div class="gov-card"><div class="gov-avatar">MK</div><div class="gov-name">Marie Kowalski</div><div class="gov-role">Administratrice indépendante</div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="bnp-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap"><div class="footer-logo-mark">GTB</div><div class="footer-logo-text">Global Trust Bank</div></div>
+        <p class="footer-tagline">La banque d'un monde qui change. Présent dans 65 pays, au service de 12 millions de clients.</p>
+      </div>
+      <div class="footer-col"><h4>Particuliers</h4><ul>
+        <li><a href="../produits-bancaires/comptes/index.html">Compte courant</a></li>
+        <li><a href="../produits-bancaires/cartes/index.html">Cartes bancaires</a></li>
+        <li><a href="../produits-bancaires/epargne/index.html">Épargne</a></li>
+        <li><a href="../produits-bancaires/credits/index.html">Crédits</a></li>
+        <li><a href="../produits-bancaires/assurances/index.html">Assurances</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Services</h4><ul>
+        <li><a href="../dashboard/index.php">Espace client</a></li>
+        <li><a href="contact.html">Mon conseiller</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="security.html">Sécurité</a></li>
+        <li><a href="contact.html">Aide &amp; Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>GTB</h4><ul>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="investisseurs.html">Investisseurs</a></li>
+        <li><a href="recrutement.html">Recrutement</a></li>
+        <li><a href="presse.html">Presse</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Global Trust Bank — Société Anonyme au capital de 2 499 597 122 €</span>
+      <div class="footer-legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialites.html">Confidentialité</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('elevated',window.scrollY>20));
+const reveals=document.querySelectorAll('.reveal');
+const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+reveals.forEach((el,i)=>{el.style.transitionDelay=(i%4)*.08+'s';ro.observe(el);});
+const ham=document.getElementById('ham');
+const mm=document.createElement('div');mm.className='mobile-menu';
+mm.innerHTML=`<a href="index.html">Accueil</a><a href="about.html">À propos</a><a href="../produits-bancaires/comptes/index.html">Comptes</a><a href="../produits-bancaires/credits/index.html">Crédits</a><a href="contact.html">Contact</a><a href="../authentification/signup.php" class="mobile-cta">Ouvrir un compte</a>`;
+document.body.appendChild(mm);
+let open=false;
+ham.addEventListener('click',()=>{open=!open;ham.classList.toggle('active',open);mm.classList.toggle('active',open);document.body.style.overflow=open?'hidden':'';});
+</script>
+<script src="app-nav.js"></script>
+</body>
+</html>

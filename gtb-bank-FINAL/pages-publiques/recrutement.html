@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Rejoignez Global Trust Bank — Offres d'emploi, culture d'entreprise et avantages pour construire la banque de demain."/>
+<title>Recrutement & Carrières — Global Trust Bank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+<link rel="stylesheet" href="../assets/gtb-ds.css">
+<style>
+.rec-hero{min-height:60vh;background:linear-gradient(145deg,var(--deeper) 0%,#0a1f2e 70%,#06100a 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 4rem;position:relative;overflow:hidden}
+.rec-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% -10%,rgba(212,175,55,.13),transparent),radial-gradient(ellipse 50% 60% at 90% 80%,rgba(0,198,122,.08),transparent)}
+.rec-hero-inner{position:relative;z-index:1;max-width:780px}
+.rec-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:99px;padding:.4rem 1rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#22C55E;margin-bottom:1.5rem}
+.rec-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);color:white;line-height:1.1;margin-bottom:1rem;letter-spacing:-.03em}
+.rec-hero h1 em{color:var(--gold);font-style:italic}
+.rec-hero p{font-size:1.05rem;color:rgba(255,255,255,.6);line-height:1.7;max-width:580px;margin:0 auto 2rem}
+.rec-stats{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+.rec-stat .val{font-family:'Sora',sans-serif;font-weight:800;font-size:1.8rem;color:white}
+.rec-stat .lbl{font-size:.75rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-top:.2rem}
+
+.culture-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem}
+.culture-card{background:white;border:1px solid var(--g100);border-radius:20px;padding:1.75rem;text-align:center;box-shadow:0 4px 24px rgba(13,27,42,.06);transition:.3s}
+.culture-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(13,27,42,.1)}
+.culture-icon{font-size:2rem;margin-bottom:1rem}
+.culture-card h3{font-family:'Sora',sans-serif;font-weight:700;font-size:.95rem;color:var(--green);margin-bottom:.5rem}
+.culture-card p{font-size:.83rem;color:var(--g600);line-height:1.65}
+
+.jobs-filter{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.job-chip{padding:.45rem 1.1rem;border-radius:99px;border:1.5px solid var(--g200);background:white;font-size:.8rem;font-weight:600;color:var(--g600);cursor:pointer;transition:.2s}
+.job-chip.active,.job-chip:hover{background:var(--deeper);border-color:var(--deeper);color:white}
+
+.job-card{background:white;border:1px solid var(--g100);border-radius:16px;padding:1.5rem 1.75rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;transition:.3s;cursor:pointer}
+.job-card:hover{border-color:var(--gold);box-shadow:0 8px 32px rgba(13,27,42,.08);transform:translateX(4px)}
+.job-title{font-family:'Sora',sans-serif;font-weight:700;font-size:.95rem;color:var(--green);margin-bottom:.3rem}
+.job-meta{display:flex;gap:.75rem;flex-wrap:wrap;font-size:.78rem;color:var(--g400)}
+.job-tag{display:inline-flex;align-items:center;gap:.25rem;padding:.2rem .65rem;border-radius:99px;font-size:.72rem;font-weight:600}
+.job-tag.full{background:rgba(34,197,94,.1);color:#16A34A}
+.job-tag.part{background:rgba(26,115,232,.1);color:#1A73E8}
+.job-tag.remote{background:rgba(124,58,237,.1);color:#7C3AED}
+.job-tag.new{background:rgba(212,175,55,.12);color:var(--gold)}
+.job-apply{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.4rem;border-radius:99px;background:linear-gradient(135deg,var(--gold),#B8960C);color:white;font-size:.82rem;font-weight:700;white-space:nowrap;text-decoration:none;transition:.2s;flex-shrink:0}
+.job-apply:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(212,175,55,.35)}
+
+.avantages-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.avantage-item{background:var(--sand);border-radius:16px;padding:1.5rem 1.25rem;text-align:center;transition:.3s}
+.avantage-item:hover{background:white;box-shadow:0 8px 32px rgba(13,27,42,.08)}
+.avantage-icon{font-size:1.8rem;margin-bottom:.75rem}
+.avantage-item h4{font-family:'Sora',sans-serif;font-weight:700;font-size:.88rem;color:var(--green);margin-bottom:.35rem}
+.avantage-item p{font-size:.78rem;color:var(--g600);line-height:1.6}
+
+@media(max-width:900px){.culture-grid{grid-template-columns:1fr 1fr}.avantages-grid{grid-template-columns:1fr 1fr}.job-card{flex-direction:column;align-items:flex-start}}
+@media(max-width:480px){.culture-grid{grid-template-columns:1fr}.avantages-grid{grid-template-columns:1fr 1fr}.rec-stats{gap:1.5rem}}
+</style>
+</head>
+<body>
+
+<nav class="bnp-nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">GTB</div>
+    <div class="nav-logo-text"><span>Global Trust Bank</span><span>Banque en ligne</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="about.html">À propos</a></li>
+    <li><a href="../produits-bancaires/comptes/index.html">Comptes</a></li>
+    <li><a href="../produits-bancaires/credits/index.html">Crédits</a></li>
+    <li><a href="../produits-bancaires/entreprises/index.html">Entreprises</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="../authentification/login.php" class="btn btn-ghost">Connexion</a>
+    <a href="../authentification/signup.php" class="btn btn-primary">Ouvrir un compte</a>
+  </div>
+  <button class="ham-btn" id="ham"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="rec-hero">
+  <div class="rec-hero-inner reveal">
+    <div class="rec-badge">● Nous recrutons</div>
+    <h1>Bâtissez la banque<br><em>de demain</em> avec nous</h1>
+    <p>Rejoignez une équipe de 4 200 talents qui réinventent chaque jour l'expérience bancaire. Culture de l'innovation, impact réel, environnement bienveillant.</p>
+    <div class="rec-stats">
+      <div class="rec-stat"><div class="val">87</div><div class="lbl">Postes ouverts</div></div>
+      <div class="rec-stat"><div class="val">4 200</div><div class="lbl">Collaborateurs</div></div>
+      <div class="rec-stat"><div class="val">42</div><div class="lbl">Nationalités</div></div>
+      <div class="rec-stat"><div class="val">96%</div><div class="lbl">Satisfaction employés</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURE -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="section-label">Notre culture</div>
+      <h2 class="section-title">Pourquoi choisir <em>GTB</em> ?</h2>
+    </div>
+    <div class="culture-grid reveal">
+      <div class="culture-card"><div class="culture-icon">🚀</div><h3>Impact immédiat</h3><p>Vos idées sont déployées rapidement. Pas de silos, pas de bureaucratie — on construit vite et bien.</p></div>
+      <div class="culture-card"><div class="culture-icon">🌍</div><h3>Équipe globale</h3><p>42 nationalités, 5 fuseaux horaires, une vision commune : rendre la finance accessible à tous.</p></div>
+      <div class="culture-card"><div class="culture-icon">📈</div><h3>Croissance garantie</h3><p>80% de nos managers ont été promus en interne. Votre évolution est notre priorité.</p></div>
+      <div class="culture-card"><div class="culture-icon">⚖️</div><h3>Équilibre vie pro/perso</h3><p>Télétravail hybride, semaine de 4 jours disponible, congés illimités sur objectifs.</p></div>
+      <div class="culture-card"><div class="culture-icon">🎓</div><h3>Formation continue</h3><p>Budget formation de 5 000€/an, accès illimité aux plateformes e-learning et certifications.</p></div>
+      <div class="culture-card"><div class="culture-icon">💚</div><h3>Finance responsable</h3><p>Certifié B Corp, 0 investissement fossil, programme Diversity & Inclusion primé.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFRES D'EMPLOI -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Offres d'emploi</div>
+      <h2 class="section-title"><em>87 postes</em> à pourvoir</h2>
+      <p class="section-sub">Des opportunités dans tous les métiers de la banque digitale.</p>
+    </div>
+
+    <div class="jobs-filter reveal">
+      <div class="job-chip active">Tous</div>
+      <div class="job-chip">Tech & Data</div>
+      <div class="job-chip">Finance</div>
+      <div class="job-chip">Produit</div>
+      <div class="job-chip">Marketing</div>
+      <div class="job-chip">Support</div>
+    </div>
+
+    <div class="reveal">
+      <div class="job-card">
+        <div><div class="job-title">Lead Engineer — Core Banking Platform</div><div class="job-meta"><span>📍 Paris (hybride)</span><span>Tech & Data</span><span class="job-tag full">CDI</span><span class="job-tag remote">Remote OK</span><span class="job-tag new">Nouveau</span></div></div>
+        <a href="contact.html" class="job-apply">Postuler →</a>
+      </div>
+      <div class="job-card">
+        <div><div class="job-title">Senior Product Manager — Cartes &amp; Paiements</div><div class="job-meta"><span>📍 Paris</span><span>Produit</span><span class="job-tag full">CDI</span><span class="job-tag new">Nouveau</span></div></div>
+        <a href="contact.html" class="job-apply">Postuler →</a>
+      </div>
+      <div class="job-card">
+        <div><div class="job-title">Data Scientist — Fraud Detection</div><div class="job-meta"><span>📍 Paris / Lyon</span><span>Tech & Data</span><span class="job-tag full">CDI</span><span class="job-tag remote">Remote OK</span></div></div>
+        <a href="contact.html" class="job-apply">Postuler →</a>
+      </div>
+      <div class="job-card">
+        <div><div class="job-title">Analyste Risques &amp; Conformité</div><div class="job-meta"><span>📍 Paris</span><span>Finance</span><span class="job-tag full">CDI</span></div></div>
+        <a href="contact.html" class="job-apply">Postuler →</a>
+      </div>
+      <div class="job-card">
+        <div><div class="job-title">UX/UI Designer — Mobile Banking</div><div class="job-meta"><span>📍 Paris (full remote)</span><span>Produit</span><span class="job-tag full">CDI</span><span class="job-tag remote">Full Remote</span><span class="job-tag new">Nouveau</span></div></div>
+        <a href="contact.html" class="job-apply">Postuler →</a>
+      </div>
+      <div class="job-card">
+        <div><div class="job-title">Chargé(e) de clientèle — Entreprises</div><div class="job-meta"><span>📍 Bordeaux / Lyon</span><span>Support</span><span class="job-tag full">CDI</span></div></div>
+        <a href="contact.html" class="job-apply">Postuler →</a>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:2rem" class="reveal">
+      <a href="contact.html" class="btn btn-primary btn-lg">Voir toutes les offres (87) →</a>
+    </div>
+  </div>
+</section>
+
+<!-- AVANTAGES -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="section-label">Avantages</div>
+      <h2 class="section-title">Bien plus qu'un <em>salaire</em></h2>
+    </div>
+    <div class="avantages-grid reveal">
+      <div class="avantage-item"><div class="avantage-icon">💰</div><h4>Rémunération compétitive</h4><p>Salaire + variable + BSPCE pour tous les profils seniors</p></div>
+      <div class="avantage-item"><div class="avantage-icon">🏥</div><h4>Mutuelle premium</h4><p>Couverture santé 100% employeur pour salarié et famille</p></div>
+      <div class="avantage-item"><div class="avantage-icon">🏠</div><h4>Télétravail flexible</h4><p>2 à 4 jours/semaine selon les équipes</p></div>
+      <div class="avantage-item"><div class="avantage-icon">🍽️</div><h4>Tickets restaurant</h4><p>12€/jour, carte Swile, cantine au siège</p></div>
+      <div class="avantage-item"><div class="avantage-icon">🚴</div><h4>Mobilité verte</h4><p>Forfait mobilité durable 800€/an</p></div>
+      <div class="avantage-item"><div class="avantage-icon">👶</div><h4>Parentalité+</h4><p>6 mois de congé parental payé pour les deux parents</p></div>
+      <div class="avantage-item"><div class="avantage-icon">📱</div><h4>Compte GTB gratuit</h4><p>Plan Premium offert à tous les collaborateurs</p></div>
+      <div class="avantage-item"><div class="avantage-icon">🎯</div><h4>Intéressement &amp; PEE</h4><p>Participation aux bénéfices + abondement 300%</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="bnp-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap"><div class="footer-logo-mark">GTB</div><div class="footer-logo-text">Global Trust Bank</div></div>
+        <p class="footer-tagline">La banque d'un monde qui change. Présent dans 65 pays, au service de 12 millions de clients.</p>
+      </div>
+      <div class="footer-col"><h4>Particuliers</h4><ul>
+        <li><a href="../produits-bancaires/comptes/index.html">Compte courant</a></li>
+        <li><a href="../produits-bancaires/cartes/index.html">Cartes bancaires</a></li>
+        <li><a href="../produits-bancaires/epargne/index.html">Épargne</a></li>
+        <li><a href="../produits-bancaires/credits/index.html">Crédits</a></li>
+        <li><a href="../produits-bancaires/assurances/index.html">Assurances</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Services</h4><ul>
+        <li><a href="../dashboard/index.php">Espace client</a></li>
+        <li><a href="contact.html">Mon conseiller</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="security.html">Sécurité</a></li>
+        <li><a href="contact.html">Aide &amp; Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>GTB</h4><ul>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="investisseurs.html">Investisseurs</a></li>
+        <li><a href="recrutement.html">Recrutement</a></li>
+        <li><a href="presse.html">Presse</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Global Trust Bank — Société Anonyme au capital de 2 499 597 122 €</span>
+      <div class="footer-legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialites.html">Confidentialité</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('elevated',window.scrollY>20));
+const reveals=document.querySelectorAll('.reveal');
+const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+reveals.forEach((el,i)=>{el.style.transitionDelay=(i%4)*.08+'s';ro.observe(el);});
+const ham=document.getElementById('ham');
+const mm=document.createElement('div');mm.className='mobile-menu';
+mm.innerHTML=`<a href="index.html">Accueil</a><a href="about.html">À propos</a><a href="../produits-bancaires/comptes/index.html">Comptes</a><a href="../produits-bancaires/credits/index.html">Crédits</a><a href="contact.html">Contact</a><a href="../authentification/signup.php" class="mobile-cta">Ouvrir un compte</a>`;
+document.body.appendChild(mm);
+let open=false;
+ham.addEventListener('click',()=>{open=!open;ham.classList.toggle('active',open);mm.classList.toggle('active',open);document.body.style.overflow=open?'hidden':'';});
+</script>
+<script src="app-nav.js"></script>
+</body>
+</html>
