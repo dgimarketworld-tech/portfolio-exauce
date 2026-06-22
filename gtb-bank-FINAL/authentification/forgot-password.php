@@ -32,6 +32,7 @@ input:focus{border-color:#D4AF37}
 .back{display:block;text-align:center;margin-top:20px;color:#D4AF37;font-size:14px;text-decoration:none}
 .back:hover{text-decoration:underline}
 </style>
+<link rel="stylesheet" href="../assets/gtb-ds.css">
 </head>
 <body>
 <div class="card">

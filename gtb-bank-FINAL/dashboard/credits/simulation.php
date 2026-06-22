@@ -726,6 +726,7 @@ body {
   }
 }
 .sec-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem;gap:1rem;flex-wrap:wrap}.pg-title{font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(1.1rem,2.5vw,1.4rem);color:var(--bnp-dark)}.pg-sub{font-size:.82rem;color:var(--gray400);margin-top:.3rem}.form-group{margin-bottom:.85rem}.form-label{display:block;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray600);margin-bottom:.35rem}.form-input,.form-select{width:100%;padding:.7rem 1rem;font-family:'DM Sans',sans-serif;font-size:.84rem;color:var(--gray800);background:var(--gray50);border:1.5px solid var(--gray100);border-radius:var(--r-md);outline:none;transition:.2s}.form-input:focus,.form-select:focus{border-color:var(--bnp-emerald);background:#fff;box-shadow:0 0 0 3px rgba(212,175,55,.12)}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}@media(max-width:900px){.form-row{grid-template-columns:1fr}}</style><link rel="stylesheet" href="../mobile.css">
+<link rel="stylesheet" href="../../assets/gtb-ds.css">
 </head>
 <body><div class="dash-layout"><div class="sidebar-overlay" id="sidebarOverlay"></div>
 <aside class="sidebar" id="sidebar">

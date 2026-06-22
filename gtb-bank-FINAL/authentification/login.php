@@ -305,6 +305,7 @@ input{font-family:'DM Sans',sans-serif}
   .form-input{font-size:.85rem;padding:.8rem 1rem .8rem 2.5rem}
 }
 </style>
+<link rel="stylesheet" href="../assets/gtb-ds.css">
 </head>
 <body>
 

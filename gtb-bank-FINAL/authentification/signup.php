@@ -204,6 +204,7 @@ input,select{font-family:'DM Sans',sans-serif}
   .step-num{width:28px;height:28px;font-size:.7rem}
 }
 </style>
+<link rel="stylesheet" href="../assets/gtb-ds.css">
 </head>
 <body>
 
