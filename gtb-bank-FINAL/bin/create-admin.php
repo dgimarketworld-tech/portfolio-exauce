@@ -63,9 +63,10 @@ $id = DB::insertInto('admins', [
     'password_hash' => Security::hashPassword($password),
     'first_name'    => $firstName,
     'last_name'     => $lastName,
-    'role'          => $role,
-    'status'        => 'active',
-    'two_fa_enabled'=> 0, // désactivé pour le seed, à activer ensuite
+    'role'           => $role,
+    'status'         => 'active',
+    'two_fa_enabled' => 0,
+    'created_at'     => date('Y-m-d H:i:s'),
 ]);
 
 $out = "✅ Administrateur créé avec succès\n"
