@@ -1,0 +1,14 @@
+# Secrets — ne jamais committer
+.env
+*.env
+Global Trust Bank.txt
+
+# Uploads utilisateurs
+uploads/
+
+# Logs
+logs/*.log
+
+# Caches système
+.DS_Store
+Thumbs.db

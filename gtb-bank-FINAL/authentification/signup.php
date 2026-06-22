@@ -359,15 +359,14 @@ input,select{font-family:'DM Sans',sans-serif}
           <select class="form-input no-icon" id="doc-type" onchange="GTB.signup.checkDocType(this.value)">
             <option value="">— Sélectionner votre document —</option>
             <option value="cni_ue">🪪 Carte Nationale d'Identité (Union Européenne)</option>
-            <option value="passeport">🛂 Passeport</option>
-            <option value="permis">🚗 Permis de conduire</option>
-            <option value="autre">📋 Autre document</option>
+            <option value="passport">🛂 Passeport</option>
+            <option value="titre_sejour">📋 Titre de séjour</option>
           </select>
           <div id="doc-warn" style="display:none;background:rgba(220,38,38,.07);border:1px solid rgba(220,38,38,.25);color:#b91c1c;font-size:.76rem;padding:.55rem .85rem;border-radius:8px;margin-top:.4rem;line-height:1.45">
-            ⚠️ <strong>Document non accepté.</strong> Seule la <strong>Carte Nationale d'Identité européenne (CNI-UE)</strong> permet d'ouvrir un compte GTB Bank.
+            ⚠️ <strong>Document non reconnu.</strong> Seuls la CNI européenne, le passeport et le titre de séjour sont acceptés.
           </div>
           <div id="doc-ok" style="display:none;background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.25);color:#065f46;font-size:.76rem;padding:.55rem .85rem;border-radius:8px;margin-top:.4rem">
-            ✓ Document accepté — Carte Nationale d'Identité européenne
+            ✓ Document accepté
           </div>
         </div>
 
@@ -511,8 +510,9 @@ const GTB = {
           errEl.textContent = '⚠️ Veuillez sélectionner votre type de document d\'identité.';
           errEl.style.display = 'block'; return;
         }
-        if (docType !== 'cni_ue') {
-          errEl.textContent = '⚠️ Seule la Carte Nationale d\'Identité européenne (CNI-UE) est acceptée pour ouvrir un compte.';
+        const allowed = ['cni_ue', 'passport', 'titre_sejour'];
+        if (!allowed.includes(docType)) {
+          errEl.textContent = '⚠️ Document non accepté. Choisissez : CNI européenne, passeport ou titre de séjour.';
           errEl.style.display = 'block'; return;
         }
         errEl.style.display = 'none';
@@ -607,8 +607,9 @@ const GTB = {
     },
 
     checkDocType(val) {
-      document.getElementById('doc-warn').style.display = (val && val !== 'cni_ue') ? 'block' : 'none';
-      document.getElementById('doc-ok').style.display   = (val === 'cni_ue') ? 'block' : 'none';
+      const allowed = ['cni_ue', 'passport', 'titre_sejour'];
+      document.getElementById('doc-warn').style.display = (val && !allowed.includes(val)) ? 'block' : 'none';
+      document.getElementById('doc-ok').style.display   = (val && allowed.includes(val)) ? 'block' : 'none';
     },
 
     checkStrength(val) {

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Page introuvable — Global Trust Bank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0D1B2A;--gold:#D4AF37;--green:#22C55E;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--navy);
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  min-height:100vh;
+  padding:2rem;
+  text-align:center;
+}
+.wrap{max-width:520px;width:100%;}
+.code{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(5rem,20vw,9rem);
+  font-weight:800;
+  line-height:1;
+  background:linear-gradient(135deg,var(--gold),#B8960C);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  letter-spacing:-.04em;
+}
+.logo{
+  display:inline-flex;align-items:center;gap:.65rem;
+  text-decoration:none;margin-bottom:3rem;
+}
+.logo-mark{
+  width:40px;height:40px;
+  background:linear-gradient(135deg,var(--gold),#B8960C);
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Sora',sans-serif;font-weight:800;font-size:.8rem;color:#fff;
+}
+.logo-name{font-family:'Sora',sans-serif;font-weight:700;font-size:.95rem;color:#fff;}
+h1{font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:700;margin:.75rem 0 .5rem;}
+p{color:rgba(255,255,255,.55);font-size:.95rem;line-height:1.6;margin-bottom:2.5rem;}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.75rem 1.5rem;border-radius:10px;
+  font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;
+  text-decoration:none;transition:all .2s;
+}
+.btn-gold{background:var(--gold);color:#0D1B2A;}
+.btn-gold:hover{background:#c9a830;transform:translateY(-1px);}
+.btn-outline{border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="pages-publiques/index.html" class="logo">
+    <div class="logo-mark">GTB</div>
+    <span class="logo-name">Global Trust Bank</span>
+  </a>
+  <div class="code">404</div>
+  <h1>Page introuvable</h1>
+  <p>La page que vous cherchez n'existe pas ou a été déplacée.<br>Revenez à l'accueil ou connectez-vous à votre espace client.</p>
+  <div class="actions">
+    <a href="pages-publiques/index.html" class="btn btn-gold">← Accueil</a>
+    <a href="authentification/login.php" class="btn btn-outline">Espace client</a>
+    <a href="pages-publiques/contact.html" class="btn btn-outline">Support</a>
+  </div>
+</div>
+</body>
+</html>
