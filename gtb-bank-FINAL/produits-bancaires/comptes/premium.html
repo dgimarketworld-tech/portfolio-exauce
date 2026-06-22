@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Compte Premium GTB — Cashback, assurances incluses, plafonds élevés et conseiller dédié."/>
+<title>Compte Premium — Global Trust Bank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--green:#0D1B2A;--dark:#091520;--deeper:#050B14;--gold:#D4AF37;--white:#fff;--sand:#F5F7FA;--g100:#E9ECEF;--g200:#DEE2E6;--g400:#ADB5BD;--g600:#6C757D;--g800:#343A40;--success:#22C55E;--r-sm:8px;--r-md:14px;--r-lg:24px;--r-xl:36px;--r-full:999px;--sh-sm:0 4px 12px rgba(0,0,0,.06);--sh-md:0 12px 32px rgba(0,0,0,.08);--sh-lg:0 30px 80px rgba(0,0,0,.14);--ease:cubic-bezier(.25,.46,.45,.94)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:white;color:var(--g800);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}button{font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:none}
+.container{width:min(1200px,calc(100% - 2.5rem));margin:auto}
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;transition:.35s var(--ease)}
+.nav.scrolled{background:rgba(5,11,20,.94);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(255,255,255,.05)}
+.logo{display:flex;align-items:center;gap:.8rem}
+.logo-mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--gold),#f5d778);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:800;color:var(--deeper);font-size:.95rem}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-text strong{color:white;font-size:.92rem;font-family:'Sora',sans-serif}
+.logo-text span{font-size:.62rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.12em}
+.nav-links{display:flex;align-items:center;gap:.5rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.65);font-size:.85rem;font-weight:500;padding:.65rem 1rem;border-radius:999px;transition:.25s}
+.nav-links a:hover,.nav-links a.active{background:rgba(255,255,255,.08);color:var(--gold)}
+.nav-actions{display:flex;align-items:center;gap:.8rem}
+.btn{border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.9rem 1.5rem;border-radius:999px;font-weight:700;font-size:.85rem;transition:.3s var(--ease)}
+.btn-primary{background:linear-gradient(135deg,var(--gold),#f5d778);color:var(--deeper);box-shadow:0 12px 30px rgba(212,175,55,.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(212,175,55,.35)}
+.btn-ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:white}
+.btn-ghost:hover{background:rgba(255,255,255,.14)}
+
+/* HERO — gold premium gradient */
+.hero{min-height:100vh;background:radial-gradient(circle at 65% 25%,rgba(212,175,55,.18),transparent 45%),radial-gradient(circle at 20% 80%,rgba(212,175,55,.06),transparent 40%),var(--deeper);display:grid;grid-template-columns:1fr 1fr;align-items:center;padding-top:72px;overflow:hidden;position:relative}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(circle at center,black 45%,transparent 100%)}
+.hero-content{position:relative;z-index:2;padding:4rem 3rem 4rem 5rem}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.25);padding:.45rem .95rem;border-radius:999px;margin-bottom:1.5rem}
+.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.eyebrow span:last-child{color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.5rem,4vw,3.8rem);line-height:1.08;color:white;margin-bottom:1.25rem;letter-spacing:-.03em}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero-desc{font-size:1.05rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:2rem;max-width:460px}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.hero-stats{display:flex;gap:2rem}
+.hero-stat{display:flex;flex-direction:column;gap:.15rem}
+.hero-stat strong{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:800;color:var(--gold)}
+.hero-stat span{font-size:.72rem;color:rgba(255,255,255,.45)}
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center;padding:4rem 3rem}
+.account-card{width:300px;background:linear-gradient(145deg,#2a1f0a,#1a1200);border:1px solid rgba(212,175,55,.35);border-radius:22px;padding:1.8rem;box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 60px rgba(212,175,55,.08);animation:float 6s ease-in-out infinite;position:relative;overflow:hidden}
+.account-card::before{content:"";position:absolute;top:-40px;right:-40px;width:150px;height:150px;border-radius:50%;background:rgba(212,175,55,.06)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.ac-type{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(212,175,55,.6);margin-bottom:.4rem}
+.ac-name{font-family:'Sora',sans-serif;font-size:.9rem;font-weight:700;color:white;margin-bottom:1.5rem}
+.ac-balance{font-family:'Sora',sans-serif;font-size:2rem;font-weight:800;color:white;margin-bottom:.25rem}
+.ac-balance-label{font-size:.72rem;color:rgba(255,255,255,.4);margin-bottom:1.4rem}
+.ac-divider{height:1px;background:rgba(212,175,55,.12);margin-bottom:1rem}
+.ac-meta{display:flex;justify-content:space-between;align-items:center}
+.ac-iban{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.05em}
+.ac-badge{background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.35);border-radius:99px;padding:.25rem .65rem;font-size:.65rem;font-weight:700;color:var(--gold)}
+.chip-float{position:absolute;background:rgba(13,27,42,.9);border:1px solid rgba(212,175,55,.2);border-radius:99px;padding:.45rem .9rem;display:flex;align-items:center;gap:.45rem;font-size:.72rem;color:white;backdrop-filter:blur(8px);white-space:nowrap}
+.chip1{top:18%;left:-15px;animation:float 5s 1s ease-in-out infinite}
+.chip2{bottom:20%;right:-15px;animation:float 5s 2.5s ease-in-out infinite}
+.chip-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.features{padding:5rem 0;background:var(--sand)}
+.section-label{display:inline-flex;align-items:center;gap:.5rem;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.2);border-radius:99px;padding:.35rem .9rem;margin-bottom:1rem}
+.section-label span{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.15;color:var(--green);letter-spacing:-.02em;margin-bottom:.75rem}
+.section-sub{font-size:.95rem;color:var(--g600);line-height:1.7;max-width:560px}
+.section-header{margin-bottom:3rem}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.5rem}
+.feat-card{background:white;border-radius:var(--r-lg);padding:1.8rem;border:1px solid var(--g100);transition:.3s var(--ease)}
+.feat-card:hover{transform:translateY(-4px);box-shadow:var(--sh-md)}
+.feat-icon{font-size:1.8rem;margin-bottom:.9rem}
+.feat-card h3{font-family:'Sora',sans-serif;font-size:.95rem;font-weight:700;color:var(--green);margin-bottom:.4rem}
+.feat-card p{font-size:.85rem;color:var(--g600);line-height:1.65}
+.pricing{padding:5rem 0}
+.price-card{background:var(--deeper);border-radius:28px;padding:2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.price-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}
+.price-main{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,2.5vw,2.2rem);color:white;line-height:1.2;margin-bottom:1rem}
+.price-val{display:flex;align-items:baseline;gap:.4rem;margin-bottom:.5rem}
+.price-num{font-family:'Sora',sans-serif;font-size:3.5rem;font-weight:800;color:var(--gold)}
+.price-unit{font-size:1rem;color:rgba(255,255,255,.5)}
+.price-note{font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:2rem}
+.price-list{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+.price-list li{display:flex;align-items:center;gap:.75rem;font-size:.88rem;color:rgba(255,255,255,.75)}
+.price-list li::before{content:"";flex-shrink:0;width:16px;height:16px;border-radius:50%;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.35);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2322C55E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8l3 3 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:10px}
+.price-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.cta-band{padding:5rem 0;background:radial-gradient(circle at center,rgba(212,175,55,.08),transparent 70%),var(--deeper);text-align:center}
+.cta-band h2{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);color:white;margin-bottom:1rem;letter-spacing:-.02em}
+.cta-band p{font-size:1rem;color:rgba(255,255,255,.5);max-width:480px;margin:0 auto 2rem}
+.cta-band .btn-primary{font-size:1rem;padding:1.1rem 2.4rem}
+footer{background:var(--deeper);border-top:1px solid rgba(255,255,255,.06);padding:3rem 0 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.footer-brand p{font-size:.83rem;color:rgba(255,255,255,.4);line-height:1.7;margin-top:.75rem;max-width:260px}
+.footer-col h4{font-family:'Sora',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.footer-col a{font-size:.83rem;color:rgba(255,255,255,.5);transition:.2s}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:rgba(255,255,255,.3)}
+.footer-bottom a{color:rgba(255,255,255,.4)}
+.footer-bottom a:hover{color:var(--gold)}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.hero-visual{display:none}.hero-content{padding:5rem 2rem 3rem}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.nav-links,.nav-actions .btn-ghost{display:none}.price-card{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="../../assets/gtb-ds.css"/>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <div class="logo">
+    <div class="logo-mark">GTB</div>
+    <div class="logo-text"><strong>Global Trust Bank</strong><span>Banque digitale premium</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="../../pages-publiques/index.html">Accueil</a></li>
+    <li><a href="../index.html">Produits</a></li>
+    <li><a href="index.html" class="active">Comptes</a></li>
+    <li><a href="../../pages-publiques/about.html">À propos</a></li>
+    <li><a href="../../pages-publiques/contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="../../backend/login.php" class="btn btn-ghost">Connexion</a>
+    <a href="../../backend/register.php" class="btn btn-primary">Ouvrir un compte</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow"><span class="eyebrow-dot"></span><span>Compte Premium GTB</span></div>
+    <h1>Une banque à la <em>hauteur</em> de vos ambitions</h1>
+    <p class="hero-desc">Cashback sur tous vos achats, assurances voyage incluses, conseiller dédié et carte Gold sans frais à l'étranger. Le compte premium qui récompense votre style de vie.</p>
+    <div class="hero-actions">
+      <a href="../../backend/register.php" class="btn btn-primary btn-lg">Souscrire maintenant</a>
+      <a href="../../pages-publiques/contact.html" class="btn btn-ghost btn-lg">Parler à un conseiller</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>1 %</strong><span>Cashback garanti</span></div>
+      <div class="hero-stat"><strong>0 €</strong><span>Frais à l'étranger</span></div>
+      <div class="hero-stat"><strong>24/7</strong><span>Conseiller dédié</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="chip-float chip1"><span class="chip-dot"></span>Cashback +12,40 €</div>
+    <div class="account-card">
+      <div class="ac-type">Compte Premium</div>
+      <div class="ac-name">Sophie Martin</div>
+      <div class="ac-balance">12 540,00 €</div>
+      <div class="ac-balance-label">Solde disponible</div>
+      <div class="ac-divider"></div>
+      <div class="ac-meta">
+        <div class="ac-iban">FR76 •••• •••• •••• 8834</div>
+        <div class="ac-badge">Premium</div>
+      </div>
+    </div>
+    <div class="chip-float chip2"><span class="chip-dot"></span>Assurance voyage incluse</div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label"><span>Avantages Premium</span></div>
+      <h2 class="section-title">Des avantages qui font la différence</h2>
+      <p class="section-sub">Bien plus qu'un compte courant — un partenaire financier complet pour votre quotidien et vos voyages.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">💰</div>
+        <h3>Cashback 1 %</h3>
+        <p>Récupérez 1 % sur tous vos achats par carte, crédité automatiquement chaque mois.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">✈️</div>
+        <h3>Assurance voyage</h3>
+        <p>Couverture annulation, bagages, assistance médicale à l'étranger incluse pour vous et votre famille.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🌍</div>
+        <h3>Zéro frais à l'étranger</h3>
+        <p>Paiements et retraits sans surcoût dans 190 pays, taux de change interbancaire.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">👤</div>
+        <h3>Conseiller dédié</h3>
+        <p>Un conseiller personnel joignable par chat, téléphone ou visioconférence 7j/7.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📈</div>
+        <h3>Plafonds élevés</h3>
+        <p>Plafond de paiement jusqu'à 15 000 € et retrait jusqu'à 2 000 € par semaine.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🛡️</div>
+        <h3>Protection achats</h3>
+        <p>Garantie casse, vol et extension de garantie constructeur sur vos achats par carte.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing">
+  <div class="container">
+    <div class="price-card">
+      <div class="price-left">
+        <div class="price-eyebrow">Tarification transparente</div>
+        <div class="price-main">Tout inclus, sans surprise</div>
+        <div class="price-val">
+          <span class="price-num">9,90 €</span>
+          <span class="price-unit">/ mois</span>
+        </div>
+        <div class="price-note">Carte Gold Visa + tous les avantages Premium</div>
+        <div class="price-cta">
+          <a href="../../backend/register.php" class="btn btn-primary">Passer au Premium</a>
+        </div>
+      </div>
+      <div class="price-right">
+        <ul class="price-list">
+          <li>Carte Visa Gold incluse</li>
+          <li>Cashback 1 % sur tous achats</li>
+          <li>Zéro frais de change à l'étranger</li>
+          <li>Assurance voyage multitrajets</li>
+          <li>Protection achats et garantie étendue</li>
+          <li>Conseiller dédié 7j/7</li>
+          <li>Plafonds de paiement élevés</li>
+          <li>Accès aux salons aéroports partenaires</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Passez à l'expérience Premium&nbsp;dès aujourd'hui</h2>
+    <p>Rejoignez des milliers de clients qui profitent des avantages du Compte Premium GTB.</p>
+    <a href="../../backend/register.php" class="btn btn-primary">Souscrire maintenant</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><div class="logo-mark">GTB</div><div class="logo-text"><strong>Global Trust Bank</strong><span>Banque digitale premium</span></div></div>
+        <p>Banque 100 % digitale, régulée et sécurisée. Vos dépôts sont garantis jusqu'à 100 000 €.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Comptes</h4>
+        <ul>
+          <li><a href="courant.html">Compte Courant</a></li>
+          <li><a href="premium.html">Compte Premium</a></li>
+          <li><a href="pro.html">Compte Pro</a></li>
+          <li><a href="etudiant.html">Compte Étudiant</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Produits</h4>
+        <ul>
+          <li><a href="../cartes/index.html">Cartes bancaires</a></li>
+          <li><a href="../epargne/index.html">Épargne</a></li>
+          <li><a href="../investissement/index.html">Investissements</a></li>
+          <li><a href="../assurances/index.html">Assurances</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Aide</h4>
+        <ul>
+          <li><a href="../../pages-publiques/faq.html">FAQ</a></li>
+          <li><a href="../../pages-publiques/contact.html">Contact</a></li>
+          <li><a href="../../pages-publiques/security.html">Sécurité</a></li>
+          <li><a href="../../pages-publiques/about.html">À propos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Global Trust Bank. Tous droits réservés.</span>
+      <span><a href="../../pages-publiques/mentions-legales.html">Mentions légales</a> · <a href="../../pages-publiques/confidentialites.html">Confidentialité</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>document.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);});</script>
+<script src="../../assets/gtb-icons.js"></script>
+<script src="../../assets/app-nav.js"></script>
+</body>
+</html>
