@@ -9,6 +9,10 @@ uploads/
 # Logs
 logs/*.log
 
+# Archives de distribution
+*.zip
+*.tar.gz
+
 # Caches système
 .DS_Store
 Thumbs.db
