@@ -174,7 +174,9 @@ final class Security
             'max_attempts'   => OTP_MAX_TRIES,
             'ref_object'     => $refObject,
             'ref_object_id'  => $refObjectId,
+            'used'           => 0,
             'expires_at'     => date('Y-m-d H:i:s', time() + OTP_LIFETIME),
+            'created_at'     => date('Y-m-d H:i:s'),
         ]);
 
         return $code;
@@ -191,7 +193,7 @@ final class Security
     ): bool {
         $sql = "SELECT * FROM otp_codes
                 WHERE purpose = :p
-                  AND consumed = 0
+                  AND used = 0
                   AND expires_at > NOW()";
         $params = ['p' => $purpose];
 
@@ -204,7 +206,7 @@ final class Security
         if (!$row) return false;
 
         if ($row['attempts'] >= $row['max_attempts']) {
-            DB::update("UPDATE otp_codes SET consumed = 1 WHERE id = :id", ['id' => $row['id']]);
+            DB::update("UPDATE otp_codes SET used = 1 WHERE id = :id", ['id' => $row['id']]);
             return false;
         }
 
@@ -214,7 +216,7 @@ final class Security
         }
 
         DB::update(
-            "UPDATE otp_codes SET consumed = 1, consumed_at = NOW() WHERE id = :id",
+            "UPDATE otp_codes SET used = 1 WHERE id = :id",
             ['id' => $row['id']]
         );
         return true;

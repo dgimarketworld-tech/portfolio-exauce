@@ -95,6 +95,9 @@ define('MAIL_FROM',      'noreply@globaltrust-b.com');
 define('MAIL_FROM_NAME', 'Global Trust Bank');
 define('MAIL_SUPPORT',   'akp00965@gmail.com');
 define('BREVO_API_KEY',  getenv('BREVO_API_KEY') ?: '');
+if (BREVO_API_KEY === '') {
+    error_log('[GTB] AVERTISSEMENT : BREVO_API_KEY non définie — les emails ne seront pas envoyés.');
+}
 
 // ── CHEMINS ─────────────────────────────────────────────────────
 define('GTB_ROOT',     dirname(__DIR__));
@@ -107,18 +110,9 @@ foreach ([UPLOAD_PATH, UPLOAD_PATH . '/kyc', UPLOAD_PATH . '/avatars', LOG_PATH]
         @mkdir($dir, 0775, true);
     }
 }
-// ══ CONSTANTES MANQUANTES ════════════════════════════════════════
-if (!defined('APP_ENV'))              define('APP_ENV', GTB_ENV);
-if (!defined('BASE_PATH'))            define('BASE_PATH', '');
-if (!defined('OTP_VALIDITY'))         define('OTP_VALIDITY', 300);
-if (!defined('OTP_LENGTH'))           define('OTP_LENGTH', 6);
-if (!defined('LOGIN_THROTTLE_MAX'))   define('LOGIN_THROTTLE_MAX', 5);
-if (!defined('LOGIN_THROTTLE_WIN'))   define('LOGIN_THROTTLE_WIN', 900);
-if (!defined('PASSWORD_ALGO'))        define('PASSWORD_ALGO', PASSWORD_BCRYPT);
-if (!defined('PASSWORD_OPTIONS'))     define('PASSWORD_OPTIONS', ['cost'=>12]);
-if (!defined('COOKIE_SECURE'))        define('COOKIE_SECURE',   isset($_SERVER['HTTPS']));
-if (!defined('COOKIE_HTTPONLY'))      define('COOKIE_HTTPONLY',  true);
-if (!defined('COOKIE_SAMESITE'))      define('COOKIE_SAMESITE',  'Lax');
-if (!defined('TRANSFER_FEE_SEPA'))    define('TRANSFER_FEE_SEPA',    0.00);
-if (!defined('TRANSFER_FEE_INSTANT')) define('TRANSFER_FEE_INSTANT', 1.00);
-if (!defined('TRANSFER_LIMIT_DAILY')) define('TRANSFER_LIMIT_DAILY', 10000.00);
+// ── ALIASES / COMPATIBILITÉ ─────────────────────────────────────
+if (!defined('APP_ENV'))            define('APP_ENV',            GTB_ENV);
+if (!defined('BASE_PATH'))          define('BASE_PATH',          '');
+if (!defined('OTP_VALIDITY'))       define('OTP_VALIDITY',       OTP_LIFETIME);
+if (!defined('LOGIN_THROTTLE_MAX')) define('LOGIN_THROTTLE_MAX', LOGIN_MAX_ATTEMPTS);
+if (!defined('LOGIN_THROTTLE_WIN')) define('LOGIN_THROTTLE_WIN', LOGIN_LOCK_MINUTES * 60);

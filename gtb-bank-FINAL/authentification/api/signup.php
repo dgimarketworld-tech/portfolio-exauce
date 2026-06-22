@@ -45,7 +45,8 @@ if (!preg_match('/^\+?[0-9 ]{8,20}$/', $phone))         $errors['phone']        
 if ($birthday && !DateTime::createFromFormat('Y-m-d', $birthday)) $errors['birthday'] = 'Date de naissance invalide.';
 if (strlen($password) < 8)                               $errors['password']      = 'Mot de passe : 8 caractères minimum.';
 if (!$cguAccepted)                                       $errors['cgu']           = 'Vous devez accepter les CGU.';
-if ($document_type !== 'cni_ue')                         $errors['document_type'] = 'Seule la Carte Nationale d\'Identité européenne (CNI-UE) est acceptée.';
+$allowed_docs = ['cni_ue', 'passport', 'titre_sejour'];
+if (!in_array($document_type, $allowed_docs, true))      $errors['document_type'] = 'Document accepté : CNI européenne, passeport ou titre de séjour.';
 
 if (!empty($errors)) {
     json_response(['success' => false, 'error' => 'Veuillez corriger les champs en erreur.', 'fields' => $errors]);
@@ -79,7 +80,7 @@ try {
             'is_active'      => 1,
             'status'         => 'active',
             'kyc_status'          => 'pending',
-            'kyc_document_type'   => 'cni_ue',
+            'kyc_document_type'   => $document_type,
             'created_at'          => date('Y-m-d H:i:s'),
         ]);
         $numeroCompte = 'GTB-' . ($pays ?: 'XX') . '-' . str_pad((string)$userId, 6, '0', STR_PAD_LEFT) . strtoupper(bin2hex(random_bytes(2)));
@@ -104,7 +105,7 @@ $html_welcome = "
 <div style='font-family:Arial,sans-serif;max-width:520px;margin:auto;padding:32px;border:1px solid #e5e7eb;border-radius:8px'>
   <h2 style='color:#1a3c5e'>Bienvenue chez Global Trust Bank, {$prenom} !</h2>
   <p style='color:#374151'>Votre compte a été créé avec succès. Vous pouvez dès maintenant vous connecter à votre espace client.</p>
-  <a href='https://globaltrust-b.com/authentification/login.php' style='display:inline-block;margin:20px 0;padding:12px 24px;background:#D4AF37;color:#fff;text-decoration:none;border-radius:6px;font-weight:600'>Accéder à mon espace</a>
+  <a href='" . GTB_BASE_URL . "/authentification/login.php' style='display:inline-block;margin:20px 0;padding:12px 24px;background:#D4AF37;color:#fff;text-decoration:none;border-radius:6px;font-weight:600'>Accéder à mon espace</a>
   <p style='color:#6b7280;font-size:13px'>Email : {$email}</p>
   <hr style='border:none;border-top:1px solid #e5e7eb;margin:24px 0'>
   <p style='color:#9ca3af;font-size:12px'>Global Trust Bank — La banque d'un monde qui change</p>
