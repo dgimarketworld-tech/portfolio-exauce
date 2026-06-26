@@ -465,6 +465,409 @@ if ($_SERVER['REQUEST_METHOD']==='POST' && Security::csrfCheck($_POST['_csrf']??
     <button type="submit" class="btn btn-primary">Mettre à jour</button>
   </form>
 </div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CRÉER UN CLIENT
+════════════════════════════════════════════════════════ -->
+<div class="admin-card" style="margin-top:2rem">
+  <div class="card-header">
+    <div>
+      <div class="card-title">➕ Créer un compte client</div>
+      <div class="card-sub">L'admin crée le profil manuellement — IBAN et numéro client générés automatiquement</div>
+    </div>
+  </div>
+  <form id="createUserForm" autocomplete="off">
+    <div style="display:grid;grid-template-columns:120px 1fr 1fr;gap:.6rem;margin-bottom:.6rem">
+      <div class="form-group" style="margin:0">
+        <label class="form-label">Civilité</label>
+        <select class="form-select" id="cu_civility" name="civility">
+          <option value="">—</option>
+          <option value="M.">M.</option>
+          <option value="Mme">Mme</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label">Prénom <span style="color:var(--danger)">*</span></label>
+        <input class="form-input" type="text" id="cu_first" placeholder="Jean" required>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label">Nom <span style="color:var(--danger)">*</span></label>
+        <input class="form-input" type="text" id="cu_last" placeholder="Dupont" required>
+      </div>
+    </div>
+    <div class="form-row" style="margin-bottom:.6rem">
+      <div class="form-group" style="margin:0">
+        <label class="form-label">Email <span style="color:var(--danger)">*</span></label>
+        <input class="form-input" type="email" id="cu_email" placeholder="jean.dupont@mail.com" required>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label">Téléphone</label>
+        <input class="form-input" type="tel" id="cu_tel" placeholder="+33 6 00 00 00 00">
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.6rem;margin-bottom:.6rem">
+      <div class="form-group" style="margin:0">
+        <label class="form-label">Mot de passe temp. <span style="color:var(--danger)">*</span></label>
+        <div style="display:flex;gap:.35rem">
+          <input class="form-input" type="text" id="cu_pwd" placeholder="••••••••" required minlength="8" style="flex:1;min-width:0">
+          <button type="button" onclick="genPwd()" class="btn btn-outline btn-sm" title="Générer" style="flex-shrink:0;padding:.5rem .7rem">🎲</button>
+        </div>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label">Type de compte</label>
+        <select class="form-select" id="cu_plan">
+          <option value="standard">Standard</option>
+          <option value="premium">Premium</option>
+          <option value="business">Business</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label">Devise</label>
+        <select class="form-select" id="cu_devise">
+          <option value="EUR">EUR €</option>
+          <option value="USD">USD $</option>
+          <option value="GBP">GBP £</option>
+          <option value="CHF">CHF</option>
+          <option value="MAD">MAD</option>
+          <option value="XOF">XOF</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label">Langue</label>
+        <select class="form-select" id="cu_langue">
+          <option value="fr">Français</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="de">Deutsch</option>
+        </select>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
+      <label style="display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:var(--gray700);cursor:pointer">
+        <input type="checkbox" id="cu_card" style="accent-color:var(--accent)"> Créer une carte bancaire
+      </label>
+    </div>
+    <div id="cuResult" style="display:none;margin-bottom:1rem;padding:.85rem 1rem;border-radius:10px;font-size:.82rem;line-height:1.7"></div>
+    <button type="submit" class="btn btn-primary" id="cuBtn">Créer le client</button>
+  </form>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     METTRE À JOUR UN ACCÈS CLIENT
+════════════════════════════════════════════════════════ -->
+<div class="admin-card" style="margin-top:2rem">
+  <div class="card-header">
+    <div>
+      <div class="card-title">🛠 Mettre à jour un accès client</div>
+      <div class="card-sub">Recherchez un client puis appliquez des actions directement sur son compte</div>
+    </div>
+  </div>
+
+  <!-- Recherche client -->
+  <div style="display:flex;gap:.5rem;margin-bottom:1rem">
+    <div class="admin-search" style="flex:1;max-width:none">
+      <span style="font-size:.9rem;color:var(--gray400)">🔍</span>
+      <input type="text" id="clientSearch" placeholder="Nom, email ou numéro client..." oninput="searchClient(this.value)" autocomplete="off">
+    </div>
+    <button class="btn btn-outline btn-sm" onclick="clearClient()">✕ Effacer</button>
+  </div>
+
+  <!-- Résultats recherche -->
+  <div id="clientResults" style="display:none;margin-bottom:1rem;background:var(--gray50);border:1px solid var(--gray200);border-radius:10px;overflow:hidden;max-height:220px;overflow-y:auto"></div>
+
+  <!-- Fiche client sélectionné -->
+  <div id="clientCard" style="display:none;margin-bottom:1.25rem">
+    <div style="background:linear-gradient(135deg,var(--admin-bg),var(--admin-bg-mid));border-radius:12px;padding:1.1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:.85rem">
+        <div id="cc_avatar" style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-deep));display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;color:white;flex-shrink:0"></div>
+        <div>
+          <div id="cc_name" style="font-family:'Sora',sans-serif;font-weight:700;font-size:.95rem;color:white"></div>
+          <div id="cc_email" style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:.1rem"></div>
+          <div id="cc_num" style="font-size:.68rem;color:rgba(255,255,255,.35);font-family:'JetBrains Mono',monospace;margin-top:.1rem"></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
+        <div style="text-align:right">
+          <div style="font-size:.62rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem">Solde</div>
+          <div id="cc_solde" style="font-family:'Sora',sans-serif;font-weight:800;font-size:1.15rem;color:#10B981"></div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:.62rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem">IBAN</div>
+          <div id="cc_iban" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:rgba(255,255,255,.7)"></div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:.62rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem">Statut</div>
+          <div id="cc_status" style="font-size:.75rem;font-weight:700"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panneau d'actions (masqué jusqu'à sélection client) -->
+  <div id="actionPanel" style="display:none">
+    <div id="actionMsg" style="display:none;margin-bottom:.85rem;padding:.7rem 1rem;border-radius:8px;font-size:.8rem"></div>
+
+    <!-- Chips catégories -->
+    <div class="chips-bar" id="actionChips">
+      <span class="chip active" data-cat="virements">💸 Virements</span>
+      <span class="chip" data-cat="certification">📊 Certification</span>
+      <span class="chip" data-cat="compte">🏦 Compte</span>
+      <span class="chip" data-cat="carte">💳 Carte</span>
+      <span class="chip" data-cat="securite">🔒 Sécurité</span>
+      <span class="chip" data-cat="kyc">🪪 KYC</span>
+      <span class="chip" data-cat="comms">📨 Communication</span>
+    </div>
+
+    <!-- ── VIREMENTS ── -->
+    <div class="action-section" data-cat="virements">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem">
+        <?php foreach([
+          ['virement_entrant','Créditer','✅','Créditer le compte client','success'],
+          ['virement_sortant','Débiter','⬆️','Débiter le compte client','danger'],
+          ['remboursement','Remboursement','🔄','Crédit remboursement','info'],
+        ] as [$act,$label,$ico,$sub,$style]):?>
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-size:1.2rem;margin-bottom:.35rem"><?=$ico?></div>
+          <div style="font-weight:700;font-size:.82rem;color:var(--gray900);margin-bottom:.15rem"><?=$label?></div>
+          <div style="font-size:.72rem;color:var(--gray500);margin-bottom:.85rem"><?=$sub?></div>
+          <div class="form-group"><label class="form-label">Montant (€)</label><input class="form-input form-input-sm" type="number" step="0.01" min="0.01" name="montant" data-action="<?=$act?>" placeholder="0.00"></div>
+          <div class="form-group"><label class="form-label">Motif</label><input class="form-input form-input-sm" type="text" name="motif" data-action="<?=$act?>" placeholder="Motif..."></div>
+          <div class="form-group"><label class="form-label">Référence (optionnel)</label><input class="form-input form-input-sm" type="text" name="ref" data-action="<?=$act?>" placeholder="Auto"></div>
+          <div class="form-group"><label class="form-label">Date backdatée (optionnel)</label><input class="form-input form-input-sm" type="datetime-local" name="backdated_at" data-action="<?=$act?>"></div>
+          <button class="btn btn-<?=$style?> btn-sm" style="width:100%" onclick="doAction('<?=$act?>')">Exécuter</button>
+        </div>
+        <?php endforeach;?>
+      </div>
+    </div>
+
+    <!-- ── CERTIFICATION ── -->
+    <div class="action-section" data-cat="certification" style="display:none">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1rem">
+        <?php foreach([
+          ['cert_valider','Valider virement','✅','success'],
+          ['cert_rejeter','Rejeter virement','❌','danger'],
+          ['cert_reset','Remettre à 0%','🔁','outline'],
+          ['cert_geler','Geler position','⏸️','outline'],
+          ['cert_debloquer','Débloquer','▶️','outline'],
+          ['cert_forcer_100','Forcer 100%','💯','primary'],
+        ] as [$act,$label,$ico,$style]):?>
+        <button class="btn btn-<?=$style?> btn-sm" onclick="doAction('<?=$act?>')"><?=$ico?> <?=$label?></button>
+        <?php endforeach;?>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">⏸️ Geler à un pourcentage</div>
+          <div class="form-group"><label class="form-label">Pourcentage</label><input class="form-input" type="number" min="0" max="99" name="pct" data-action="cert_bloquer" value="50"></div>
+          <div class="form-group"><label class="form-label">Message client</label><input class="form-input" type="text" name="cert-msg" data-action="cert_bloquer" placeholder="Vérification en cours..."></div>
+          <button class="btn btn-warning btn-sm" style="width:100%" onclick="doAction('cert_bloquer')">Geler ici</button>
+        </div>
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">⚡ Vitesse de progression</div>
+          <div class="form-group"><label class="form-label">Vitesse</label>
+            <select class="form-select" name="vitesse" data-action="cert_vitesse">
+              <option value="slow">Lente</option>
+              <option value="normal" selected>Normale</option>
+              <option value="fast">Rapide</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">Message affiché</label><input class="form-input" type="text" name="cert-msg" data-action="cert_message" placeholder="Message..."></div>
+          <div style="display:flex;gap:.5rem">
+            <button class="btn btn-outline btn-sm" style="flex:1" onclick="doAction('cert_vitesse')">Changer vitesse</button>
+            <button class="btn btn-outline btn-sm" style="flex:1" onclick="doAction('cert_message')">Maj message</button>
+          </div>
+        </div>
+      </div>
+      <div class="admin-card" style="padding:1rem;margin-top:1rem">
+        <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">🚦 Seuil d'arrêt virement (%)</div>
+        <div style="display:flex;gap:.5rem;align-items:flex-end">
+          <div class="form-group" style="margin:0;flex:1"><label class="form-label">Pourcentage (0 = désactivé)</label><input class="form-input" type="number" min="0" max="100" name="pct" data-action="stop_virement_pct" value="0"></div>
+          <button class="btn btn-outline btn-sm" onclick="doAction('stop_virement_pct')">Appliquer</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COMPTE ── -->
+    <div class="action-section" data-cat="compte" style="display:none">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">💰 Modifier le solde</div>
+          <div class="form-group"><label class="form-label">Nouveau solde exact (€)</label><input class="form-input" type="number" step="0.01" name="montant" data-action="modifier_solde" placeholder="0.00"></div>
+          <button class="btn btn-warning btn-sm" style="width:100%" onclick="doAction('modifier_solde')">Appliquer</button>
+        </div>
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">📉 Découvert autorisé</div>
+          <div class="form-group"><label class="form-label">Montant (€)</label><input class="form-input" type="number" step="0.01" name="montant" data-action="modifier_decouvert" placeholder="500.00"></div>
+          <button class="btn btn-outline btn-sm" style="width:100%" onclick="doAction('modifier_decouvert')">Modifier</button>
+        </div>
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">🏦 IBAN / BIC</div>
+          <div class="form-group"><label class="form-label">IBAN</label><input class="form-input" type="text" name="iban" data-action="modifier_iban_bic" placeholder="FR76..."></div>
+          <div class="form-group"><label class="form-label">BIC</label><input class="form-input" type="text" name="bic" data-action="modifier_iban_bic" placeholder="GTBXFRP1"></div>
+          <button class="btn btn-outline btn-sm" style="width:100%" onclick="doAction('modifier_iban_bic')">Mettre à jour</button>
+        </div>
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">🔄 Type de compte</div>
+          <div class="form-group"><label class="form-label">Type</label>
+            <select class="form-select" name="type-compte" data-action="changer_type_compte">
+              <option value="standard">Standard</option>
+              <option value="premium">Premium</option>
+              <option value="business">Business</option>
+            </select>
+          </div>
+          <button class="btn btn-outline btn-sm" style="width:100%" onclick="doAction('changer_type_compte')">Changer</button>
+        </div>
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">🚫 Bloquer l'accès</div>
+          <div class="form-group"><label class="form-label">Motif</label><input class="form-input" type="text" name="motif" data-action="bloquer_acces" placeholder="Activité suspecte"></div>
+          <div class="form-group"><label class="form-label">Type</label>
+            <select class="form-select" name="block-type" data-action="bloquer_acces">
+              <option value="permanent">Permanent</option>
+              <option value="temporary">Temporaire</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">Jusqu'au (si temporaire)</label><input class="form-input" type="datetime-local" name="block-until" data-action="bloquer_acces"></div>
+          <div style="display:flex;gap:.5rem">
+            <button class="btn btn-danger btn-sm" style="flex:1" onclick="doAction('bloquer_acces')">Bloquer</button>
+            <button class="btn btn-success btn-sm" style="flex:1" onclick="doAction('debloquer_acces')">Débloquer</button>
+          </div>
+        </div>
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">⚖️ Plafonds</div>
+          <div class="form-group"><label class="form-label">Retrait (€)</label><input class="form-input" type="number" name="montant" data-action="plafond_retrait" placeholder="10000"></div>
+          <button class="btn btn-outline btn-sm" style="width:100%;margin-bottom:.5rem" onclick="doAction('plafond_retrait')">Maj retrait</button>
+          <div class="form-group"><label class="form-label">Virement (€)</label><input class="form-input" type="number" name="montant" data-action="plafond_virement" placeholder="50000"></div>
+          <button class="btn btn-outline btn-sm" style="width:100%;margin-bottom:.5rem" onclick="doAction('plafond_virement')">Maj virement</button>
+          <div class="form-group"><label class="form-label">Paiement (€)</label><input class="form-input" type="number" name="montant" data-action="plafond_paiement" placeholder="5000"></div>
+          <button class="btn btn-outline btn-sm" style="width:100%" onclick="doAction('plafond_paiement')">Maj paiement</button>
+        </div>
+      </div>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem">
+        <button class="btn btn-outline btn-sm" onclick="doAction('suspendre_compte')">⏸ Suspendre</button>
+        <button class="btn btn-danger btn-sm" onclick="confirmDlg('Fermer définitivement ce compte ?',()=>doAction('fermer_compte'))">🗑 Fermer compte</button>
+      </div>
+    </div>
+
+    <!-- ── CARTE ── -->
+    <div class="action-section" data-cat="carte" style="display:none">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">💳 Statut carte</div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <button class="btn btn-danger btn-sm" onclick="doAction('bloquer_carte')">🔒 Bloquer</button>
+            <button class="btn btn-success btn-sm" onclick="doAction('debloquer_carte')">🔓 Débloquer</button>
+            <button class="btn btn-outline btn-sm" onclick="doAction('renouveler_carte')">🔄 Renouveler</button>
+            <button class="btn btn-outline btn-sm" onclick="doAction('toggle_paiement_en_ligne')">🌐 Toggle en ligne</button>
+            <button class="btn btn-outline btn-sm" onclick="doAction('toggle_paiement_etranger')">✈️ Toggle étranger</button>
+          </div>
+        </div>
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">📝 Infos carte</div>
+          <div class="form-group"><label class="form-label">Numéro carte</label><input class="form-input" type="text" name="card-num" data-action="modifier_infos_carte" placeholder="1234 5678 9012 3456"></div>
+          <div class="form-group"><label class="form-label">CVV</label><input class="form-input" type="text" name="cvv" data-action="modifier_infos_carte" placeholder="123" maxlength="4"></div>
+          <div class="form-group"><label class="form-label">Expiration (MM/YYYY)</label><input class="form-input" type="month" name="expire" data-action="modifier_infos_carte"></div>
+          <button class="btn btn-outline btn-sm" style="width:100%" onclick="doAction('modifier_infos_carte')">Mettre à jour</button>
+        </div>
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">💰 Plafond carte</div>
+          <div class="form-group"><label class="form-label">Montant (€)</label><input class="form-input" type="number" step="0.01" name="montant" data-action="modifier_plafond_carte" placeholder="3000"></div>
+          <button class="btn btn-outline btn-sm" style="width:100%" onclick="doAction('modifier_plafond_carte')">Modifier</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SÉCURITÉ ── -->
+    <div class="action-section" data-cat="securite" style="display:none">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">🔑 Réinitialiser le mot de passe</div>
+          <div class="form-group"><label class="form-label">Nouveau mot de passe temporaire</label>
+            <div style="display:flex;gap:.35rem">
+              <input class="form-input" type="text" id="resetPwdInput" name="reset_pwd_val" placeholder="Générer..." style="flex:1">
+              <button type="button" onclick="genResetPwd()" class="btn btn-outline btn-sm">🎲</button>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Message email (optionnel)</label><textarea class="form-textarea" name="notif_msg" data-action="reset_password" rows="2" placeholder="Votre mot de passe a été réinitialisé..."></textarea></div>
+          <div style="display:flex;gap:.5rem;align-items:center">
+            <input type="checkbox" id="sendEmailPwd" style="accent-color:var(--accent)"> <label for="sendEmailPwd" style="font-size:.78rem">Envoyer par email</label>
+          </div>
+          <button class="btn btn-warning btn-sm" style="width:100%;margin-top:.75rem" onclick="doAction('reset_password')">Réinitialiser</button>
+        </div>
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">🛡️ Actions sécurité</div>
+          <div style="display:flex;flex-direction:column;gap:.5rem">
+            <button class="btn btn-outline btn-sm" onclick="doAction('toggle_2fa')">🔐 Activer / Désactiver 2FA</button>
+            <button class="btn btn-danger btn-sm" onclick="doAction('forcer_deconnexion')">⏏ Révoquer toutes sessions</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── KYC ── -->
+    <div class="action-section" data-cat="kyc" style="display:none">
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+        <button class="btn btn-success btn-sm" onclick="doAction('valider_kyc')">✅ Valider KYC</button>
+        <button class="btn btn-danger btn-sm" onclick="doAction('refuser_kyc')">❌ Refuser KYC</button>
+        <button class="btn btn-outline btn-sm" onclick="doAction('demander_documents')">📄 Demander documents</button>
+      </div>
+      <div class="admin-card" style="padding:1rem;margin-top:1rem;max-width:340px">
+        <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">Changer statut KYC</div>
+        <div class="form-group"><label class="form-label">Statut</label>
+          <select class="form-select" name="kyc-status" data-action="changer_statut_kyc">
+            <option value="pending">En attente</option>
+            <option value="verified">Vérifié</option>
+            <option value="rejected">Refusé</option>
+          </select>
+        </div>
+        <button class="btn btn-primary btn-sm" style="width:100%" onclick="doAction('changer_statut_kyc')">Appliquer</button>
+      </div>
+    </div>
+
+    <!-- ── COMMUNICATION ── -->
+    <div class="action-section" data-cat="comms" style="display:none">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">🔔 Notification in-app</div>
+          <div class="form-group"><label class="form-label">Titre</label><input class="form-input" type="text" name="notif-t" data-action="envoyer_notification" placeholder="Titre..."></div>
+          <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" name="notif-m" data-action="envoyer_notification" rows="3" placeholder="Message..."></textarea></div>
+          <div class="form-group"><label class="form-label">Type</label>
+            <select class="form-select" name="notif-type" data-action="envoyer_notification">
+              <option value="info">Info</option>
+              <option value="success">Succès</option>
+              <option value="warning">Avertissement</option>
+              <option value="danger">Alerte</option>
+            </select>
+          </div>
+          <button class="btn btn-primary btn-sm" style="width:100%" onclick="doAction('envoyer_notification')">Envoyer notification</button>
+        </div>
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">📧 Message par email</div>
+          <div class="form-group"><label class="form-label">Sujet</label><input class="form-input" type="text" id="emailSubject" placeholder="Sujet de l'email..."></div>
+          <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" name="message" data-action="envoyer_message" rows="4" placeholder="Corps du message..."></textarea></div>
+          <button class="btn btn-primary btn-sm" style="width:100%" onclick="doAction('envoyer_message',{send_email:true,notif_title:document.getElementById('emailSubject').value})">Envoyer email</button>
+        </div>
+        <div class="admin-card" style="padding:1rem">
+          <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">🌍 Langue & Couleur interface</div>
+          <div class="form-group"><label class="form-label">Langue</label>
+            <select class="form-select" name="langue" data-action="changer_langue">
+              <option value="fr">Français</option><option value="en">English</option>
+              <option value="es">Español</option><option value="de">Deutsch</option>
+            </select>
+          </div>
+          <button class="btn btn-outline btn-sm" style="width:100%;margin-bottom:.5rem" onclick="doAction('changer_langue')">Changer langue</button>
+          <div class="form-group" style="margin-top:.5rem"><label class="form-label">Couleur interface</label>
+            <select class="form-select" name="couleur" data-action="changer_couleur">
+              <option value="default">Défaut</option><option value="dark">Dark</option>
+              <option value="blue">Bleu</option><option value="green">Vert</option>
+            </select>
+          </div>
+          <button class="btn btn-outline btn-sm" style="width:100%" onclick="doAction('changer_couleur')">Changer couleur</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /actionPanel -->
+</div>
+
 </main></div><div class="toast-container" id="toastContainer"></div><script>
 (function(){'use strict';
 const sb=document.getElementById('sidebar'),tgl=document.getElementById('sidebarToggle'),ov=document.getElementById('sidebarOverlay');
@@ -478,5 +881,144 @@ window.closeModal=function(id){document.getElementById(id)?.classList.remove('op
 window.confirmDlg=function(msg,onOk){const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:9000;padding:1rem';d.innerHTML=`<div style="background:#fff;border-radius:16px;width:100%;max-width:360px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2)"><div style="padding:1.5rem;text-align:center"><div style="font-size:1.8rem;margin-bottom:.5rem">⚠️</div><p style="font-size:.85rem;color:#374151">${msg}</p></div><div style="display:flex;border-top:1px solid #e5e7eb"><button style="flex:1;padding:.75rem;border:none;background:none;cursor:pointer;font-weight:600" id="_cc">Annuler</button><button style="flex:1;padding:.75rem;border:none;background:#dc2626;color:#fff;cursor:pointer;font-weight:700" id="_co">Confirmer</button></div></div>`;document.body.appendChild(d);d.querySelector('#_cc').onclick=()=>d.remove();d.querySelector('#_co').onclick=()=>{d.remove();onOk?.();};};
 document.querySelectorAll('.modal-overlay,.chip[data-filter]').forEach(el=>{if(el.classList.contains('modal-overlay'))el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');});});
 document.querySelectorAll('[data-filter]').forEach(c=>{c.addEventListener('click',()=>{c.closest('.chips-bar')?.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));c.classList.add('active');});});
+
+// ─── CRÉER UN CLIENT ───────────────────────────────────
+function genPwd(){const c='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789!@#$';let p='';for(let i=0;i<12;i++)p+=c[Math.floor(Math.random()*c.length)];document.getElementById('cu_pwd').value=p;}
+document.getElementById('createUserForm')?.addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn=document.getElementById('cuBtn');
+  const res=document.getElementById('cuResult');
+  btn.disabled=true;btn.textContent='Création en cours...';
+  const body={
+    first_name:document.getElementById('cu_first').value.trim(),
+    last_name:document.getElementById('cu_last').value.trim(),
+    email:document.getElementById('cu_email').value.trim(),
+    telephone:document.getElementById('cu_tel').value.trim(),
+    civility:document.getElementById('cu_civility').value,
+    password:document.getElementById('cu_pwd').value,
+    plan:document.getElementById('cu_plan').value,
+    devise:document.getElementById('cu_devise').value,
+    langue:document.getElementById('cu_langue').value,
+    with_card:document.getElementById('cu_card').checked,
+  };
+  try{
+    const r=await fetch('api/create_user.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const d=await r.json();
+    res.style.display='block';
+    if(d.success){
+      res.style.cssText='display:block;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:.85rem 1rem;margin-bottom:1rem;font-size:.82rem;color:#065f46;line-height:1.8';
+      res.innerHTML=`<strong>✓ ${d.message}</strong><br>
+        N° client : <code>${d.client_number}</code><br>
+        IBAN : <code>${d.iban}</code> &nbsp; BIC : <code>${d.bic}</code><br>
+        Mot de passe temporaire : <code>${d.temp_password}</code>`;
+      showToast(d.message,'success');
+      e.target.reset();
+    }else{
+      res.style.cssText='display:block;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:.85rem 1rem;margin-bottom:1rem;font-size:.82rem;color:var(--danger)';
+      res.textContent='✕ '+d.message;
+      showToast(d.message,'error');
+    }
+  }catch(err){showToast('Erreur réseau','error');}
+  btn.disabled=false;btn.textContent='Créer le client';
+});
+
+// ─── ACCÈS CLIENT ─────────────────────────────────────
+let selectedClientId=null;
+let searchTimer=null;
+function searchClient(q){
+  clearTimeout(searchTimer);
+  const res=document.getElementById('clientResults');
+  if(q.length<2){res.style.display='none';return;}
+  searchTimer=setTimeout(async()=>{
+    const r=await fetch('../acces-client/api/clients.php?q='+encodeURIComponent(q));
+    const d=await r.json();
+    if(!d.success||!d.clients.length){res.style.display='none';return;}
+    res.style.display='block';
+    res.innerHTML=d.clients.map(c=>`
+      <div onclick="selectClient(${JSON.stringify(c).replace(/"/g,'&quot;')})"
+        style="display:flex;align-items:center;gap:.75rem;padding:.65rem 1rem;cursor:pointer;border-bottom:1px solid var(--gray100);transition:.15s"
+        onmouseover="this.style.background='var(--gray50)'" onmouseout="this.style.background=''">
+        <div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-deep));display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:700;font-size:.72rem;color:white;flex-shrink:0">${c.initials}</div>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:600;font-size:.82rem;color:var(--gray900)">${c.name}</div>
+          <div style="font-size:.7rem;color:var(--gray500)">${c.email} &nbsp;·&nbsp; ${c.client_number||'—'}</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:.82rem;color:${c.solde>=0?'var(--success)':'var(--danger)'}">${Number(c.solde).toLocaleString('fr-FR',{minimumFractionDigits:2})} ${c.devise}</div>
+          <span style="font-size:.62rem;font-weight:600;padding:.1rem .4rem;border-radius:999px;background:${c.status==='active'?'rgba(16,185,129,.1)':'rgba(239,68,68,.1)'};color:${c.status==='active'?'var(--success)':'var(--danger)'}">${c.status}</span>
+        </div>
+      </div>`).join('');
+  },280);
+}
+function selectClient(c){
+  selectedClientId=c.id;
+  document.getElementById('clientResults').style.display='none';
+  document.getElementById('clientSearch').value=c.name+' — '+c.email;
+  // Fiche
+  document.getElementById('cc_avatar').textContent=c.initials;
+  document.getElementById('cc_name').textContent=c.name;
+  document.getElementById('cc_email').textContent=c.email;
+  document.getElementById('cc_num').textContent=c.client_number||'';
+  document.getElementById('cc_solde').textContent=Number(c.solde).toLocaleString('fr-FR',{minimumFractionDigits:2})+' '+c.devise;
+  document.getElementById('cc_iban').textContent=c.iban_fmt||c.iban_raw||'—';
+  const statusEl=document.getElementById('cc_status');
+  statusEl.textContent=c.status;
+  statusEl.style.color=c.status==='active'?'#10B981':'#EF4444';
+  document.getElementById('clientCard').style.display='block';
+  document.getElementById('actionPanel').style.display='block';
+}
+function clearClient(){
+  selectedClientId=null;
+  document.getElementById('clientSearch').value='';
+  document.getElementById('clientResults').style.display='none';
+  document.getElementById('clientCard').style.display='none';
+  document.getElementById('actionPanel').style.display='none';
+}
+// Chips catégories
+document.getElementById('actionChips')?.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click',()=>{
+    document.getElementById('actionChips').querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    const cat=chip.dataset.cat;
+    document.querySelectorAll('.action-section').forEach(s=>s.style.display=s.dataset.cat===cat?'':'none');
+  });
+});
+function genResetPwd(){const c='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789!@#$';let p='';for(let i=0;i<10;i++)p+=c[Math.floor(Math.random()*c.length)];document.getElementById('resetPwdInput').value=p;}
+async function doAction(action,extra={}){
+  if(!selectedClientId){showToast('Aucun client sélectionné','error');return;}
+  // Collect form_data for this action
+  const fd={};
+  document.querySelectorAll(`[data-action="${action}"]`).forEach(el=>{
+    if(el.name)fd[el.name]=el.value;
+  });
+  // Special: reset_password needs the pwd field
+  if(action==='reset_password'){
+    fd.password=document.getElementById('resetPwdInput').value;
+    fd.notif_msg=fd.notif_msg||'';
+  }
+  const body={
+    action,
+    client_id:selectedClientId,
+    form_data:fd,
+    send_email:!!extra.send_email,
+    notif_title:extra.notif_title||'',
+    ...extra
+  };
+  const msgEl=document.getElementById('actionMsg');
+  try{
+    const r=await fetch('../acces-client/api/action.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const d=await r.json();
+    msgEl.style.display='block';
+    if(d.success){
+      msgEl.style.cssText='display:block;margin-bottom:.85rem;padding:.7rem 1rem;border-radius:8px;font-size:.8rem;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);color:#065f46';
+      msgEl.textContent='✓ '+d.message;
+      showToast(d.message,'success');
+    }else{
+      msgEl.style.cssText='display:block;margin-bottom:.85rem;padding:.7rem 1rem;border-radius:8px;font-size:.8rem;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:var(--danger)';
+      msgEl.textContent='✕ '+(d.message||'Erreur');
+      showToast(d.message||'Erreur','error');
+    }
+  }catch(err){showToast('Erreur réseau','error');}
+}
 })();
 </script></body></html>
