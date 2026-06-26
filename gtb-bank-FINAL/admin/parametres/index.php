@@ -467,92 +467,6 @@ if ($_SERVER['REQUEST_METHOD']==='POST' && Security::csrfCheck($_POST['_csrf']??
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
-     CRÉER UN CLIENT
-════════════════════════════════════════════════════════ -->
-<div class="admin-card" style="margin-top:2rem">
-  <div class="card-header">
-    <div>
-      <div class="card-title">➕ Créer un compte client</div>
-      <div class="card-sub">L'admin crée le profil manuellement — IBAN et numéro client générés automatiquement</div>
-    </div>
-  </div>
-  <form id="createUserForm" autocomplete="off">
-    <div style="display:grid;grid-template-columns:120px 1fr 1fr;gap:.6rem;margin-bottom:.6rem">
-      <div class="form-group" style="margin:0">
-        <label class="form-label">Civilité</label>
-        <select class="form-select" id="cu_civility" name="civility">
-          <option value="">—</option>
-          <option value="M.">M.</option>
-          <option value="Mme">Mme</option>
-        </select>
-      </div>
-      <div class="form-group" style="margin:0">
-        <label class="form-label">Prénom <span style="color:var(--danger)">*</span></label>
-        <input class="form-input" type="text" id="cu_first" placeholder="Jean" required>
-      </div>
-      <div class="form-group" style="margin:0">
-        <label class="form-label">Nom <span style="color:var(--danger)">*</span></label>
-        <input class="form-input" type="text" id="cu_last" placeholder="Dupont" required>
-      </div>
-    </div>
-    <div class="form-row" style="margin-bottom:.6rem">
-      <div class="form-group" style="margin:0">
-        <label class="form-label">Email <span style="color:var(--danger)">*</span></label>
-        <input class="form-input" type="email" id="cu_email" placeholder="jean.dupont@mail.com" required>
-      </div>
-      <div class="form-group" style="margin:0">
-        <label class="form-label">Téléphone</label>
-        <input class="form-input" type="tel" id="cu_tel" placeholder="+33 6 00 00 00 00">
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.6rem;margin-bottom:.6rem">
-      <div class="form-group" style="margin:0">
-        <label class="form-label">Mot de passe temp. <span style="color:var(--danger)">*</span></label>
-        <div style="display:flex;gap:.35rem">
-          <input class="form-input" type="text" id="cu_pwd" placeholder="••••••••" required minlength="8" style="flex:1;min-width:0">
-          <button type="button" onclick="genPwd()" class="btn btn-outline btn-sm" title="Générer" style="flex-shrink:0;padding:.5rem .7rem">🎲</button>
-        </div>
-      </div>
-      <div class="form-group" style="margin:0">
-        <label class="form-label">Type de compte</label>
-        <select class="form-select" id="cu_plan">
-          <option value="standard">Standard</option>
-          <option value="premium">Premium</option>
-          <option value="business">Business</option>
-        </select>
-      </div>
-      <div class="form-group" style="margin:0">
-        <label class="form-label">Devise</label>
-        <select class="form-select" id="cu_devise">
-          <option value="EUR">EUR €</option>
-          <option value="USD">USD $</option>
-          <option value="GBP">GBP £</option>
-          <option value="CHF">CHF</option>
-          <option value="MAD">MAD</option>
-          <option value="XOF">XOF</option>
-        </select>
-      </div>
-      <div class="form-group" style="margin:0">
-        <label class="form-label">Langue</label>
-        <select class="form-select" id="cu_langue">
-          <option value="fr">Français</option>
-          <option value="en">English</option>
-          <option value="es">Español</option>
-          <option value="de">Deutsch</option>
-        </select>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
-      <label style="display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:var(--gray700);cursor:pointer">
-        <input type="checkbox" id="cu_card" style="accent-color:var(--accent)"> Créer une carte bancaire
-      </label>
-    </div>
-    <div id="cuResult" style="display:none;margin-bottom:1rem;padding:.85rem 1rem;border-radius:10px;font-size:.82rem;line-height:1.7"></div>
-    <button type="submit" class="btn btn-primary" id="cuBtn">Créer le client</button>
-  </form>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════
      METTRE À JOUR UN ACCÈS CLIENT
 ════════════════════════════════════════════════════════ -->
 <div class="admin-card" style="margin-top:2rem">
@@ -881,46 +795,6 @@ window.closeModal=function(id){document.getElementById(id)?.classList.remove('op
 window.confirmDlg=function(msg,onOk){const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:9000;padding:1rem';d.innerHTML=`<div style="background:#fff;border-radius:16px;width:100%;max-width:360px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2)"><div style="padding:1.5rem;text-align:center"><div style="font-size:1.8rem;margin-bottom:.5rem">⚠️</div><p style="font-size:.85rem;color:#374151">${msg}</p></div><div style="display:flex;border-top:1px solid #e5e7eb"><button style="flex:1;padding:.75rem;border:none;background:none;cursor:pointer;font-weight:600" id="_cc">Annuler</button><button style="flex:1;padding:.75rem;border:none;background:#dc2626;color:#fff;cursor:pointer;font-weight:700" id="_co">Confirmer</button></div></div>`;document.body.appendChild(d);d.querySelector('#_cc').onclick=()=>d.remove();d.querySelector('#_co').onclick=()=>{d.remove();onOk?.();};};
 document.querySelectorAll('.modal-overlay,.chip[data-filter]').forEach(el=>{if(el.classList.contains('modal-overlay'))el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');});});
 document.querySelectorAll('[data-filter]').forEach(c=>{c.addEventListener('click',()=>{c.closest('.chips-bar')?.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));c.classList.add('active');});});
-
-// ─── CRÉER UN CLIENT ───────────────────────────────────
-function genPwd(){const c='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789!@#$';let p='';for(let i=0;i<12;i++)p+=c[Math.floor(Math.random()*c.length)];document.getElementById('cu_pwd').value=p;}
-document.getElementById('createUserForm')?.addEventListener('submit',async function(e){
-  e.preventDefault();
-  const btn=document.getElementById('cuBtn');
-  const res=document.getElementById('cuResult');
-  btn.disabled=true;btn.textContent='Création en cours...';
-  const body={
-    first_name:document.getElementById('cu_first').value.trim(),
-    last_name:document.getElementById('cu_last').value.trim(),
-    email:document.getElementById('cu_email').value.trim(),
-    telephone:document.getElementById('cu_tel').value.trim(),
-    civility:document.getElementById('cu_civility').value,
-    password:document.getElementById('cu_pwd').value,
-    plan:document.getElementById('cu_plan').value,
-    devise:document.getElementById('cu_devise').value,
-    langue:document.getElementById('cu_langue').value,
-    with_card:document.getElementById('cu_card').checked,
-  };
-  try{
-    const r=await fetch('api/create_user.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
-    const d=await r.json();
-    res.style.display='block';
-    if(d.success){
-      res.style.cssText='display:block;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:.85rem 1rem;margin-bottom:1rem;font-size:.82rem;color:#065f46;line-height:1.8';
-      res.innerHTML=`<strong>✓ ${d.message}</strong><br>
-        N° client : <code>${d.client_number}</code><br>
-        IBAN : <code>${d.iban}</code> &nbsp; BIC : <code>${d.bic}</code><br>
-        Mot de passe temporaire : <code>${d.temp_password}</code>`;
-      showToast(d.message,'success');
-      e.target.reset();
-    }else{
-      res.style.cssText='display:block;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:.85rem 1rem;margin-bottom:1rem;font-size:.82rem;color:var(--danger)';
-      res.textContent='✕ '+d.message;
-      showToast(d.message,'error');
-    }
-  }catch(err){showToast('Erreur réseau','error');}
-  btn.disabled=false;btn.textContent='Créer le client';
-});
 
 // ─── ACCÈS CLIENT ─────────────────────────────────────
 let selectedClientId=null;

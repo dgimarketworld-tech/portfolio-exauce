@@ -334,6 +334,78 @@ $csrf=csrf_token_admin()??csrf_token();
     <button type="submit" class="admin-btn">🔍</button>
   </form>
   <div style="font-size:.82rem;color:var(--gray500)"><?php echo $total;?> utilisateur(s)</div>
+  <button class="admin-btn" style="background:#3B82F6;color:white;border-color:#3B82F6;flex-shrink:0" onclick="openModal('modalCreateUser')">➕ Créer un client</button>
+</div>
+
+<!-- Modal création client -->
+<div class="modal-overlay" id="modalCreateUser" style="position:fixed;inset:0;background:rgba(2,6,23,.6);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:all .3s;z-index:300;display:flex;align-items:center;justify-content:center;padding:1rem">
+  <div style="background:white;border-radius:20px;width:100%;max-width:640px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.2)">
+    <div style="padding:1.25rem 1.5rem;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;color:#0f172a">➕ Créer un compte client</div>
+        <div style="font-size:.72rem;color:#94a3b8;margin-top:.15rem">IBAN, BIC et numéro client générés automatiquement</div>
+      </div>
+      <button onclick="closeModal('modalCreateUser')" style="width:32px;height:32px;border-radius:8px;background:#f1f5f9;border:1px solid #e2e8f0;cursor:pointer;font-size:.95rem;color:#64748b;display:flex;align-items:center;justify-content:center">✕</button>
+    </div>
+    <div style="padding:1.25rem 1.5rem;overflow-y:auto;flex:1">
+      <form id="createUserForm" autocomplete="off">
+        <div style="display:grid;grid-template-columns:110px 1fr 1fr;gap:.6rem;margin-bottom:.6rem">
+          <div><label style="display:block;font-size:.7rem;font-weight:600;color:#374151;margin-bottom:.3rem">Civilité</label>
+            <select id="cu_civility" style="width:100%;padding:.5rem .7rem;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.8rem;background:#f8fafc;outline:none">
+              <option value="">—</option><option value="M.">M.</option><option value="Mme">Mme</option>
+            </select>
+          </div>
+          <div><label style="display:block;font-size:.7rem;font-weight:600;color:#374151;margin-bottom:.3rem">Prénom <span style="color:#ef4444">*</span></label>
+            <input id="cu_first" type="text" placeholder="Jean" required style="width:100%;padding:.5rem .7rem;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.8rem;background:#f8fafc;outline:none">
+          </div>
+          <div><label style="display:block;font-size:.7rem;font-weight:600;color:#374151;margin-bottom:.3rem">Nom <span style="color:#ef4444">*</span></label>
+            <input id="cu_last" type="text" placeholder="Dupont" required style="width:100%;padding:.5rem .7rem;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.8rem;background:#f8fafc;outline:none">
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.6rem">
+          <div><label style="display:block;font-size:.7rem;font-weight:600;color:#374151;margin-bottom:.3rem">Email <span style="color:#ef4444">*</span></label>
+            <input id="cu_email" type="email" placeholder="jean.dupont@mail.com" required style="width:100%;padding:.5rem .7rem;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.8rem;background:#f8fafc;outline:none">
+          </div>
+          <div><label style="display:block;font-size:.7rem;font-weight:600;color:#374151;margin-bottom:.3rem">Téléphone</label>
+            <input id="cu_tel" type="tel" placeholder="+33 6 00 00 00 00" style="width:100%;padding:.5rem .7rem;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.8rem;background:#f8fafc;outline:none">
+          </div>
+        </div>
+        <div style="margin-bottom:.6rem"><label style="display:block;font-size:.7rem;font-weight:600;color:#374151;margin-bottom:.3rem">Mot de passe temporaire <span style="color:#ef4444">*</span></label>
+          <div style="display:flex;gap:.35rem">
+            <input id="cu_pwd" type="text" placeholder="min. 8 caractères" required minlength="8" style="flex:1;padding:.5rem .7rem;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.8rem;background:#f8fafc;outline:none">
+            <button type="button" onclick="cuGenPwd()" style="padding:.5rem .75rem;border:1.5px solid #e2e8f0;border-radius:8px;background:white;cursor:pointer;font-size:.9rem" title="Générer">🎲</button>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:.85rem">
+          <div><label style="display:block;font-size:.7rem;font-weight:600;color:#374151;margin-bottom:.3rem">Type de compte</label>
+            <select id="cu_plan" style="width:100%;padding:.5rem .7rem;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.8rem;background:#f8fafc;outline:none">
+              <option value="standard">Standard</option><option value="premium">Premium</option><option value="business">Business</option>
+            </select>
+          </div>
+          <div><label style="display:block;font-size:.7rem;font-weight:600;color:#374151;margin-bottom:.3rem">Devise</label>
+            <select id="cu_devise" style="width:100%;padding:.5rem .7rem;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.8rem;background:#f8fafc;outline:none">
+              <option value="EUR">EUR €</option><option value="USD">USD $</option><option value="GBP">GBP £</option>
+              <option value="CHF">CHF</option><option value="MAD">MAD</option><option value="XOF">XOF</option>
+            </select>
+          </div>
+          <div><label style="display:block;font-size:.7rem;font-weight:600;color:#374151;margin-bottom:.3rem">Langue</label>
+            <select id="cu_langue" style="width:100%;padding:.5rem .7rem;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.8rem;background:#f8fafc;outline:none">
+              <option value="fr">Français</option><option value="en">English</option>
+              <option value="es">Español</option><option value="de">Deutsch</option>
+            </select>
+          </div>
+        </div>
+        <label style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:#374151;cursor:pointer;margin-bottom:1rem">
+          <input type="checkbox" id="cu_card" style="accent-color:#3b82f6;width:15px;height:15px"> Créer une carte bancaire en même temps
+        </label>
+        <div id="cuResult" style="display:none;margin-bottom:1rem;padding:.85rem 1rem;border-radius:10px;font-size:.82rem;line-height:1.8"></div>
+      </form>
+    </div>
+    <div style="padding:1rem 1.5rem;border-top:1px solid #f1f5f9;display:flex;gap:.5rem;justify-content:flex-end">
+      <button onclick="closeModal('modalCreateUser')" style="padding:.55rem 1.1rem;border:1.5px solid #e2e8f0;border-radius:8px;background:white;cursor:pointer;font-size:.8rem;font-weight:600;color:#64748b">Annuler</button>
+      <button id="cuBtn" onclick="submitCreateUser()" style="padding:.55rem 1.4rem;border:none;border-radius:8px;background:#3b82f6;color:white;cursor:pointer;font-size:.8rem;font-weight:700">Créer le client</button>
+    </div>
+  </div>
 </div>
 <div class="admin-card">
   <table class="admin-table">
@@ -387,5 +459,45 @@ window.openModal=function(id){const m=document.getElementById(id);if(m)m.classLi
 window.closeModal=function(id){const m=document.getElementById(id);if(m)m.classList.remove('open');};
 window.confirmDlg=function(msg,onOk,type){const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:9000;padding:1rem';d.innerHTML=`<div style="background:#fff;border-radius:16px;width:100%;max-width:360px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2)"><div style="padding:1.5rem;text-align:center"><div style="font-size:1.8rem;margin-bottom:.5rem">⚠️</div><p style="font-size:.85rem;color:#374151">${msg}</p></div><div style="display:flex;border-top:1px solid #e5e7eb"><button style="flex:1;padding:.75rem;border:none;background:none;cursor:pointer;font-weight:600" id="_cc">Annuler</button><button style="flex:1;padding:.75rem;border:none;background:#dc2626;color:#fff;cursor:pointer;font-weight:700" id="_co">Confirmer</button></div></div>`;document.body.appendChild(d);d.querySelector('#_cc').onclick=()=>d.remove();d.querySelector('#_co').onclick=()=>{d.remove();onOk?.();};};
 document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
+// openModal/closeModal pour la modal création
+window.openModal=function(id){const m=document.getElementById(id);if(!m)return;m.style.opacity='1';m.style.visibility='visible';}
+window.closeModal=function(id){const m=document.getElementById(id);if(!m)return;m.style.opacity='0';m.style.visibility='hidden';}
+function cuGenPwd(){const c='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789!@#$';let p='';for(let i=0;i<12;i++)p+=c[Math.floor(Math.random()*c.length)];document.getElementById('cu_pwd').value=p;}
+async function submitCreateUser(){
+  const btn=document.getElementById('cuBtn');
+  const res=document.getElementById('cuResult');
+  const first=document.getElementById('cu_first').value.trim();
+  const last=document.getElementById('cu_last').value.trim();
+  const email=document.getElementById('cu_email').value.trim();
+  const pwd=document.getElementById('cu_pwd').value;
+  if(!first||!last||!email||!pwd){res.style.cssText='display:block;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:.7rem 1rem;font-size:.8rem;color:#dc2626';res.textContent='Prénom, nom, email et mot de passe sont obligatoires.';return;}
+  btn.disabled=true;btn.textContent='Création...';
+  const body={
+    first_name:first,last_name:last,email:email,
+    telephone:document.getElementById('cu_tel').value.trim(),
+    civility:document.getElementById('cu_civility').value,
+    password:pwd,
+    plan:document.getElementById('cu_plan').value,
+    devise:document.getElementById('cu_devise').value,
+    langue:document.getElementById('cu_langue').value,
+    with_card:document.getElementById('cu_card').checked,
+  };
+  try{
+    const r=await fetch('../parametres/api/create_user.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const d=await r.json();
+    if(d.success){
+      res.style.cssText='display:block;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:8px;padding:.8rem 1rem;font-size:.8rem;color:#065f46;line-height:1.8';
+      res.innerHTML=`<strong>✓ ${d.message}</strong><br>N° client : <code style="background:#f0fdf4;padding:.1rem .3rem;border-radius:4px">${d.client_number}</code><br>IBAN : <code style="background:#f0fdf4;padding:.1rem .3rem;border-radius:4px">${d.iban}</code> &nbsp; BIC : <code style="background:#f0fdf4;padding:.1rem .3rem;border-radius:4px">${d.bic}</code><br>Mot de passe temp. : <code style="background:#fef3c7;padding:.1rem .3rem;border-radius:4px">${d.temp_password}</code>`;
+      showToast(d.message,'success');
+      document.getElementById('createUserForm').reset();
+      setTimeout(()=>location.reload(),2500);
+    }else{
+      res.style.cssText='display:block;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:.7rem 1rem;font-size:.8rem;color:#dc2626';
+      res.textContent='✕ '+d.message;
+      showToast(d.message,'error');
+    }
+  }catch(err){showToast('Erreur réseau','error');}
+  btn.disabled=false;btn.textContent='Créer le client';
+}
 })();
 </script></body></html>
