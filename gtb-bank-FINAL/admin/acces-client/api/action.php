@@ -176,7 +176,7 @@ switch ($action) {
 
   case 'fermer_compte':
     DB::run("UPDATE users SET status='closed' WHERE id=:id", ['id'=>$clientId]);
-    DB::run("UPDATE comptes SET statut='ferme' WHERE user_id=:id", ['id'=>$clientId]);
+    DB::run("UPDATE comptes SET statut='cloture' WHERE user_id=:id", ['id'=>$clientId]);
     $message = "Compte fermé.";
   break;
 
@@ -193,9 +193,10 @@ switch ($action) {
   break;
 
   case 'changer_type_compte':
-    $type = $formData['type-compte'] ?? 'courant';
+    $type = in_array($formData['type-compte']??'',['courant','epargne','business']) ? $formData['type-compte'] : 'courant';
+    $plan_map = ['courant'=>'standard','epargne'=>'standard','business'=>'business'];
     DB::run("UPDATE comptes SET type=:t WHERE id=:id", ['t'=>$type,'id'=>$compte['id']]);
-    DB::run("UPDATE users SET plan=:t WHERE id=:id", ['t'=>$type,'id'=>$clientId]);
+    DB::run("UPDATE users SET plan=:t WHERE id=:id", ['t'=>$plan_map[$type],'id'=>$clientId]);
     $message = "Type de compte changé en : {$type}.";
   break;
 
@@ -214,7 +215,7 @@ switch ($action) {
 
   case 'renouveler_carte':
     if (!$carte) json_error('Aucune carte trouvée.');
-    DB::run("UPDATE cartes SET statut='en_renouvellement', expire_le=DATE_ADD(NOW(), INTERVAL 3 YEAR) WHERE id=:id", ['id'=>$carte['id']]);
+    DB::run("UPDATE cartes SET statut='verification', expire_le=DATE_ADD(NOW(), INTERVAL 3 YEAR) WHERE id=:id", ['id'=>$carte['id']]);
     $message = "Renouvellement de carte lancé.";
   break;
 

@@ -623,8 +623,8 @@ if ($_SERVER['REQUEST_METHOD']==='POST' && Security::csrfCheck($_POST['_csrf']??
           <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">🔄 Type de compte</div>
           <div class="form-group"><label class="form-label">Type</label>
             <select class="form-select" name="type-compte" data-action="changer_type_compte">
-              <option value="standard">Standard</option>
-              <option value="premium">Premium</option>
+              <option value="courant">Courant</option>
+              <option value="epargne">Épargne</option>
               <option value="business">Business</option>
             </select>
           </div>

@@ -54,6 +54,7 @@ try {
     $accountNum = strtoupper(substr(md5($userId . microtime()), 0, 11));
     $iban = IBAN::generateFR($accountNum);
     $bic  = GTB_BIC;
+    $compteType = ($plan === 'business') ? 'business' : 'courant';
     $compteId = DB::insertInto('comptes', [
         'user_id'     => $userId,
         'numero'      => $accountNum,
@@ -61,13 +62,12 @@ try {
         'bic'         => $bic,
         'solde'       => 0.00,
         'devise'      => $devise,
-        'type'        => $plan,
+        'type'        => $compteType,
         'statut'      => 'actif',
         'plafond_retrait'   => 10000.00,
         'plafond_virement'  => 50000.00,
         'plafond_paiement'  => 5000.00,
         'decouvert_autorise'=> 500.00,
-        'cree_le'     => date('Y-m-d H:i:s'),
     ]);
 
     // Carte si demandée
