@@ -34,6 +34,7 @@ $fromMsg = match($_GET['from'] ?? '') {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <link rel="icon" type="image/png" href="/favicon.png">
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Connexion — Global Trust Bank</title>

@@ -3,7 +3,8 @@ require_once __DIR__.'/../../backend/admin_required.php';
 $adm=$currentAdmin;
 $initials=strtoupper(substr($adm['first_name']??'A',0,1).substr($adm['last_name']??'M',0,1));
 ?><!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<html lang="fr"><head>
+  <link rel="icon" type="image/png" href="/favicon.png"><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>GTB Admin — <?php echo $title??'';?></title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');

@@ -16,6 +16,7 @@ $recent_txs       = DB::all("SELECT t.*,c.numero,u.first_name,u.last_name FROM t
 ?><!DOCTYPE html>
 <html lang="fr">
 <head>
+  <link rel="icon" type="image/png" href="/favicon.png">
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>GTB Admin — <?= e($title) ?></title>

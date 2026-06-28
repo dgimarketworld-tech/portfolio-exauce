@@ -111,6 +111,7 @@ if (!defined('SMS_BANKING_NUMBER')) define('SMS_BANKING_NUMBER', '+33 7 57 00 00
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <link rel="icon" type="image/png" href="/favicon.png">
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>GTB — SMS Banking</title>

@@ -8,6 +8,7 @@ $notif_count = (int)DB::scalar("SELECT COUNT(*) FROM notifications WHERE user_id
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <link rel="icon" type="image/png" href="/favicon.png">
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>GTB — <?php echo $title??'Dashboard'; ?></title>

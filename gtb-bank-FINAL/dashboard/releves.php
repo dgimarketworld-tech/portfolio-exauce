@@ -6,7 +6,8 @@ if(isset($_GET['export'])&&$_GET['export']==='1'){
     if($compte){
         $txs=DB::all("SELECT * FROM transactions WHERE compte_id=:id ORDER BY created_at DESC LIMIT 50",['id'=>$compte_id]);
         $nom=htmlspecialchars(($_SESSION['user']['first_name']??'').' '.($_SESSION['user']['last_name']??''),ENT_QUOTES,'UTF-8');
-        ?><!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"/><title>Relevé <?php echo htmlspecialchars($compte['numero'],ENT_QUOTES,'UTF-8');?></title>
+        ?><!DOCTYPE html><html lang="fr"><head>
+  <link rel="icon" type="image/png" href="/favicon.png"><meta charset="UTF-8"/><title>Relevé <?php echo htmlspecialchars($compte['numero'],ENT_QUOTES,'UTF-8');?></title>
 <style>
 @media print{body{margin:0;font-family:Arial,sans-serif;font-size:12px}}
 body{font-family:Arial,sans-serif;font-size:13px;color:#1a1a1a;padding:2cm}
@@ -41,7 +42,8 @@ $u=$currentUser;
 $initials=strtoupper(substr($u['first_name']??'A',0,1).substr($u['last_name']??'M',0,1));
 $notif_count=(int)DB::scalar("SELECT COUNT(*) FROM notifications WHERE user_id=:id AND is_read=0",['id'=>Session::userId()]);
 ?><!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<html lang="fr"><head>
+  <link rel="icon" type="image/png" href="/favicon.png"><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>GTB — <?php echo $title??''?></title><style>
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
 
