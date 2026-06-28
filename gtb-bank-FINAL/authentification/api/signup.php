@@ -100,31 +100,22 @@ try {
     json_error('Erreur lors de la création. Réessayez.', 500);
 }
 
-// Email de bienvenue
-$html_welcome = "
-<div style='font-family:Arial,sans-serif;max-width:520px;margin:auto;padding:32px;border:1px solid #e5e7eb;border-radius:8px'>
-  <h2 style='color:#1a3c5e'>Bienvenue chez Global Trust Bank, {$prenom} !</h2>
-  <p style='color:#374151'>Votre compte a été créé avec succès. Vous pouvez dès maintenant vous connecter à votre espace client.</p>
-  <a href='" . GTB_BASE_URL . "/authentification/login.php' style='display:inline-block;margin:20px 0;padding:12px 24px;background:#D4AF37;color:#fff;text-decoration:none;border-radius:6px;font-weight:600'>Accéder à mon espace</a>
-  <p style='color:#6b7280;font-size:13px'>Email : {$email}</p>
-  <hr style='border:none;border-top:1px solid #e5e7eb;margin:24px 0'>
-  <p style='color:#9ca3af;font-size:12px'>Global Trust Bank — La banque d'un monde qui change</p>
-</div>";
+// Répondre immédiatement au navigateur, puis envoyer les mails
+$json_out = json_encode(['success' => true, 'message' => 'Compte créé avec succès. Vous pouvez vous connecter.', 'email' => $email], JSON_UNESCAPED_UNICODE);
+http_response_code(200);
+header('Content-Type: application/json; charset=utf-8');
+header('Content-Length: ' . strlen($json_out));
+header('Connection: close');
+echo $json_out;
+if (ob_get_level()) ob_end_flush();
+flush();
+if (function_exists('fastcgi_finish_request')) fastcgi_finish_request();
+
+// Mails envoyés après la réponse (non bloquants pour le client)
+ignore_user_abort(true);
+
+$html_welcome = "<div style='font-family:Arial,sans-serif;max-width:520px;margin:auto;padding:32px;border:1px solid #e5e7eb;border-radius:8px'><h2 style='color:#1a3c5e'>Bienvenue chez Global Trust Bank, {$prenom} !</h2><p style='color:#374151'>Votre compte a été créé avec succès. Vous pouvez dès maintenant vous connecter à votre espace client.</p><a href='" . GTB_BASE_URL . "/authentification/login.php' style='display:inline-block;margin:20px 0;padding:12px 24px;background:#D4AF37;color:#fff;text-decoration:none;border-radius:6px;font-weight:600'>Accéder à mon espace</a><p style='color:#6b7280;font-size:13px'>Email : {$email}</p><hr style='border:none;border-top:1px solid #e5e7eb;margin:24px 0'><p style='color:#9ca3af;font-size:12px'>Global Trust Bank — La banque d'un monde qui change</p></div>";
 send_email($email, "$prenom $nom", 'Bienvenue chez Global Trust Bank', $html_welcome);
 
-// Notification admin — nouveau client inscrit
-$html_admin = "
-<div style='font-family:Arial,sans-serif;max-width:520px;margin:auto;padding:32px;border:1px solid #e5e7eb;border-radius:8px'>
-  <h2 style='color:#1a3c5e'>Nouveau client inscrit</h2>
-  <table style='width:100%;border-collapse:collapse;color:#374151'>
-    <tr><td style='padding:6px 0;font-weight:600'>Nom</td><td>{$prenom} {$nom}</td></tr>
-    <tr><td style='padding:6px 0;font-weight:600'>Email</td><td>{$email}</td></tr>
-    <tr><td style='padding:6px 0;font-weight:600'>Plan</td><td>" . strtoupper($plan) . "</td></tr>
-    <tr><td style='padding:6px 0;font-weight:600'>Date</td><td>" . date('d/m/Y H:i') . "</td></tr>
-  </table>
-  <a href='" . GTB_BASE_URL . "/admin/utilisateurs/index.php' style='display:inline-block;margin:20px 0;padding:12px 24px;background:#1a3c5e;color:#fff;text-decoration:none;border-radius:6px;font-weight:600'>Voir le client</a>
-  <p style='color:#9ca3af;font-size:12px'>Global Trust Bank — Notification automatique</p>
-</div>";
+$html_admin = "<div style='font-family:Arial,sans-serif;max-width:520px;margin:auto;padding:32px;border:1px solid #e5e7eb;border-radius:8px'><h2 style='color:#1a3c5e'>Nouveau client inscrit</h2><table style='width:100%;border-collapse:collapse;color:#374151'><tr><td style='padding:6px 0;font-weight:600'>Nom</td><td>{$prenom} {$nom}</td></tr><tr><td style='padding:6px 0;font-weight:600'>Email</td><td>{$email}</td></tr><tr><td style='padding:6px 0;font-weight:600'>Plan</td><td>" . strtoupper($plan) . "</td></tr><tr><td style='padding:6px 0;font-weight:600'>Date</td><td>" . date('d/m/Y H:i') . "</td></tr></table><a href='" . GTB_BASE_URL . "/admin/utilisateurs/index.php' style='display:inline-block;margin:20px 0;padding:12px 24px;background:#1a3c5e;color:#fff;text-decoration:none;border-radius:6px;font-weight:600'>Voir le client</a><p style='color:#9ca3af;font-size:12px'>Global Trust Bank — Notification automatique</p></div>";
 send_email(MAIL_SUPPORT, 'Admin GTB', "Nouveau client : {$prenom} {$nom}", $html_admin);
-
-json_response(['success' => true, 'message' => 'Compte créé avec succès. Vous pouvez vous connecter.', 'email' => $email]);
