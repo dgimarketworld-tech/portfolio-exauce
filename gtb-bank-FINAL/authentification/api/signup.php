@@ -112,4 +112,19 @@ $html_welcome = "
 </div>";
 send_email($email, "$prenom $nom", 'Bienvenue chez Global Trust Bank', $html_welcome);
 
+// Notification admin — nouveau client inscrit
+$html_admin = "
+<div style='font-family:Arial,sans-serif;max-width:520px;margin:auto;padding:32px;border:1px solid #e5e7eb;border-radius:8px'>
+  <h2 style='color:#1a3c5e'>Nouveau client inscrit</h2>
+  <table style='width:100%;border-collapse:collapse;color:#374151'>
+    <tr><td style='padding:6px 0;font-weight:600'>Nom</td><td>{$prenom} {$nom}</td></tr>
+    <tr><td style='padding:6px 0;font-weight:600'>Email</td><td>{$email}</td></tr>
+    <tr><td style='padding:6px 0;font-weight:600'>Plan</td><td>" . strtoupper($plan) . "</td></tr>
+    <tr><td style='padding:6px 0;font-weight:600'>Date</td><td>" . date('d/m/Y H:i') . "</td></tr>
+  </table>
+  <a href='" . GTB_BASE_URL . "/admin/utilisateurs/index.php' style='display:inline-block;margin:20px 0;padding:12px 24px;background:#1a3c5e;color:#fff;text-decoration:none;border-radius:6px;font-weight:600'>Voir le client</a>
+  <p style='color:#9ca3af;font-size:12px'>Global Trust Bank — Notification automatique</p>
+</div>";
+send_email(MAIL_SUPPORT, 'Admin GTB', "Nouveau client : {$prenom} {$nom}", $html_admin);
+
 json_response(['success' => true, 'message' => 'Compte créé avec succès. Vous pouvez vous connecter.', 'email' => $email]);

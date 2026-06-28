@@ -802,6 +802,10 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                         if($frais>0) DB::insertInto('transactions',['compte_id'=>$from_id,'type'=>'frais','montant'=>$frais,'solde_apres'=>$nouveau_solde,'description'=>'Frais virement instantané','reference'=>generate_reference('FRAIS'),'statut'=>'terminee']);
                         notify(Session::userId(),'Virement exécuté',"Virement de ".format_money($montant)." vers $nom effectué.",'success','fa-check');
                         send_notification_email(Session::userId(),'Confirmation de virement — GTB Bank',"Votre virement de <strong>".format_money($montant)."</strong> vers <strong>$nom</strong> a été exécuté avec succès.");
+                        // Notification admin
+                        $u=DB::one("SELECT COALESCE(prenom,first_name,'') AS prenom, COALESCE(nom,last_name,'') AS nom, email FROM users WHERE id=:id",['id'=>Session::userId()]);
+                        $html_adm="<div style='font-family:Arial,sans-serif;max-width:520px;margin:auto;padding:32px;border:1px solid #e5e7eb;border-radius:8px'><h2 style='color:#1a3c5e'>Nouveau virement effectué</h2><table style='width:100%;border-collapse:collapse;color:#374151'><tr><td style='padding:6px 0;font-weight:600'>Client</td><td>{$u['prenom']} {$u['nom']} ({$u['email']})</td></tr><tr><td style='padding:6px 0;font-weight:600'>Montant</td><td>".format_money($montant)."</td></tr><tr><td style='padding:6px 0;font-weight:600'>Vers</td><td>$nom ($iban)</td></tr><tr><td style='padding:6px 0;font-weight:600'>Référence</td><td>$ref</td></tr><tr><td style='padding:6px 0;font-weight:600'>Date</td><td>".date('d/m/Y H:i')."</td></tr></table><p style='color:#9ca3af;font-size:12px;margin-top:24px'>Global Trust Bank — Notification automatique</p></div>";
+                        send_email(MAIL_SUPPORT,'Admin GTB',"Virement ".format_money($montant)." — {$u['prenom']} {$u['nom']}",$html_adm);
                     });
                     $success="Virement de ".format_money($montant)." vers $nom exécuté avec succès.";
                 }
