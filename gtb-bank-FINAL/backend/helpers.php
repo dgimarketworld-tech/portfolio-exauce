@@ -237,36 +237,74 @@ function pagination(int $totalItems, int $perPage, int $currentPage): array
 }
 
 // ─────────────────────────────────────────────────────────────────
-//  EMAIL — Brevo API
+//  EMAIL — SMTP LWS natif (sans dépendance externe)
 // ─────────────────────────────────────────────────────────────────
 
 function send_email(string $toEmail, string $toName, string $subject, string $htmlContent): bool
 {
-    $payload = json_encode([
-        'sender'      => ['name' => MAIL_FROM_NAME, 'email' => MAIL_FROM],
-        'to'          => [['email' => $toEmail, 'name' => $toName]],
-        'replyTo'     => ['email' => MAIL_SUPPORT, 'name' => MAIL_FROM_NAME],
-        'subject'     => $subject,
-        'htmlContent' => $htmlContent,
-    ]);
+    $host = SMTP_HOST;
+    $port = SMTP_PORT;
+    $user = SMTP_USER;
+    $pass = SMTP_PASS;
+    $from = MAIL_FROM;
+    $fromName = MAIL_FROM_NAME;
 
-    $ch = curl_init('https://api.brevo.com/v3/smtp/email');
-    curl_setopt_array($ch, [
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POST           => true,
-        CURLOPT_POSTFIELDS     => $payload,
-        CURLOPT_HTTPHEADER     => [
-            'accept: application/json',
-            'api-key: ' . BREVO_API_KEY,
-            'content-type: application/json',
-        ],
-    ]);
-    $response = curl_exec($ch);
-    $status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
+    $errno = 0; $errstr = '';
+    $sock = @fsockopen('tls://' . $host, $port, $errno, $errstr, 10);
+    if (!$sock) {
+        error_log("[GTB-SMTP] Connexion échouée : {$errstr} ({$errno})");
+        return false;
+    }
 
-    if ($status < 200 || $status >= 300) {
-        error_log("[GTB-BREVO] Erreur envoi email à {$toEmail}: HTTP {$status} — {$response}");
+    $read = function() use ($sock): string {
+        $r = '';
+        while ($line = fgets($sock, 515)) {
+            $r .= $line;
+            if ($line[3] === ' ') break;
+        }
+        return $r;
+    };
+    $send = function(string $cmd) use ($sock): void {
+        fputs($sock, $cmd . "\r\n");
+    };
+
+    $read(); // Bannière
+    $send('EHLO ' . $host); $read();
+    $send('AUTH LOGIN'); $read();
+    $send(base64_encode($user)); $read();
+    $send(base64_encode($pass)); $resp = $read();
+    if (strpos($resp, '235') === false) {
+        error_log('[GTB-SMTP] Authentification échouée : ' . $resp);
+        fclose($sock);
+        return false;
+    }
+
+    $boundary = md5(uniqid());
+    $toNameEncoded = '=?UTF-8?B?' . base64_encode($toName) . '?=';
+    $fromNameEncoded = '=?UTF-8?B?' . base64_encode($fromName) . '?=';
+    $subjectEncoded = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+
+    $headers  = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $headers .= "From: {$fromNameEncoded} <{$from}>\r\n";
+    $headers .= "To: {$toNameEncoded} <{$toEmail}>\r\n";
+    $headers .= "Reply-To: " . MAIL_SUPPORT . "\r\n";
+    $headers .= "Subject: {$subjectEncoded}\r\n";
+
+    $send("MAIL FROM:<{$from}>"); $read();
+    $send("RCPT TO:<{$toEmail}>"); $resp = $read();
+    if (strpos($resp, '250') === false) {
+        error_log('[GTB-SMTP] RCPT TO rejeté : ' . $resp);
+        fclose($sock);
+        return false;
+    }
+    $send('DATA'); $read();
+    fputs($sock, $headers . "\r\n" . $htmlContent . "\r\n.\r\n");
+    $resp = $read();
+    $send('QUIT'); fclose($sock);
+
+    if (strpos($resp, '250') === false) {
+        error_log('[GTB-SMTP] Envoi échoué : ' . $resp);
         return false;
     }
     return true;

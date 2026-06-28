@@ -90,14 +90,14 @@ define('TRANSFER_FEE_INTERNATIONAL',    8.00);
 
 define('OVERDRAFT_DEFAULT',           500.00);
 
-// ── EMAIL — Brevo ───────────────────────────────────────────────
-define('MAIL_FROM',      'noreply@globaltrust-b.com');
+// ── EMAIL — SMTP LWS ────────────────────────────────────────────
+define('MAIL_FROM',      'noreply@globaltrusty.com');
 define('MAIL_FROM_NAME', 'Global Trust Bank');
-define('MAIL_SUPPORT',   'akp00965@gmail.com');
-define('BREVO_API_KEY',  getenv('BREVO_API_KEY') ?: '');
-if (BREVO_API_KEY === '') {
-    error_log('[GTB] AVERTISSEMENT : BREVO_API_KEY non définie — les emails ne seront pas envoyés.');
-}
+define('MAIL_SUPPORT',   'contact@globaltrusty.com');
+define('SMTP_HOST',      'mail.globaltrusty.com');
+define('SMTP_PORT',      587);
+define('SMTP_USER',      'noreply@globaltrusty.com');
+define('SMTP_PASS',      getenv('SMTP_PASS') ?: '26Global-Akp@');
 
 // ── CHEMINS ─────────────────────────────────────────────────────
 define('GTB_ROOT',     dirname(__DIR__));
