@@ -4,11 +4,92 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>GTB Bank — Dashboard Preview</title>
-<link rel="stylesheet" href="assets/gtb-light.css">
 <style>
-/* ── EXTRA STYLES FOR PREVIEW ── */
-.gtb-balance-card { margin-bottom: 20px; }
-.gtb-qa-grid      { margin-bottom: 20px; }
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
+:root{--bg:#F0F4F8;--bg2:#E8EDF3;--card:#FFFFFF;--border:#E2E8F0;--border2:#CBD5E1;--gold:#D4AF37;--gold2:#B8960C;--gold-light:rgba(212,175,55,.10);--gold-border:rgba(212,175,55,.25);--dark:#0D1B2A;--dark2:#1a3c5e;--text:#1A2332;--text2:#374151;--sub:#6B7A8D;--sub2:#94A3B8;--green:#00C67A;--green-light:rgba(0,198,122,.10);--red:#E5373A;--red-light:rgba(229,55,58,.10);--blue:#1A73E8;--blue-light:rgba(26,115,232,.10);--shadow-sm:0 1px 4px rgba(0,0,0,.05);--shadow-md:0 4px 16px rgba(0,0,0,.07);--r-xs:6px;--r-sm:10px;--r-md:16px;--r-lg:22px;--r-xl:28px;--r-full:9999px;--nav-h:68px;--topbar-h:64px;--content-max:1200px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:calc(var(--nav-h)+24px);-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+.gtb-topbar{position:sticky;top:0;z-index:50;background:rgba(240,244,248,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:var(--topbar-h);display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+@media(min-width:768px){.gtb-topbar{padding:0 32px}}
+.gtb-topbar-logo{display:flex;align-items:center;gap:10px}
+.gtb-topbar-logo img{width:36px;height:36px;border-radius:9px;object-fit:cover}
+.gtb-topbar-logo-text{display:flex;flex-direction:column;line-height:1.1}
+.gtb-topbar-logo-text strong{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:var(--text)}
+.gtb-topbar-logo-text span{font-size:10px;color:var(--sub);letter-spacing:.06em;text-transform:uppercase}
+.gtb-topbar-actions{display:flex;align-items:center;gap:10px}
+.gtb-topbar-icon{position:relative;width:38px;height:38px;background:var(--card);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow-sm)}
+.gtb-topbar-icon svg{width:18px;height:18px;color:var(--text2)}
+.gtb-topbar-badge{position:absolute;top:-3px;right:-3px;background:var(--red);color:white;font-size:9px;font-weight:700;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg)}
+.gtb-topbar-avatar{width:38px;height:38px;background:linear-gradient(135deg,var(--dark),var(--dark2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:700;font-size:13px;color:white;border:2px solid rgba(212,175,55,.3);flex-shrink:0}
+.gtb-main{max-width:var(--content-max);margin:0 auto;padding:24px 20px}
+@media(min-width:768px){.gtb-main{padding:32px}}
+.gtb-page-title{font-family:'Sora',sans-serif;font-size:clamp(20px,4vw,28px);font-weight:700;color:var(--text);margin-bottom:4px}
+.gtb-page-sub{font-size:14px;color:var(--sub)}
+.gtb-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px}
+.gtb-two-col{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:640px){.gtb-two-col{grid-template-columns:1fr 1fr}}
+.gtb-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;box-shadow:var(--shadow-sm)}
+.gtb-card-sm{padding:14px 16px}
+.gtb-card-title{font-family:'Sora',sans-serif;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sub);margin-bottom:12px}
+.gtb-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.gtb-card-head .gtb-card-title{margin-bottom:0}
+.gtb-balance-card{background:linear-gradient(135deg,var(--dark) 0%,var(--dark2) 100%);border-radius:var(--r-xl);padding:24px;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(13,27,42,.18);color:white;margin-bottom:20px}
+.gtb-balance-card::before{content:'';position:absolute;top:-60px;right:-40px;width:200px;height:200px;background:rgba(212,175,55,.10);border-radius:50%;pointer-events:none}
+.gtb-balance-card::after{content:'';position:absolute;bottom:-60px;left:-20px;width:160px;height:160px;background:rgba(212,175,55,.06);border-radius:50%;pointer-events:none}
+.gtb-balance-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px;position:relative;z-index:1}
+.gtb-balance-amount{font-family:'Sora',sans-serif;font-size:clamp(28px,6vw,42px);font-weight:800;letter-spacing:-.02em;color:white;margin-bottom:18px;position:relative;z-index:1}
+.gtb-balance-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;position:relative;z-index:1}
+.gtb-balance-account{display:flex;flex-direction:column;gap:2px}
+.gtb-balance-account span{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.gtb-balance-account strong{font-family:'Sora',sans-serif;font-size:16px;font-weight:700;color:white}
+.gtb-qa-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+@media(min-width:640px){.gtb-qa-grid{grid-template-columns:repeat(6,1fr);gap:14px}}
+.gtb-qa-item{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer}
+.gtb-qa-icon{width:54px;height:54px;background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-sm);transition:all .2s}
+.gtb-qa-item:hover .gtb-qa-icon{background:var(--gold-light);border-color:var(--gold-border);transform:translateY(-2px)}
+.gtb-qa-icon svg{width:22px;height:22px}
+.gtb-qa-item span{font-size:11px;color:var(--sub);font-weight:500;text-align:center}
+.gtb-list{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);list-style:none}
+.gtb-list-item{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--border);transition:background .15s;cursor:pointer}
+.gtb-list-item:last-child{border-bottom:none}
+.gtb-list-item:hover{background:#FAFBFC}
+.gtb-list-icon{width:40px;height:40px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.gtb-list-icon svg{width:20px;height:20px}
+.gtb-list-info{flex:1;min-width:0}
+.gtb-list-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gtb-list-sub{font-size:12px;color:var(--sub)}
+.gtb-list-amount{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;flex-shrink:0}
+.gtb-list-amount.pos{color:var(--green)}.gtb-list-amount.neg{color:var(--red)}
+.gtb-card .gtb-list{background:none;border:none;border-radius:0;box-shadow:none}
+.gtb-card .gtb-list-item{padding:12px 4px}
+.gtb-card .gtb-list-item:last-child{border-bottom:none}
+.gtb-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:var(--r-md);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;border:none;text-decoration:none;font-family:'DM Sans',sans-serif}
+.gtb-btn-sm{padding:8px 14px;font-size:13px;border-radius:var(--r-sm)}
+.gtb-btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);box-shadow:0 4px 16px rgba(212,175,55,.28)}
+.gtb-btn-outline{background:transparent;border:1.5px solid var(--border2);color:var(--text2)}
+.gtb-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:var(--r-full);font-size:11px;font-weight:600}
+.gtb-badge-green{background:var(--green-light);color:#007a4a}
+.gtb-badge-red{background:var(--red-light);color:var(--red)}
+.gtb-bank-card{background:linear-gradient(135deg,var(--dark) 0%,#1a3c5e 100%);border-radius:var(--r-lg);padding:20px;color:white;position:relative;overflow:hidden}
+.gtb-bank-card::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(212,175,55,.10);pointer-events:none}
+.gtb-bank-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;position:relative;z-index:1}
+.gtb-bank-card-type{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.gtb-bank-card-network{font-size:14px;font-weight:700;font-style:italic;color:rgba(255,255,255,.7)}
+.gtb-bank-card-num{font-size:15px;letter-spacing:.18em;color:rgba(255,255,255,.85);margin-bottom:20px;position:relative;z-index:1}
+.gtb-bank-card-bottom{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;font-size:13px;color:rgba(255,255,255,.6)}
+.gtb-link{font-size:13px;font-weight:600;color:var(--gold)}
+.gtb-bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;padding:0 8px;z-index:100;box-shadow:0 -4px 20px rgba(0,0,0,.06)}
+.gtb-nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:8px 12px;text-decoration:none;flex:1}
+.gtb-nav-icon{width:24px;height:24px;display:flex;align-items:center;justify-content:center}
+.gtb-nav-icon svg{width:22px;height:22px;color:var(--sub)}
+.gtb-nav-label{font-size:10px;font-weight:500;color:var(--sub)}
+.gtb-nav-item.active .gtb-nav-icon svg{color:var(--gold)}
+.gtb-nav-item.active .gtb-nav-label{color:var(--gold);font-weight:700}
+.gtb-nav-center{width:52px;height:52px;background:linear-gradient(135deg,var(--dark),var(--dark2));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 8px;box-shadow:0 4px 16px rgba(13,27,42,.25);cursor:pointer;text-decoration:none;flex-shrink:0}
+.gtb-nav-center svg{width:22px;height:22px;color:white}
 </style>
 </head>
 <body>
