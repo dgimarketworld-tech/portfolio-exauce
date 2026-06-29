@@ -11,7 +11,7 @@ $_initials = strtoupper(
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>GTB — <?= htmlspecialchars($pageTitle ?? 'Dashboard') ?></title>
-<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23D4AF37'/%3E%3Cpath d='M5 11l11-4 11 4v2H5v-2zm0 4h22M7 15v8m4-8v8m8-8v8m4-8v8M5 23h22' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
 <?php if (!empty($extraHead)) echo $extraHead; ?>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
