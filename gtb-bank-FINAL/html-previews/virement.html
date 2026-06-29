@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Virements — GTB</title>
+<style>
+:root{--bg:#F0F4F8;--bg2:#E8EDF3;--card:#FFFFFF;--border:#E2E8F0;
+--gold:#D4AF37;--gold2:#B8960C;--dark:#0D1B2A;--dark2:#1a3c5e;
+--green:#00C67A;--green-light:#E6FFF5;--red:#E5373A;--red-light:#FFF0F0;
+--blue:#3B82F6;--blue-light:#EFF6FF;--sub:#64748B;--text:#1E293B;
+--nav-h:68px;--topbar-h:64px;--r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:20px;
+--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+--shadow-md:0 4px 6px rgba(0,0,0,.07),0 2px 4px rgba(0,0,0,.05)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:calc(var(--nav-h)+16px)}
+a{color:inherit;text-decoration:none}
+input,select,textarea,button{font-family:inherit}
+
+/* TOPBAR */
+.gtb-topbar{position:sticky;top:0;z-index:100;height:var(--topbar-h);background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;box-shadow:var(--shadow)}
+.gtb-logo{display:flex;align-items:center;gap:10px;flex:1}
+.gtb-logo-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.gtb-logo-text{font-weight:700;font-size:15px;color:var(--dark);line-height:1.2}
+.gtb-logo-text span{display:block;font-size:10px;font-weight:500;color:var(--sub);letter-spacing:.5px}
+.gtb-topbar-actions{display:flex;align-items:center;gap:10px}
+.gtb-notif-btn{position:relative;width:40px;height:40px;border-radius:50%;background:var(--bg);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.gtb-badge-count{position:absolute;top:6px;right:6px;background:var(--red);color:#fff;font-size:9px;font-weight:700;border-radius:6px;min-width:14px;height:14px;display:flex;align-items:center;justify-content:center;padding:0 3px}
+.gtb-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--dark),var(--dark2));color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* MAIN */
+.gtb-main{max-width:900px;margin:0 auto;padding:20px 16px}
+
+/* SECTION HEAD */
+.gtb-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.gtb-page-title{font-size:20px;font-weight:700;color:var(--dark)}
+.gtb-page-sub{font-size:13px;color:var(--sub);margin-top:2px}
+
+/* CARDS */
+.gtb-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);box-shadow:var(--shadow);padding:20px}
+.gtb-card-sm{padding:16px}
+
+/* VIREMENT LAYOUT */
+.gtb-vir-layout{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:768px){.gtb-vir-layout{grid-template-columns:1fr 280px}}
+
+/* FORMS */
+.gtb-form-group{margin-bottom:16px}
+.gtb-label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+.gtb-label span{color:var(--red)}
+.gtb-input,.gtb-select,.gtb-textarea{width:100%;padding:10px 14px;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:14px;color:var(--text);transition:border-color .2s,box-shadow .2s}
+.gtb-input:focus,.gtb-select:focus,.gtb-textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.12)}
+.gtb-input::placeholder{color:var(--sub)}
+.gtb-select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+.gtb-textarea{resize:vertical;min-height:80px}
+
+/* TYPE BUTTONS */
+.gtb-type-btns{display:flex;gap:8px;margin-bottom:20px}
+.gtb-type-btn{flex:1;padding:10px 14px;border-radius:var(--r-md);border:1.5px solid var(--border);background:var(--card);font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;text-align:center;transition:.2s}
+.gtb-type-btn.active{border-color:var(--gold);background:#FFFBEB;color:var(--gold2)}
+
+/* BUTTONS */
+.gtb-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border-radius:var(--r-md);font-size:14px;font-weight:600;border:none;cursor:pointer;transition:.2s;text-decoration:none}
+.gtb-btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);box-shadow:0 2px 8px rgba(212,175,55,.3)}
+.gtb-btn-primary:hover{box-shadow:0 4px 16px rgba(212,175,55,.4);transform:translateY(-1px)}
+.gtb-btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text)}
+.gtb-btn-ghost{background:transparent;color:var(--sub)}
+.gtb-btn-block{width:100%}
+.gtb-btn-lg{padding:14px 24px;font-size:15px}
+
+/* DIVIDER */
+.gtb-divider{height:1px;background:var(--border);margin:16px 0}
+
+/* ALERT */
+.gtb-alert{padding:12px 16px;border-radius:var(--r-md);font-size:13px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px}
+.gtb-alert-blue{background:var(--blue-light);border:1px solid #BFDBFE;color:#1E40AF}
+.gtb-alert-green{background:var(--green-light);border:1px solid #A7F3D0;color:#065F46}
+
+/* INFO PANEL */
+.gtb-info-list{display:flex;flex-direction:column;gap:0}
+.gtb-info-item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);font-size:13px}
+.gtb-info-item:last-child{border-bottom:none}
+.gtb-info-label{color:var(--sub)}
+.gtb-info-value{font-weight:600;color:var(--text)}
+.gtb-info-value.green{color:var(--green)}
+
+/* BADGE */
+.gtb-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600}
+.gtb-badge-green{background:var(--green-light);color:#065F46}
+.gtb-badge-blue{background:var(--blue-light);color:#1E40AF}
+
+/* BOTTOM NAV */
+.gtb-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:#fff;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;z-index:100;box-shadow:0 -2px 12px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom)}
+.gtb-nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;font-weight:600;color:var(--sub);cursor:pointer;padding:8px 12px;border-radius:var(--r-md);transition:.2s;flex:1;text-decoration:none}
+.gtb-nav-item.active{color:var(--gold2)}
+.gtb-nav-item svg{width:22px;height:22px}
+.gtb-nav-center{position:relative;flex-shrink:0}
+.gtb-nav-center-btn{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(212,175,55,.45);margin-top:-20px}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="gtb-topbar">
+  <div class="gtb-logo">
+    <div class="gtb-logo-mark">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 6l9-3 9 3v2H3V6zm0 4h18M5 10v8m4-8v8m6-8v8m4-8v8M3 18h18"/></svg>
+    </div>
+    <div class="gtb-logo-text">Global Trust Bank<span>BANQUE EN LIGNE</span></div>
+  </div>
+  <div class="gtb-topbar-actions">
+    <button class="gtb-notif-btn">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#64748B" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+      <span class="gtb-badge-count">2</span>
+    </button>
+    <div class="gtb-avatar">JD</div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="gtb-main">
+  <div class="gtb-section-head">
+    <div>
+      <h1 class="gtb-page-title">Nouveau Virement</h1>
+      <p class="gtb-page-sub">Transférez des fonds en toute sécurité</p>
+    </div>
+  </div>
+
+  <!-- ALERT SUCCESS (example) -->
+  <div class="gtb-alert gtb-alert-green" style="display:none">
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    Virement effectué avec succès !
+  </div>
+
+  <div class="gtb-vir-layout">
+    <!-- FORM -->
+    <div class="gtb-card">
+      <!-- TYPE -->
+      <div style="margin-bottom:20px">
+        <p class="gtb-label">Type de virement</p>
+        <div class="gtb-type-btns">
+          <button class="gtb-type-btn active" onclick="setType(this,'sepa')">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+            SEPA
+          </button>
+          <button class="gtb-type-btn" onclick="setType(this,'instant')">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            Instantané
+          </button>
+          <button class="gtb-type-btn" onclick="setType(this,'interne')">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+            Interne
+          </button>
+        </div>
+      </div>
+
+      <!-- COMPTE SOURCE -->
+      <div class="gtb-form-group">
+        <label class="gtb-label">Compte source <span>*</span></label>
+        <select class="gtb-select">
+          <option value="1">Compte Courant — FR76 3000 1234 5678 9012 345 (24 850,00 €)</option>
+          <option value="2">Compte Épargne — FR76 3000 9876 5432 1098 765 (8 200,00 €)</option>
+        </select>
+      </div>
+
+      <div class="gtb-divider"></div>
+
+      <!-- BENEFICIAIRE -->
+      <div class="gtb-form-group">
+        <label class="gtb-label">Bénéficiaire enregistré</label>
+        <select class="gtb-select" onchange="fillBenef(this)">
+          <option value="">— Sélectionner un bénéficiaire —</option>
+          <option value="Marie Martin|FR76 1234 5678 9012 3456 789|BNP Paribas">Marie Martin</option>
+          <option value="Pierre Durand|FR76 9876 5432 1098 7654 321|Crédit Agricole">Pierre Durand</option>
+          <option value="Sophie Lambert|FR76 5555 4444 3333 2222 111|Société Générale">Sophie Lambert</option>
+        </select>
+      </div>
+
+      <div class="gtb-form-group">
+        <label class="gtb-label">Nom du bénéficiaire <span>*</span></label>
+        <input id="benef-nom" class="gtb-input" type="text" placeholder="Ex. : Marie Martin">
+      </div>
+
+      <div class="gtb-form-group">
+        <label class="gtb-label">IBAN <span>*</span></label>
+        <input id="benef-iban" class="gtb-input" type="text" placeholder="FR76 XXXX XXXX XXXX XXXX XXXX XXX" style="font-family:monospace">
+      </div>
+
+      <div class="gtb-form-group">
+        <label class="gtb-label">BIC / SWIFT</label>
+        <input id="benef-bic" class="gtb-input" type="text" placeholder="Ex. : BNPAFRPP">
+      </div>
+
+      <div class="gtb-divider"></div>
+
+      <!-- MONTANT + MOTIF -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="gtb-form-group" style="margin-bottom:0">
+          <label class="gtb-label">Montant (€) <span>*</span></label>
+          <input class="gtb-input" type="number" placeholder="0.00" min="0.01" step="0.01">
+        </div>
+        <div class="gtb-form-group" style="margin-bottom:0">
+          <label class="gtb-label">Date d'exécution</label>
+          <input class="gtb-input" type="date" value="2026-06-29">
+        </div>
+      </div>
+
+      <div class="gtb-form-group" style="margin-top:16px">
+        <label class="gtb-label">Motif / Communication</label>
+        <input class="gtb-input" type="text" placeholder="Ex. : Remboursement loyer juin" maxlength="140">
+      </div>
+
+      <!-- CSRF token (static for preview) -->
+      <input type="hidden" value="preview_token_abc123">
+
+      <button class="gtb-btn gtb-btn-primary gtb-btn-block gtb-btn-lg" style="margin-top:8px">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+        Valider le virement
+      </button>
+    </div>
+
+    <!-- INFO PANEL -->
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <!-- SOLDES -->
+      <div class="gtb-card gtb-card-sm">
+        <p style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:12px">Mes soldes</p>
+        <div class="gtb-info-list">
+          <div class="gtb-info-item">
+            <span class="gtb-info-label">Compte Courant</span>
+            <span class="gtb-info-value green">24 850,00 €</span>
+          </div>
+          <div class="gtb-info-item">
+            <span class="gtb-info-label">Compte Épargne</span>
+            <span class="gtb-info-value green">8 200,00 €</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIMITES -->
+      <div class="gtb-card gtb-card-sm">
+        <p style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:12px">Limites</p>
+        <div class="gtb-info-list">
+          <div class="gtb-info-item">
+            <span class="gtb-info-label">SEPA (journalier)</span>
+            <span class="gtb-info-value">50 000 €</span>
+          </div>
+          <div class="gtb-info-item">
+            <span class="gtb-info-label">Instantané</span>
+            <span class="gtb-info-value">15 000 €</span>
+          </div>
+          <div class="gtb-info-item">
+            <span class="gtb-info-label">Délai SEPA</span>
+            <span class="gtb-info-value">1–2 jours</span>
+          </div>
+          <div class="gtb-info-item">
+            <span class="gtb-info-label">Délai Instantané</span>
+            <span class="gtb-info-value"><span class="gtb-badge gtb-badge-green">10 sec</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFO -->
+      <div class="gtb-alert gtb-alert-blue">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span>Vous recevrez une confirmation par email après validation. Un code OTP peut être requis pour les gros montants.</span>
+      </div>
+
+      <!-- DERNIERS VIREMENTS -->
+      <div class="gtb-card gtb-card-sm">
+        <p style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:12px">Derniers virements</p>
+        <div class="gtb-info-list">
+          <div class="gtb-info-item">
+            <div>
+              <div style="font-size:13px;font-weight:600">Marie Martin</div>
+              <div style="font-size:11px;color:var(--sub)">28 juin · SEPA</div>
+            </div>
+            <span style="color:var(--red);font-weight:700;font-size:13px">−1 200 €</span>
+          </div>
+          <div class="gtb-info-item">
+            <div>
+              <div style="font-size:13px;font-weight:600">Pierre Durand</div>
+              <div style="font-size:11px;color:var(--sub)">25 juin · Instantané</div>
+            </div>
+            <span style="color:var(--red);font-weight:700;font-size:13px">−350 €</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- BOTTOM NAV -->
+<nav class="gtb-nav">
+  <a href="dashboard.html" class="gtb-nav-item">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+    Accueil
+  </a>
+  <a href="virement.html" class="gtb-nav-item active">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+    Virements
+  </a>
+  <div class="gtb-nav-center">
+    <button class="gtb-nav-center-btn">
+      <svg width="26" height="26" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+    </button>
+  </div>
+  <a href="cartes.html" class="gtb-nav-item">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+    Cartes
+  </a>
+  <a href="transactions.html" class="gtb-nav-item">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+    Historique
+  </a>
+</nav>
+
+<script>
+function setType(btn, type) {
+  document.querySelectorAll('.gtb-type-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function fillBenef(sel) {
+  if (!sel.value) return;
+  const parts = sel.value.split('|');
+  document.getElementById('benef-nom').value = parts[0] || '';
+  document.getElementById('benef-iban').value = parts[1] || '';
+  document.getElementById('benef-bic').value = '';
+}
+</script>
+</body>
+</html>

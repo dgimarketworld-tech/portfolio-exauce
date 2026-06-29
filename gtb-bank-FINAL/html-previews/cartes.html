@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mes Cartes — GTB</title>
+<style>
+:root{--bg:#F0F4F8;--bg2:#E8EDF3;--card:#FFFFFF;--border:#E2E8F0;
+--gold:#D4AF37;--gold2:#B8960C;--dark:#0D1B2A;--dark2:#1a3c5e;
+--green:#00C67A;--green-light:#E6FFF5;--red:#E5373A;--red-light:#FFF0F0;
+--blue:#3B82F6;--blue-light:#EFF6FF;--sub:#64748B;--text:#1E293B;
+--nav-h:68px;--topbar-h:64px;--r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:20px;
+--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+--shadow-md:0 4px 6px rgba(0,0,0,.07),0 2px 4px rgba(0,0,0,.05)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:calc(var(--nav-h)+16px)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+
+/* TOPBAR */
+.gtb-topbar{position:sticky;top:0;z-index:100;height:var(--topbar-h);background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.gtb-logo{display:flex;align-items:center;gap:10px;flex:1}
+.gtb-logo-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.gtb-logo-text{font-weight:700;font-size:15px;color:var(--dark);line-height:1.2}
+.gtb-logo-text span{display:block;font-size:10px;font-weight:500;color:var(--sub);letter-spacing:.5px}
+.gtb-topbar-actions{display:flex;align-items:center;gap:10px}
+.gtb-notif-btn{position:relative;width:40px;height:40px;border-radius:50%;background:var(--bg);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.gtb-badge-count{position:absolute;top:6px;right:6px;background:var(--red);color:#fff;font-size:9px;font-weight:700;border-radius:6px;min-width:14px;height:14px;display:flex;align-items:center;justify-content:center;padding:0 3px}
+.gtb-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--dark),var(--dark2));color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* MAIN */
+.gtb-main{max-width:900px;margin:0 auto;padding:20px 16px}
+
+/* SECTION HEAD */
+.gtb-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.gtb-page-title{font-size:20px;font-weight:700;color:var(--dark)}
+.gtb-page-sub{font-size:13px;color:var(--sub);margin-top:2px}
+
+/* CARDS GRID */
+.gtb-cartes-grid{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:480px){.gtb-cartes-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.gtb-cartes-grid{grid-template-columns:1fr 1fr 1fr}}
+
+/* CARD WIDGET */
+.gtb-bank-card{border-radius:18px;padding:22px 24px;position:relative;overflow:hidden;min-height:180px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;box-shadow:0 8px 32px rgba(0,0,0,.18)}
+.gtb-bank-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.08)}
+.gtb-bank-card::after{content:'';position:absolute;bottom:-50px;left:-30px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.05)}
+.gtb-bank-card.gold{background:linear-gradient(135deg,#C9A227 0%,#E8C547 50%,#B8960C 100%)}
+.gtb-bank-card.infinite{background:linear-gradient(135deg,#0D1B2A 0%,#1a3c5e 60%,#0D1B2A 100%)}
+.gtb-bank-card.standard{background:linear-gradient(135deg,#374151 0%,#4B5563 60%,#1F2937 100%)}
+.gtb-bank-card.blocked{filter:grayscale(.6);opacity:.75}
+.gtb-card-chip{width:38px;height:28px;background:linear-gradient(135deg,#E8D090,#C9A54A);border-radius:5px;position:relative;z-index:1}
+.gtb-card-number{font-size:15px;font-family:monospace;letter-spacing:2px;position:relative;z-index:1;margin-top:auto}
+.gtb-card-bottom{display:flex;justify-content:space-between;align-items:flex-end;position:relative;z-index:1}
+.gtb-card-holder{font-size:12px;font-weight:600;letter-spacing:.5px;opacity:.9}
+.gtb-card-expiry{font-size:11px;opacity:.8;text-align:right}
+.gtb-card-expiry span{display:block;font-size:10px;opacity:.7;margin-bottom:1px}
+
+/* CARD ITEM WRAPPER */
+.gtb-carte-wrap{background:var(--card);border-radius:var(--r-xl);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow)}
+.gtb-carte-head{padding:16px 20px 0}
+.gtb-carte-body{padding:16px 20px}
+.gtb-carte-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.gtb-carte-row:last-child{border-bottom:none}
+.gtb-carte-label{color:var(--sub)}
+.gtb-carte-value{font-weight:600}
+.gtb-carte-actions{display:flex;gap:8px;padding:0 20px 20px;flex-wrap:wrap}
+
+/* BADGES */
+.gtb-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600}
+.gtb-badge-green{background:var(--green-light);color:#065F46}
+.gtb-badge-red{background:var(--red-light);color:#991B1B}
+.gtb-badge-blue{background:var(--blue-light);color:#1E40AF}
+
+/* BUTTONS */
+.gtb-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 16px;border-radius:var(--r-md);font-size:13px;font-weight:600;border:none;cursor:pointer;transition:.2s;text-decoration:none}
+.gtb-btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark)}
+.gtb-btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text)}
+.gtb-btn-danger{background:var(--red-light);color:var(--red);border:1.5px solid #FECACA}
+.gtb-btn-sm{padding:7px 12px;font-size:12px}
+
+/* EMPTY */
+.gtb-empty{text-align:center;color:var(--sub);padding:48px 20px;font-size:14px}
+
+/* BOTTOM NAV */
+.gtb-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:#fff;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;z-index:100;box-shadow:0 -2px 12px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom)}
+.gtb-nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;font-weight:600;color:var(--sub);cursor:pointer;padding:8px 12px;border-radius:var(--r-md);transition:.2s;flex:1;text-decoration:none}
+.gtb-nav-item.active{color:var(--gold2)}
+.gtb-nav-item svg{width:22px;height:22px}
+.gtb-nav-center{position:relative;flex-shrink:0}
+.gtb-nav-center-btn{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(212,175,55,.45);margin-top:-20px}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="gtb-topbar">
+  <div class="gtb-logo">
+    <div class="gtb-logo-mark">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 6l9-3 9 3v2H3V6zm0 4h18M5 10v8m4-8v8m6-8v8m4-8v8M3 18h18"/></svg>
+    </div>
+    <div class="gtb-logo-text">Global Trust Bank<span>BANQUE EN LIGNE</span></div>
+  </div>
+  <div class="gtb-topbar-actions">
+    <button class="gtb-notif-btn">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#64748B" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+      <span class="gtb-badge-count">2</span>
+    </button>
+    <div class="gtb-avatar">JD</div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="gtb-main">
+  <div class="gtb-section-head">
+    <div>
+      <h1 class="gtb-page-title">Mes Cartes</h1>
+      <p class="gtb-page-sub">3 carte(s) associée(s) à votre compte</p>
+    </div>
+    <button class="gtb-btn gtb-btn-primary gtb-btn-sm">
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+      Nouvelle carte
+    </button>
+  </div>
+
+  <div class="gtb-cartes-grid">
+
+    <!-- CARTE 1 — GOLD ACTIVE -->
+    <div class="gtb-carte-wrap">
+      <div class="gtb-carte-head">
+        <div class="gtb-bank-card gold" style="margin-bottom:16px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div class="gtb-card-chip"></div>
+            <svg width="48" height="30" viewBox="0 0 48 30" fill="none" style="opacity:.9">
+              <circle cx="18" cy="15" r="14" fill="rgba(255,255,255,0.3)"/>
+              <circle cx="30" cy="15" r="14" fill="rgba(255,255,255,0.2)"/>
+            </svg>
+          </div>
+          <div class="gtb-card-number">•••• •••• •••• 4521</div>
+          <div class="gtb-card-bottom" style="margin-top:12px">
+            <div class="gtb-card-holder">JEAN DUPONT</div>
+            <div class="gtb-card-expiry"><span>EXP</span>08/28</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <span style="font-weight:700;font-size:15px">Visa Gold</span>
+          <span class="gtb-badge gtb-badge-green">Active</span>
+        </div>
+      </div>
+      <div class="gtb-carte-body">
+        <div class="gtb-carte-row">
+          <span class="gtb-carte-label">Plafond paiement</span>
+          <span class="gtb-carte-value">5 000 €/mois</span>
+        </div>
+        <div class="gtb-carte-row">
+          <span class="gtb-carte-label">Plafond retrait</span>
+          <span class="gtb-carte-value">1 500 €/sem.</span>
+        </div>
+        <div class="gtb-carte-row">
+          <span class="gtb-carte-label">Paiement sans contact</span>
+          <span class="gtb-carte-value" style="color:var(--green)">✓ Activé</span>
+        </div>
+      </div>
+      <div class="gtb-carte-actions">
+        <button class="gtb-btn gtb-btn-danger gtb-btn-sm">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Bloquer
+        </button>
+        <button class="gtb-btn gtb-btn-outline gtb-btn-sm">Paramètres</button>
+      </div>
+    </div>
+
+    <!-- CARTE 2 — INFINITE ACTIVE -->
+    <div class="gtb-carte-wrap">
+      <div class="gtb-carte-head">
+        <div class="gtb-bank-card infinite" style="margin-bottom:16px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div class="gtb-card-chip"></div>
+            <svg width="48" height="30" viewBox="0 0 48 30" fill="none" style="opacity:.7">
+              <circle cx="18" cy="15" r="14" fill="rgba(255,255,255,0.2)"/>
+              <circle cx="30" cy="15" r="14" fill="rgba(255,255,255,0.12)"/>
+            </svg>
+          </div>
+          <div class="gtb-card-number">•••• •••• •••• 8834</div>
+          <div class="gtb-card-bottom" style="margin-top:12px">
+            <div class="gtb-card-holder">JEAN DUPONT</div>
+            <div class="gtb-card-expiry"><span>EXP</span>03/27</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <span style="font-weight:700;font-size:15px">Visa Infinite</span>
+          <span class="gtb-badge gtb-badge-green">Active</span>
+        </div>
+      </div>
+      <div class="gtb-carte-body">
+        <div class="gtb-carte-row">
+          <span class="gtb-carte-label">Plafond paiement</span>
+          <span class="gtb-carte-value">Illimité</span>
+        </div>
+        <div class="gtb-carte-row">
+          <span class="gtb-carte-label">Plafond retrait</span>
+          <span class="gtb-carte-value">3 000 €/sem.</span>
+        </div>
+        <div class="gtb-carte-row">
+          <span class="gtb-carte-label">Assurance voyage</span>
+          <span class="gtb-carte-value" style="color:var(--green)">✓ Premium</span>
+        </div>
+      </div>
+      <div class="gtb-carte-actions">
+        <button class="gtb-btn gtb-btn-danger gtb-btn-sm">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Bloquer
+        </button>
+        <button class="gtb-btn gtb-btn-outline gtb-btn-sm">Paramètres</button>
+      </div>
+    </div>
+
+    <!-- CARTE 3 — STANDARD BLOQUÉE -->
+    <div class="gtb-carte-wrap">
+      <div class="gtb-carte-head">
+        <div class="gtb-bank-card standard blocked" style="margin-bottom:16px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div class="gtb-card-chip"></div>
+            <svg width="48" height="30" viewBox="0 0 48 30" fill="none" style="opacity:.6">
+              <circle cx="18" cy="15" r="14" fill="rgba(255,255,255,0.2)"/>
+              <circle cx="30" cy="15" r="14" fill="rgba(255,255,255,0.12)"/>
+            </svg>
+          </div>
+          <div class="gtb-card-number">•••• •••• •••• 2201</div>
+          <div class="gtb-card-bottom" style="margin-top:12px">
+            <div class="gtb-card-holder">JEAN DUPONT</div>
+            <div class="gtb-card-expiry"><span>EXP</span>11/25</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <span style="font-weight:700;font-size:15px">Visa Standard</span>
+          <span class="gtb-badge gtb-badge-red">Bloquée</span>
+        </div>
+      </div>
+      <div class="gtb-carte-body">
+        <div class="gtb-carte-row">
+          <span class="gtb-carte-label">Plafond paiement</span>
+          <span class="gtb-carte-value">2 000 €/mois</span>
+        </div>
+        <div class="gtb-carte-row">
+          <span class="gtb-carte-label">Plafond retrait</span>
+          <span class="gtb-carte-value">500 €/sem.</span>
+        </div>
+        <div class="gtb-carte-row">
+          <span class="gtb-carte-label">Bloquée le</span>
+          <span class="gtb-carte-value">15 juin 2026</span>
+        </div>
+      </div>
+      <div class="gtb-carte-actions">
+        <button class="gtb-btn gtb-btn-primary gtb-btn-sm">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/></svg>
+          Débloquer
+        </button>
+        <button class="gtb-btn gtb-btn-outline gtb-btn-sm">Détails</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NOUVELLE CARTE CTA -->
+  <div style="background:var(--card);border-radius:var(--r-xl);border:2px dashed var(--border);padding:32px;text-align:center;margin-top:20px">
+    <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="var(--gold)" stroke-width="1.5" style="margin-bottom:12px"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+    <p style="font-weight:700;color:var(--dark);margin-bottom:6px">Commander une nouvelle carte</p>
+    <p style="font-size:13px;color:var(--sub);margin-bottom:16px">Visa Gold, Infinite ou Standard — livraison en 5 jours ouvrés</p>
+    <button class="gtb-btn gtb-btn-primary">Faire une demande</button>
+  </div>
+</main>
+
+<!-- BOTTOM NAV -->
+<nav class="gtb-nav">
+  <a href="dashboard.html" class="gtb-nav-item">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+    Accueil
+  </a>
+  <a href="virement.html" class="gtb-nav-item">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+    Virements
+  </a>
+  <div class="gtb-nav-center">
+    <button class="gtb-nav-center-btn">
+      <svg width="26" height="26" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+    </button>
+  </div>
+  <a href="cartes.html" class="gtb-nav-item active">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+    Cartes
+  </a>
+  <a href="transactions.html" class="gtb-nav-item">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+    Historique
+  </a>
+</nav>
+
+</body>
+</html>
