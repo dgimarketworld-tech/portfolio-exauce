@@ -40,7 +40,7 @@ define('DB_HOST',     getenv('DB_HOST')     ?: '127.0.0.1');
 define('DB_PORT',     getenv('DB_PORT')     ?: '3306');
 define('DB_NAME',     getenv('DB_NAME')     ?: 'globa2821189');
 define('DB_USER',     getenv('DB_USER')     ?: 'globa2821189');
-define('DB_PASS',     getenv('DB_PASS')     ?: '26Global@trust');
+define('DB_PASS',     getenv('DB_PASS')     ?: 'eohmxtqmmj');
 define('DB_CHARSET',  'utf8mb4');
 
 // ── SÉCURITÉ ────────────────────────────────────────────────────
