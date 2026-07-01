@@ -6,11 +6,11 @@ $initials = strtoupper(substr($u['first_name']??'',0,1).substr($u['last_name']??
 $fullname  = e(($u['first_name']??'').' '.($u['last_name']??''));
 $plan      = $u['plan'] ?? 'standard';
 // Compte principal + IBAN
-$compteData = DB::one("SELECT numero, solde, devise FROM comptes WHERE user_id=:id AND statut='actif' ORDER BY id ASC LIMIT 1", ['id'=>Session::userId()]);
-$iban_raw   = $compteData['numero'] ?? '';
+$compteData = DB::one("SELECT iban, bic, numero, solde, devise FROM comptes WHERE user_id=:id AND statut='actif' ORDER BY id ASC LIMIT 1", ['id'=>Session::userId()]);
+$iban_raw   = $compteData['iban'] ?? $compteData['numero'] ?? '';
 $iban_fmt   = $iban_raw ? IBAN::format($iban_raw) : '—';
 $iban_mask  = $iban_raw ? IBAN::mask($iban_raw)   : '—';
-$bic        = e(GTB_BIC);
+$bic        = e($compteData['bic'] ?? GTB_BIC);
 $solde      = (float)($compteData['solde'] ?? 0);
 $devise     = e($compteData['devise'] ?? 'EUR');
 // Notifications non lues
