@@ -1,15 +1,6 @@
 <?php
 /**
- * ════════════════════════════════════════════════════════════════
- *  GTB BANK — Garde d'authentification CLIENT
- *
- *  Inclus en tête de toute page nécessitant un client connecté.
- *  Redirige vers /authentification/login.php si non authentifié.
- *
- *  Usage :
- *    require_once __DIR__ . '/../backend/auth_required.php';
- *    $user = $currentUser; // disponible
- * ════════════════════════════════════════════════════════════════
+ * GTB BANK — Garde d'authentification CLIENT
  */
 
 require_once __DIR__ . '/config.php';
@@ -20,18 +11,25 @@ require_once __DIR__ . '/helpers.php';
 
 Session::start();
 
-// Pas connecté → redirection login
 if (!Session::isUser()) {
     $returnTo = $_SERVER['REQUEST_URI'] ?? '/';
     $_SESSION['_return_to'] = $returnTo;
     redirect(GTB_BASE_URL . '/authentification/login.php?reason=auth_required');
 }
 
-// Vérification que l'utilisateur existe toujours et n'est pas suspendu
 $userId = Session::userId();
 $currentUser = DB::one(
-    "SELECT id, client_number, email, first_name, last_name, civility, telephone AS phone,
-            avatar_url, kyc_status, status, two_fa_enabled, language, plan
+    "SELECT id,
+            COALESCE(client_number, '')                            AS client_number,
+            email,
+            COALESCE(first_name, prenom, '')                      AS first_name,
+            COALESCE(last_name,  nom,    '')                      AS last_name,
+            telephone                                              AS phone,
+            COALESCE(avatar_url, '')                              AS avatar_url,
+            COALESCE(kyc_status, 'pending')                       AS kyc_status,
+            COALESCE(status, IF(is_active=1,'active','suspended')) AS status,
+            COALESCE(two_fa_enabled, 0)                           AS two_fa_enabled,
+            COALESCE(plan, 'standard')                            AS plan
      FROM users
      WHERE id = :id
      LIMIT 1",
@@ -53,7 +51,6 @@ if ($currentUser['status'] === 'closed') {
     redirect(GTB_BASE_URL . '/authentification/login.php?reason=account_closed');
 }
 
-// Hydrate la session avec les infos fraîches (au cas où mise à jour côté admin)
 $_SESSION['user'] = array_merge($_SESSION['user'] ?? [], [
     'first_name' => $currentUser['first_name'],
     'last_name'  => $currentUser['last_name'],
@@ -61,5 +58,4 @@ $_SESSION['user'] = array_merge($_SESSION['user'] ?? [], [
     'kyc_status' => $currentUser['kyc_status'],
 ]);
 
-// CSRF auto pour les POST
 Security::requireCsrf();
