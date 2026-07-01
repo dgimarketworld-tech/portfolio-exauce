@@ -81,6 +81,7 @@ try {
             'status'         => 'active',
             'kyc_status'          => 'pending',
             'kyc_document_type'   => $document_type,
+            'two_fa_enabled'      => 1,
             'created_at'          => date('Y-m-d H:i:s'),
         ]);
         $numeroCompte = 'GTB-' . ($pays ?: 'XX') . '-' . str_pad((string)$userId, 6, '0', STR_PAD_LEFT) . strtoupper(bin2hex(random_bytes(2)));
