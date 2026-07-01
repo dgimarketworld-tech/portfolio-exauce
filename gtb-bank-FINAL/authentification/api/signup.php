@@ -59,43 +59,65 @@ if (DB::scalar("SELECT COUNT(*) FROM users WHERE email=:e", ['e' => $email]) > 0
     exit;
 }
 
+// Détermine region et devise selon le pays
+$northam_countries = ['US','CA','MX'];
+$europe_countries  = ['FR','BE','CH','LU','MC','DE','ES','IT','PT','NL','AT','GB','IE','SE','NO','DK','FI','PL','CZ','HU','RO','BG','HR','SK','SI','EE','LV','LT','GR','CY','MT'];
+if (in_array($pays, $northam_countries, true)) {
+    $region = 'northam';
+    $devise = 'USD';
+} elseif (in_array($pays, $europe_countries, true)) {
+    $region = 'europe';
+    $devise = 'EUR';
+} else {
+    $region = 'latam';
+    $devise = 'XOF';
+}
+
 // Création user + compte courant
+$newUserId = null;
 try {
-    DB::transaction(function() use ($email, $password, $prenom, $nom, $phone, $birthday, $pays, $plan, $document_type) {
+    DB::transaction(function() use ($email, $password, $prenom, $nom, $phone, $birthday, $pays, $plan, $document_type, $region, $devise, &$newUserId) {
         $clientNum = generate_client_number();
         $hash = Security::hashPassword($password);
-        $userId = DB::insertInto('users', [
-            'email'          => $email,
-            'password_hash'  => $hash,
-            'prenom'         => $prenom,
-            'nom'            => $nom,
-            'first_name'     => $prenom,
-            'last_name'      => $nom,
-            'telephone'      => $phone,
-            'birthday'       => $birthday ?: null,
-            'pays'           => $pays ?: null,
-            'plan'           => $plan,
-            'client_number'  => $clientNum,
-            'role'           => 'user',
-            'is_active'      => 1,
-            'status'         => 'active',
-            'kyc_status'          => 'pending',
-            'kyc_document_type'   => $document_type,
-            'two_fa_enabled'      => 1,
-            'created_at'          => date('Y-m-d H:i:s'),
+        $newUserId = DB::insertInto('users', [
+            'email'             => $email,
+            'password_hash'     => $hash,
+            'prenom'            => $prenom,
+            'nom'               => $nom,
+            'first_name'        => $prenom,
+            'last_name'         => $nom,
+            'telephone'         => $phone,
+            'birthday'          => $birthday ?: null,
+            'pays'              => $pays ?: null,
+            'region'            => $region,
+            'plan'              => $plan,
+            'client_number'     => $clientNum,
+            'role'              => 'user',
+            'is_active'         => 1,
+            'status'            => 'active',
+            'kyc_status'        => 'pending',
+            'kyc_document_type' => $document_type,
+            'two_fa_enabled'    => 1,
+            'devise'            => $devise,
+            'langue'            => 'fr',
+            'language'          => 'fr',
+            'created_at'        => date('Y-m-d H:i:s'),
         ]);
-        $numeroCompte = 'GTB-' . ($pays ?: 'XX') . '-' . str_pad((string)$userId, 6, '0', STR_PAD_LEFT) . strtoupper(bin2hex(random_bytes(2)));
+        $numeroCompte = 'GTB-' . ($pays ?: 'XX') . '-' . str_pad((string)$newUserId, 6, '0', STR_PAD_LEFT) . strtoupper(bin2hex(random_bytes(2)));
         DB::insertInto('comptes', [
-            'user_id'  => $userId,
-            'numero'   => $numeroCompte,
-            'type'     => $plan === 'business' ? 'business' : 'courant',
-            'solde'    => 0.00,
-            'devise'   => $pays === 'FR' ? 'EUR' : 'XOF',
-            'statut'   => 'actif',
-            'ouvert_le'=> date('Y-m-d H:i:s'),
+            'user_id'   => $newUserId,
+            'numero'    => $numeroCompte,
+            'type'      => $plan === 'business' ? 'business' : 'courant',
+            'solde'     => 0.00,
+            'devise'    => $devise,
+            'statut'    => 'actif',
+            'ouvert_le' => date('Y-m-d H:i:s'),
         ]);
-        notify($userId, 'Bienvenue chez GTB', "Votre compte a été créé avec succès. Bienvenue $prenom !", 'success');
     });
+    // notify hors transaction : un échec de notification ne doit pas rollback le compte
+    if ($newUserId) {
+        notify($newUserId, 'Bienvenue chez GTB', "Votre compte a été créé avec succès. Bienvenue $prenom !", 'success');
+    }
 } catch (Throwable $e) {
     error_log('Signup error: ' . $e->getMessage());
     json_error('Erreur lors de la création. Réessayez.', 500);
