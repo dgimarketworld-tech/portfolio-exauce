@@ -59,12 +59,11 @@ define('CSRF_TOKEN_NAME',  '_csrf');
 define('CSRF_LIFETIME',    3600);
 
 // Hash mots de passe
-define('PASSWORD_ALGO',    PASSWORD_ARGON2ID);
-define('PASSWORD_OPTIONS', [
-    'memory_cost' => 65536,
-    'time_cost'   => 4,
-    'threads'     => 2,
-]);
+define('PASSWORD_ALGO',    defined('PASSWORD_ARGON2ID') ? PASSWORD_ARGON2ID : PASSWORD_BCRYPT);
+define('PASSWORD_OPTIONS', defined('PASSWORD_ARGON2ID')
+    ? ['memory_cost' => 65536, 'time_cost' => 4, 'threads' => 2]
+    : ['cost' => 12]
+);
 
 // Connexion — limites anti-brute force
 define('LOGIN_MAX_ATTEMPTS',  5);
