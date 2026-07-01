@@ -22,7 +22,10 @@ $currentUser = DB::one(
     "SELECT id, client_number, email,
             first_name, last_name, telephone AS phone,
             avatar_url, kyc_status, status, two_fa_enabled, plan,
-            access_blocked, access_block_reason, access_block_type, access_block_until
+            region, langue, devise, interface_color, pref_theme,
+            pref_email_alerts, pref_sms_alerts,
+            access_blocked, access_block_reason, access_block_type, access_block_until,
+            transfer_stop_pct
      FROM users
      WHERE id = :id
      LIMIT 1",
