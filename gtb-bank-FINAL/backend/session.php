@@ -96,11 +96,13 @@ final class Session
         $_SESSION['_last_regen']    = time();
         $_SESSION['_last_activity'] = time();
 
-        DB::update(
-            "UPDATE users SET last_login_at = NOW(), last_login_ip = :ip, failed_logins = 0
-             WHERE id = :id",
-            ['ip' => Security::clientIp(), 'id' => $user['id']]
-        );
+        try {
+            DB::update(
+                "UPDATE users SET last_login_at = NOW(), last_login_ip = :ip, failed_logins = 0
+                 WHERE id = :id",
+                ['ip' => Security::clientIp(), 'id' => $user['id']]
+            );
+        } catch (Throwable $e) { error_log('[session] loginUser update: ' . $e->getMessage()); }
     }
 
     /** Connecte un ADMIN. */
@@ -121,11 +123,11 @@ final class Session
         $_SESSION['_last_regen']    = time();
         $_SESSION['_last_activity'] = time();
 
-        DB::update(
+        try { DB::update(
             "UPDATE admins SET last_login_at = NOW(), last_login_ip = :ip, failed_logins = 0
              WHERE id = :id",
             ['ip' => Security::clientIp(), 'id' => $admin['id']]
-        );
+        ); } catch (Throwable $e) { error_log('[session] loginAdmin update: ' . $e->getMessage()); }
     }
 
     /** Détruit complètement la session. */

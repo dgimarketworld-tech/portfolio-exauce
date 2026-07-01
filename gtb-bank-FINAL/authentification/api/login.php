@@ -3,6 +3,22 @@
  * GTB BANK — api/login.php
  * Étape 1 : vérifie identifiants, génère OTP 2FA
  */
+
+// ── Toujours répondre en JSON, même en cas d'erreur PHP ──────────
+header('Content-Type: application/json; charset=utf-8');
+set_exception_handler(function(Throwable $e) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'error'   => 'Erreur serveur. Contactez le support.',
+        'debug'   => defined('GTB_DEBUG') && GTB_DEBUG ? $e->getMessage() : null,
+    ]);
+    exit;
+});
+set_error_handler(function(int $errno, string $errstr) {
+    throw new \ErrorException($errstr, $errno);
+});
+
 require_once __DIR__ . '/../../backend/config.php';
 require_once __DIR__ . '/../../backend/db.php';
 require_once __DIR__ . '/../../backend/session.php';
@@ -27,14 +43,20 @@ if ($email === '' || $password === '')
 
 // Throttling anti-brute force
 $ip       = Security::clientIp();
-$attempts = (int) DB::scalar(
-    "SELECT COUNT(*) FROM login_attempts
-     WHERE (email = :e OR ip_address = :ip) AND success = 0
-     AND attempted_at > DATE_SUB(NOW(), INTERVAL :win SECOND)",
-    ['e' => $email, 'ip' => $ip, 'win' => LOGIN_THROTTLE_WIN]
-);
-if ($attempts >= LOGIN_THROTTLE_MAX)
-    json_response(['success' => false, 'error' => 'Trop de tentatives. Réessayez dans 15 minutes.'], 429);
+try {
+    $attempts = (int) DB::scalar(
+        "SELECT COUNT(*) FROM login_attempts
+         WHERE (email = :e OR ip_address = :ip) AND success = 0
+         AND attempted_at > DATE_SUB(NOW(), INTERVAL :win SECOND)",
+        ['e' => $email, 'ip' => $ip, 'win' => LOGIN_THROTTLE_WIN]
+    );
+    if ($attempts >= LOGIN_THROTTLE_MAX)
+        json_response(['success' => false, 'error' => 'Trop de tentatives. Réessayez dans 15 minutes.'], 429);
+} catch (Throwable $e) {
+    // Table login_attempts absente — on continue sans throttling
+    error_log('[login] login_attempts: ' . $e->getMessage());
+    $attempts = 0;
+}
 
 // ── Vérification admin (table admins, pas de 2FA) ──
 $admin = DB::one(
@@ -44,13 +66,7 @@ $admin = DB::one(
 );
 
 if ($admin && Security::verifyPassword($password, $admin['password_hash'])) {
-    DB::insertInto('login_attempts', [
-        'email'        => $email,
-        'ip_address'   => $ip,
-        'success'      => 1,
-        'attempted_at' => date('Y-m-d H:i:s'),
-    ]);
-    // Connexion directe sans 2FA pour les admins
+    try { DB::insertInto('login_attempts', ['email'=>$email,'ip_address'=>$ip,'success'=>1,'attempted_at'=>date('Y-m-d H:i:s')]); } catch (Throwable $e) {}
     Session::loginAdmin($admin);
     json_response(['success' => true, 'redirect' => GTB_BASE_URL . '/admin/index.php']);
 }
@@ -67,21 +83,11 @@ $user = DB::one(
 
 if (!$user || !$user['is_active'] || !Security::verifyPassword($password, $user['password_hash'])) {
     usleep(random_int(200_000, 500_000));
-    DB::insertInto('login_attempts', [
-        'email'        => $email,
-        'ip_address'   => $ip,
-        'success'      => 0,
-        'attempted_at' => date('Y-m-d H:i:s'),
-    ]);
+    try { DB::insertInto('login_attempts', ['email'=>$email,'ip_address'=>$ip,'success'=>0,'attempted_at'=>date('Y-m-d H:i:s')]); } catch (Throwable $e) {}
     json_response(['success' => false, 'error' => 'Identifiants invalides.']);
 }
 
-DB::insertInto('login_attempts', [
-    'email'        => $email,
-    'ip_address'   => $ip,
-    'success'      => 1,
-    'attempted_at' => date('Y-m-d H:i:s'),
-]);
+try { DB::insertInto('login_attempts', ['email'=>$email,'ip_address'=>$ip,'success'=>1,'attempted_at'=>date('Y-m-d H:i:s')]); } catch (Throwable $e) {}
 
 // Connexion directe sans 2FA si désactivé (comptes de test)
 if (!$user['two_fa_enabled']) {
@@ -97,15 +103,20 @@ if (!$user['two_fa_enabled']) {
     json_response(['success' => true, 'redirect' => $redirect]);
 }
 
-$otp   = Security::randomDigits(OTP_LENGTH);
+$otp    = Security::randomDigits(OTP_LENGTH);
 $prenom = $user['prenom'] ?: $user['nom'] ?: 'Client';
-DB::insertInto('otp_codes', [
-    'user_id'    => $user['id'],
-    'code_hash'  => password_hash($otp, PASSWORD_BCRYPT, ['cost' => 8]),
-    'expires_at' => date('Y-m-d H:i:s', time() + OTP_LIFETIME),
-    'used'       => 0,
-    'created_at' => date('Y-m-d H:i:s'),
-]);
+try {
+    DB::insertInto('otp_codes', [
+        'user_id'    => $user['id'],
+        'code_hash'  => password_hash($otp, PASSWORD_BCRYPT, ['cost' => 8]),
+        'expires_at' => date('Y-m-d H:i:s', time() + OTP_LIFETIME),
+        'used'       => 0,
+        'created_at' => date('Y-m-d H:i:s'),
+    ]);
+} catch (Throwable $e) {
+    error_log('[login] otp_codes insert: ' . $e->getMessage());
+    json_response(['success' => false, 'error' => 'Erreur génération OTP. Contactez le support. [' . $e->getMessage() . ']']);
+}
 
 Session::setPending2FA((int) $user['id'], 'login');
 send_otp_email($email, $prenom, $otp);
