@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../../backend/auth_required.php';
 $pageTitle   = 'Mes crédits';
 $navActive   = 'home';
+$depth       = 1;
 $notif_count = (int)DB::scalar("SELECT COUNT(*) FROM notifications WHERE user_id=:id AND is_read=0", ['id'=>Session::userId()]);
 $credits     = DB::all("SELECT * FROM credits WHERE user_id=:id ORDER BY statut,cree_le DESC", ['id'=>Session::userId()]);
 $actifs      = array_filter($credits, fn($c) => $c['statut'] === 'en_cours');

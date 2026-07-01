@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../../backend/auth_required.php';
 $pageTitle   = 'Support client';
 $navActive   = 'home';
+$depth       = 1;
 $notif_count = (int)DB::scalar("SELECT COUNT(*) FROM notifications WHERE user_id=:id AND is_read=0", ['id'=>Session::userId()]);
 $tickets     = DB::all("SELECT t.*,a.first_name as c_fn,a.last_name as c_ln FROM tickets t LEFT JOIN admins a ON t.conseiller_id=a.id WHERE t.user_id=:id ORDER BY t.cree_le DESC", ['id'=>Session::userId()]);
 

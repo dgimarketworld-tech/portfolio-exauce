@@ -3,6 +3,7 @@ require_once __DIR__ . '/../../backend/auth_required.php';
 
 $pageTitle   = 'Virements';
 $navActive   = 'virement';
+$depth       = 1;
 $notif_count = (int)DB::scalar("SELECT COUNT(*) FROM notifications WHERE user_id=:id AND is_read=0", ['id'=>Session::userId()]);
 
 $comptes       = DB::all("SELECT * FROM comptes WHERE user_id=:id AND statut='actif'", ['id'=>Session::userId()]);

@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../../backend/auth_required.php';
 $pageTitle   = 'Souscription assurance';
 $navActive   = 'home';
+$depth       = 1;
 $notif_count = (int)DB::scalar("SELECT COUNT(*) FROM notifications WHERE user_id=:id AND is_read=0", ['id'=>Session::userId()]);
 
 $type_param = htmlspecialchars($_GET['type'] ?? 'habitation', ENT_QUOTES, 'UTF-8');

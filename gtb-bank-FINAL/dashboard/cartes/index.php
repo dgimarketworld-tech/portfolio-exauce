@@ -3,6 +3,7 @@ require_once __DIR__ . '/../../backend/auth_required.php';
 
 $pageTitle   = 'Mes Cartes';
 $navActive   = 'cartes';
+$depth       = 1;
 $notif_count = (int)DB::scalar("SELECT COUNT(*) FROM notifications WHERE user_id=:id AND is_read=0", ['id'=>Session::userId()]);
 
 // Traitement POST (bloquer / débloquer)

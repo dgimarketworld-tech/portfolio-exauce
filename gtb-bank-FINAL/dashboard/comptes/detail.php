@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../../backend/auth_required.php';
 $pageTitle   = 'Détail compte';
 $navActive   = 'home';
+$depth       = 1;
 $notif_count = (int)DB::scalar("SELECT COUNT(*) FROM notifications WHERE user_id=:id AND is_read=0", ['id'=>Session::userId()]);
 
 $id      = (int)($_GET['id'] ?? 0);

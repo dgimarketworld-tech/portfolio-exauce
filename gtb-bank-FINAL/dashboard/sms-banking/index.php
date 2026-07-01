@@ -4,6 +4,7 @@ require_once __DIR__ . '/../../backend/helpers.php';
 
 $pageTitle   = 'SMS Banking';
 $navActive   = 'home';
+$depth       = 1;
 $userId      = Session::userId();
 $u           = $currentUser;
 $notif_count = (int)DB::scalar("SELECT COUNT(*) FROM notifications WHERE user_id=:id AND is_read=0", ['id'=>$userId]);
