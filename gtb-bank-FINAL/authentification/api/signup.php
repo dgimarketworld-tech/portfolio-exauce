@@ -1,4 +1,5 @@
 <?php
+ob_start();
 /**
  * /authentification/api/signup.php
  * Inscription d'un nouveau client
